@@ -1,6 +1,6 @@
-system_chart KNIGHTS_TOUR
+system_chart DIGITAL_VOTER_SYSTEM
 indexing
-  authors: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "Our system is based on how voters are registered at polling stations today. Today all voters are registered in books at the polling stations. When a voter want to vote at a polling station he hands in his polling card and his name is looked up in one of these books.The name is marked in the book, and he is handed a ballot. It is not possible to register twice.\ 
 \The aim of our system is to make the current paper-based process (looking into a paper based book) into a digital process where the system will handle the task of registering a voter using his voting card at a given polling place. \
