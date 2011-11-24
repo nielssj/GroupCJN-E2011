@@ -1,0 +1,122 @@
+system_chart KNIGHTS_TOUR
+indexing
+  authors: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "Our system is based on how voters are registered at polling stations today. Today all voters are registered in books at the polling stations. When a voter want to vote at a polling station he hands in his polling card and his name is looked up in one of these books.The name is marked in the book, and he is handed a ballot. It is not possible to register twice.\ 
+\The aim of our system is to make the current paper-based process (looking into a paper based book) into a digital process where the system will handle the task of registering a voter using his voting card at a given polling place. \
+\When a voter has been authenticated, registered and handed his ballot, the job of the system is finished. This means that the system does NOT have anything to do with registering which party a voter has voted for (e-voting), it ONLY manages voter lists, and ensures that a voter may only vote once."
+cluster POLLING_TABLE_PT
+description
+  "The table where voters register."
+cluster CENTRAL_C
+description
+	"The admin module located at the Home office"
+end
+
+cluster_chart POLLING_TABLE_PT
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+cluster PT_VIEW
+description 
+	"TBU"
+cluster PT_CONTROLLER
+description 
+	"TBU"
+cluster PT_MODEL
+description 
+	"TBU"
+end
+
+cluster_chart PT_MODEL
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+class DB_COMM
+description 
+	"Represents the connection to the database"
+class VOTER
+description 
+	"TBU"
+class REGISTRATION_SECONDARY_REQUIREMENT
+description 
+	"TBU"
+end
+
+cluster_chart PT_VIEW
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+class REG_WINDOW
+description 
+	"TBU"
+class VOTER_WINDOW
+description 
+	"TBU"
+end
+
+cluster_chart PT_CONTROLLER
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+end
+
+cluster_chart CENTRAL_C
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+cluster C_VIEW
+description 
+	"TBU"
+cluster C_CONTROLLER
+description 
+	"TBU"
+cluster C_MODEL
+description 
+	"TBU"
+end
+
+cluster_chart C_MODEL
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+class DB_COMM
+description 
+	"Represents the connection to the database"
+class VOTER_CARD_GENERATOR
+description
+	"TBU"
+class UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
+description
+	"TBU"
+class VOTING_PLACE_DISTRIBUTION_SECOND_REQ
+description
+	"TBU"
+end
+
+cluster_chart C_VIEW
+indexing
+    author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+   "TBU"
+class VOTER_CARD_WINDOW
+description
+	"TBU"
+class VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
+description
+	"TBU"
+end
+
+cluster_chart C_CONTROLLER
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+explanation
+  "TBU"
+end
+	

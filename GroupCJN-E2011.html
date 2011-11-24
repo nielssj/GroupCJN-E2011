@@ -1,0 +1,783 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+
+<title>BON Documentation: KNIGHTS_TOUR</title>
+
+<script type="text/javascript">
+<!--
+
+var items = ['system_chart:KNIGHTS_TOUR','class_chart:INTEGER','class_chart:TUPLE','class_chart:ANY','class_chart:BOOLEAN','class_chart:TREE','class_chart:NUMBER','class_chart:TABLE','class_chart:SET','class_chart:FLOAT','class_chart:VALUE','class_chart:LIST','class_chart:FILE','class_chart:ARRAY','class_chart:STRING','cluster_chart:PT_CONTROLLER','cluster_chart:PT_MODEL','cluster_chart:KERNEL','cluster_chart:POLLING_TABLE_PT','cluster_chart:PT_VIEW','cluster_chart:C_MODEL','cluster_chart:C_CONTROLLER','cluster_chart:C_VIEW','cluster_chart:KNIGHTS_TOUR','cluster_chart:STRUCTURES','cluster_chart:CENTRAL_C','cluster_chart:BUILT_IN','cluster_chart:NUMBERS'];
+var topOptions = [ 'System Chart', 'system_chart', 'Cluster Charts', 'cluster_chart', 'Class Charts', 'class_chart' ];
+var subOptions = [];
+subOptions['system_chart'] = [ 'KNIGHTS_TOUR', 'system_chart:KNIGHTS_TOUR' ];
+subOptions['cluster_chart'] = [ 'BUILT_IN','cluster_chart:BUILT_IN','CENTRAL_C','cluster_chart:CENTRAL_C','C_CONTROLLER','cluster_chart:C_CONTROLLER','C_MODEL','cluster_chart:C_MODEL','C_VIEW','cluster_chart:C_VIEW','KERNEL','cluster_chart:KERNEL','KNIGHTS_TOUR','cluster_chart:KNIGHTS_TOUR','NUMBERS','cluster_chart:NUMBERS','POLLING_TABLE_PT','cluster_chart:POLLING_TABLE_PT','PT_CONTROLLER','cluster_chart:PT_CONTROLLER','PT_MODEL','cluster_chart:PT_MODEL','PT_VIEW','cluster_chart:PT_VIEW','STRUCTURES','cluster_chart:STRUCTURES' ];
+subOptions['class_chart'] = [ 'ANY','class_chart:ANY','ARRAY','class_chart:ARRAY','BOOLEAN','class_chart:BOOLEAN','FILE','class_chart:FILE','FLOAT','class_chart:FLOAT','INTEGER','class_chart:INTEGER','LIST','class_chart:LIST','NUMBER','class_chart:NUMBER','SET','class_chart:SET','STRING','class_chart:STRING','TABLE','class_chart:TABLE','TREE','class_chart:TREE','TUPLE','class_chart:TUPLE','VALUE','class_chart:VALUE' ];
+
+
+var showAll = false;
+var sysTitle = 'system_title';
+var topMenu = 'top-menu';
+var subMenu = 'sub-menu';
+
+function setElText(id,text) {
+  var elem = document.getElementById(id);
+  if (elem) {
+    elem.innerHTML = text;
+  }
+}
+
+function toggleShowAll() {
+  showAll = !showAll;
+  if (showAll) {
+    displayAll();
+    setElText('showlink', 'Show One');
+  } else {
+    hideAll();
+    setElText('showlink', 'Show All');
+  }
+  showSelected();
+  return false;
+}
+
+function select(id) {
+  if (showAll) {
+//    setHash(id);
+    return true;
+  } else {
+    showOnly(id);
+    return true;
+  }
+}
+
+function showOnly(id) {
+  var elem = document.getElementById(id);
+  if (elem) {
+    hideAll();
+    showElem(id);
+  }
+}
+
+function hideAll() {
+  for (var i=0; i<items.length; i++) {
+    hideElem(items[i]);
+  }
+}
+
+function displayAll() {
+  for (var i=0; i<items.length; i++) {
+    showElem(items[i]);
+  }
+}
+
+function showElem(id) {
+  var elem = document.getElementById(id);
+  if (elem) {
+    show(elem);
+  }
+}
+
+function hideElem(id) {
+  var elem = document.getElementById(id);
+  if (elem) {
+    hide(elem);
+  }
+}
+
+function hide(elem) {
+  addClass(elem,'hidden');
+}
+
+function show(elem) {
+  removeClass(elem,'hidden');
+}
+
+function addClass(elem,cName) {
+  if (!elem.className) {
+    elem.className = cName;
+  } else if (elem.className.indexOf(cName) == -1) {
+    elem.className += ' ' + cName;
+  }
+}
+
+function removeClass(elem,cName) {
+  if (elem.className) {
+    var toReplace = elem.className.match(' ' + cName);
+    elem.className = elem.className.replace(toReplace, '');
+  }
+}
+
+function setBack(id) {
+//Not yet...
+}
+
+function initialPopulate() {
+  var topSelect = document.getElementById(topMenu);
+  if (topSelect) {
+    topSelect.options.length = 0;
+    for (var i=0; i < topOptions.length; i+=2) {
+      topSelect.options[i/2] = new Option(topOptions[i],topOptions[i+1]);
+    }
+  }
+  if (window.location.hash) {
+    hashSelect(window.location.hash.substr(1));    
+  } else {
+    populate();
+    showSelected();
+  }
+  lastHash = window.location.hash;
+  //Trigger checkHash
+  setInterval(checkHash,100);
+}
+
+function hashSelect(hash) {
+  var parts = hash.split(':');
+  if (parts.length == 2) {
+    linkSelect(parts[0],hash);
+  } else {
+    populate();
+  }
+}
+
+var lastHash = '';
+
+function checkHash() {
+
+  if (window.location.hash) {
+    if (window.location.hash != lastHash) {
+      hashSelect(window.location.hash.substr(1));
+      lastHash = window.location.hash;
+    }
+  }
+}
+
+function setHash(hash) {
+  lastHash = '#' + hash;
+  window.location.hash = hash;
+}
+
+function populate() {
+
+  var subSelect = document.getElementById(subMenu);
+  var topSelect = document.getElementById(topMenu);
+
+  if (subSelect && topSelect) {
+    var selected = topSelect.options[topSelect.selectedIndex].value;
+    if (selected) {
+      var chosenSubOptions = subOptions[selected];
+      subSelect.options.length = 0;
+      for (var i=0; i < chosenSubOptions.length; i+=2) {
+        subSelect.options[i/2] = new Option(chosenSubOptions[i],chosenSubOptions[i+1]);
+      }
+    }
+  }
+}
+
+function showSelected() {
+  var subSelect = document.getElementById(subMenu);
+  if (subSelect) {
+    var selected = subSelect.options[subSelect.selectedIndex].value;
+    if (selected) {
+      select(selected);
+      setHash(selected);
+    }
+  }
+}
+
+function linkSelect(top, sub) {
+  var topSelect = document.getElementById(topMenu);
+  if (topSelect) {
+    for (var i=0; i < topSelect.options.length; i++) {
+      if (topSelect.options[i].value == top) {
+        topSelect.selectedIndex = i;
+        break;
+      }
+    }
+  }  
+  populate();
+  var subSelect = document.getElementById(subMenu);
+  if (subSelect) {
+    for (var i=0; i < subSelect.options.length; i++) {
+      if (subSelect.options[i].value == sub) {
+        subSelect.selectedIndex = i;
+        showSelected();
+        return false;
+      }
+    }
+    showSelected();
+  }
+  return true;
+}
+
+
+//-->
+</script>
+
+<style type="text/css">
+
+.hidden {
+  position:absolute;
+  left:0px;
+  top:-500px;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+body {
+  font-family: Optima, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Helvetica, Arial, sans-serif;
+}
+
+.list-entry {
+  margin-left: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+#main {
+  padding-bottom: 100px;
+}
+
+#footer {
+  z-index: 1;
+  position: fixed; 
+  bottom: 0px;
+  right: 0px; 
+  width: 100%;
+  border-top: 2px solid #000000;
+  background-color: #cccccc;
+}
+
+#left-footer {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+#left-footer select {
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+#showlink {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 1.1em;
+  min-width: 125px;
+}
+
+#top-menu {
+  min-width: 160px;
+}
+
+#sub-menu {
+  min-width: 220px;
+}
+
+#right-footer {
+  margin: 5px 5px 0px 0px;
+  padding: 0;
+  text-align: right;
+}
+
+#footer a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+dl {
+  margin: 0 0 0 10px;
+}
+
+dd {
+  margin-left: 20px;
+} 
+
+.scenario_entry dt {
+  font-weight: bold;
+}
+
+.indexing dt, .explanation dt {
+  font-variant: small-caps;
+  letter-spacing: 1px;
+}
+
+.top-level {
+  width: 98%;
+  margin: auto;
+}
+
+.outer {
+  width: 100%;
+  background-color: #a2a2a2;
+  border: 2px solid #000000;
+  margin-bottom: 30px;
+}
+
+.type, .name, .part {
+  border: 4px groove #c0c0c0;
+  padding: 5px 0px 5px 0px;
+  text-align: center;
+}
+
+.explanation, .indexing {
+  padding: 5px 5px 5px 10px;
+  background-color: #ffffff;
+  vertical-align: top;
+  border: 4px groove #c0c0c0;
+  padding: 5px 0px 5px 0px;
+}
+
+.name {
+  background-color: #f3f0f0;
+  font-size: 1.1em;
+}
+
+.part {
+  background-color: #cccccc;
+}
+
+.type, .part {
+  width: 25%;
+}
+
+.type {
+  background-color: #bcbcbc;
+}
+
+.name, .indexing, .explanation {
+  width: 50%;
+}
+
+.top, .middle, .bottom {
+  width: 100%;
+}
+
+.bottom table {
+  border: 4px groove #c0c0c0;
+  width: 100%;
+}
+
+.bottom tr {
+  width: 100%;
+}
+
+.bottom td, .bottom th {
+  border: 1px inset #c0c0c0;
+  vertical-align: top;
+  padding: 8px 20px 8px 20px;
+}
+
+.spaced-lines {
+  line-height: 1.5em;
+}
+
+.white {
+  background-color: #ffffff;
+}
+
+.light-grey {
+  background-color: #f3f0f0;
+}
+
+.grey {
+  background-color: #cccccc;
+}
+</style>
+
+</head>
+<body onload="initialPopulate();">
+
+<div id="main">
+
+<div class="top-level" id="system_chart:KNIGHTS_TOUR">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">SYSTEM</th>
+      <td class="name" colspan="2">KNIGHTS_TOUR</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;Our system is based on how voters are registered at polling stations today. Today all voters are registered in books at the polling stations. When a voter want to vote at a polling station he hands in his polling card and his name is looked up in one of these books.The name is marked in the book, and he is handed a ballot. It is not possible to register twice.\ 
+\The aim of our system is to make the current paper-based process (looking into a paper based book) into a digital process where the system will handle the task of registering a voter using his voting card at a given polling place. \
+\When a voter has been authenticated, registered and handed his ballot, the job of the system is finished. This means that the system does NOT have anything to do with registering which party a voter has voted for (e-voting), it ONLY manages voter lists, and ensures that a voter may only vote once.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>authors : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Cluster</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#cluster_chart:POLLING_TABLE_PT" onclick="return linkSelect('cluster_chart','cluster_chart:POLLING_TABLE_PT');">POLLING_TABLE_PT</a></td>
+            <td class="white">&quot;The table where voters register.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:CENTRAL_C" onclick="return linkSelect('cluster_chart','cluster_chart:CENTRAL_C');">CENTRAL_C</a></td>
+            <td class="white">&quot;The admin module located at the Home office&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:POLLING_TABLE_PT">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">POLLING_TABLE_PT</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th>Cluster</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#cluster_chart:PT_VIEW" onclick="return linkSelect('cluster_chart','cluster_chart:PT_VIEW');">PT_VIEW</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:PT_CONTROLLER" onclick="return linkSelect('cluster_chart','cluster_chart:PT_CONTROLLER');">PT_CONTROLLER</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:PT_MODEL" onclick="return linkSelect('cluster_chart','cluster_chart:PT_MODEL');">PT_MODEL</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:PT_MODEL">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">PT_MODEL</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Class</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#class_chart:DB_COMM" onclick="return linkSelect('class_chart','class_chart:DB_COMM');">DB_COMM</a></td>
+            <td class="white">&quot;Represents the connection to the database&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER" onclick="return linkSelect('class_chart','class_chart:VOTER');">VOTER</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:REGISTRATION_SECONDARY_REQUIREMENT" onclick="return linkSelect('class_chart','class_chart:REGISTRATION_SECONDARY_REQUIREMENT');">REGISTRATION_SECONDARY_REQUIREMENT</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>
+        </table>
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:PT_VIEW">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">PT_VIEW</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Class</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#class_chart:REG_WINDOW" onclick="return linkSelect('class_chart','class_chart:REG_WINDOW');">REG_WINDOW</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_WINDOW');">VOTER_WINDOW</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>
+        </table>
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:PT_CONTROLLER">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">PT_CONTROLLER</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:CENTRAL_C">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">CENTRAL_C</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th>Cluster</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#cluster_chart:C_VIEW" onclick="return linkSelect('cluster_chart','cluster_chart:C_VIEW');">C_VIEW</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:C_CONTROLLER" onclick="return linkSelect('cluster_chart','cluster_chart:C_CONTROLLER');">C_CONTROLLER</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:C_MODEL" onclick="return linkSelect('cluster_chart','cluster_chart:C_MODEL');">C_MODEL</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:C_MODEL">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">C_MODEL</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Class</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#class_chart:DB_COMM" onclick="return linkSelect('class_chart','class_chart:DB_COMM');">DB_COMM</a></td>
+            <td class="white">&quot;Represents the connection to the database&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_CARD_GENERATOR" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_GENERATOR');">VOTER_CARD_GENERATOR</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ" onclick="return linkSelect('class_chart','class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ');">UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ" onclick="return linkSelect('class_chart','class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ');">VOTING_PLACE_DISTRIBUTION_SECOND_REQ</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>
+        </table>
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:C_VIEW">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">C_VIEW</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Class</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_CARD_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_WINDOW');">VOTER_CARD_WINDOW</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ" onclick="return linkSelect('class_chart','class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ');">VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ</a></td>
+            <td class="white">&quot;TBU&quot;</td>
+          </tr>
+        </table>
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:C_CONTROLLER">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">C_CONTROLLER</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;TBU&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div id="footer">
+  <p id="left-footer">
+    <button id="showlink" onclick="return toggleShowAll();">Show all</button>
+    Chart type:
+    <select id="top-menu" onchange="populate(); showSelected();"><option>processing...</option></select>
+    Chart:
+    <select id="sub-menu" onchange="showSelected();"><option>processing...</option></select>
+  </p>
+  <p id="right-footer">
+    Generated by <a href="http://kind.ucd.ie/products/opensource/BONc">BONc</a> (version: bonc-0.2.7) <a href="http://validator.w3.org/check?uri=referer">XHTML</a> output, 24-11-2011 14:44:59.
+  </p>
+</div>
+
+</div> <!-- End main -->
+
+</body>
+</html>
+
