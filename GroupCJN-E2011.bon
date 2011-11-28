@@ -15,7 +15,7 @@ end
 
 cluster_chart POLLING_TABLE_PT
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 cluster PT_VIEW
@@ -31,43 +31,43 @@ end
 
 cluster_chart PT_MODEL
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 class DB_COMM
 description 
-	"Represents the connection to the database"
+	"Responsible for quering and updating the database."
 class VOTER
 description 
-	"TBU"
-class REGISTRATION_SECONDARY_REQUIREMENT
+	"Represents a voter"
+class REGISTRATION
 description 
 	"TBU"
 end
 
 cluster_chart PT_VIEW
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 class REG_WINDOW
 description 
-	"TBU"
+	"A visual represention of a registration"
 class VOTER_WINDOW
 description 
-	"TBU"
+	"A visual representation of a voter"
 end
 
 cluster_chart PT_CONTROLLER
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 end
 
 cluster_chart CENTRAL_C
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 cluster C_VIEW
@@ -83,7 +83,7 @@ end
 
 cluster_chart C_MODEL
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 class DB_COMM
@@ -91,7 +91,10 @@ description
 	"Represents the connection to the database"
 class VOTER_CARD_GENERATOR
 description
-	"TBU"
+	"Responsible for the generation of votercards"
+class VOTERCARD
+description
+	"Represents a voter card."
 class UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
 description
 	"TBU"
@@ -102,12 +105,12 @@ end
 
 cluster_chart C_VIEW
 indexing
-    author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+    author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
    "TBU"
 class VOTER_CARD_WINDOW
 description
-	"TBU"
+	"A visual representation of a voter card"
 class VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
 description
 	"TBU"
@@ -115,8 +118,168 @@ end
 
 cluster_chart C_CONTROLLER
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
 end
-	
+
+class_chart DB_COMM
+indexing
+	in_cluster: "C_MODEL, PT_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Represents the connection to the database"
+query
+	"How many object does the resulting collection return?",
+	"Is there a connection to the database?"
+command
+	"Get connection to DB",
+	"Retrive an object from the DB",
+	"Send an object to the DB",
+	"Retrive a collection of objects from the DB",
+	"Send a collection of objects to the DB",
+	"Close the database connection",
+constraint 
+	"It should not be possible for the database to register a partial update/insert."
+end
+
+class_chart VOTER_CARD_GENERATOR
+indexing
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Responsible for the generation of votercards"
+query
+	"Have all the votercards been generated?",
+	"Have a specific votercard been generated",
+	"Have voter cards from a specific polling station been generated?",
+	"Have voter cards from a specific municipality been created?"
+command
+	"Generate all voter cards",
+	"Generate a specific voter card",
+	"Generate voter cards for a specific polling station",
+	"Generate voter cards for a specific municipality"
+constraint 
+	"A voter card must be unique",
+	"The same voter card must only be generated once in every batch."
+end
+
+class_chart VOTERCARD
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Represents a voter card."
+query
+	"Who is the voter assioated with this voter card.",
+	"What is the voter card ID number?",
+	"What is the name and address of the polling station assioated with this voter card?",
+	"What is the name and address of the municipality assioated with this voter card?"
+command
+	"NONE"
+constraint
+	"There can only exist one instance of a specific voter card."
+end
+
+class_chart VOTER_CARD_WINDOW
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"A visual representation of a voter card"
+query
+	"NONE"
+command	
+	"Show a specific votercard"
+constraint
+	"NONE"
+end
+
+class_chart VOTER
+indexing 
+	in_cluster: "PT_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Represents a voter"
+query
+	"What is the name of the voter?",
+	"What is the address of the voter?",
+	"What is the CPRNR of the voter?",
+	"Has a voter card been printed for the voter?",
+	"Has the voter voted?"
+command	
+	"Set a status to votercard printed",
+	"Set voter to have voted"
+constraint
+	"?"
+end
+
+class_chart REGISTRATION
+indexing 
+	in_cluster: "PT_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Represents a registration"
+query
+	"Who is the voter assioated with the registration?",
+	"What time has the registration been made?"
+command	
+	"Update assioated voter",
+	"Update registration time"
+constraint
+	"?"
+end
+
+class_chart REG_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A visual represention of a registration"
+query
+	"NONE"
+command	
+	"Show a specific registration"
+constraint
+	"?"
+end
+
+class_chart VOTER_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A visual representation of a voter"
+query
+	"NONE"
+command	
+	"Show a specific voter"
+constraint
+	"?"
+end
+
+
+
+--Comment: Change Log
+
+
+
+
+
+

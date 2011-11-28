@@ -8,12 +8,12 @@
 <script type="text/javascript">
 <!--
 
-var items = ['system_chart:DIGITAL_VOTER_SYSTEM','class_chart:INTEGER','class_chart:TUPLE','class_chart:ANY','class_chart:BOOLEAN','class_chart:TREE','class_chart:NUMBER','class_chart:TABLE','class_chart:SET','class_chart:FLOAT','class_chart:VALUE','class_chart:LIST','class_chart:FILE','class_chart:ARRAY','class_chart:STRING','cluster_chart:PT_CONTROLLER','cluster_chart:PT_MODEL','cluster_chart:KERNEL','cluster_chart:POLLING_TABLE_PT','cluster_chart:PT_VIEW','cluster_chart:C_MODEL','cluster_chart:C_CONTROLLER','cluster_chart:C_VIEW','cluster_chart:DIGITAL_VOTER_SYSTEM','cluster_chart:STRUCTURES','cluster_chart:CENTRAL_C','cluster_chart:BUILT_IN','cluster_chart:NUMBERS'];
+var items = ['system_chart:DIGITAL_VOTER_SYSTEM','class_chart:VOTER_CARD_GENERATOR','class_chart:INTEGER','class_chart:VOTER','class_chart:TUPLE','class_chart:ANY','class_chart:BOOLEAN','class_chart:VOTER_CARD_WINDOW','class_chart:TREE','class_chart:REG_WINDOW','class_chart:REGISTRATION','class_chart:VOTER_WINDOW','class_chart:NUMBER','class_chart:TABLE','class_chart:SET','class_chart:FLOAT','class_chart:VOTERCARD','class_chart:VALUE','class_chart:DB_COMM','class_chart:LIST','class_chart:FILE','class_chart:ARRAY','class_chart:STRING','cluster_chart:PT_CONTROLLER','cluster_chart:PT_MODEL','cluster_chart:KERNEL','cluster_chart:POLLING_TABLE_PT','cluster_chart:PT_VIEW','cluster_chart:C_MODEL','cluster_chart:C_CONTROLLER','cluster_chart:C_VIEW','cluster_chart:DIGITAL_VOTER_SYSTEM','cluster_chart:STRUCTURES','cluster_chart:CENTRAL_C','cluster_chart:BUILT_IN','cluster_chart:NUMBERS'];
 var topOptions = [ 'System Chart', 'system_chart', 'Cluster Charts', 'cluster_chart', 'Class Charts', 'class_chart' ];
 var subOptions = [];
 subOptions['system_chart'] = [ 'DIGITAL_VOTER_SYSTEM', 'system_chart:DIGITAL_VOTER_SYSTEM' ];
 subOptions['cluster_chart'] = [ 'BUILT_IN','cluster_chart:BUILT_IN','CENTRAL_C','cluster_chart:CENTRAL_C','C_CONTROLLER','cluster_chart:C_CONTROLLER','C_MODEL','cluster_chart:C_MODEL','C_VIEW','cluster_chart:C_VIEW','DIGITAL_VOTER_SYSTEM','cluster_chart:DIGITAL_VOTER_SYSTEM','KERNEL','cluster_chart:KERNEL','NUMBERS','cluster_chart:NUMBERS','POLLING_TABLE_PT','cluster_chart:POLLING_TABLE_PT','PT_CONTROLLER','cluster_chart:PT_CONTROLLER','PT_MODEL','cluster_chart:PT_MODEL','PT_VIEW','cluster_chart:PT_VIEW','STRUCTURES','cluster_chart:STRUCTURES' ];
-subOptions['class_chart'] = [ 'ANY','class_chart:ANY','ARRAY','class_chart:ARRAY','BOOLEAN','class_chart:BOOLEAN','FILE','class_chart:FILE','FLOAT','class_chart:FLOAT','INTEGER','class_chart:INTEGER','LIST','class_chart:LIST','NUMBER','class_chart:NUMBER','SET','class_chart:SET','STRING','class_chart:STRING','TABLE','class_chart:TABLE','TREE','class_chart:TREE','TUPLE','class_chart:TUPLE','VALUE','class_chart:VALUE' ];
+subOptions['class_chart'] = [ 'ANY','class_chart:ANY','ARRAY','class_chart:ARRAY','BOOLEAN','class_chart:BOOLEAN','DB_COMM','class_chart:DB_COMM','FILE','class_chart:FILE','FLOAT','class_chart:FLOAT','INTEGER','class_chart:INTEGER','LIST','class_chart:LIST','NUMBER','class_chart:NUMBER','REGISTRATION','class_chart:REGISTRATION','REG_WINDOW','class_chart:REG_WINDOW','SET','class_chart:SET','STRING','class_chart:STRING','TABLE','class_chart:TABLE','TREE','class_chart:TREE','TUPLE','class_chart:TUPLE','VALUE','class_chart:VALUE','VOTER','class_chart:VOTER','VOTERCARD','class_chart:VOTERCARD','VOTER_CARD_GENERATOR','class_chart:VOTER_CARD_GENERATOR','VOTER_CARD_WINDOW','class_chart:VOTER_CARD_WINDOW','VOTER_WINDOW','class_chart:VOTER_WINDOW' ];
 
 
 var showAll = false;
@@ -463,7 +463,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -507,7 +507,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -520,12 +520,12 @@ dd {
           </tr>
           <tr>
             <td class="light-grey"><a href="#class_chart:DB_COMM" onclick="return linkSelect('class_chart','class_chart:DB_COMM');">DB_COMM</a></td>
-            <td class="white">&quot;Represents the connection to the database&quot;</td>
+            <td class="white">&quot;Responsible for quering and updating the database.&quot;</td>
           </tr>          <tr>
             <td class="light-grey"><a href="#class_chart:VOTER" onclick="return linkSelect('class_chart','class_chart:VOTER');">VOTER</a></td>
-            <td class="white">&quot;TBU&quot;</td>
+            <td class="white">&quot;Represents a voter&quot;</td>
           </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:REGISTRATION_SECONDARY_REQUIREMENT" onclick="return linkSelect('class_chart','class_chart:REGISTRATION_SECONDARY_REQUIREMENT');">REGISTRATION_SECONDARY_REQUIREMENT</a></td>
+            <td class="light-grey"><a href="#class_chart:REGISTRATION" onclick="return linkSelect('class_chart','class_chart:REGISTRATION');">REGISTRATION</a></td>
             <td class="white">&quot;TBU&quot;</td>
           </tr>
         </table>
@@ -551,7 +551,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -564,10 +564,10 @@ dd {
           </tr>
           <tr>
             <td class="light-grey"><a href="#class_chart:REG_WINDOW" onclick="return linkSelect('class_chart','class_chart:REG_WINDOW');">REG_WINDOW</a></td>
-            <td class="white">&quot;TBU&quot;</td>
+            <td class="white">&quot;A visual represention of a registration&quot;</td>
           </tr>          <tr>
             <td class="light-grey"><a href="#class_chart:VOTER_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_WINDOW');">VOTER_WINDOW</a></td>
-            <td class="white">&quot;TBU&quot;</td>
+            <td class="white">&quot;A visual representation of a voter&quot;</td>
           </tr>
         </table>
               </td>
@@ -592,7 +592,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -620,7 +620,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -664,7 +664,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -680,7 +680,10 @@ dd {
             <td class="white">&quot;Represents the connection to the database&quot;</td>
           </tr>          <tr>
             <td class="light-grey"><a href="#class_chart:VOTER_CARD_GENERATOR" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_GENERATOR');">VOTER_CARD_GENERATOR</a></td>
-            <td class="white">&quot;TBU&quot;</td>
+            <td class="white">&quot;Responsible for the generation of votercards&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTERCARD" onclick="return linkSelect('class_chart','class_chart:VOTERCARD');">VOTERCARD</a></td>
+            <td class="white">&quot;Represents a voter card.&quot;</td>
           </tr>          <tr>
             <td class="light-grey"><a href="#class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ" onclick="return linkSelect('class_chart','class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ');">UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ</a></td>
             <td class="white">&quot;TBU&quot;</td>
@@ -711,7 +714,7 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
@@ -724,7 +727,7 @@ dd {
           </tr>
           <tr>
             <td class="light-grey"><a href="#class_chart:VOTER_CARD_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_WINDOW');">VOTER_CARD_WINDOW</a></td>
-            <td class="white">&quot;TBU&quot;</td>
+            <td class="white">&quot;A visual representation of a voter card&quot;</td>
           </tr>          <tr>
             <td class="light-grey"><a href="#class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ" onclick="return linkSelect('class_chart','class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ');">VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ</a></td>
             <td class="white">&quot;TBU&quot;</td>
@@ -752,13 +755,381 @@ dd {
       <td class="indexing" colspan="2">
         <dl>
           <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meyer - , Niels Søholm - ";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
         </dl>
       </td>
     </tr>
     <tr>
       <td colspan="4" class="bottom">
               </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:DB_COMM">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">DB_COMM</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;Represents the connection to the database&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "C_MODEL, PT_MODEL";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;How many object does the resulting collection return?&quot;,<br/>&quot;Is there a connection to the database?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Get connection to DB&quot;,<br/>&quot;Retrive an object from the DB&quot;,<br/>&quot;Send an object to the DB&quot;,<br/>&quot;Retrive a collection of objects from the DB&quot;,<br/>&quot;Send a collection of objects to the DB&quot;,<br/>&quot;Close the database connection&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;It should not be possible for the database to register a partial update/insert.&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:VOTER_CARD_GENERATOR">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">VOTER_CARD_GENERATOR</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;Responsible for the generation of votercards&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "C_MODEL";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;Have all the votercards been generated?&quot;,<br/>&quot;Have a specific votercard been generated&quot;,<br/>&quot;Have voter cards from a specific polling station been generated?&quot;,<br/>&quot;Have voter cards from a specific municipality been created?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Generate all voter cards&quot;,<br/>&quot;Generate a specific voter card&quot;,<br/>&quot;Generate voter cards for a specific polling station&quot;,<br/>&quot;Generate voter cards for a specific municipality&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;A voter card must be unique&quot;,<br/>&quot;The same voter card must only be generated once in every batch.&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:VOTERCARD">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">VOTERCARD</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;Represents a voter card.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "C_MODEL";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;Who is the voter assioated with this voter card.&quot;,<br/>&quot;What is the voter card ID number?&quot;,<br/>&quot;What is the name and address of the polling station assioated with this voter card?&quot;,<br/>&quot;What is the name and address of the municipality assioated with this voter card?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;NONE&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;There can only exist one instance of a specific voter card.&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:VOTER_CARD_WINDOW">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">VOTER_CARD_WINDOW</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;A visual representation of a voter card&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "C_MODEL";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;NONE&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Show a specific votercard&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;NONE&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:VOTER">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">VOTER</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;Represents a voter&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "PT_MODEL";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;What is the name of the voter?&quot;,<br/>&quot;What is the address of the voter?&quot;,<br/>&quot;What is the CPRNR of the voter?&quot;,<br/>&quot;Has a voter card been printed for the voter?&quot;,<br/>&quot;Has the voter voted?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Set a status to votercard printed&quot;,<br/>&quot;Set voter to have voted&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;?&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:REGISTRATION">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">REGISTRATION</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;Represents a registration&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "PT_MODEL";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;Who is the voter assioated with the registration?&quot;,<br/>&quot;What time has the registration been made?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Update assioated voter&quot;,<br/>&quot;Update registration time&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;?&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:REG_WINDOW">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">REG_WINDOW</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;A visual represention of a registration&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "PT_VIEW";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;NONE&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Show a specific registration&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;?&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:VOTER_WINDOW">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">VOTER_WINDOW</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;A visual representation of a voter&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "PT_VIEW";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-11-28";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;NONE&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Show a specific voter&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;?&quot;</td>
+          </tr>
+        </table>
+      </td>
     </tr>
   </table>
 </div>
@@ -772,7 +1143,7 @@ dd {
     <select id="sub-menu" onchange="showSelected();"><option>processing...</option></select>
   </p>
   <p id="right-footer">
-    Generated by <a href="http://kind.ucd.ie/products/opensource/BONc">BONc</a> (version: bonc-0.2.7) <a href="http://validator.w3.org/check?uri=referer">XHTML</a> output, 24-11-2011 14:56:33.
+    Generated by <a href="http://kind.ucd.ie/products/opensource/BONc">BONc</a> (version: bonc-0.2.7) <a href="http://validator.w3.org/check?uri=referer">XHTML</a> output, 28-11-2011 13:05:27.
   </p>
 </div>
 
