@@ -1,0 +1,64 @@
+class_chart DB_COMM
+indexing
+	in_cluster: "C_MODEL, PT_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"Represents the connection to the database. Database access happens according to the underlying entity model /
+	/through LINQ and ADO.net."
+query
+	"Create a new DB communicator based is this connection / connection string.",
+	"Give me a reference to the voter table!"
+	"Give me a reference to the ... table!"
+command
+
+constraint
+
+
+
+
+
+cluster_chart DB_COMM_DAO
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "The classes needed for a home-built DAO."
+class IDataAccessObject
+description	"An interface describing the overall actions that a DAO should support."
+class IDataObject
+description	"The object used to transfer data between the DAO and the application."
+end
+
+class_chart IDataAccessObject
+indexing
+	in_cluster: "DB_COMM_DAO"
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"A data access object supporting CRUD operations."
+query
+	"Read the object(s) from the database for which this predicate holds."	
+command
+	"Create this object in the database.",
+	"Update the object(s) in the database for which this predicate holds.",
+	"Delete the objects(s) in the database for which this predicate holds."
+constraint
+
+class_chart IDataObject
+indexing
+	in_cluster: "DB_COMM_DAO"
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"The object used to transfer data between DAO and application."
+query
+	"Get data."
+command
+	"Set data.",
+	"Write any updated fields to the database.",
+	"Delete this object from the database."
+constraint
+	
