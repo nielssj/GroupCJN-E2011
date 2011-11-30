@@ -64,12 +64,12 @@ end
 
 class_chart VOTER_CARD_WINDOW
 indexing 
-	in_cluster: "C_MODEL";
+	in_cluster: "C_VIEW";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
 explanation 
-	"A visual representation of a voter card"
+	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
 query
 	"NONE"
 command	
@@ -78,9 +78,15 @@ constraint
 	"NONE"
 end
 
+class_chart MUNICIPALITY
+end
+
+class_chart POLLING_STATION
+end
+
 class_chart VOTER
 indexing 
-	in_cluster: "PT_MODEL";
+	in_cluster: "PT_MODEL, C_MODEL";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
@@ -140,18 +146,108 @@ indexing
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"A visual representation of a voter"
+	"A visual representation of a voter at the polling table"
 query
 	"NONE"
 command	
-	"Show a specific voter"
+	"Show a specific voter",
+	"Show an error message"
 constraint
 	"?"
 end
 
+class_chart UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Responsible for sending the right set of voters to the right polling station server"
+query
+	"Is the upload done?",
+	"How many records has been transfered?",
+	
+command
+	"Find the correct destination server",
+	"Validate if the server is the correct destination server",
+	"Send correct set of voters to the destination server",
+	"Validate if the server is the correct server",
+	"Validate if the set of voters on the server is correct"
+constraint
+	"N/A"
+end
 
+class_chart VOTING_PLACE_DISTRIBUTION_SECOND_REQ
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Responsible for the distributing of voter sets according to municpality or polling station"
+query
+	"Is the distribution finished?",
+	"How are the voters distributed?"
+command
+	"Distribute among municipalities",
+	"Distribute among polling stations"
+constraint
+	"N/A"
+end
 
+class_chart VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A window responsible for initiate the distribution process and showing statistics on the distribution process"
+query
+	"NONE"
+command
+	"Show statistics",
+	"Start distribution process"
+constraint
+	"N/A"
+end
 
+class_chart IDataAccessObject
+indexing
+	in_cluster: "DB_COMM_DAO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"A data access object supporting CRUD operations."
+query
+	"Read the object(s) from the database for which this predicate holds."	
+command
+	"Create this object in the database.",
+	"Update the object(s) in the database for which this predicate holds.",
+	"Delete the objects(s) in the database for which this predicate holds."
+constraint
+	"N/A"
+end
+
+class_chart IDataObject
+indexing
+	in_cluster: "DB_COMM_DAO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"The object used to transfer data between DAO and application."
+query
+	"Get data."
+command
+	"Set data.",
+	"Write any updated fields to the database.",
+	"Delete this object from the database."
+constraint
+	"N/A"
+end
 --Comment: Change Log
 
 

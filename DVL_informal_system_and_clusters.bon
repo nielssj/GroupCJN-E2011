@@ -86,21 +86,41 @@ indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
-class DB_COMM
-description 
-	"Represents the connection to the database"
 class VOTER_CARD_GENERATOR
 description
 	"Responsible for the generation of votercards"
 class VOTERCARD
 description
 	"Represents a voter card."
+class VOTER
+description 
+    "Represents a voter"
+class MUNICIPALITY
+description
+     "Represents a municipality"
+class POLLING_STATION
+description
+     "Represents a polling station"
 class UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
 description
-	"TBU"
+	"Responsible for sending the right set of voters to the right polling station server"
 class VOTING_PLACE_DISTRIBUTION_SECOND_REQ
 description
-	"TBU"
+	"Responsible for the distributing of voter sets according to municpality or polling station"
+cluster DB_COMM_DAO
+description 
+	"Represents the connection to the database"
+end
+
+cluster_chart DB_COMM_DAO
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "The classes needed for a home-built DAO."
+class IDataAccessObject
+description	"An interface describing the overall actions that a DAO should support."
+class IDataObject
+description	"The object used to transfer data between the DAO and the application."
 end
 
 cluster_chart C_VIEW
@@ -110,10 +130,10 @@ explanation
    "TBU"
 class VOTER_CARD_WINDOW
 description
-	"A visual representation of a voter card"
+	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
 class VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
 description
-	"TBU"
+	"A window responsible for initiate the distribution process and showing statistics on the distribution process"
 end
 
 cluster_chart C_CONTROLLER
