@@ -34,9 +34,6 @@ indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
-class DB_COMM
-description 
-	"Responsible for quering and updating the database."
 class VOTER
 description 
 	"Represents a voter"
@@ -107,20 +104,66 @@ description
 class VOTING_PLACE_DISTRIBUTION_SECOND_REQ
 description
 	"Responsible for the distributing of voter sets according to municpality or polling station"
-cluster DB_COMM_DAO
+cluster DB_COMM
 description 
 	"Represents the connection to the database"
 end
 
-cluster_chart DB_COMM_DAO
+cluster_chart DB_COMM
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "The classes needed for a home-built DAO."
-class IDataAccessObject
-description	"An interface describing the overall actions that a DAO should support."
-class IDataObject
-description	"The object used to transfer data between the DAO and the application."
+cluster DAO
+description
+	"All DAO classes and interfaces."
+cluster DO
+description
+	"All classes and interfaces representing entities in the database."
+end
+
+cluster_chart DAO
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "All DAO classes and interfaces."
+class DataAccessObject
+description	
+	"An interface describing the overall actions that a DAO should support."
+class VoterDAO
+description
+	"A class for working CRUD operations on voter entities"
+class PollingStationDAO
+description
+	"A class for working CRUD operations on polling station entities"
+class MunicipalityDAO
+description
+	"A class for working CRUD operations on municipality entities"
+class LogDAO
+description
+	"A class for working CRUD operations on log entities"
+end
+
+cluster_chart DO
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "All classes and interfaces representing entities in the database."
+class DataObject
+description	
+	"The object used to transfer data between the DAO and the application."
+class VoterDO
+description
+	"The class describing a voter entity."
+class PollingStationDO
+description
+	"The class describing a polling station entity."
+class MunicipalityDO
+description
+	"The class describing a municipality entity."
+class LogDO
+description
+	"The class describing a log entity."
 end
 
 cluster_chart C_VIEW
