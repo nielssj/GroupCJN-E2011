@@ -1,25 +1,3 @@
-class_chart DB_COMM
-indexing
-	in_cluster: "C_MODEL, PT_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
-	revised: "N/A"
-explanation 
-	"Represents the connection to the database"
-query
-	"How many object does the resulting collection return?",
-	"Is there a connection to the database?"
-command
-	"Get connection to DB",
-	"Retrive an object from the DB",
-	"Send an object to the DB",
-	"Retrive a collection of objects from the DB",
-	"Send a collection of objects to the DB",
-	"Close the database connection",
-constraint 
-	"It should not be possible for the database to register a partial update/insert."
-end
-
 class_chart VOTER_CARD_GENERATOR
 indexing
 	in_cluster: "C_MODEL";
@@ -43,23 +21,22 @@ constraint
 	"The same voter card must only be generated once in every batch."
 end
 
-class_chart VOTERCARD
+class_chart VOTING_PLACE_DISTRIBUTION_SEC_REQ
 indexing 
 	in_cluster: "C_MODEL";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
-explanation 
-	"Represents a voter card."
+explanation
+	"Responsible for the distributing of voter sets according to municpality or polling station"
 query
-	"Who is the voter assioated with this voter card.",
-	"What is the voter card ID number?",
-	"What is the name and address of the polling station assioated with this voter card?",
-	"What is the name and address of the municipality assioated with this voter card?"
+	"Is the distribution finished?",
+	"How are the voters distributed?"
 command
-	"NONE"
+	"Distribute among municipalities",
+	"Distribute among polling stations"
 constraint
-	"There can only exist one instance of a specific voter card."
+	"N/A"
 end
 
 class_chart VOTER_CARD_WINDOW
@@ -76,51 +53,6 @@ command
 	"Show a specific votercard"
 constraint
 	"NONE"
-end
-
-class_chart MUNICIPALITY
-end
-
-class_chart POLLING_STATION
-end
-
-class_chart VOTER
-indexing 
-	in_cluster: "PT_MODEL, C_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
-	revised: "N/A"
-explanation
-	"Represents a voter"
-query
-	"What is the name of the voter?",
-	"What is the address of the voter?",
-	"What is the CPRNR of the voter?",
-	"Has a voter card been printed for the voter?",
-	"Has the voter voted?"
-command	
-	"Set a status to votercard printed",
-	"Set voter to have voted"
-constraint
-	"?"
-end
-
-class_chart REGISTRATION
-indexing 
-	in_cluster: "PT_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
-	revised: "N/A"
-explanation
-	"Represents a registration"
-query
-	"Who is the voter assioated with the registration?",
-	"What time has the registration been made?"
-command	
-	"Update assioated voter",
-	"Update registration time"
-constraint
-	"?"
 end
 
 class_chart REG_WINDOW
@@ -156,64 +88,7 @@ constraint
 	"?"
 end
 
-class_chart UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
-indexing 
-	in_cluster: "C_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
-	revised: "N/A"
-explanation
-	"Responsible for sending the right set of voters to the right polling station server"
-query
-	"Is the upload done?",
-	"How many records has been transfered?",
-	
-command
-	"Find the correct destination server",
-	"Validate if the server is the correct destination server",
-	"Send correct set of voters to the destination server",
-	"Validate if the server is the correct server",
-	"Validate if the set of voters on the server is correct"
-constraint
-	"N/A"
-end
-
-class_chart VOTING_PLACE_DISTRIBUTION_SECOND_REQ
-indexing 
-	in_cluster: "C_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
-	revised: "N/A"
-explanation
-	"Responsible for the distributing of voter sets according to municpality or polling station"
-query
-	"Is the distribution finished?",
-	"How are the voters distributed?"
-command
-	"Distribute among municipalities",
-	"Distribute among polling stations"
-constraint
-	"N/A"
-end
-
-class_chart VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
-indexing 
-	in_cluster: "C_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
-	revised: "N/A"
-explanation
-	"A window responsible for initiate the distribution process and showing statistics on the distribution process"
-query
-	"NONE"
-command
-	"Show statistics",
-	"Start distribution process"
-constraint
-	"N/A"
-end
-
-class_chart IDataAccessObject
+class_chart DATA_ACCESS_OBJECT
 indexing
 	in_cluster: "DB_COMM_DAO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
@@ -231,7 +106,7 @@ constraint
 	"N/A"
 end
 
-class_chart IDataObject
+class_chart DATA_OBJECT
 indexing
 	in_cluster: "DB_COMM_DAO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
@@ -248,6 +123,83 @@ command
 constraint
 	"N/A"
 end
+
+class_chart VOTER_DO
+indexing
+	in_cluster: "DATA_OBJECTS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation 
+	"The object used to transfer voter data between DAO and application."
+inherit DATA_OBJECT
+query
+	"What is the name of the voter?",
+	"What is the address of the voter?",
+	"What is the CPRNR of the voter?",
+	"Has a voter card been printed for the voter?",
+	"Has the voter voted?"
+command	
+	"Set a status to votercard printed",
+	"Set voter to have voted"
+constraint
+	"?"
+end
+
+class_chart POLLING_STATION_DO
+indexing
+	in_cluster: "DO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation 
+	"The object used to transfer polling station data between DAO and application."
+inherit DATA_OBJECT
+query
+	"What is the address",
+	"What is the ID?",
+	"What is your name?"
+command
+	"N/A"
+constraint
+	"N/A"
+end
+
+class_chart MUNICIPALITY_DO
+indexing
+	in_cluster: "DO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation 
+	"The object used to transfer municipality data between DAO and application."
+inherit DATA_OBJECT
+query
+	"What is the address",
+	"What is the ID?",
+	"What is your name?"
+command
+	"N/A"
+constraint
+	"N/A"
+end
+
+class_chart LOG_DO
+indexing
+	in_cluster: "DO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation 
+	"The object used to transfer log data between DAO and application."
+inherit DATA_OBJECT
+query
+	"Is there an entry for a specific voter?",
+	"Is there a write entry for a specific voter?",
+	"Is there a read entry for a specific voter?"
+
+end
+
 --Comment: Change Log
 
 
