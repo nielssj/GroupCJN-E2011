@@ -8,12 +8,12 @@
 <script type="text/javascript">
 <!--
 
-var items = ['system_chart:DIGITAL_VOTER_SYSTEM','class_chart:INTEGER','class_chart:VOTER_CARD_GENERATOR','class_chart:MUNICIPALITY','class_chart:VOTER','class_chart:VOTER_CARD_WINDOW','class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ','class_chart:POLLING_STATION','class_chart:REG_WINDOW','class_chart:REGISTRATION','class_chart:NUMBER','class_chart:TABLE','class_chart:SET','class_chart:FLOAT','class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ','class_chart:VALUE','class_chart:IDataAccessObject','class_chart:DB_COMM','class_chart:FILE','class_chart:LIST','class_chart:IDataObject','class_chart:TUPLE','class_chart:BOOLEAN','class_chart:ANY','class_chart:TREE','class_chart:VOTER_WINDOW','class_chart:VOTERCARD','class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ','class_chart:ARRAY','class_chart:STRING','cluster_chart:PT_CONTROLLER','cluster_chart:PT_MODEL','cluster_chart:KERNEL','cluster_chart:POLLING_TABLE_PT','cluster_chart:PT_VIEW','cluster_chart:DB_COMM_DAO','cluster_chart:C_MODEL','cluster_chart:C_CONTROLLER','cluster_chart:C_VIEW','cluster_chart:DIGITAL_VOTER_SYSTEM','cluster_chart:STRUCTURES','cluster_chart:CENTRAL_C','cluster_chart:BUILT_IN','cluster_chart:NUMBERS'];
+var items = ['system_chart:DIGITAL_VOTER_SYSTEM','class_chart:INTEGER','class_chart:VOTER_CARD_GENERATOR','class_chart:VOTER_CARD_WINDOW','class_chart:DATA_ACCESS_OBJECT','class_chart:POLLING_STATION_DO','class_chart:REG_WINDOW','class_chart:NUMBER','class_chart:TABLE','class_chart:SET','class_chart:FLOAT','class_chart:VALUE','class_chart:LOG_DO','class_chart:FILE','class_chart:LIST','class_chart:TUPLE','class_chart:BOOLEAN','class_chart:ANY','class_chart:VOTING_PLACE_DISTRIBUTION_SEC_REQ','class_chart:TREE','class_chart:MUNICIPALITY_DO','class_chart:VOTER_WINDOW','class_chart:VOTER_DO','class_chart:ARRAY','class_chart:STRING','class_chart:DATA_OBJECT','cluster_chart:PT_CONTROLLER','cluster_chart:PT_MODEL','cluster_chart:KERNEL','cluster_chart:POLLING_TABLE_PT','cluster_chart:PT_VIEW','cluster_chart:C_MODEL','cluster_chart:DO','cluster_chart:C_CONTROLLER','cluster_chart:C_VIEW','cluster_chart:DB_COMM','cluster_chart:DIGITAL_VOTER_SYSTEM','cluster_chart:DAO','cluster_chart:STRUCTURES','cluster_chart:CENTRAL_C','cluster_chart:BUILT_IN','cluster_chart:NUMBERS'];
 var topOptions = [ 'System Chart', 'system_chart', 'Cluster Charts', 'cluster_chart', 'Class Charts', 'class_chart' ];
 var subOptions = [];
 subOptions['system_chart'] = [ 'DIGITAL_VOTER_SYSTEM', 'system_chart:DIGITAL_VOTER_SYSTEM' ];
-subOptions['cluster_chart'] = [ 'BUILT_IN','cluster_chart:BUILT_IN','CENTRAL_C','cluster_chart:CENTRAL_C','C_CONTROLLER','cluster_chart:C_CONTROLLER','C_MODEL','cluster_chart:C_MODEL','C_VIEW','cluster_chart:C_VIEW','DB_COMM_DAO','cluster_chart:DB_COMM_DAO','DIGITAL_VOTER_SYSTEM','cluster_chart:DIGITAL_VOTER_SYSTEM','KERNEL','cluster_chart:KERNEL','NUMBERS','cluster_chart:NUMBERS','POLLING_TABLE_PT','cluster_chart:POLLING_TABLE_PT','PT_CONTROLLER','cluster_chart:PT_CONTROLLER','PT_MODEL','cluster_chart:PT_MODEL','PT_VIEW','cluster_chart:PT_VIEW','STRUCTURES','cluster_chart:STRUCTURES' ];
-subOptions['class_chart'] = [ 'ANY','class_chart:ANY','ARRAY','class_chart:ARRAY','BOOLEAN','class_chart:BOOLEAN','DB_COMM','class_chart:DB_COMM','FILE','class_chart:FILE','FLOAT','class_chart:FLOAT','IDataAccessObject','class_chart:IDataAccessObject','IDataObject','class_chart:IDataObject','INTEGER','class_chart:INTEGER','LIST','class_chart:LIST','MUNICIPALITY','class_chart:MUNICIPALITY','NUMBER','class_chart:NUMBER','POLLING_STATION','class_chart:POLLING_STATION','REGISTRATION','class_chart:REGISTRATION','REG_WINDOW','class_chart:REG_WINDOW','SET','class_chart:SET','STRING','class_chart:STRING','TABLE','class_chart:TABLE','TREE','class_chart:TREE','TUPLE','class_chart:TUPLE','UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ','class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ','VALUE','class_chart:VALUE','VOTER','class_chart:VOTER','VOTERCARD','class_chart:VOTERCARD','VOTER_CARD_GENERATOR','class_chart:VOTER_CARD_GENERATOR','VOTER_CARD_WINDOW','class_chart:VOTER_CARD_WINDOW','VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ','class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ','VOTER_WINDOW','class_chart:VOTER_WINDOW','VOTING_PLACE_DISTRIBUTION_SECOND_REQ','class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ' ];
+subOptions['cluster_chart'] = [ 'BUILT_IN','cluster_chart:BUILT_IN','CENTRAL_C','cluster_chart:CENTRAL_C','C_CONTROLLER','cluster_chart:C_CONTROLLER','C_MODEL','cluster_chart:C_MODEL','C_VIEW','cluster_chart:C_VIEW','DAO','cluster_chart:DAO','DB_COMM','cluster_chart:DB_COMM','DIGITAL_VOTER_SYSTEM','cluster_chart:DIGITAL_VOTER_SYSTEM','DO','cluster_chart:DO','KERNEL','cluster_chart:KERNEL','NUMBERS','cluster_chart:NUMBERS','POLLING_TABLE_PT','cluster_chart:POLLING_TABLE_PT','PT_CONTROLLER','cluster_chart:PT_CONTROLLER','PT_MODEL','cluster_chart:PT_MODEL','PT_VIEW','cluster_chart:PT_VIEW','STRUCTURES','cluster_chart:STRUCTURES' ];
+subOptions['class_chart'] = [ 'ANY','class_chart:ANY','ARRAY','class_chart:ARRAY','BOOLEAN','class_chart:BOOLEAN','DATA_ACCESS_OBJECT','class_chart:DATA_ACCESS_OBJECT','DATA_OBJECT','class_chart:DATA_OBJECT','FILE','class_chart:FILE','FLOAT','class_chart:FLOAT','INTEGER','class_chart:INTEGER','LIST','class_chart:LIST','LOG_DO','class_chart:LOG_DO','MUNICIPALITY_DO','class_chart:MUNICIPALITY_DO','NUMBER','class_chart:NUMBER','POLLING_STATION_DO','class_chart:POLLING_STATION_DO','REG_WINDOW','class_chart:REG_WINDOW','SET','class_chart:SET','STRING','class_chart:STRING','TABLE','class_chart:TABLE','TREE','class_chart:TREE','TUPLE','class_chart:TUPLE','VALUE','class_chart:VALUE','VOTER_CARD_GENERATOR','class_chart:VOTER_CARD_GENERATOR','VOTER_CARD_WINDOW','class_chart:VOTER_CARD_WINDOW','VOTER_DO','class_chart:VOTER_DO','VOTER_WINDOW','class_chart:VOTER_WINDOW','VOTING_PLACE_DISTRIBUTION_SEC_REQ','class_chart:VOTING_PLACE_DISTRIBUTION_SEC_REQ' ];
 
 
 var showAll = false;
@@ -403,52 +403,6 @@ dd {
 
 <div id="main">
 
-<div class="top-level" id="class_chart:DB_COMM">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">DB_COMM</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd>&quot;Represents the connection to the database&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>in_cluster : "C_MODEL, PT_MODEL";</dd>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
-          <dd>created : "2011-11-28";</dd>
-          <dd>revised : "N/A";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;How many object does the resulting collection return?&quot;,<br/>&quot;Is there a connection to the database?&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;Get connection to DB&quot;,<br/>&quot;Retrive an object from the DB&quot;,<br/>&quot;Send an object to the DB&quot;,<br/>&quot;Retrive a collection of objects from the DB&quot;,<br/>&quot;Send a collection of objects to the DB&quot;,<br/>&quot;Close the database connection&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;It should not be possible for the database to register a partial update/insert.&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
 <div class="top-level" id="class_chart:VOTER_CARD_GENERATOR">
   <table class="outer">
     <tr class="top">
@@ -495,18 +449,18 @@ dd {
   </table>
 </div>
 
-<div class="top-level" id="class_chart:VOTERCARD">
+<div class="top-level" id="class_chart:VOTING_PLACE_DISTRIBUTION_SEC_REQ">
   <table class="outer">
     <tr class="top">
       <th class="type">CLASS</th>
-      <td class="name" colspan="2">VOTERCARD</td>
+      <td class="name" colspan="2">VOTING_PLACE_DISTRIBUTION_SEC_REQ</td>
       <td class="part"><strong>Part:</strong> 1/1</td>
     </tr>
     <tr class="middle">
       <td class="explanation" colspan="2">
         <dl>
           <dt>Type Of Object</dt>
-          <dd>&quot;Represents a voter card.&quot;</dd>
+          <dd>&quot;Responsible for the distributing of voter sets according to municpality or polling station&quot;</dd>
         </dl>
       </td>
       <td class="indexing" colspan="2">
@@ -525,15 +479,15 @@ dd {
           
           <tr>
             <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;Who is the voter assioated with this voter card.&quot;,<br/>&quot;What is the voter card ID number?&quot;,<br/>&quot;What is the name and address of the polling station assioated with this voter card?&quot;,<br/>&quot;What is the name and address of the municipality assioated with this voter card?&quot;</td>
+            <td class="white spaced-lines">&quot;Is the distribution finished?&quot;,<br/>&quot;How are the voters distributed?&quot;</td>
           </tr>
           <tr>
             <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;NONE&quot;</td>
+            <td class="white spaced-lines">&quot;Distribute among municipalities&quot;,<br/>&quot;Distribute among polling stations&quot;</td>
           </tr>
           <tr>
             <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;There can only exist one instance of a specific voter card.&quot;</td>
+            <td class="white spaced-lines">&quot;N/A&quot;</td>
           </tr>
         </table>
       </td>
@@ -580,182 +534,6 @@ dd {
           <tr>
             <th class="light-grey">Constraints</th>
             <td class="white spaced-lines">&quot;NONE&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:MUNICIPALITY">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">MUNICIPALITY</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd></dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines"></td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines"></td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines"></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:POLLING_STATION">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">POLLING_STATION</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd></dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines"></td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines"></td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines"></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:VOTER">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">VOTER</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd>&quot;Represents a voter&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>in_cluster : "PT_MODEL, C_MODEL";</dd>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
-          <dd>created : "2011-11-28";</dd>
-          <dd>revised : "N/A";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;What is the name of the voter?&quot;,<br/>&quot;What is the address of the voter?&quot;,<br/>&quot;What is the CPRNR of the voter?&quot;,<br/>&quot;Has a voter card been printed for the voter?&quot;,<br/>&quot;Has the voter voted?&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;Set a status to votercard printed&quot;,<br/>&quot;Set voter to have voted&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;?&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:REGISTRATION">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">REGISTRATION</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd>&quot;Represents a registration&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>in_cluster : "PT_MODEL";</dd>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
-          <dd>created : "2011-11-28";</dd>
-          <dd>revised : "N/A";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;Who is the voter assioated with the registration?&quot;,<br/>&quot;What time has the registration been made?&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;Update assioated voter&quot;,<br/>&quot;Update registration time&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;?&quot;</td>
           </tr>
         </table>
       </td>
@@ -855,149 +633,11 @@ dd {
   </table>
 </div>
 
-<div class="top-level" id="class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ">
+<div class="top-level" id="class_chart:DATA_ACCESS_OBJECT">
   <table class="outer">
     <tr class="top">
       <th class="type">CLASS</th>
-      <td class="name" colspan="2">UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd>&quot;Responsible for sending the right set of voters to the right polling station server&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>in_cluster : "C_MODEL";</dd>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
-          <dd>created : "2011-11-28";</dd>
-          <dd>revised : "N/A";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;Is the upload done?&quot;,<br/>&quot;How many records has been transfered?&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;Find the correct destination server&quot;,<br/>&quot;Validate if the server is the correct destination server&quot;,<br/>&quot;Send correct set of voters to the destination server&quot;,<br/>&quot;Validate if the server is the correct server&quot;,<br/>&quot;Validate if the set of voters on the server is correct&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;N/A&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">VOTING_PLACE_DISTRIBUTION_SECOND_REQ</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd>&quot;Responsible for the distributing of voter sets according to municpality or polling station&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>in_cluster : "C_MODEL";</dd>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
-          <dd>created : "2011-11-28";</dd>
-          <dd>revised : "N/A";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;Is the distribution finished?&quot;,<br/>&quot;How are the voters distributed?&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;Distribute among municipalities&quot;,<br/>&quot;Distribute among polling stations&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;N/A&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Type Of Object</dt>
-          <dd>&quot;A window responsible for initiate the distribution process and showing statistics on the distribution process&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>in_cluster : "C_MODEL";</dd>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
-          <dd>created : "2011-11-28";</dd>
-          <dd>revised : "N/A";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          
-          <tr>
-            <th class="light-grey">Queries</th>
-            <td class="white spaced-lines">&quot;NONE&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Commands</th>
-            <td class="white spaced-lines">&quot;Show statistics&quot;,<br/>&quot;Start distribution process&quot;</td>
-          </tr>
-          <tr>
-            <th class="light-grey">Constraints</th>
-            <td class="white spaced-lines">&quot;N/A&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="class_chart:IDataAccessObject">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLASS</th>
-      <td class="name" colspan="2">IDataAccessObject</td>
+      <td class="name" colspan="2">DATA_ACCESS_OBJECT</td>
       <td class="part"><strong>Part:</strong> 1/1</td>
     </tr>
     <tr class="middle">
@@ -1039,11 +679,11 @@ dd {
   </table>
 </div>
 
-<div class="top-level" id="class_chart:IDataObject">
+<div class="top-level" id="class_chart:DATA_OBJECT">
   <table class="outer">
     <tr class="top">
       <th class="type">CLASS</th>
-      <td class="name" colspan="2">IDataObject</td>
+      <td class="name" colspan="2">DATA_OBJECT</td>
       <td class="part"><strong>Part:</strong> 1/1</td>
     </tr>
     <tr class="middle">
@@ -1078,6 +718,202 @@ dd {
           <tr>
             <th class="light-grey">Constraints</th>
             <td class="white spaced-lines">&quot;N/A&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:VOTER_DO">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">VOTER_DO</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;The object used to transfer voter data between DAO and application.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "DATA_OBJECTS";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-12-01";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="light-grey">Inherits from</th>
+            <td class="white spaced-lines">DATA_OBJECT</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;What is the name of the voter?&quot;,<br/>&quot;What is the address of the voter?&quot;,<br/>&quot;What is the CPRNR of the voter?&quot;,<br/>&quot;Has a voter card been printed for the voter?&quot;,<br/>&quot;Has the voter voted?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;Set a status to votercard printed&quot;,<br/>&quot;Set voter to have voted&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;?&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:POLLING_STATION_DO">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">POLLING_STATION_DO</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;The object used to transfer polling station data between DAO and application.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "DO";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-12-01";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="light-grey">Inherits from</th>
+            <td class="white spaced-lines">DATA_OBJECT</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;What is the address&quot;,<br/>&quot;What is the ID?&quot;,<br/>&quot;What is your name?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;N/A&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;N/A&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:MUNICIPALITY_DO">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">MUNICIPALITY_DO</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;The object used to transfer municipality data between DAO and application.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "DO";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-12-01";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="light-grey">Inherits from</th>
+            <td class="white spaced-lines">DATA_OBJECT</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;What is the address&quot;,<br/>&quot;What is the ID?&quot;,<br/>&quot;What is your name?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines">&quot;N/A&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines">&quot;N/A&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="class_chart:LOG_DO">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLASS</th>
+      <td class="name" colspan="2">LOG_DO</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Type Of Object</dt>
+          <dd>&quot;The object used to transfer log data between DAO and application.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>in_cluster : "DO";</dd>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";</dd>
+          <dd>created : "2011-12-01";</dd>
+          <dd>revised : "N/A";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="light-grey">Inherits from</th>
+            <td class="white spaced-lines">DATA_OBJECT</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Queries</th>
+            <td class="white spaced-lines">&quot;Is there an entry for a specific voter?&quot;,<br/>&quot;Is there a write entry for a specific voter?&quot;,<br/>&quot;Is there a read entry for a specific voter?&quot;</td>
+          </tr>
+          <tr>
+            <th class="light-grey">Commands</th>
+            <td class="white spaced-lines"></td>
+          </tr>
+          <tr>
+            <th class="light-grey">Constraints</th>
+            <td class="white spaced-lines"></td>
           </tr>
         </table>
       </td>
@@ -1121,6 +957,9 @@ dd {
           </tr>          <tr>
             <td class="light-grey"><a href="#cluster_chart:CENTRAL_C" onclick="return linkSelect('cluster_chart','cluster_chart:CENTRAL_C');">CENTRAL_C</a></td>
             <td class="white">&quot;The admin module located at the Home office&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:DB_COMM" onclick="return linkSelect('cluster_chart','cluster_chart:DB_COMM');">DB_COMM</a></td>
+            <td class="white">&quot;The classes and clusters needed for a home-built DAO.&quot;</td>
           </tr>
         </table>
       </td>
@@ -1201,14 +1040,8 @@ dd {
             <th class="grey">Description</th>
           </tr>
           <tr>
-            <td class="light-grey"><a href="#class_chart:DB_COMM" onclick="return linkSelect('class_chart','class_chart:DB_COMM');">DB_COMM</a></td>
-            <td class="white">&quot;Responsible for quering and updating the database.&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:VOTER" onclick="return linkSelect('class_chart','class_chart:VOTER');">VOTER</a></td>
-            <td class="white">&quot;Represents a voter&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:REGISTRATION" onclick="return linkSelect('class_chart','class_chart:REGISTRATION');">REGISTRATION</a></td>
-            <td class="white">&quot;TBU&quot;</td>
+            <td class="light-grey"><a href="#class_chart:POLING_TABLE_MAIN_MODEL" onclick="return linkSelect('class_chart','class_chart:POLING_TABLE_MAIN_MODEL');">POLING_TABLE_MAIN_MODEL</a></td>
+            <td class="white">&quot;Responsible for communicating to the DB_COMM&quot;</td>
           </tr>
         </table>
               </td>
@@ -1358,77 +1191,17 @@ dd {
             <th class="grey">Description</th>
           </tr>
           <tr>
+            <td class="light-grey"><a href="#class_chart:CENTRAL_MAIN_MODEL" onclick="return linkSelect('class_chart','class_chart:CENTRAL_MAIN_MODEL');">CENTRAL_MAIN_MODEL</a></td>
+            <td class="white">&quot;Holds all other model class in the central model&quot;</td>
+          </tr>          <tr>
             <td class="light-grey"><a href="#class_chart:VOTER_CARD_GENERATOR" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_GENERATOR');">VOTER_CARD_GENERATOR</a></td>
             <td class="white">&quot;Responsible for the generation of votercards&quot;</td>
           </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:VOTERCARD" onclick="return linkSelect('class_chart','class_chart:VOTERCARD');">VOTERCARD</a></td>
-            <td class="white">&quot;Represents a voter card.&quot;</td>
+            <td class="light-grey"><a href="#class_chart:VOTER_BOX_MANAGEMENT" onclick="return linkSelect('class_chart','class_chart:VOTER_BOX_MANAGEMENT');">VOTER_BOX_MANAGEMENT</a></td>
+            <td class="white">&quot;Responsible for uploading the right set of voters to the right voter box&quot;</td>
           </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:VOTER" onclick="return linkSelect('class_chart','class_chart:VOTER');">VOTER</a></td>
-            <td class="white">&quot;Represents a voter&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:MUNICIPALITY" onclick="return linkSelect('class_chart','class_chart:MUNICIPALITY');">MUNICIPALITY</a></td>
-            <td class="white">&quot;Represents a municipality&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:POLLING_STATION" onclick="return linkSelect('class_chart','class_chart:POLLING_STATION');">POLLING_STATION</a></td>
-            <td class="white">&quot;Represents a polling station&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ" onclick="return linkSelect('class_chart','class_chart:UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ');">UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ</a></td>
-            <td class="white">&quot;Responsible for sending the right set of voters to the right polling station server&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ" onclick="return linkSelect('class_chart','class_chart:VOTING_PLACE_DISTRIBUTION_SECOND_REQ');">VOTING_PLACE_DISTRIBUTION_SECOND_REQ</a></td>
+            <td class="light-grey"><a href="#class_chart:VOTING_PLACE_DISTRIBUTION_SEC_REQ" onclick="return linkSelect('class_chart','class_chart:VOTING_PLACE_DISTRIBUTION_SEC_REQ');">VOTING_PLACE_DISTRIBUTION_SEC_REQ</a></td>
             <td class="white">&quot;Responsible for the distributing of voter sets according to municpality or polling station&quot;</td>
-          </tr>
-        </table>
-        <table>
-          <tr>
-            <th>Cluster</th>
-            <th>Description</th>
-          </tr>
-          <tr>
-            <td class="light-grey"><a href="#cluster_chart:DB_COMM_DAO" onclick="return linkSelect('cluster_chart','cluster_chart:DB_COMM_DAO');">DB_COMM_DAO</a></td>
-            <td class="white">&quot;Represents the connection to the database&quot;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div class="top-level" id="cluster_chart:DB_COMM_DAO">
-  <table class="outer">
-    <tr class="top">
-      <th class="type">CLUSTER</th>
-      <td class="name" colspan="2">DB_COMM_DAO</td>
-      <td class="part"><strong>Part:</strong> 1/1</td>
-    </tr>
-    <tr class="middle">
-      <td class="explanation" colspan="2">
-        <dl>
-          <dt>Purpose</dt>
-          <dd>&quot;The classes needed for a home-built DAO.&quot;</dd>
-        </dl>
-      </td>
-      <td class="indexing" colspan="2">
-        <dl>
-          <dt>Indexing</dt>
-          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
-        </dl>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="4" class="bottom">
-        <table>
-          <tr>
-            <th class="grey">Class</th>
-            <th class="grey">Description</th>
-          </tr>
-          <tr>
-            <td class="light-grey"><a href="#class_chart:IDataAccessObject" onclick="return linkSelect('class_chart','class_chart:IDataAccessObject');">IDataAccessObject</a></td>
-            <td class="white">&quot;An interface describing the overall actions that a DAO should support.&quot;</td>
-          </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:IDataObject" onclick="return linkSelect('class_chart','class_chart:IDataObject');">IDataObject</a></td>
-            <td class="white">&quot;The object used to transfer data between the DAO and the application.&quot;</td>
           </tr>
         </table>
               </td>
@@ -1465,11 +1238,14 @@ dd {
             <th class="grey">Description</th>
           </tr>
           <tr>
-            <td class="light-grey"><a href="#class_chart:VOTER_CARD_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_WINDOW');">VOTER_CARD_WINDOW</a></td>
-            <td class="white">&quot;Represents the visual part of the CENTRAL gui in connection to voter card generation.&quot;</td>
+            <td class="light-grey"><a href="#class_chart:VOTER_BOX_MANAGEMENT_WINDOW_SEC_REQ" onclick="return linkSelect('class_chart','class_chart:VOTER_BOX_MANAGEMENT_WINDOW_SEC_REQ');">VOTER_BOX_MANAGEMENT_WINDOW_SEC_REQ</a></td>
+            <td class="white">&quot;Window to manage voterboxes&quot;</td>
           </tr>          <tr>
-            <td class="light-grey"><a href="#class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ" onclick="return linkSelect('class_chart','class_chart:VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ');">VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ</a></td>
-            <td class="white">&quot;A window responsible for initiate the distribution process and showing statistics on the distribution process&quot;</td>
+            <td class="light-grey"><a href="#class_chart:VOTER_SELECTION_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_SELECTION_WINDOW');">VOTER_SELECTION_WINDOW</a></td>
+            <td class="white">&quot;Window used when selecting a subset to be uploaded to a voter box&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_CARD_WINDOW" onclick="return linkSelect('class_chart','class_chart:VOTER_CARD_WINDOW');">VOTER_CARD_WINDOW</a></td>
+            <td class="white">&quot;Window where voter card generation is handled&quot;</td>
           </tr>
         </table>
               </td>
@@ -1505,6 +1281,147 @@ dd {
   </table>
 </div>
 
+<div class="top-level" id="cluster_chart:DB_COMM">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">DB_COMM</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;The classes and clusters needed for a home-built DAO.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th>Cluster</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#cluster_chart:DAO" onclick="return linkSelect('cluster_chart','cluster_chart:DAO');">DAO</a></td>
+            <td class="white">&quot;All DAO classes and interfaces.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#cluster_chart:DO" onclick="return linkSelect('cluster_chart','cluster_chart:DO');">DO</a></td>
+            <td class="white">&quot;All classes and interfaces representing entities in the database.&quot;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:DO">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">DO</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;All classes and interfaces representing entities in the database.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Class</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#class_chart:DATA_OBJECT" onclick="return linkSelect('class_chart','class_chart:DATA_OBJECT');">DATA_OBJECT</a></td>
+            <td class="white">&quot;The object used to transfer data between the DAO and the application.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_DO" onclick="return linkSelect('class_chart','class_chart:VOTER_DO');">VOTER_DO</a></td>
+            <td class="white">&quot;The class describing a voter entity.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:POLLING_STATION_DO" onclick="return linkSelect('class_chart','class_chart:POLLING_STATION_DO');">POLLING_STATION_DO</a></td>
+            <td class="white">&quot;The class describing a polling station entity.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:MUNICIPALITY_DO" onclick="return linkSelect('class_chart','class_chart:MUNICIPALITY_DO');">MUNICIPALITY_DO</a></td>
+            <td class="white">&quot;The class describing a municipality entity.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:LOG_DO" onclick="return linkSelect('class_chart','class_chart:LOG_DO');">LOG_DO</a></td>
+            <td class="white">&quot;The class describing a log entity.&quot;</td>
+          </tr>
+        </table>
+              </td>
+    </tr>
+  </table>
+</div>
+
+<div class="top-level" id="cluster_chart:DAO">
+  <table class="outer">
+    <tr class="top">
+      <th class="type">CLUSTER</th>
+      <td class="name" colspan="2">DAO</td>
+      <td class="part"><strong>Part:</strong> 1/1</td>
+    </tr>
+    <tr class="middle">
+      <td class="explanation" colspan="2">
+        <dl>
+          <dt>Purpose</dt>
+          <dd>&quot;All DAO classes and interfaces.&quot;</dd>
+        </dl>
+      </td>
+      <td class="indexing" colspan="2">
+        <dl>
+          <dt>Indexing</dt>
+          <dd>author : "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;";</dd>
+        </dl>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" class="bottom">
+        <table>
+          <tr>
+            <th class="grey">Class</th>
+            <th class="grey">Description</th>
+          </tr>
+          <tr>
+            <td class="light-grey"><a href="#class_chart:DATA_ACCESS_OBJECT" onclick="return linkSelect('class_chart','class_chart:DATA_ACCESS_OBJECT');">DATA_ACCESS_OBJECT</a></td>
+            <td class="white">&quot;An interface describing the overall actions that a DAO should support.&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:VOTER_DAO" onclick="return linkSelect('class_chart','class_chart:VOTER_DAO');">VOTER_DAO</a></td>
+            <td class="white">&quot;A class for working CRUD operations on voter entities&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:POLLING_STATION_DAO" onclick="return linkSelect('class_chart','class_chart:POLLING_STATION_DAO');">POLLING_STATION_DAO</a></td>
+            <td class="white">&quot;A class for working CRUD operations on polling station entities&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:MUNICIPALITY_DAO" onclick="return linkSelect('class_chart','class_chart:MUNICIPALITY_DAO');">MUNICIPALITY_DAO</a></td>
+            <td class="white">&quot;A class for working CRUD operations on municipality entities&quot;</td>
+          </tr>          <tr>
+            <td class="light-grey"><a href="#class_chart:LOG_DAO" onclick="return linkSelect('class_chart','class_chart:LOG_DAO');">LOG_DAO</a></td>
+            <td class="white">&quot;A class for working CRUD operations on log entities&quot;</td>
+          </tr>
+        </table>
+              </td>
+    </tr>
+  </table>
+</div>
+
 <div id="footer">
   <p id="left-footer">
     <button id="showlink" onclick="return toggleShowAll();">Show all</button>
@@ -1514,7 +1431,7 @@ dd {
     <select id="sub-menu" onchange="showSelected();"><option>processing...</option></select>
   </p>
   <p id="right-footer">
-    Generated by <a href="http://kind.ucd.ie/products/opensource/BONc">BONc</a> (version: bonc-0.2.7) <a href="http://validator.w3.org/check?uri=referer">XHTML</a> output, 30-11-2011 13:21:10.
+    Generated by <a href="http://kind.ucd.ie/products/opensource/BONc">BONc</a> (version: bonc-0.2.7) <a href="http://validator.w3.org/check?uri=referer">XHTML</a> output, 01-12-2011 12:48:31.
   </p>
 </div>
 

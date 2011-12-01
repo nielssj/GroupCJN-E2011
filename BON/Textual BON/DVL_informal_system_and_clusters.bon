@@ -11,6 +11,9 @@ description
 cluster CENTRAL_C
 description
 	"The admin module located at the Home office"
+cluster DB_COMM
+description 
+	 "The classes and clusters needed for a home-built DAO."
 end
 
 cluster_chart POLLING_TABLE_PT
@@ -34,15 +37,9 @@ indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
-class DB_COMM
+class POLING_TABLE_MAIN_MODEL
 description 
-	"Responsible for quering and updating the database."
-class VOTER
-description 
-	"Represents a voter"
-class REGISTRATION
-description 
-	"TBU"
+	"Responsible for communicating to the DB_COMM"
 end
 
 cluster_chart PT_VIEW
@@ -86,41 +83,18 @@ indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "TBU"
+class CENTRAL_MAIN_MODEL
+description
+	"Holds all other model class in the central model"
 class VOTER_CARD_GENERATOR
 description
 	"Responsible for the generation of votercards"
-class VOTERCARD
+class VOTER_BOX_MANAGEMENT
 description
-	"Represents a voter card."
-class VOTER
-description 
-    "Represents a voter"
-class MUNICIPALITY
-description
-     "Represents a municipality"
-class POLLING_STATION
-description
-     "Represents a polling station"
-class UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
-description
-	"Responsible for sending the right set of voters to the right polling station server"
-class VOTING_PLACE_DISTRIBUTION_SECOND_REQ
+	"Responsible for uploading the right set of voters to the right voter box"
+class VOTING_PLACE_DISTRIBUTION_SEC_REQ
 description
 	"Responsible for the distributing of voter sets according to municpality or polling station"
-cluster DB_COMM_DAO
-description 
-	"Represents the connection to the database"
-end
-
-cluster_chart DB_COMM_DAO
-indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
-explanation
-  "The classes needed for a home-built DAO."
-class IDataAccessObject
-description	"An interface describing the overall actions that a DAO should support."
-class IDataObject
-description	"The object used to transfer data between the DAO and the application."
 end
 
 cluster_chart C_VIEW
@@ -128,12 +102,15 @@ indexing
     author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
    "TBU"
+class VOTER_BOX_MANAGEMENT_WINDOW_SEC_REQ
+description
+	"Window to manage voterboxes"
+class VOTER_SELECTION_WINDOW
+description	
+	"Window used when selecting a subset to be uploaded to a voter box"
 class VOTER_CARD_WINDOW
 description
-	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
-class VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
-description
-	"A window responsible for initiate the distribution process and showing statistics on the distribution process"
+	"Window where voter card generation is handled"
 end
 
 cluster_chart C_CONTROLLER
@@ -143,10 +120,62 @@ explanation
   "TBU"
 end
 
+cluster_chart DB_COMM
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "The classes and clusters needed for a home-built DAO."
+cluster DAO
+description
+	"All DAO classes and interfaces."
+cluster DO
+description
+	"All classes and interfaces representing entities in the database."
+end
 
+cluster_chart DO
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "All classes and interfaces representing entities in the database."
+class DATA_OBJECT
+description	
+	"The object used to transfer data between the DAO and the application."
+class VOTER_DO
+description
+	"The class describing a voter entity."
+class POLLING_STATION_DO
+description
+	"The class describing a polling station entity."
+class MUNICIPALITY_DO
+description
+	"The class describing a municipality entity."
+class LOG_DO
+description
+	"The class describing a log entity."
+end
 
-
-
+cluster_chart DAO
+indexing
+  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+  "All DAO classes and interfaces."
+class DATA_ACCESS_OBJECT
+description	
+	"An interface describing the overall actions that a DAO should support."
+class VOTER_DAO
+description
+	"A class for working CRUD operations on voter entities"
+class POLLING_STATION_DAO
+description
+	"A class for working CRUD operations on polling station entities"
+class MUNICIPALITY_DAO
+description
+	"A class for working CRUD operations on municipality entities"
+class LOG_DAO
+description
+	"A class for working CRUD operations on log entities"
+end
 --Comment: Change Log
 
 
