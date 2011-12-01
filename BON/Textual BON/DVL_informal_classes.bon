@@ -1,3 +1,38 @@
+class_chart CENTRAL_MAIN_MODEL
+indexing
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+query
+	"What is the available municipalities?",
+	"What is the available polling stations?",
+	"What is the current voter filter?"
+command
+	"Replace the current voter filter with this voter filter",
+	"Notify me when the number voters in the selection changes",
+	"Notify me when the number of available municipalities changes",
+	"Notify me when the number of available polling station changes"
+end
+
+class_chart VOTER_FILTER
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"A filter describing a subset of voters chosen in the VOTER_SELECTION_WINDOW."
+query
+	"what is the celected voter count?",
+	"What is the selected municipalities?",
+	"What is the selected polling stations?",
+	"What is the selected voter card ID",
+	"What is the selected cprnr?"
+command
+	"N/A"
+end
+
 class_chart VOTER_CARD_GENERATOR
 indexing
 	in_cluster: "C_MODEL";
@@ -7,18 +42,15 @@ indexing
 explanation 
 	"Responsible for the generation of votercards"
 query
-	"Have all the votercards been generated?",
-	"Have a specific votercard been generated",
-	"Have voter cards from a specific polling station been generated?",
-	"Have voter cards from a specific municipality been created?"
+	"What is the current number of generated voter cards?",
+	"What is the current number of generated groups?",
+	"What is the voter filter?"
 command
-	"Generate all voter cards",
-	"Generate a specific voter card",
-	"Generate voter cards for a specific polling station",
-	"Generate voter cards for a specific municipality"
+	"Generate voter card(s) based on voter filter and grouping selection",
+	"Notify me when the number of generated groups changes",
+	"Notify me when the total number of generated voter cards changes"
 constraint 
-	"A voter card must be unique",
-	"The same voter card must only be generated once in every batch."
+	"N/A"
 end
 
 class_chart VOTING_PLACE_DISTRIBUTION_SEC_REQ
@@ -39,6 +71,15 @@ constraint
 	"N/A"
 end
 
+class_chart VOTER_SELECTION_WINDOW
+explanation
+	"The main window in the central that shows selection criteria."
+query
+	""
+command
+	"Open voter card window"
+end
+
 class_chart VOTER_CARD_WINDOW
 indexing 
 	in_cluster: "C_VIEW";
@@ -54,6 +95,49 @@ command
 constraint
 	"NONE"
 end
+
+class_chart VOTER_SELECTION_CONTROLLER
+indexing 
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"TBU"
+query
+	"N/A"
+command
+	"React to municipality filter being changed",
+	"React to polling station filter being changed", 
+	"React to voter card search",
+	"React to CPRNR search"
+end
+
+class_chart VOTER_CARD_CONTROLLER
+indexing
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"TBU"
+query
+	"N/A"
+command
+	"React to generation request",
+	"React to grouping selection"
+end
+
+class_chart CENTRAL_CONTROLLER
+indexing
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"TBU"
+end
+
 
 class_chart REG_WINDOW
 indexing 

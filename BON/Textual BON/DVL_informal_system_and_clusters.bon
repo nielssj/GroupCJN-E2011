@@ -92,6 +92,9 @@ description
 class VOTER_BOX_MANAGEMENT
 description
 	"Responsible for uploading the right set of voters to the right voter box"
+class VOTER_FILTER
+description
+	"A filter describing a subset of voters chosen in the VOTER_SELECTION_WINDOW."
 class VOTING_PLACE_DISTRIBUTION_SEC_REQ
 description
 	"Responsible for the distributing of voter sets according to municpality or polling station"
@@ -115,9 +118,18 @@ end
 
 cluster_chart C_CONTROLLER
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "TBU"
+	"TBU"
+class CENTRAL_CONTROLLER
+description
+	"TBU"
+class VOTER_SELECTION_CONTROLLER
+description
+	"TBU"
+class VOTER_CARD_CONTROLLER
+description
+	"TBU"
 end
 
 cluster_chart DB_COMM
