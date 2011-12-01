@@ -1,0 +1,257 @@
+class_chart DB_COMM
+indexing
+	in_cluster: "C_MODEL, PT_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Represents the connection to the database"
+query
+	"How many object does the resulting collection return?",
+	"Is there a connection to the database?"
+command
+	"Get connection to DB",
+	"Retrive an object from the DB",
+	"Send an object to the DB",
+	"Retrive a collection of objects from the DB",
+	"Send a collection of objects to the DB",
+	"Close the database connection",
+constraint 
+	"It should not be possible for the database to register a partial update/insert."
+end
+
+class_chart VOTER_CARD_GENERATOR
+indexing
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Responsible for the generation of votercards"
+query
+	"Have all the votercards been generated?",
+	"Have a specific votercard been generated",
+	"Have voter cards from a specific polling station been generated?",
+	"Have voter cards from a specific municipality been created?"
+command
+	"Generate all voter cards",
+	"Generate a specific voter card",
+	"Generate voter cards for a specific polling station",
+	"Generate voter cards for a specific municipality"
+constraint 
+	"A voter card must be unique",
+	"The same voter card must only be generated once in every batch."
+end
+
+class_chart VOTERCARD
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Represents a voter card."
+query
+	"Who is the voter assioated with this voter card.",
+	"What is the voter card ID number?",
+	"What is the name and address of the polling station assioated with this voter card?",
+	"What is the name and address of the municipality assioated with this voter card?"
+command
+	"NONE"
+constraint
+	"There can only exist one instance of a specific voter card."
+end
+
+class_chart VOTER_CARD_WINDOW
+indexing 
+	in_cluster: "C_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation 
+	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
+query
+	"NONE"
+command	
+	"Show a specific votercard"
+constraint
+	"NONE"
+end
+
+class_chart MUNICIPALITY
+end
+
+class_chart POLLING_STATION
+end
+
+class_chart VOTER
+indexing 
+	in_cluster: "PT_MODEL, C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Represents a voter"
+query
+	"What is the name of the voter?",
+	"What is the address of the voter?",
+	"What is the CPRNR of the voter?",
+	"Has a voter card been printed for the voter?",
+	"Has the voter voted?"
+command	
+	"Set a status to votercard printed",
+	"Set voter to have voted"
+constraint
+	"?"
+end
+
+class_chart REGISTRATION
+indexing 
+	in_cluster: "PT_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Represents a registration"
+query
+	"Who is the voter assioated with the registration?",
+	"What time has the registration been made?"
+command	
+	"Update assioated voter",
+	"Update registration time"
+constraint
+	"?"
+end
+
+class_chart REG_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A visual represention of a registration"
+query
+	"NONE"
+command	
+	"Show a specific registration"
+constraint
+	"?"
+end
+
+class_chart VOTER_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A visual representation of a voter at the polling table"
+query
+	"NONE"
+command	
+	"Show a specific voter",
+	"Show an error message"
+constraint
+	"?"
+end
+
+class_chart UPLOAD_TO_POLLING_STATION_SERVER_PSS_SECONDARY_REQ
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Responsible for sending the right set of voters to the right polling station server"
+query
+	"Is the upload done?",
+	"How many records has been transfered?",
+	
+command
+	"Find the correct destination server",
+	"Validate if the server is the correct destination server",
+	"Send correct set of voters to the destination server",
+	"Validate if the server is the correct server",
+	"Validate if the set of voters on the server is correct"
+constraint
+	"N/A"
+end
+
+class_chart VOTING_PLACE_DISTRIBUTION_SECOND_REQ
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Responsible for the distributing of voter sets according to municpality or polling station"
+query
+	"Is the distribution finished?",
+	"How are the voters distributed?"
+command
+	"Distribute among municipalities",
+	"Distribute among polling stations"
+constraint
+	"N/A"
+end
+
+class_chart VOTER_DISTRIBUTION_WINDOW_SECONDARY_REQ
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A window responsible for initiate the distribution process and showing statistics on the distribution process"
+query
+	"NONE"
+command
+	"Show statistics",
+	"Start distribution process"
+constraint
+	"N/A"
+end
+
+class_chart IDataAccessObject
+indexing
+	in_cluster: "DB_COMM_DAO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"A data access object supporting CRUD operations."
+query
+	"Read the object(s) from the database for which this predicate holds."	
+command
+	"Create this object in the database.",
+	"Update the object(s) in the database for which this predicate holds.",
+	"Delete the objects(s) in the database for which this predicate holds."
+constraint
+	"N/A"
+end
+
+class_chart IDataObject
+indexing
+	in_cluster: "DB_COMM_DAO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-29";
+	revised: "N/A"
+explanation 
+	"The object used to transfer data between DAO and application."
+query
+	"Get data."
+command
+	"Set data.",
+	"Write any updated fields to the database.",
+	"Delete this object from the database."
+constraint
+	"N/A"
+end
+--Comment: Change Log
+
+
+
+
+
+
