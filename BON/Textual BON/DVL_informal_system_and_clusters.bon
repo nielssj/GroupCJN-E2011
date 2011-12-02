@@ -130,6 +130,9 @@ description
 class VOTER_CARD_CONTROLLER
 description
 	"TBU"
+class VOTER_BOX_MANAGEMENT_CONTROLLER
+description
+	"TBU"
 end
 
 cluster_chart DB_COMM

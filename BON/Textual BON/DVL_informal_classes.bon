@@ -53,6 +53,28 @@ constraint
 	"N/A"
 end
 
+class_chart VOTER_BOX_MANAGEMENT
+indexing
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation 
+	"Responsible for the management of voter box(s)."
+query
+	"What is the console output?",
+	"What is the current upload progress?",
+	"What is the voter filter?"
+command
+	"Connect to this Voter Box.",
+	"Validate content on the connected Voter Box.",
+	"Upload voters to the connected Voter Box based on voter filter.",
+	"Notify me when the current upload progress changes.",
+	"Notify me when the console output changes."
+constraint 
+	"N/A"
+end
+
 class_chart VOTING_PLACE_DISTRIBUTION_SEC_REQ
 indexing 
 	in_cluster: "C_MODEL";
@@ -94,6 +116,22 @@ command
 	"Show a specific votercard"
 constraint
 	"NONE"
+end
+
+class_chart VOTER_BOX_MANAGEMENT_CONTROLLER
+indexing 
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation
+	"TBU"
+query
+	"N/A"
+command
+	"React to connection request.",
+	"React to validation request.",
+	"React to upload request."
 end
 
 class_chart VOTER_SELECTION_CONTROLLER
