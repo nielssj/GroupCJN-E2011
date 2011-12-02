@@ -25,8 +25,8 @@ explanation
 	"A filter describing a subset of voters chosen in the VOTER_SELECTION_WINDOW."
 query
 	"what is the celected voter count?",
-	"What is the selected municipalities?",
-	"What is the selected polling stations?",
+	"What is the selected municipalitie?",
+	"What is the selected polling station?",
 	"What is the selected voter card ID",
 	"What is the selected cprnr?"
 command
