@@ -1,9 +1,13 @@
+-- ##### CENTRAL RELATED CLASSES #####
+
 class_chart CENTRAL_MAIN_MODEL
 indexing
 	in_cluster: "C_MODEL";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
 	revised: "N/A"
+explanation
+	"Responsible for business logic in central and for holding other classes in the model cluster"
 query
 	"What is the available municipalities?",
 	"What is the available polling stations?",
@@ -97,7 +101,7 @@ class_chart VOTER_SELECTION_WINDOW
 explanation
 	"The main window in the central that shows selection criteria."
 query
-	""
+	"N/A"
 command
 	"Open voter card window"
 end
@@ -111,21 +115,21 @@ indexing
 explanation 
 	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
 query
-	"NONE"
+	"N/A"
 command	
 	"Show a specific votercard"
 constraint
-	"NONE"
+	"N/A"
 end
 
-class_chart VOTER_BOX_MANAGEMENT_CONTROLLER
+class_chart VOTER_BOX_MANAGEMENT_CONTROLLER_SEC_REQ
 indexing 
 	in_cluster: "C_CONTROLLER";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-02";
 	revised: "N/A"
 explanation
-	"TBU"
+	"Responsible for reacting to GUI input from the VOTER_BOX_MANAGEMENT_WINDOW"
 query
 	"N/A"
 command
@@ -141,7 +145,7 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"TBU"
+	"Responsible for reacting to GUI input from the VOTER_SELECTION_WINDOW."
 query
 	"N/A"
 command
@@ -149,6 +153,8 @@ command
 	"React to polling station filter being changed", 
 	"React to voter card search",
 	"React to CPRNR search"
+constraint
+	"N/A"
 end
 
 class_chart VOTER_CARD_CONTROLLER
@@ -158,7 +164,7 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"TBU"
+	"Responsible for reacting to GUI input from the VOTER_CARD_WINDOW"
 query
 	"N/A"
 command
@@ -173,24 +179,44 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"TBU"
+	"Responsible for creating all central controllers."
 end
 
+-- ##### POLLING TABLE RELATED CLASSES ##### 
 
-class_chart REG_WINDOW
+class_chart MODEL
+indexing
+	in_cluster: "POLLING_TABLE_PT";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation
+	"The model class in PT. Responsible for connecting to, retriving from, and updating the DB"
+query
+	"What is the current voter?"
+command
+	"Vaidate connection",
+	"Find a voter with this CPR NR.",
+	"Register current voter",
+	"Unregister current voter"
+constraint
+	"The can only be one distinct current voter at any given time"
+end
+
+class_chart SCANNER_WINDOW
 indexing 
 	in_cluster: "PT_VIEW";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"A visual represention of a registration"
+	"This is where the election official scans or types in the voter card."
 query
-	"NONE"
+	"N/A"
 command	
-	"Show a specific registration"
+	"N/A"
 constraint
-	"?"
+	"The scanner window cannot be used while a voter window is open. Preventing two voters to register at the same time."
 end
 
 class_chart VOTER_WINDOW
@@ -200,15 +226,52 @@ indexing
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"A visual representation of a voter at the polling table"
+	"A visual representation of the current voter at the polling table"
 query
-	"NONE"
+	"N/A"
 command	
 	"Show a specific voter",
 	"Show an error message"
 constraint
-	"?"
+	"N/A"
 end
+
+class_chart SETUP_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Window where the election official enters setup information"
+query
+	"N/A"
+command	
+	"N/A"
+constraint
+	"Must only be shown at startup"
+end
+	
+class_chart CONTROLLER
+indexing
+	in_cluster: "POLLING_TABLE_PT";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation
+	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
+query
+	"N/A"
+command
+	"React to connect request",
+	"React to find voter request",
+	"React to register request",
+	"React to unlock request"
+constraint
+	"N/A"
+end
+
+-- ##### DB_COMM_DAO RELATED CLASSES #####
 
 class_chart DATA_ACCESS_OBJECT
 indexing
@@ -265,7 +328,7 @@ command
 	"Set a status to votercard printed",
 	"Set voter to have voted"
 constraint
-	"?"
+	"N/A"
 end
 
 class_chart POLLING_STATION_DO
@@ -319,7 +382,10 @@ query
 	"Is there an entry for a specific voter?",
 	"Is there a write entry for a specific voter?",
 	"Is there a read entry for a specific voter?"
-
+command
+	"N/A"
+constraint
+	"N/A"
 end
 
 --Comment: Change Log
