@@ -1,4 +1,4 @@
-static_diagram CLASS_INTERFACES
+static_diagram CENTRAL
 	component
 		class CENTRAL_MAIN_MODEL
 			feature 

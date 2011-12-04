@@ -193,7 +193,8 @@ indexing
 explanation
 	"The model class in PT. Responsible for connecting to, retriving from, and updating the DB"
 query
-	"What is the current voter?"
+	"What is the current voter?",
+	"Has the current voter been registered?"
 command
 	"Vaidate connection",
 	"Find a voter with this CPR NR.",
