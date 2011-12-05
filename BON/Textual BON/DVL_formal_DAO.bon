@@ -7,12 +7,14 @@ static_diagram DAO
 					predicate /= Void;
 				ensure
 					for_all t : T such_that Result.contains(t) it_holds
-					predicate.evaluate(Result) = true;
+						predicate.evaluate(Result) = true;
 			end
 			
-			deferred insert : BOOLEAN -> t : T
+			deferred create : BOOLEAN -> t : T
 				require
 					t /= Void;
+				ensure
+					
 			end
 			
 			deferred update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
@@ -20,8 +22,7 @@ static_diagram DAO
 				require
 					predicate /= Void;
 					t /= Void;
-				ensure
-					read(predicate) = {};
+					dummy.PrimaryKey != Void => dummy.FullyInitialized();
 			end
 			
 			deferred delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
@@ -29,10 +30,18 @@ static_diagram DAO
 					predicate /= Void;
 				ensure
 					read(predicate) = {};
+					for_all t : T such_that old read(predicate).contains(t) it_holds
+						!read(predicate).contains(t);
 			end
 		end
 		
 		deferred class DATA_OBJECT
+			feature
+			primaryKey -- The primary key of this entity.
+			
+			deferred fullyInitialized : BOOLEAN -- Have all fields been assigned a non-null value?
+			
+			deferred UpdateValues -> dummy : DATA_OBJECT
 		end
 		
 		class PESSIMISTIC_VOTER_DAO
@@ -46,11 +55,6 @@ static_diagram DAO
 			
 			transactionStarted : BOOLEAN
 			
-			create : BOOLEAN -> VOTER_DO
-				require
-					transactionStarted();
-			end
-			
 			read : VOTER_DO -> id : INTEGER
 				require
 					transactionStarted();
@@ -58,11 +62,6 @@ static_diagram DAO
 			
 			update : BOOLEAN -> id : INTEGER
 					-> newVoter VOTER_DO
-				require
-					transactionStarted();
-			end
-			
-			delete : BOOLEAN -> id : INTEGER
 				require
 					transactionStarted();
 			end
