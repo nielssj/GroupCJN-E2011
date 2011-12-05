@@ -1,4 +1,4 @@
-static_diagram CLASS_INTERFACES
+static_diagram DAO
 	component
 		deferred class DATA_ACCESS_OBJECT[T]
 			feature 

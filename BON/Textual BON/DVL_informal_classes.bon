@@ -1,3 +1,42 @@
+-- ##### CENTRAL RELATED CLASSES #####
+
+class_chart CENTRAL_MAIN_MODEL
+indexing
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"Responsible for business logic in central and for holding other classes in the model cluster"
+query
+	"What is the available municipalities?",
+	"What is the available polling stations?",
+	"What is the current voter filter?"
+command
+	"Replace the current voter filter with this voter filter",
+	"Notify me when the number voters in the selection changes",
+	"Notify me when the number of available municipalities changes",
+	"Notify me when the number of available polling station changes"
+end
+
+class_chart VOTER_FILTER
+indexing 
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"A filter describing a subset of voters chosen in the VOTER_SELECTION_WINDOW."
+query
+	"What is the celected voter count?",
+	"What is the selected municipality?",
+	"What is the selected polling station?",
+	"What is the selected voter card ID",
+	"What is the selected cprnr?"
+command
+	"N/A"
+end
+
 class_chart VOTER_CARD_GENERATOR
 indexing
 	in_cluster: "C_MODEL";
@@ -7,18 +46,37 @@ indexing
 explanation 
 	"Responsible for the generation of votercards"
 query
-	"Have all the votercards been generated?",
-	"Have a specific votercard been generated",
-	"Have voter cards from a specific polling station been generated?",
-	"Have voter cards from a specific municipality been created?"
+	"What is the current number of generated voter cards?",
+	"What is the current number of generated groups?",
+	"What is the voter filter?"
 command
-	"Generate all voter cards",
-	"Generate a specific voter card",
-	"Generate voter cards for a specific polling station",
-	"Generate voter cards for a specific municipality"
+	"Generate voter card(s) based on voter filter and grouping selection",
+	"Notify me when the number of generated groups changes",
+	"Notify me when the total number of generated voter cards changes"
 constraint 
-	"A voter card must be unique",
-	"The same voter card must only be generated once in every batch."
+	"N/A"
+end
+
+class_chart VOTER_BOX_MANAGEMENT
+indexing
+	in_cluster: "C_MODEL";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation 
+	"Responsible for the management of voter box(s)."
+query
+	"What is the console output?",
+	"What is the current upload progress?",
+	"What is the voter filter?"
+command
+	"Connect to this Voter Box.",
+	"Validate content on the connected Voter Box.",
+	"Upload voters to the connected Voter Box based on voter filter.",
+	"Notify me when the current upload progress changes.",
+	"Notify me when the console output changes."
+constraint 
+	"N/A"
 end
 
 class_chart VOTING_PLACE_DISTRIBUTION_SEC_REQ
@@ -39,6 +97,15 @@ constraint
 	"N/A"
 end
 
+class_chart VOTER_SELECTION_WINDOW
+explanation
+	"The main window in the central that shows selection criteria."
+query
+	"N/A"
+command
+	"Open voter card window"
+end
+
 class_chart VOTER_CARD_WINDOW
 indexing 
 	in_cluster: "C_VIEW";
@@ -48,27 +115,109 @@ indexing
 explanation 
 	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
 query
-	"NONE"
+	"N/A"
 command	
 	"Show a specific votercard"
 constraint
-	"NONE"
+	"N/A"
 end
 
-class_chart REG_WINDOW
+class_chart VOTER_BOX_MANAGEMENT_CONTROLLER_SEC_REQ
+indexing 
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation
+	"Responsible for reacting to GUI input from the VOTER_BOX_MANAGEMENT_WINDOW"
+query
+	"N/A"
+command
+	"React to connection request.",
+	"React to validation request.",
+	"React to upload request."
+end
+
+class_chart VOTER_SELECTION_CONTROLLER
+indexing 
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"Responsible for reacting to GUI input from the VOTER_SELECTION_WINDOW."
+query
+	"N/A"
+command
+	"React to municipality filter being changed",
+	"React to polling station filter being changed", 
+	"React to voter card search",
+	"React to CPRNR search"
+constraint
+	"N/A"
+end
+
+class_chart VOTER_CARD_CONTROLLER
+indexing
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"Responsible for reacting to GUI input from the VOTER_CARD_WINDOW"
+query
+	"N/A"
+command
+	"React to generation request",
+	"React to grouping selection"
+end
+
+class_chart CENTRAL_CONTROLLER
+indexing
+	in_cluster: "C_CONTROLLER";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"Responsible for creating all central controllers."
+end
+
+-- ##### POLLING TABLE RELATED CLASSES ##### 
+
+class_chart MODEL
+indexing
+	in_cluster: "POLLING_TABLE_PT";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation
+	"The model class in PT. Responsible for connecting to, retriving from, and updating the DB"
+query
+	"What is the current voter?",
+	"Has the current voter been registered?"
+command
+	"Vaidate connection",
+	"Find a voter with this CPR NR.",
+	"Register current voter",
+	"Unregister current voter"
+constraint
+	"The can only be one distinct current voter at any given time"
+end
+
+class_chart SCANNER_WINDOW
 indexing 
 	in_cluster: "PT_VIEW";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"A visual represention of a registration"
+	"This is where the election official scans or types in the voter card."
 query
-	"NONE"
+	"N/A"
 command	
-	"Show a specific registration"
+	"N/A"
 constraint
-	"?"
+	"The scanner window cannot be used while a voter window is open. Preventing two voters to register at the same time."
 end
 
 class_chart VOTER_WINDOW
@@ -78,15 +227,52 @@ indexing
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"A visual representation of a voter at the polling table"
+	"A visual representation of the current voter at the polling table"
 query
-	"NONE"
+	"N/A"
 command	
 	"Show a specific voter",
 	"Show an error message"
 constraint
-	"?"
+	"N/A"
 end
+
+class_chart SETUP_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Window where the election official enters setup information"
+query
+	"N/A"
+command	
+	"N/A"
+constraint
+	"Must only be shown at startup"
+end
+	
+class_chart CONTROLLER
+indexing
+	in_cluster: "POLLING_TABLE_PT";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-02";
+	revised: "N/A"
+explanation
+	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
+query
+	"N/A"
+command
+	"React to connect request",
+	"React to find voter request",
+	"React to register request",
+	"React to unlock request"
+constraint
+	"N/A"
+end
+
+-- ##### DB_COMM_DAO RELATED CLASSES #####
 
 class_chart DATA_ACCESS_OBJECT
 indexing
@@ -162,7 +348,7 @@ command
 	"Set a status to votercard printed",
 	"Set voter to have voted"
 constraint
-	"?"
+	"N/A"
 end
 
 class_chart POLLING_STATION_DO
@@ -216,7 +402,10 @@ query
 	"Is there an entry for a specific voter?",
 	"Is there a write entry for a specific voter?",
 	"Is there a read entry for a specific voter?"
-
+command
+	"N/A"
+constraint
+	"N/A"
 end
 
 --Comment: Change Log

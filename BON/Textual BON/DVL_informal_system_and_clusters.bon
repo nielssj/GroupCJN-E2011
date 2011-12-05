@@ -16,82 +16,75 @@ description
 	 "The classes and clusters needed for a home-built DAO."
 end
 
+-- ##### Polling table related clusters #####
+
 cluster_chart POLLING_TABLE_PT
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "TBU"
+  "The polling table is a client located at every polling table at the polling station. It is responsible for registering voter cards and communicating with the voter box."
+class MODEL
+description 
+	"The model class in PT. Responsible for connecting to, retriving from, and updating the DB"
+class CONTROLLER
+description 
+	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
 cluster PT_VIEW
 description 
-	"TBU"
-cluster PT_CONTROLLER
-description 
-	"TBU"
-cluster PT_MODEL
-description 
-	"TBU"
-end
-
-cluster_chart PT_MODEL
-indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
-explanation
-  "TBU"
-class POLING_TABLE_MAIN_MODEL
-description 
-	"Responsible for communicating to the DB_COMM"
+	  "Responsible for creating GUI elements at the polling table"
 end
 
 cluster_chart PT_VIEW
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "TBU"
-class REG_WINDOW
+  "Responsible for GUI elements at the polling table"
+class SCANNER_WINDOW
 description 
-	"A visual represention of a registration"
+	"The main window at the polling station. Used when scanning voter cards."
 class VOTER_WINDOW
 description 
 	"A visual representation of a voter"
+class SETUP_WINDOW
+description
+	"Window where the election official enters setup information"
 end
 
-cluster_chart PT_CONTROLLER
-indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
-explanation
-  "TBU"
-end
+-- ##### Central related clusters #####
 
 cluster_chart CENTRAL_C
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "TBU"
+  "The central module is responsible for generating voter cards and uploading data to voter boxes."
 cluster C_VIEW
 description 
-	"TBU"
+	"Responsible for creating GUI elements at the central."
 cluster C_CONTROLLER
 description 
-	"TBU"
+	"Responsible for reacting to input from the GUI elements at the central. "
 cluster C_MODEL
 description 
-	"TBU"
+	"Responsible for business logic in the central."
 end
 
 cluster_chart C_MODEL
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "TBU"
+  "Responsible for the logic in central."
 class CENTRAL_MAIN_MODEL
 description
-	"Holds all other model class in the central model"
+	"Holds all other model class in the central model."
 class VOTER_CARD_GENERATOR
 description
 	"Responsible for the generation of votercards"
 class VOTER_BOX_MANAGEMENT
 description
 	"Responsible for uploading the right set of voters to the right voter box"
+class VOTER_FILTER
+description
+	"A filter describing a subset of voters chosen in the VOTER_SELECTION_WINDOW."
 class VOTING_PLACE_DISTRIBUTION_SEC_REQ
 description
 	"Responsible for the distributing of voter sets according to municpality or polling station"
@@ -101,7 +94,7 @@ cluster_chart C_VIEW
 indexing
     author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-   "TBU"
+   "Responsible for GUI elements at the central."
 class VOTER_BOX_MANAGEMENT_WINDOW_SEC_REQ
 description
 	"Window to manage voterboxes"
@@ -115,10 +108,24 @@ end
 
 cluster_chart C_CONTROLLER
 indexing
-  author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "TBU"
+	"Responsible for reacting to input from the GUI elements in the central."
+class CENTRAL_CONTROLLER
+description
+	"Responsible for creating all central controllers."
+class VOTER_SELECTION_CONTROLLER
+description
+	"Responsible for reacting to GUI input from the VOTER_SELECTION_WINDOW."
+class VOTER_CARD_CONTROLLER
+description
+	"Responsible for reacting to GUI input from the VOTER_CARD_WINDOW"
+class VOTER_BOX_MANAGEMENT_CONTROLLER_SEC_REQ
+description
+	"Responsible for reacting to GUI input from the VOTER_BOX_MANAGEMENT_WINDOW"
 end
+
+-- DB COMM related clusters #####
 
 cluster_chart DB_COMM
 indexing
@@ -179,6 +186,7 @@ class PESSIMISTIC_VOTER_DAO
 description
 	"A DAO that uses pessimistic concurrency control to access voter entities."
 end
+
 --Comment: Change Log
 
 -- Find a better name for pessimistic voter DAO
