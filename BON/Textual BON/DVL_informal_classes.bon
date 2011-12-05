@@ -124,6 +124,25 @@ constraint
 	"N/A"
 end
 
+class_chart PESSIMISTIC_VOTER_DAO
+indexing
+	in_cluster: "DB_COMM_DAO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"A pessimistic DAO implementation supporting explicit transaction control."
+query
+	"Give me the voter with this id.",
+	"Is there an open transaction?"
+command
+	"Start transaction.",
+	"Stop transaction.",
+	"Update the voter with this id to the following.",
+	"Delete the voter with this id."
+	"Insert this voter."
+end
+
 class_chart VOTER_DO
 indexing
 	in_cluster: "DATA_OBJECTS";

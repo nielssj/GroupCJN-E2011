@@ -175,8 +175,13 @@ description
 class LOG_DAO
 description
 	"A class for working CRUD operations on log entities"
+class PESSIMISTIC_VOTER_DAO
+description
+	"A DAO that uses pessimistic concurrency control to access voter entities."
 end
 --Comment: Change Log
+
+-- Find a better name for pessimistic voter DAO
 
 
 
