@@ -7,7 +7,6 @@
 namespace DigitalVoterList.DBComm.DataGeneration
 {
     using System;
-    using System.Data.Linq;
     using System.Diagnostics.CodeAnalysis;
 
     using global::DigitalVoterList.DBComm.DAO;
@@ -19,11 +18,9 @@ namespace DigitalVoterList.DBComm.DataGeneration
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "*", Justification = "Generator code")]
     public class Generator
     {
-        private DataContext db;
+        private readonly Data data = new Data();
 
-        private Data data = new Data();
-
-        private Random r = new Random();
+        private readonly Random r = new Random();
 
         public void Generate(int municipalities, int stations, int voters)
         {
