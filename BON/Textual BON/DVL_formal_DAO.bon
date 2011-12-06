@@ -1,72 +1,103 @@
 static_diagram DAO
 	component
-		deferred class DataAccessObject
+		deferred class DATA_ACCESS_OBJECT[T]
 			feature 
-			connectionString: String
-			
-			deferred make : DataAccessObject -> connString : String
-				ensure
-					connectionString = connString;
-			end
-		end
-		
-		deferred class DataObject
-		
-		
-		end
-		
-		class VoterDAO
-			inherit DataAccessObject
-			feature 
-			readVoter : SET [Voter] -> predicate : FUNCTION[Voter, bool]			
+			deferred read : SET [T] -> predicate : FUNCTION[T, bool]			
 				require
 					predicate /= Void;
 				ensure
-					for_all v : Voter such_that Result.contains(v) it_holds
-					predicate.evaluate(Result) = true;
+					for_all t : T such_that Result.contains(t) it_holds
+						predicate.evaluate(Result) = true;
 			end
 			
-			insertVoter : BOOLEAN -> voter : Voter
+			deferred create : BOOLEAN -> t : T
 				require
-					voter /= Void;
+					t /= Void;
+				ensure
+					
 			end
 			
-			updateVoter : BOOLEAN 	-> predicate : FUNCTION[Voter, bool]
-									-> voter : Voter
+			deferred update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+										-> t : T
 				require
 					predicate /= Void;
-					voter /= Void;
-				ensure
-					readVoter(predicate) = voter;
+					t /= Void;
+					dummy.PrimaryKey != Void => dummy.FullyInitialized();
 			end
 			
-			deleteVoter : BOOLEAN 	-> predicate : FUNCTION[Voter, bool]
-									-> voter : Voter
+			deferred delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
 				require
 					predicate /= Void;
-					voter /= Void;
 				ensure
-					readVoter(predicate) = Void;
+					read(predicate) = {};
+					for_all t : T such_that old read(predicate).contains(t) it_holds
+						!read(predicate).contains(t);
 			end
 		end
 		
-		class VoterDO
-			inherit DataObject
+		deferred class DATA_OBJECT
+			feature
+			primaryKey -- The primary key of this entity.
+			
+			deferred fullyInitialized : BOOLEAN -- Have all fields been assigned a non-null value?
+			
+			deferred UpdateValues -> dummy : DATA_OBJECT
+		end
+		
+		class PESSIMISTIC_VOTER_DAO
+			feature
+			startTranscation
+			
+			endTranscation
+				require
+					transactionStarted();
+			end
+			
+			transactionStarted : BOOLEAN
+			
+			read : VOTER_DO -> id : INTEGER
+				require
+					transactionStarted();
+			end
+			
+			update : BOOLEAN -> id : INTEGER
+					-> newVoter VOTER_DO
+				require
+					transactionStarted();
+			end
+		end
+		
+		class VOTER_DAO
+			inherit DATA_ACCESS_OBJECT
+			feature
+		end
+		
+		class VOTER_DO
+			inherit DATA_OBJECT
 			feature
 			name: String
-			cpr: CPRNO
+			cpr: int -- Unsigned
 			address: String
+			
+			cprString : String
+				ensure
+				Result /= Void;
+				Result.Length = 10;
+			end				
 			
 			invariant			
 				name /= Void;
 				name.Length > 0;
 				address /= Void;
 				address.Length > 0;
-				cpr /= Void;
+				cpr >= 101000001 and value <= 3012999999
+				-- 101000001 is equal to a person born on the first of january 2000 or 1990
+				-- and with the serial number 0001 = 010100-0001.
+				-- Equally, 3012999999 is equal to a person with 301299-9999
 		end
 		
-		class PollingStationDO
-			inherit DataObject
+		class POLLING_STATION_DO
+			inherit DATA_OBJECt
 			feature
 			id: INTEGER
 			address: String
@@ -74,16 +105,16 @@ static_diagram DAO
 			municipality: MunicipalityDO
 		end
 		
-		class MunicipalityDO
-			inherit DataObject
+		class MUNICIPALITY_DO
+			inherit DATA_OBJECt
 			feature
 			id: INTEGER
 			address: String
 			name:String
 		end
 		
-		class LogDO
-			inherit DataObject
+		class LOG_DO
+			inherit DATA_OBJECT
 			feature
 			time: TIME
 			table: INTEGER
@@ -97,23 +128,6 @@ static_diagram DAO
 			
 			invariant
 			value element_of { 'W', 'R' }
-		end
-		
-		class CPRNO
-			feature
-			value: INTEGER -- Unsigned
-			
-			getCPR : String
-				ensure
-					Result /= Void;
-					Result.Length = 10;
-				end
-			
-			invariant 
-				value >= 101000001 and value <= 3012999999
-				-- 101000001 is equal to a person born on the first of january 2000 or 1990
-				-- and with the serial number 0001 = 010100-0001.
-				-- Equally, 3012999999 is equal to a person with 301299-9999
 		end
 end
 	
