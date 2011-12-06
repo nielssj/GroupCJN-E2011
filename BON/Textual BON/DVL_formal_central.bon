@@ -58,7 +58,6 @@ static_diagram CENTRAL
 		
 		class VOTER_FILTER
 			feature 
-			selectedVoterCount : INTEGER
 			selectedMunicipality : MunicipalityDO
 			selectedPollingStation : PollingStationDO
 			selectedVoterCardID : INTEGER
