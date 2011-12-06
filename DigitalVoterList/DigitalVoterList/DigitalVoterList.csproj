@@ -60,11 +60,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.4.4\Assemblies\v2.0\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="PDFjet">
       <HintPath>..\..\..\Documents\ITU\3 - Efterår 2011\BDSA\Project\APIs\PDFjet-For.NET-Eval-v2.87\PDFjet-For.NET-Eval-v2.87\PDFjet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -106,7 +110,24 @@
     <Compile Include="Central\Views\VoterSelectionWindow.Designer.cs">
       <DependentUpon>VoterSelectionWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBComm\DBCommMain.cs" />
+    <Compile Include="DBComm\DAO\AbstractDataAccessObject.cs" />
+    <Compile Include="DBComm\DAO\IDataAccessObject.cs" />
+    <Compile Include="DBComm\DAO\IDataAccessObjectContract.cs" />
+    <Compile Include="DBComm\DAO\MunicipalityDAO.cs" />
+    <Compile Include="DBComm\DAO\PessimisticVoterDAO.cs" />
+    <Compile Include="DBComm\DAO\PollingStationDAO.cs" />
+    <Compile Include="DBComm\DAO\VoterDAO.cs" />
+    <Compile Include="DBComm\DataGeneration\Data.cs" />
+    <Compile Include="DBComm\DataGeneration\Generator.cs" />
+    <Compile Include="DBComm\DigitalVoterList.cs" />
+    <Compile Include="DBComm\DO\ActivityEnum.cs" />
+    <Compile Include="DBComm\DO\IDataObject.cs" />
+    <Compile Include="DBComm\DO\IDataObjectContracts.cs" />
+    <Compile Include="DBComm\DO\LogDO.cs" />
+    <Compile Include="DBComm\DO\MunicipalityDO.cs" />
+    <Compile Include="DBComm\DO\PollingStationDO.cs" />
+    <Compile Include="DBComm\DO\VoterDO.cs" />
+    <Compile Include="DBComm\Program.cs" />
     <Compile Include="PollingTable\Controller.cs" />
     <Compile Include="PollingTable\Model.cs" />
     <Compile Include="Program.cs" />
@@ -141,11 +162,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DBComm\DataAccessObjects\" />
-    <Folder Include="DBComm\DataObjects\" />
     <Folder Include="PollingTable\View\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DBComm\DataGeneration\Namedata\boynames.txt" />
+    <Content Include="DBComm\DataGeneration\Namedata\citynames.txt" />
+    <Content Include="DBComm\DataGeneration\Namedata\girlnames.txt" />
+    <Content Include="DBComm\DataGeneration\Namedata\lastnames.txt" />
+    <Content Include="DBComm\DataGeneration\Namedata\municipalitynames.txt" />
+    <Content Include="DBComm\DataGeneration\Namedata\roadnames.txt" />
+    <Content Include="DBComm\DBreadme.txt" />
     <Content Include="Ressources\emblem_work.ico" />
     <Content Include="Ressources\info.ico" />
     <Content Include="Ressources\mail_message_new.ico" />

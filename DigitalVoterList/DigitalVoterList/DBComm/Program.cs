@@ -1,20 +1,24 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DBCommMain.cs" company="">
+// <copyright file="Program.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace DigitalVoterList.DBComm
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+
+    using global::DigitalVoterList.DBComm.DataGeneration;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DBCommMain
+    public class Program
     {
+        static void Main(string[] args)
+        {
+            var g = new Generator();
+
+            g.Generate(100, 2500, 20000);
+        }
     }
 }

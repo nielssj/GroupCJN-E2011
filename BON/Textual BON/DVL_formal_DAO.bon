@@ -1,7 +1,15 @@
 static_diagram DAO
 	component
 		deferred class DATA_ACCESS_OBJECT[T]
-			feature 
+			feature 			
+			deferred create : BOOLEAN -> t : T
+				require
+					t /= Void;
+					t.FullyInitialized();
+				ensure
+					Read(o => o.PrimaryKey = t.PrimaryKey).Contains(t);
+			end
+			
 			deferred read : SET [T] -> predicate : FUNCTION[T, bool]			
 				require
 					predicate /= Void;
@@ -10,19 +18,15 @@ static_diagram DAO
 						predicate.evaluate(Result) = true;
 			end
 			
-			deferred create : BOOLEAN -> t : T
-				require
-					t /= Void;
-				ensure
-					
-			end
-			
 			deferred update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
 										-> t : T
 				require
 					predicate /= Void;
 					t /= Void;
 					dummy.PrimaryKey != Void => dummy.FullyInitialized();
+				ensure
+					for_all t : T such_that old read(predicate).contains(t) it_holds
+						!read(f).contains(t); -- All elements that were read before the update, have now changed, and will therefore no longer exist in a new read operation.
 			end
 			
 			deferred delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
@@ -30,8 +34,6 @@ static_diagram DAO
 					predicate /= Void;
 				ensure
 					read(predicate) = {};
-					for_all t : T such_that old read(predicate).contains(t) it_holds
-						!read(predicate).contains(t);
 			end
 		end
 		
