@@ -20,6 +20,8 @@ namespace DigitalVoterList.DBComm.DataGeneration
             string queries = System.IO.File.ReadAllText(@"..\..\DBComm\DataGeneration\DBCommands.conf");
 
             dvl.ExecuteCommand(queries);
+
+            var g = new Generator();
         }
     }
 }

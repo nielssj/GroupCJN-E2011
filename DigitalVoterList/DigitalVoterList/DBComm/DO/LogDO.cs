@@ -8,6 +8,7 @@ namespace DigitalVoterList.DBComm.DO
 {
     using System;
     using System.Data.Linq.Mapping;
+    using System.Diagnostics.Contracts;
 
     /// <summary>
     /// TODO: Update summary.
@@ -27,7 +28,7 @@ namespace DigitalVoterList.DBComm.DO
         /// Gets Time.
         /// </summary>
         [Column]
-        public DateTime Time { get; private set; }
+        public DateTime? Time { get; private set; }
 
         /// <summary>
         /// Gets Table.
@@ -45,7 +46,7 @@ namespace DigitalVoterList.DBComm.DO
         /// Gets Activity.
         /// </summary>
         [Column]
-        public ActivityEnum Activity { get; private set; }
+        public ActivityEnum? Activity { get; private set; }
 
         /// <summary>
         /// Has all the fields of the object been initialized?
@@ -55,7 +56,7 @@ namespace DigitalVoterList.DBComm.DO
         /// </returns>
         public bool FullyInitialized()
         {
-            throw new NotImplementedException();
+            return PrimaryKey != null && Time != null && Table != null && Cpr != null && Activity != null;
         }
 
         /// <summary>
@@ -66,7 +67,14 @@ namespace DigitalVoterList.DBComm.DO
         /// </param>
         public void UpdateValues(IDataObject dummy)
         {
-            throw new NotImplementedException();
+            LogDO logDummy = dummy as LogDO;
+            Contract.Assert(logDummy != null);
+
+            this.PrimaryKey = logDummy.PrimaryKey ?? this.PrimaryKey;
+            this.Time = logDummy.Time ?? this.Time;
+            this.Table = logDummy.Table ?? this.Table;
+            this.Cpr = logDummy.Cpr ?? this.Cpr;
+            this.Activity = logDummy.Activity ?? this.Activity;
         }
 
         #endregion

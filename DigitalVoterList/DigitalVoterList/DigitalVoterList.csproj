@@ -63,9 +63,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -166,12 +163,12 @@
     <Folder Include="PollingTable\View\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBComm\DataGeneration\Namedata\boynames.txt" />
-    <Content Include="DBComm\DataGeneration\Namedata\citynames.txt" />
-    <Content Include="DBComm\DataGeneration\Namedata\girlnames.txt" />
-    <Content Include="DBComm\DataGeneration\Namedata\lastnames.txt" />
-    <Content Include="DBComm\DataGeneration\Namedata\municipalitynames.txt" />
-    <Content Include="DBComm\DataGeneration\Namedata\roadnames.txt" />
+    <None Include="DBComm\DataGeneration\Namedata\boynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\citynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\girlnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\lastnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\municipalitynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\roadnames.data" />
     <None Include="DBComm\DataGeneration\DBCommands.conf" />
     <Content Include="Ressources\emblem_work.ico" />
     <Content Include="Ressources\info.ico" />
