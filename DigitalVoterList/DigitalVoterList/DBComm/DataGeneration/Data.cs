@@ -18,12 +18,12 @@ namespace DigitalVoterList.DBComm.DataGeneration
     {
         private readonly Random random = new Random();
 
-        private readonly string[] boynames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\boynames.data");
-        private readonly string[] citynames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\citynames.data");
-        private readonly string[] girlnames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\girlnames.data");
-        private readonly string[] lastnames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\lastnames.data");
-        private readonly string[] municipalitynames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\municipalitynames.data");
-        private readonly string[] roadnames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\roadnames.data");
+        private readonly string[] boynames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\boynames.data");
+        private readonly string[] citynames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\citynames.data");
+        private readonly string[] girlnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\girlnames.data");
+        private readonly string[] lastnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\lastnames.data");
+        private readonly string[] municipalitynames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\municipalitynames.data");
+        private readonly string[] roadnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\roadnames.data");
 
         private ICollection<string> cprs = new HashSet<string>();
 
@@ -63,14 +63,12 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public uint GetCPR()
         {
-
-
             return this.createCPR();
         }
 
         private uint createCPR()
         {
-            var cpr = string.Empty + random.Next(0, 32) + random.Next(1, 13) + random.Next(10, 100) + random.Next(10, 100)
+            var cpr = this.getDate() + this.getMonth() + this.getYear() + random.Next(10, 100)
                       + random.Next(10, 100);
 
             if (!cprs.Contains(cpr))
@@ -80,6 +78,27 @@ namespace DigitalVoterList.DBComm.DataGeneration
             }
 
             return this.createCPR();
+        }
+
+        private string getMonth()
+        {
+            return this.PadInt(random.Next(1, 13));
+        }
+
+        private string getDate()
+        {
+            return this.PadInt(random.Next(1, 32));
+        }
+
+        private string getYear()
+        {
+            return this.PadInt(random.Next(0, 100));
+        }
+
+        private string PadInt(int i)
+        {
+            if (i < 10) return "0" + i;
+            return i.ToString();
         }
 
         private string GetBoyname()

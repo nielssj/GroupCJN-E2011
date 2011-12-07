@@ -7,6 +7,9 @@
 namespace DigitalVoterList.DBComm
 {
     using System;
+    using System.Diagnostics;
+    using System.Timers;
+
     using global::DigitalVoterList.DBComm.DataGeneration;
     using MySql.Data.MySqlClient;
 
@@ -15,12 +18,18 @@ namespace DigitalVoterList.DBComm
     /// </summary>
     public class Program
     {
-        /*static void Main(string[] args)
+        static void Main(string[] args)
         {
+            Stopwatch w = new Stopwatch();
+            w.Start();
+
             var dbc = new DBCreator(new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"));
+                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;"));
+
+            w.Stop();
+            Console.WriteLine(w.Elapsed);
 
             Console.WriteLine("done");
-        }*/
+        }
     }
 }
