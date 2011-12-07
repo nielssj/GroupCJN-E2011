@@ -13,9 +13,8 @@ namespace DigitalVoterList.DBComm.DAO
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-
-
     using global::DigitalVoterList.DBComm.DO;
+    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// An abstract implementation of the DAO interface. All methods are fully implemented, and 
@@ -30,7 +29,17 @@ namespace DigitalVoterList.DBComm.DAO
         /// <summary>
         /// The database.
         /// </summary>
-        private readonly DigitalVoterList db = new DigitalVoterList();
+        private readonly DigitalVoterList db;
+
+        protected AbstractDataAccessObject()
+        {
+            db = DigitalVoterList.GetDefaultInstance();
+        }
+
+        protected AbstractDataAccessObject(MySqlConnection c)
+        {
+            db = DigitalVoterList.GetInstance(c);
+        }
 
         /// <summary>
         /// Create this object.

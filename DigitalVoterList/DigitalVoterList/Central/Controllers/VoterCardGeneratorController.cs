@@ -10,7 +10,8 @@ namespace DigitalVoterList.Central.Controllers
     using DigitalVoterList.Central.Views;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The Controller responsible for monitoring the VoterCardGeneartorWindow (view)
+    /// and propagating input in an appropiate fashion to the VoterCardGenerator (model).
     /// </summary>
     public class VoterCardGeneratorController
     {

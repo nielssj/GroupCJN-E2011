@@ -6,15 +6,24 @@
 
 namespace DigitalVoterList.Central.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using DigitalVoterList.Central.Models;
+    using DigitalVoterList.Central.Views;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The Controller responsible for monitoring the VoterBoxManager (view)
+    /// and propagating input in an appropiate fashion to the VoterBoxManager (model).
     /// </summary>
     public class VoterBoxManagerController
     {
+        private VoterBoxManager model;
+        private VoterBoxManagerWindow view;
+
+        public VoterBoxManagerController(VoterBoxManager model, VoterBoxManagerWindow view)
+        {
+            this.model = model;
+            this.view = view;
+
+            view.Show();
+        }
     }
 }

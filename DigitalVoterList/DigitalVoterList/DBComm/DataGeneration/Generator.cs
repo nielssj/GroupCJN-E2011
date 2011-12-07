@@ -7,11 +7,10 @@
 namespace DigitalVoterList.DBComm.DataGeneration
 {
     using System;
-    using System.Data.Linq;
     using System.Diagnostics.CodeAnalysis;
-
     using global::DigitalVoterList.DBComm.DAO;
     using global::DigitalVoterList.DBComm.DO;
+    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,11 +18,16 @@ namespace DigitalVoterList.DBComm.DataGeneration
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "*", Justification = "Generator code")]
     public class Generator
     {
-        private DataContext db;
+        private readonly Data data = new Data();
 
-        private Data data = new Data();
+        private readonly Random r = new Random();
 
-        private Random r = new Random();
+        private readonly MySqlConnection c;
+
+        public Generator(MySqlConnection c)
+        {
+            this.c = c;
+        }
 
         public void Generate(int municipalities, int stations, int voters)
         {
@@ -34,7 +38,7 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public void GenerateMunicipalities(int municipalities)
         {
-            var dao = new MunicipalityDAO();
+            var dao = new MunicipalityDAO(c);
 
             for (uint i = 0; i < municipalities; i++)
             {
@@ -46,7 +50,7 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public void GeneratePollingStations(int stations, int municipalities)
         {
-            var dao = new PollingStationDAO();
+            var dao = new PollingStationDAO(c);
 
             for (uint i = 0; i < stations; i++)
             {
@@ -59,7 +63,7 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public void GenerateVoters(int voters, int pollingstations)
         {
-            var dao = new VoterDAO();
+            var dao = new VoterDAO(c);
 
             for (uint i = 0; i < voters; i++)
             {

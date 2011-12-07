@@ -11,14 +11,31 @@ namespace DigitalVoterList.DBComm.DAO
 {
     using System.Diagnostics.Contracts;
     using System.Linq;
-
     using global::DigitalVoterList.DBComm.DO;
+    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// DAO for the voters table.
     /// </summary>
     public class VoterDAO : AbstractDataAccessObject<VoterDO>
     {
+        /// <summary>
+        /// Create a new DAO that connects to the default server.
+        /// </summary>
+        public VoterDAO()
+            : base()
+        {
+        }
+
+        /// <summary>
+        /// Create a new DAO that connects to the specified server.
+        /// </summary>
+        /// <param name="c">The connection.</param>
+        public VoterDAO(MySqlConnection c)
+            : base(c)
+        {
+        }
+
         /// <summary>
         /// Create this object.
         /// </summary>

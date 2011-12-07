@@ -69,7 +69,7 @@ namespace DigitalVoterList.Central.Views
         }
 
         /// <summary> Notify me when the 'Voter Box Manager' button is clicked. </summary>
-        public void AddFBMClickedHandler(EventHandler handler)
+        public void AddVBMClickedHandler(EventHandler handler)
         {
             tsbVBM.Click += handler;
             tsmVBM.Click += handler;
