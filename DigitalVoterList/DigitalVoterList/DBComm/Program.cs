@@ -14,11 +14,11 @@ namespace DigitalVoterList.DBComm
     /// </summary>
     public class Program
     {
-        static void Main(string[] args)
-        {
-            var g = new Generator();
+        //static void Main(string[] args)
+        //{
+        //    var g = new Generator();
 
-            g.Generate(100, 2500, 20000);
-        }
+        //    g.Generate(100, 2500, 20000);
+        //}
     }
 }

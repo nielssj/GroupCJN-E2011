@@ -74,6 +74,13 @@ namespace DigitalVoterList.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap lock_open {
+            get {
+                object obj = ResourceManager.GetObject("lock_open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap mail_message_new {
             get {
                 object obj = ResourceManager.GetObject("mail_message_new", resourceCulture);
