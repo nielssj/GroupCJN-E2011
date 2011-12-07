@@ -74,6 +74,7 @@ namespace DigitalVoterList.DBComm.DO
 
             set
             {
+                Contract.Requires(value != null);
                 _pStations.AddRange(value);
             }
         }

@@ -88,6 +88,7 @@ namespace DigitalVoterList.DBComm.DO
 
             set
             {
+                Contract.Requires(value != null);
                 _municipality.Entity = value;
             }
         }
@@ -107,6 +108,7 @@ namespace DigitalVoterList.DBComm.DO
 
             set
             {
+                Contract.Requires(value != null);
                 _voters.AddRange(value);
             }
         }

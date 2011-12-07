@@ -82,17 +82,14 @@ static_diagram DAO
 			address: String
 			
 			cprString : String
+				require
+					cpr /= Void;
 				ensure
-				Result /= Void;
-				Result.Length = 10;
+					Result.Length = 10;
 			end				
 			
-			invariant			
-				name /= Void;
-				name.Length > 0;
-				address /= Void;
-				address.Length > 0;
-				cpr >= 101000001 and value <= 3012999999
+			invariant
+				(cpr >= 101000001 and cpr <= 3012999999) or cpr == Void
 				-- 101000001 is equal to a person born on the first of january 2000 or 1990
 				-- and with the serial number 0001 = 010100-0001.
 				-- Equally, 3012999999 is equal to a person with 301299-9999

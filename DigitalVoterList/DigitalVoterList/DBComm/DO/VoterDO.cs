@@ -42,6 +42,8 @@ namespace DigitalVoterList.DBComm.DO
         /// </param>
         public VoterDO(uint pollingStationId, uint cpr, string name, string address, string city, bool cardPrinted, bool voted)
         {
+            Contract.Requires(cpr >= 101000001 && cpr <= 3012999999);
+
             this.PollingStationId = pollingStationId;
             this.PrimaryKey = cpr;
             this.Name = name;
@@ -78,6 +80,8 @@ namespace DigitalVoterList.DBComm.DO
 
             set
             {
+                Contract.Requires(value >= 101000001 && value <= 3012999999);
+
                 PrimaryKey = value;
             }
         }
@@ -90,6 +94,7 @@ namespace DigitalVoterList.DBComm.DO
         {
             get
             {
+                Contract.Requires(Cpr != null);
                 Contract.Ensures(Contract.Result<string>().Length == 10);
 
                 string result = Cpr.ToString();
@@ -154,6 +159,7 @@ namespace DigitalVoterList.DBComm.DO
 
             set
             {
+                Contract.Requires(value != null);
                 _pollingStation.Entity = value;
             }
         }
@@ -164,9 +170,6 @@ namespace DigitalVoterList.DBComm.DO
         /// <returns>True if no fields are null.</returns>
         public bool FullyInitialized()
         {
-            Contract.Ensures(PollingStationId != null && Cpr != null && Name != null && Address != null && CardPrinted != null
-                   && Voted != null);
-
             return PollingStationId != null && Cpr != null && Name != null && Address != null && CardPrinted != null
                    && Voted != null;
         }
@@ -179,6 +182,10 @@ namespace DigitalVoterList.DBComm.DO
         /// </param>
         public void UpdateValues(IDataObject dummy)
         {
+            Contract.Requires(dummy != null); // Re-stipulate this contract, since it must be checked before the added contracts.
+            Contract.Requires(dummy.GetType() == this.GetType());
+            Contract.Requires(((VoterDO)dummy).Cpr >= 101000001 && ((VoterDO)dummy).Cpr <= 3012999999);
+
             VoterDO voterDummy = dummy as VoterDO;
             Contract.Assert(voterDummy != null);
 
@@ -188,6 +195,12 @@ namespace DigitalVoterList.DBComm.DO
             Address = voterDummy.Address ?? this.Address;
             CardPrinted = voterDummy.CardPrinted ?? this.CardPrinted;
             Voted = voterDummy.Voted ?? this.Voted;
+        }
+
+        [ContractInvariantMethod]
+        private void Invariant()
+        {
+            Contract.Invariant((Cpr >= 101000001 && Cpr <= 3012999999) || Cpr == null);
         }
     }
 }

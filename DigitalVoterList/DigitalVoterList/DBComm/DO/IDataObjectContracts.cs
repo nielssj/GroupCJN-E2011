@@ -8,9 +8,6 @@ namespace DigitalVoterList.DBComm.DO
 {
     using System.Diagnostics.Contracts;
 
-    /// <summary>
-    /// TODO: Update summary.
-    /// </summary>
     [ContractClassFor(typeof(IDataObject))]
     abstract class IDataObjectContracts : IDataObject
     {
@@ -32,6 +29,7 @@ namespace DigitalVoterList.DBComm.DO
 
         void IDataObject.UpdateValues(IDataObject dummy)
         {
+            Contract.Requires(dummy != null);
             Contract.Requires(dummy.GetType() == this.GetType());
         }
 
