@@ -57,8 +57,8 @@ namespace DigitalVoterList.DBComm
         /// <returns>A new datacontext.</returns>
         public static DigitalVoterList GetInstance(MySqlConnection c)
         {
-            c.ConnectionString += ";Sql Server Mode=true;"; // Added to be sure that LINQ queries are supported by the DB. 
-                                                            // No harm will be done if this parameter is already set.
+            c.ConnectionString += "; Sql Server Mode=true; database=dvl;"; // Added to be sure that LINQ queries are supported by the DB. 
+            // No harm will be done if this parameter is already set.
             return new DigitalVoterList(c);
         }
     }

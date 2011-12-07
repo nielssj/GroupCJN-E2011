@@ -10,7 +10,6 @@ namespace DigitalVoterList.DBComm.DataGeneration
     using System.Diagnostics.CodeAnalysis;
     using global::DigitalVoterList.DBComm.DAO;
     using global::DigitalVoterList.DBComm.DO;
-    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// TODO: Update summary.
@@ -22,11 +21,11 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         private readonly Random r = new Random();
 
-        private readonly MySqlConnection c;
+        private readonly DigitalVoterList dvl;
 
-        public Generator(MySqlConnection c)
+        public Generator(DigitalVoterList dvl)
         {
-            this.c = c;
+            this.dvl = dvl;
         }
 
         public void Generate(int municipalities, int stations, int voters)
@@ -38,7 +37,7 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public void GenerateMunicipalities(int municipalities)
         {
-            var dao = new MunicipalityDAO(c);
+            var dao = new MunicipalityDAO(dvl);
 
             for (uint i = 0; i < municipalities; i++)
             {
@@ -50,7 +49,7 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public void GeneratePollingStations(int stations, int municipalities)
         {
-            var dao = new PollingStationDAO(c);
+            var dao = new PollingStationDAO(dvl);
 
             for (uint i = 0; i < stations; i++)
             {
@@ -63,13 +62,13 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public void GenerateVoters(int voters, int pollingstations)
         {
-            var dao = new VoterDAO(c);
+            var dao = new VoterDAO(dvl);
 
             for (uint i = 0; i < voters; i++)
             {
                 uint cpr = data.GetCPR();
 
-                var voter = new VoterDO((uint)this.r.Next(pollingstations), cpr, data.GetFirstName(cpr) + " " + data.GetLastname(), data.GetRoadname() + r.Next(1000), data.GetCityname(), false, false);
+                var voter = new VoterDO((uint)this.r.Next(pollingstations), cpr, data.GetFirstName(cpr) + " " + data.GetLastname(), data.GetRoadname() + " " + r.Next(1000), data.GetCityname(), false, false);
 
                 dao.Create(voter);
             }

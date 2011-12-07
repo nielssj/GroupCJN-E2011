@@ -11,6 +11,7 @@ component
 			findVoter : BOOLEAN -> cpr : CPRNO
 				require 
 					CPRNR /= Void;
+					CPRNR
 				ensure 
 					voterDO.CPRNO = CPRNO
 			end

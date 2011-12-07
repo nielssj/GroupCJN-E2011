@@ -12,7 +12,6 @@ namespace DigitalVoterList.DBComm.DAO
     using System.Diagnostics.Contracts;
     using System.Linq;
     using global::DigitalVoterList.DBComm.DO;
-    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// DAO for the polling stations table.
@@ -31,7 +30,7 @@ namespace DigitalVoterList.DBComm.DAO
         /// Create a new DAO that connects to the specified server.
         /// </summary>
         /// <param name="c">The connection.</param>
-        public PollingStationDAO(MySqlConnection c)
+        public PollingStationDAO(DigitalVoterList c)
             : base(c)
         {
         }

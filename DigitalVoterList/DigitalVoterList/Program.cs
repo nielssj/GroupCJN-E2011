@@ -20,7 +20,7 @@ namespace DigitalVoterList
         //    new Central.Main();
 
         //    // Launch 'PollingTable' client.
-        //    //new PollingTable.Model();
+            //new PollingTable.Main();
         //}
     }
 }
