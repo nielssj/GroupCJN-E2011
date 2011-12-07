@@ -140,5 +140,29 @@ namespace DBComm.DBComm.DO
             this.MunicipalityId = pollingDummy.MunicipalityId ?? this.MunicipalityId;
             this.Name = pollingDummy.Name ?? this.Name;
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            var other = obj as PollingStationDO;
+
+            return other.Address == this.Address && other.MunicipalityId == this.MunicipalityId
+                   && other.Name == this.Name;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
+        }
     }
 }

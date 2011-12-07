@@ -16,6 +16,8 @@ namespace DBComm.DBComm.DO
     [Table(Name = "Voter")]
     public class VoterDO : IDataObject
     {
+        private uint? primaryKey;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="VoterDO"/> class.
         /// </summary>
@@ -66,23 +68,17 @@ namespace DBComm.DBComm.DO
         /// Gets PrimaryKey.
         /// </summary>
         [Column(IsPrimaryKey = true, Name = "cpr")]
-        public uint? PrimaryKey { get; private set; }
-
-        /// <summary>
-        /// Gets or sets Cpr.
-        /// </summary>
-        public uint? Cpr
+        public uint? PrimaryKey
         {
             get
             {
-                return PrimaryKey;
+                return this.primaryKey;
             }
 
-            set
+            private set
             {
-                Contract.Requires(value >= 101000001 && value <= 3012999999);
-
-                PrimaryKey = value;
+                Contract.Requires(value >= 101000001 && value <= 3112999999);
+                this.primaryKey = value;
             }
         }
 
@@ -94,10 +90,10 @@ namespace DBComm.DBComm.DO
         {
             get
             {
-                Contract.Requires(Cpr != null);
+                Contract.Requires(PrimaryKey != null);
                 Contract.Ensures(Contract.Result<string>().Length == 10);
 
-                string result = this.Cpr.ToString();
+                string result = this.PrimaryKey.ToString();
 
                 if (result.Length < 10)
                 {
@@ -170,7 +166,7 @@ namespace DBComm.DBComm.DO
         /// <returns>True if no fields are null.</returns>
         public bool FullyInitialized()
         {
-            return PollingStationId != null && Cpr != null && Name != null && Address != null && CardPrinted != null
+            return PollingStationId != null && PrimaryKey != null && Name != null && Address != null && CardPrinted != null
                    && Voted != null;
         }
 
@@ -184,13 +180,13 @@ namespace DBComm.DBComm.DO
         {
             Contract.Requires(dummy != null); // Re-stipulate this contract, since it must be checked before the added contracts.
             Contract.Requires(dummy.GetType() == this.GetType());
-            Contract.Requires(((VoterDO)dummy).Cpr >= 101000001 && ((VoterDO)dummy).Cpr <= 3012999999);
+            Contract.Requires(((VoterDO)dummy).PrimaryKey >= 101000001 && ((VoterDO)dummy).PrimaryKey <= 3012999999);
 
             VoterDO voterDummy = dummy as VoterDO;
             Contract.Assert(voterDummy != null);
 
             PollingStationId = voterDummy.PollingStationId ?? this.PollingStationId;
-            Cpr = voterDummy.Cpr ?? this.Cpr;
+            PrimaryKey = voterDummy.PrimaryKey ?? this.PrimaryKey;
             Name = voterDummy.Name ?? this.Name;
             Address = voterDummy.Address ?? this.Address;
             CardPrinted = voterDummy.CardPrinted ?? this.CardPrinted;
@@ -200,7 +196,26 @@ namespace DBComm.DBComm.DO
         [ContractInvariantMethod]
         private void Invariant()
         {
-            Contract.Invariant((Cpr >= 101000001 && Cpr <= 3112999999) || Cpr == null);
+            Contract.Invariant((PrimaryKey >= 101000001 && PrimaryKey <= 3112999999) || PrimaryKey == null);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            var other = obj as VoterDO;
+
+            return other.Name == this.Name && other.PollingStationId == this.PollingStationId
+                   && other.Address == this.Address;
+        }
+
+        // override object.GetHashCode
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace DigitalVoterList.PollingTable
             //1) Check if cprnr exists. If not get an error. else update current voter
             foreach (var voterDo in voterList)
             {
-                if (voterDo.Cpr == CPRNO)
+                if (voterDo.PrimaryKey == CPRNO)
                 {
                     currentVoter = voterDo;
                     CurrentVoterChanged(voterDo);
