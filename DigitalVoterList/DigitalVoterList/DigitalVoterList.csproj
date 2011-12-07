@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AFE39FCC-8482-499F-A180-C25B8BAA921F}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DigitalVoterList</RootNamespace>
     <AssemblyName>DigitalVoterList</AssemblyName>
@@ -59,13 +59,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.3.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.3.7\Assemblies\v2.0\MySql.Data.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="PDFjet">
-      <HintPath>..\..\..\Documents\ITU\3 - Efterår 2011\BDSA\Project\APIs\PDFjet-For.NET-Eval-v2.87\PDFjet-For.NET-Eval-v2.87\PDFjet.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -120,6 +119,7 @@
     <Compile Include="DBComm\DAO\VoterDAO.cs" />
     <Compile Include="DBComm\DataGeneration\Data.cs" />
     <Compile Include="DBComm\DataGeneration\Generator.cs" />
+    <Compile Include="DBComm\DataGeneration\DBCreator.cs" />
     <Compile Include="DBComm\DigitalVoterList.cs" />
     <Compile Include="DBComm\DO\ActivityEnum.cs" />
     <Compile Include="DBComm\DO\IDataObject.cs" />
@@ -172,7 +172,7 @@
     <Content Include="DBComm\DataGeneration\Namedata\lastnames.txt" />
     <Content Include="DBComm\DataGeneration\Namedata\municipalitynames.txt" />
     <Content Include="DBComm\DataGeneration\Namedata\roadnames.txt" />
-    <Content Include="DBComm\DBreadme.txt" />
+    <None Include="DBComm\DataGeneration\DBCommands.conf" />
     <Content Include="Ressources\emblem_work.ico" />
     <Content Include="Ressources\info.ico" />
     <Content Include="Ressources\mail_message_new.ico" />

@@ -7,6 +7,7 @@
 namespace DigitalVoterList.DBComm.DataGeneration
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
@@ -23,6 +24,8 @@ namespace DigitalVoterList.DBComm.DataGeneration
         private readonly string[] lastnames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\lastnames.txt");
         private readonly string[] municipalitynames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\municipalitynames.txt");
         private readonly string[] roadnames = System.IO.File.ReadAllLines(@"..\..\DataGeneration\Namedata\roadnames.txt");
+
+        private ICollection<string> cprs = new HashSet<string>();
 
         public string GetCityname()
         {
@@ -60,10 +63,23 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
         public uint GetCPR()
         {
+
+
+            return this.createCPR();
+        }
+
+        private uint createCPR()
+        {
             var cpr = string.Empty + random.Next(0, 32) + random.Next(1, 13) + random.Next(10, 100) + random.Next(10, 100)
                       + random.Next(10, 100);
 
-            return uint.Parse(cpr);
+            if (!cprs.Contains(cpr))
+            {
+                cprs.Add(cpr);
+                return uint.Parse(cpr);
+            }
+
+            return this.createCPR();
         }
 
         private string GetBoyname()

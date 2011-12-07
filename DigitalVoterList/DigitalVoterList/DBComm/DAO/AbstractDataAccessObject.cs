@@ -30,7 +30,7 @@ namespace DigitalVoterList.DBComm.DAO
         /// <summary>
         /// The database.
         /// </summary>
-        private readonly DigitalVoterList db = new DigitalVoterList();
+        private readonly DigitalVoterList db = DigitalVoterList.GetDefaultInstance();
 
         /// <summary>
         /// Create this object.

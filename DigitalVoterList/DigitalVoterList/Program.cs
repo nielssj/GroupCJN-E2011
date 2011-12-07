@@ -6,21 +6,21 @@ namespace DigitalVoterList
 
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+        ///// <summary>
+        ///// The main entry point for the application.
+        ///// </summary>
+        //[STAThread]
+        //static void Main()
+        //{
+        //    Application.EnableVisualStyles();
+        //    Application.SetCompatibleTextRenderingDefault(false);
 
 
-            // Launch 'Central' client.
-            new Central.Main();
+        //    // Launch 'Central' client.
+        //    new Central.Main();
 
-            // Launch 'PollingTable' client.
-            //new PollingTable.Model();
-        }
+        //    // Launch 'PollingTable' client.
+        //    //new PollingTable.Model();
+        //}
     }
 }
