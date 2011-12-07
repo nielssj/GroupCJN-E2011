@@ -9,11 +9,24 @@ using System.Windows.Forms;
 
 namespace DigitalVoterList.Central.Views
 {
-    public partial class VoterBoxManagerWindow : Form
+    using DigitalVoterList.Central.Models;
+
+    public partial class VoterBoxManagerWindow : Form, ISubView
     {
-        public VoterBoxManagerWindow()
+        private VoterBoxManager model;
+
+        public VoterBoxManagerWindow(VoterBoxManager model)
         {
             InitializeComponent();
+
+            this.model = model;
+        }
+
+        /// <summary> Notify me when the window is closing. </summary>
+        /// <param name="handler">The handler to be called upon closing.</param>
+        public void AddClosingHandler(CancelEventHandler handler)
+        {
+            this.Closing += handler;
         }
     }
 }

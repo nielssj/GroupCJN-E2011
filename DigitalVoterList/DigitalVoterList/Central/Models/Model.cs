@@ -17,10 +17,8 @@
 
         /// <summary> Notify me when a submodel has been opened. </summary>
         public event ModelChangedHandler SubModelOpened;
-        /// <summary> Notify me when a submodel has been closed. </summary>
-        public event ModelChangedHandler SubModelClosed;
 
-        /// <summary> Describes what kind of sub-model has been opened or closed. </summary>
+        /// <summary> Describes what kind of sub-model has been opened. </summary>
         public enum ChangeType { VCG, VBM };
 
         /// <summary> May I have the voter selection model? </summary>
@@ -44,14 +42,13 @@
         public void CloseVCG(VoterCardGenerator target)
         {
             voterCardGenerators.Remove(target);
-            SubModelClosed(ChangeType.VCG, target);
         }
 
         /// <summary>
         /// Open a new 'Voter Box Manager'.
         /// </summary>
         /// <returns>The new 'Voter Box Manager'.</returns>
-        public void OpenVBM()
+        public void OpenVBM(object sender, EventArgs e)
         {
             var vbm = new VoterBoxManager();
             voterBoxManagers.Add(vbm);
@@ -65,7 +62,6 @@
         public void CloseVBM(VoterBoxManager target)
         {
             voterBoxManagers.Remove(target);
-            SubModelClosed(ChangeType.VBM, target);
         }
     }
 }
