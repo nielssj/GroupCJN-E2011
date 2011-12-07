@@ -272,22 +272,46 @@ end
 
 -- ##### DB_COMM_DAO RELATED CLASSES #####
 
+class_chart DIGITAL_VOTER_LIST
+indexing
+	in_cluster: "DB_COMM_DAO";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-07";
+	revised: "2011-12-07";
+explanation 
+	"A class representing the database."
+query
+	"May I have a new DVL that uses this connection?",
+	"May I have a new DVL that uses the default connection?",
+	"May I have a reference to the voter table?",
+	"May I have a reference to the polling station table?",
+	"May I have a reference to the municipalities table?",
+	"May I have a reference to the log table?"
+command
+	"N/A"
+constraint
+	"N/A"
+end
+
 class_chart DATA_ACCESS_OBJECT
 indexing
 	in_cluster: "DB_COMM_DAO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-29";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation 
 	"A data access object supporting CRUD operations."
 query
 	"Read the object(s) from the database for which this predicate holds."	
 command
 	"Create this object in the database.",
+	"Create all these objects in the database",
 	"Update the object(s) in the database for which this predicate holds.",
 	"Delete the objects(s) in the database for which this predicate holds."
 constraint
-	"N/A"
+	"When inserting an element into the database, none of the element's fields must be null.",
+	"A write operation followed by a read operation will return the object that was just written.",
+	"After a call to delete, calling read with the same predicate will not return any results."
 end
 
 class_chart DATA_OBJECT
@@ -295,11 +319,12 @@ indexing
 	in_cluster: "DB_COMM_DAO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-29";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation 
 	"The object used to transfer data between DAO and application."
 query
-	"Get data."
+	"Get data.",
+	"Is this object fully initialized?"
 command
 	"Set data.",
 	"Write any updated fields to the database.",
@@ -313,7 +338,7 @@ indexing
 	in_cluster: "DB_COMM_DAO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation
 	"A pessimistic DAO implementation supporting explicit transaction control."
 query
@@ -323,8 +348,10 @@ command
 	"Start transaction.",
 	"Stop transaction.",
 	"Update the voter with this id to the following.",
-	"Delete the voter with this id."
+	"Delete the voter with this id.",
 	"Insert this voter."
+constraint
+	"A transaction must be started before any other operations can be performed."
 end
 
 class_chart VOTER_DO
@@ -332,21 +359,10 @@ indexing
 	in_cluster: "DATA_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation 
 	"The object used to transfer voter data between DAO and application."
 inherit DATA_OBJECT
-query
-	"What is the name of the voter?",
-	"What is the address of the voter?",
-	"What is the CPRNR of the voter?",
-	"Has a voter card been printed for the voter?",
-	"Has the voter voted?"
-command	
-	"Set a status to votercard printed",
-	"Set voter to have voted"
-constraint
-	"N/A"
 end
 
 class_chart POLLING_STATION_DO
@@ -354,18 +370,10 @@ indexing
 	in_cluster: "DO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation 
 	"The object used to transfer polling station data between DAO and application."
 inherit DATA_OBJECT
-query
-	"What is the address",
-	"What is the ID?",
-	"What is your name?"
-command
-	"N/A"
-constraint
-	"N/A"
 end
 
 class_chart MUNICIPALITY_DO
@@ -373,18 +381,10 @@ indexing
 	in_cluster: "DO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation 
 	"The object used to transfer municipality data between DAO and application."
 inherit DATA_OBJECT
-query
-	"What is the address",
-	"What is the ID?",
-	"What is your name?"
-command
-	"N/A"
-constraint
-	"N/A"
 end
 
 class_chart LOG_DO
@@ -392,24 +392,12 @@ indexing
 	in_cluster: "DO";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "N/A"
+	revised: "2011-12-07";
 explanation 
 	"The object used to transfer log data between DAO and application."
 inherit DATA_OBJECT
-query
-	"Is there an entry for a specific voter?",
-	"Is there a write entry for a specific voter?",
-	"Is there a read entry for a specific voter?"
-command
-	"N/A"
-constraint
-	"N/A"
 end
 
 --Comment: Change Log
 
-
-
-
-
-
+-- Updated to conform with implementation of DBComm (07/12).

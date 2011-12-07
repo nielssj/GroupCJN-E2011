@@ -7,15 +7,25 @@ static_diagram DAO
 					t /= Void;
 					t.FullyInitialized();
 				ensure
-					Read(o => o.PrimaryKey = t.PrimaryKey).Contains(t);
+					t member_of Read(o such_that o.PrimaryKey = t.PrimaryKey)
+			end
+			
+			deferred create : BOOLEAN -> t : SET [T]
+				require
+					t /= Void;
+					for_all ts : T such_that ts element_of t it_holds
+						ts.FullyInitialized();
+				ensure
+					for_all ts : T such_that ts element_of t it_holds
+						ts member_of Read(o such_that o.PrimaryKey = ts.PrimaryKey);
 			end
 			
 			deferred read : SET [T] -> predicate : FUNCTION[T, bool]			
 				require
 					predicate /= Void;
 				ensure
-					for_all t : T such_that Result.contains(t) it_holds
-						predicate.evaluate(Result) = true;
+					for_all t : T such_that t member_of Result it_holds
+						predicate.evaluate(t) = true;
 			end
 			
 			deferred update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
@@ -23,10 +33,10 @@ static_diagram DAO
 				require
 					predicate /= Void;
 					t /= Void;
-					dummy.PrimaryKey != Void => dummy.FullyInitialized();
+					dummy.PrimaryKey /= Void -> dummy.FullyInitialized();
 				ensure
 					for_all t : T such_that old read(predicate).contains(t) it_holds
-						!read(f).contains(t); -- All elements that were read before the update, have now changed, and will therefore no longer exist in a new read operation.
+						not t member_of read(f); -- All elements that were read before the update, have now changed, and will therefore no longer exist in a new read operation.
 			end
 			
 			deferred delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
@@ -37,15 +47,6 @@ static_diagram DAO
 			end
 		end
 		
-		deferred class DATA_OBJECT
-			feature
-			primaryKey -- The primary key of this entity.
-			
-			deferred fullyInitialized : BOOLEAN -- Have all fields been assigned a non-null value?
-			
-			deferred UpdateValues -> dummy : DATA_OBJECT
-		end
-		
 		class PESSIMISTIC_VOTER_DAO
 			feature
 			startTranscation
@@ -53,6 +54,8 @@ static_diagram DAO
 			endTranscation
 				require
 					transactionStarted();
+				ensure
+					not transactionStarted();
 			end
 			
 			transactionStarted : BOOLEAN
@@ -60,18 +63,70 @@ static_diagram DAO
 			read : VOTER_DO -> id : INTEGER
 				require
 					transactionStarted();
+				ensure
+					Result /= Void -> Result.PrimaryKey == id
 			end
 			
-			update : BOOLEAN -> id : INTEGER
-					-> newVoter VOTER_DO
+			update : BOOLEAN 	-> id : INTEGER
+							-	> votedStatus : BOOLEAN
 				require
 					transactionStarted();
+				ensure
+					read(id) /= Void -> read(id).Voted = votedStatus;
 			end
 		end
 		
 		class VOTER_DAO
 			inherit DATA_ACCESS_OBJECT
 			feature
+			effective create : BOOLEAN -> t : T
+			effective create : BOOLEAN -> t : SET [T]
+			effective read : SET [T] -> predicate : FUNCTION[T, bool]			
+			effective update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+			effective delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+		end
+		
+		class MUNICIPALITY_DAO
+			inherit DATA_ACCESS_OBJECT
+			feature
+			effective create : BOOLEAN -> t : T
+			effective create : BOOLEAN -> t : SET [T]
+			effective read : SET [T] -> predicate : FUNCTION[T, bool]			
+			effective update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+			effective delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+		end
+		
+		class LOG_DAO
+			inherit DATA_ACCESS_OBJECT
+			feature
+			effective create : BOOLEAN -> t : T
+			effective create : BOOLEAN -> t : SET [T]
+			effective read : SET [T] -> predicate : FUNCTION[T, bool]			
+			effective update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+			effective delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+		end
+		
+		class POLLING_STATION_DAO
+			inherit DATA_ACCESS_OBJECT
+			feature
+			effective create : BOOLEAN -> t : T
+			effective create : BOOLEAN -> t : SET [T]
+			effective read : SET [T] -> predicate : FUNCTION[T, bool]			
+			effective update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+			effective delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
+		end
+		
+				
+		deferred class DATA_OBJECT
+			feature
+			primaryKey -- The primary key of this entity.
+			
+			deferred fullyInitialized : BOOLEAN -- Have all fields been assigned a non-null value?
+			
+			deferred UpdateValues -> dummy : DATA_OBJECT
+				require
+					dummy /= Void;
+					dummy.Class = Current.Class;
 		end
 		
 		class VOTER_DO
@@ -88,8 +143,11 @@ static_diagram DAO
 					Result.Length = 10;
 			end				
 			
+			effective fullyInitialized : BOOLEAN 
+			effective UpdateValues -> dummy : DATA_OBJECT
+			
 			invariant
-				(cpr >= 101000001 and cpr <= 3012999999) or cpr == Void
+				(cpr >= 101000001 and cpr <= 3112999999) or cpr == Void
 				-- 101000001 is equal to a person born on the first of january 2000 or 1990
 				-- and with the serial number 0001 = 010100-0001.
 				-- Equally, 3012999999 is equal to a person with 301299-9999
@@ -102,6 +160,9 @@ static_diagram DAO
 			address: String
 			name: String
 			municipality: MunicipalityDO
+			
+			effective fullyInitialized : BOOLEAN 
+			effective UpdateValues -> dummy : DATA_OBJECT
 		end
 		
 		class MUNICIPALITY_DO
@@ -110,6 +171,9 @@ static_diagram DAO
 			id: INTEGER
 			address: String
 			name:String
+			
+			effective fullyInitialized : BOOLEAN 
+			effective UpdateValues -> dummy : DATA_OBJECT
 		end
 		
 		class LOG_DO
@@ -119,6 +183,9 @@ static_diagram DAO
 			table: INTEGER
 			cpr: CPRNO
 			activity: Activity
+			
+			effective fullyInitialized : BOOLEAN 
+			effective UpdateValues -> dummy : DATA_OBJECT
 		end
 		
 		class Activity
@@ -130,3 +197,6 @@ static_diagram DAO
 		end
 end
 	
+--Comment: Change Log
+
+-- Updated to conform with implementation of DBComm (07/12).

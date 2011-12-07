@@ -64,9 +64,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.4.4\Assemblies\v2.0\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -111,25 +108,6 @@
     <Compile Include="Central\Views\VoterSelectionWindow.Designer.cs">
       <DependentUpon>VoterSelectionWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBComm\DAO\AbstractDataAccessObject.cs" />
-    <Compile Include="DBComm\DAO\IDataAccessObject.cs" />
-    <Compile Include="DBComm\DAO\IDataAccessObjectContract.cs" />
-    <Compile Include="DBComm\DAO\MunicipalityDAO.cs" />
-    <Compile Include="DBComm\DAO\PessimisticVoterDAO.cs" />
-    <Compile Include="DBComm\DAO\PollingStationDAO.cs" />
-    <Compile Include="DBComm\DAO\VoterDAO.cs" />
-    <Compile Include="DBComm\DataGeneration\Data.cs" />
-    <Compile Include="DBComm\DataGeneration\Generator.cs" />
-    <Compile Include="DBComm\DataGeneration\DBCreator.cs" />
-    <Compile Include="DBComm\DigitalVoterList.cs" />
-    <Compile Include="DBComm\DO\ActivityEnum.cs" />
-    <Compile Include="DBComm\DO\IDataObject.cs" />
-    <Compile Include="DBComm\DO\IDataObjectContracts.cs" />
-    <Compile Include="DBComm\DO\LogDO.cs" />
-    <Compile Include="DBComm\DO\MunicipalityDO.cs" />
-    <Compile Include="DBComm\DO\PollingStationDO.cs" />
-    <Compile Include="DBComm\DO\VoterDO.cs" />
-    <Compile Include="DBComm\Program.cs" />
     <Compile Include="PollingTable\PollingProgram.cs" />
     <Compile Include="PollingTable\Controller.cs" />
     <Compile Include="PollingTable\Model.cs" />
@@ -264,19 +242,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup />
   <ItemGroup>
-    <Folder Include="PollingTable\View\" />
+    <ProjectReference Include="..\DBComm\DBComm.csproj">
+      <Project>{49A4B100-B97C-4064-A06C-BD09D06F61D5}</Project>
+      <Name>DBComm</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
   <ItemGroup>
-    <None Include="DBComm\DataGeneration\Namedata\boynames.data" />
-    <None Include="DBComm\DataGeneration\Namedata\citynames.data" />
-    <None Include="DBComm\DataGeneration\Namedata\girlnames.data" />
-    <None Include="DBComm\DataGeneration\Namedata\lastnames.data" />
-    <None Include="DBComm\DataGeneration\Namedata\municipalitynames.data" />
-    <None Include="DBComm\DataGeneration\Namedata\roadnames.data" />
-    <None Include="DBComm\DataGeneration\DBCommands.conf" />
     <None Include="Resources\lock_open.png" />
     <Content Include="Ressources\emblem_work.ico" />
     <Content Include="Ressources\info.ico" />

@@ -6,12 +6,9 @@
 
 namespace DigitalVoterList.PollingTable.View
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
-    using DigitalVoterList.DBComm.DO;
+    using DBComm.DBComm.DO;
+
 
     /// <summary>
     /// TODO: Update summary.
