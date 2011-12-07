@@ -15,12 +15,13 @@ namespace DigitalVoterList.Central
     /// </summary>
     public class Main
     {
+
         public Main()
         {
             var model = new Model();
             var view = new View(model);
             var controller = new Controller(model, view);
-
+        
 
             /*var model = new VoterSelection();
             var view = new VoterSelectionWindow(model);
