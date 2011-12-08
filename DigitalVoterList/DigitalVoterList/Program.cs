@@ -4,7 +4,6 @@ namespace DigitalVoterList
 {
     using System.Windows.Forms;
 
-    using DigitalVoterList.PollingTable.Log;
 
     static class Program
     {
@@ -16,11 +15,12 @@ namespace DigitalVoterList
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             // Launch 'Central' client.
             //new Central.Main();
 
-            new LogController(new LogWindow(), new LogModel());
+            //I'm just tes-ting 
+            //new LogController(new LogWindow(), new LogModel());
 
             // Launch 'PollingTable' client.
             new PollingTable.PollingMain();
