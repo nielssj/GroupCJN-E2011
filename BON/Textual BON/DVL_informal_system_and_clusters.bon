@@ -132,7 +132,10 @@ indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "The classes and clusters needed for a home-built DAO."
-cluster DAO
+class DIGITAL_VOTER_LIST
+description
+	"A class representing the database."
+ cluster DAO
 description
 	"All DAO classes and interfaces."
 cluster DO
@@ -190,9 +193,4 @@ end
 --Comment: Change Log
 
 -- Find a better name for pessimistic voter DAO
-
-
-
-
-
-
+-- Updated to conform with the current design of DBComm (07/12)

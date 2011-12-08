@@ -10,7 +10,7 @@ static_diagram CENTRAL
 				require
 					filter /= Void
 				ensure 
-					currentFilter == filter
+					currentFilter = filter
 			end
 			
 			notifyOnSelectionChanges -> FUNCTION 			-- Will be an event field.

@@ -1,7 +1,10 @@
 ﻿namespace DigitalVoterList.Central.Models
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using DBComm.DBComm;
+    using DBComm.DBComm.DAO;
+    using DBComm.DBComm.DO;
 
     /// <summary>
     /// TODO: Update summary.
@@ -9,22 +12,39 @@
     public class VoterSelection
     {
         private int voterCount;
-        private List<string> pollingStations;
-        private List<string> municipalities;
+        private IEnumerable<PollingStationDO> pollingStations;
+        private IEnumerable<MunicipalityDO> municipalities;
         private VoterFilter currentFilter;
+        private MunicipalityDO selectedMunicipality;
+        private PollingStationDO selectedPollingStation;
 
-        /// <summary> Initializes a new instance of the <see cref="VoterSelection"/> class with prober values for the default selection. </summary>
+        private PollingStationDAO pDAO;
+
+        private MunicipalityDAO mDAO;
+
+        private VoterDAO vDAO;
+
+        /// <summary> Initializes a new instance of the <see cref="VoterSelection"/> class with proper values for the default selection. </summary>
         public VoterSelection()
         {
+            pDAO = new PollingStationDAO(DigitalVoterList.GetDefaultInstance());
+            mDAO = new MunicipalityDAO(DigitalVoterList.GetDefaultInstance());
+            vDAO = new VoterDAO(DigitalVoterList.GetDefaultInstance());
+
             // Call database to get initial values (no selection, ie. entire DB)
-            voterCount = 42;
-            pollingStations = new List<string>() { "All", "Nørrebrohallen", "Holbergskolen" };
-            municipalities = new List<string>() { "All", "Sorø Kommune", "Københavns Kommune" };
-            currentFilter = new VoterFilter();
+            voterCount = vDAO.Read(o => true).Count();
+            pollingStations = pDAO.Read(o => true);
+            municipalities = mDAO.Read(o => true);
+            currentFilter = null;
         }
 
-        public delegate void VoterCountHandler(int VoterCount);
-        public delegate void PollingStationsHandler(List<String> pollingStations);
+        public delegate void VoterCountHandler(int voterCount);
+        public delegate void PollingStationsHandler(IEnumerable<PollingStationDO> pollingStations);
+        public delegate void SelectedMunicipalityHandler(MunicipalityDO municipality);
+        public delegate void SelectedPollingStationHandler(PollingStationDO pollingStation);
+
+        public event SelectedMunicipalityHandler SelectedMunicipalityChanged;
+        public event SelectedPollingStationHandler SelectedPollingStationChanged;
 
         ///<summary> Notify me when the number of voters in the selection changes. </summary>
         public event VoterCountHandler VoterCountChanged;
@@ -36,38 +56,68 @@
         public int VoterCount
         {
             // Set the voter count and notify subscribers.
-            private set
-            {
-                voterCount = value;
-                VoterCountChanged(voterCount);
-            }
             get
             {
                 return voterCount;
             }
+
+            private set
+            {
+                this.voterCount = value;
+                this.VoterCountChanged(this.voterCount);
+            }
         }
 
         /// <summary> What are the available polling stations? </summary>
-        public List<String> PollingStations
+        public IEnumerable<PollingStationDO> PollingStations
         {
             // Set the polling stations and notify subscribers.
-            private set
-            {
-                pollingStations = value;
-                PollingStationsChanged(pollingStations);
-            }
             get
             {
                 return pollingStations;
             }
+
+            private set
+            {
+                this.pollingStations = value;
+                this.PollingStationsChanged(this.pollingStations);
+            }
         }
 
         /// <summary> What are the available municipalities? </summary>
-        public List<String> Municipalities
+        public IEnumerable<MunicipalityDO> Municipalities
         {
             get
             {
                 return municipalities;
+            }
+        }
+
+        public MunicipalityDO SelectedMunicipality
+        {
+            get
+            {
+                return this.selectedMunicipality;
+            }
+
+            private set
+            {
+                this.selectedMunicipality = value;
+                this.SelectedMunicipalityChanged(value);
+            }
+        }
+
+        public PollingStationDO SelectedPollingStation
+        {
+            get
+            {
+                return this.selectedPollingStation;
+            }
+
+            private set
+            {
+                this.selectedPollingStation = value;
+                this.SelectedPollingStationChanged(value);
             }
         }
 
@@ -83,13 +133,34 @@
         /// <summary> Replace the current voter filter with this voter fitler. </summary>
         public void ReplaceFilter(VoterFilter filter)
         {
-            // Get the new selected voter count and available polling stations from Database.
-            VoterCount = 999; //<-- DATABASE INPUT EVENTUALLY
-            PollingStations = new List<String>(); //<-- DATABASE INPUT EVENTUALLY
+            this.currentFilter = filter;
 
-            // And finally, replace the filter
-            currentFilter = filter;
+            if (filter.Municipality != null)
+            {
+                PollingStations = pDAO.Read(o => o.Municipality == filter.Municipality);
+            }
+
+            IEnumerable<VoterDO> voters = null;
+            if (filter.CPRNO != 0)
+            {
+                voters = vDAO.Read(v => v.PrimaryKey == filter.CPRNO);
+                if(voters.Count() > 0)
+                {
+                    SelectedMunicipality = voters.Single().PollingStation.Municipality;
+                    SelectedPollingStation = voters.Single().PollingStation;    
+                }
+            }
+            else if (filter.PollingStation != null)
+            {
+                voters = vDAO.Read(v => v.PollingStation == filter.PollingStation);
+                SelectedMunicipality = filter.PollingStation.Municipality;
+            }
+            else if (filter.Municipality != null)
+            {
+                voters = vDAO.Read(v => v.PollingStation.Municipality == filter.Municipality);
+            }
+
+            VoterCount = voters.Count(); // The invariant for Filter stipulates, that at least one field will be initialized, and therefore this will never be null.
         }
-
     }
 }
