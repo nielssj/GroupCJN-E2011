@@ -11,12 +11,12 @@ namespace DigitalVoterList
 {
     using DigitalVoterList.DBComm.DO;
 
-    public partial class VoterWindow : Form
+    public partial class NormVW : Form
     {
 
         private VoterDO currentVoter;
 
-        public VoterWindow(VoterDO voter)
+        public NormVW(VoterDO voter)
         {
             InitializeComponent();
 
@@ -26,12 +26,5 @@ namespace DigitalVoterList
             voterAddressLabel.Text = voter.Address;
             voterCityLabel.Text = voter.City;
         }
-
-        //public VoterWindow(string name, string address, string city)
-        //{
-        //    voterNameLabel.Text = name;
-        //    voterAddressLabel.Text = address;
-        //    voterCityLabel.Text = city;
-        //}
     }
 }

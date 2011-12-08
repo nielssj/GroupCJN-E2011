@@ -21,7 +21,7 @@ namespace DigitalVoterList.DBComm.DataGeneration
 
             dvl.ExecuteCommand(queries);
 
-            var g = new Generator();
+            //var g = new Generator();
         }
     }
 }
