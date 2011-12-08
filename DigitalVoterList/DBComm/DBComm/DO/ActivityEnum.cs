@@ -14,11 +14,11 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Write operation.
         /// </summary>
-        W,
+        W = 1,
 
         /// <summary>
         /// Read operation.
         /// </summary>
-        R
+        R = 2
     }
 }
