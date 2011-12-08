@@ -14,31 +14,35 @@ namespace DBComm.DBComm.DataGeneration
     public class DBCreator
     {
         /// <summary>
-        /// Create a new creator connecting to the specified string.
-        /// The string can have two formats, specified below.
+        /// Initializes a new instance of the <see cref="DBCreator"/> class. 
+        /// Create a db on the following server.
         /// </summary>
-        /// <param name="conn">A fully initialized connection string specifying at least server, user and password.
-        /// A string only containing the server adress. This assumes that the server has a user root with password abc123</param>
-        public DBCreator(string conn)
+        /// <param name="server">The server.
+        /// </param>
+        /// <param name="port">The port.
+        /// </param>
+        /// <param name="user">The user.
+        /// </param>
+        /// <param name="password">The password.
+        /// </param>
+        public DBCreator(string server, string port, string user, string password)
         {
-            if (conn.Contains(";"))
-            {
-                // We assume this string is properly initialized
-                this.createDB(new MySqlConnection(conn));
-            }
-            else
-            {
-                string connectionString = "server=" + conn + "; user=root; password=abc123;";
-                this.createDB(new MySqlConnection(connectionString));
-            }
+            string connString = "server=" + server + ";uid=" + user + ";password=" + password + ";port=" + port + ";";
+            this.createDB(new MySqlConnection(connString));
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCreator"/> class.
+        /// </summary>
+        /// <param name="c">
+        /// The connection
+        /// </param>
         public DBCreator(MySqlConnection c)
         {
             this.createDB(c);
         }
 
-        public void createDB(MySqlConnection c)
+        private void createDB(MySqlConnection c)
         {
             c.Open();
             var command = c.CreateCommand();

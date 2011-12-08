@@ -7,8 +7,12 @@
 namespace DigitalVoterList.Central.Models
 {
     using System.Collections.Generic;
+    using System.Linq;
 
+    using DBComm.DBComm;
+    using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
+
 
     /// <summary>
     /// TODO: Update summary.
@@ -19,11 +23,124 @@ namespace DigitalVoterList.Central.Models
         public IEnumerable<MunicipalityDO> Municipalities { get; set; }
         public IEnumerable<PollingStationDO> PollingStations { get; set; }
         public VoterFilter Filter { get; private set; }
-        
+
+        private PollingStationDAO pDAO;
+        private MunicipalityDAO mDAO;
+        private VoterDAO vDAO;
+
         public VoterBoxManager(VoterFilter filter)
         {
             this.Filter = filter;
         }
 
+        /// <summary>
+        /// Validate that all polling stations have been successfully transfered to the server
+        /// </summary>
+        /// <returns></returns>
+        public bool ValidatePollingStations()
+        {
+            var serverPS = pDAO.Read(v => true).ToList();
+
+            foreach (var ps in this.PollingStations)
+            {
+                if (!serverPS.Contains(ps))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Validate that all municipalities have been successfully transfered to the server
+        /// </summary>
+        /// <returns></returns>
+        public bool ValidateMunicipalities()
+        {
+            var serverMunicipalities = mDAO.Read(v => true).ToList();
+
+            foreach (var m in this.Municipalities)
+            {
+                if (!serverMunicipalities.Contains(m))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Validate that all voters have been successfully transfered to the server
+        /// </summary>
+        /// <returns></returns>
+        public bool ValidateVoters()
+        {
+            var serverVoters = vDAO.Read(v => true).ToList();
+
+            foreach (var voter in this.Voters)
+            {
+                if (!serverVoters.Contains(voter))
+                    return false;
+            }
+            return true;
+        }
+
+        public void FetchData()
+        {
+            pDAO = new PollingStationDAO(DigitalVoterList.GetDefaultInstance());
+            mDAO = new MunicipalityDAO(DigitalVoterList.GetDefaultInstance());
+            vDAO = new VoterDAO(DigitalVoterList.GetDefaultInstance());
+
+            VoterFilter f = this.Filter;
+
+            if (f.CPRNO != 0)
+            {
+                this.Voters = vDAO.Read(v => v.PrimaryKey == f.CPRNO);
+                VoterDO voter = this.Voters.First();
+                this.PollingStations = pDAO.Read(ps => ps.PrimaryKey == voter.PollingStationId);
+                PollingStationDO pollingStation = this.PollingStations.First();
+                this.Municipalities = mDAO.Read(m => m.PrimaryKey == pollingStation.MunicipalityId);
+            }
+            else if (f.PollingStation != null)
+            {
+                this.PollingStations = pDAO.Read(ps => ps.PrimaryKey == f.PollingStation.PrimaryKey);
+                this.Voters = vDAO.Read(v => v.PollingStationId == f.PollingStation.PrimaryKey);
+                this.Municipalities = mDAO.Read(m => m.PrimaryKey == f.PollingStation.MunicipalityId);
+            }
+            else if (f.Municipality != null)
+            {
+                this.Municipalities = mDAO.Read(m => m.PrimaryKey == f.Municipality.PrimaryKey);
+                this.PollingStations = pDAO.Read(p => p.MunicipalityId == f.Municipality.PrimaryKey);
+
+                this.Voters = Enumerable.Empty<VoterDO>();
+                foreach (var ps in this.PollingStations)
+                {
+                    PollingStationDO ps1 = ps;
+                    this.Voters = this.Voters.Concat(vDAO.Read(v => v.PollingStationId == ps1.PrimaryKey));
+                }
+            }
+        }
+
+        public void InsertData(string server, string port, string user, string password)
+        {
+            foreach (var municipality in this.Municipalities)
+            {
+                municipality.ResetAssociations();
+            }
+            foreach (var pollingStation in this.PollingStations)
+            {
+                pollingStation.ResetAssociations();
+            }
+            foreach (var voter in this.Voters)
+            {
+                voter.ResetAssociations();
+            }
+
+            string connString = "server=" + server + ";uid=" + user + ";password=" + password + ";port=" + port + ";";
+
+            mDAO = new MunicipalityDAO(DigitalVoterList.GetInstance(connString));
+            pDAO = new PollingStationDAO(DigitalVoterList.GetInstance(connString));
+            vDAO = new VoterDAO(DigitalVoterList.GetInstance(connString));
+
+            mDAO.Create(this.Municipalities);
+            pDAO.Create(this.PollingStations);
+            vDAO.Create(this.Voters);
+        }
     }
 }

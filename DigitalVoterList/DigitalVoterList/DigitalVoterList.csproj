@@ -111,6 +111,15 @@
     <Compile Include="Central\Views\VoterSelectionWindow.Designer.cs">
       <DependentUpon>VoterSelectionWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="PollingTable\Log\LogController.cs" />
+    <Compile Include="PollingTable\Log\LogFilter.cs" />
+    <Compile Include="PollingTable\Log\LogModel.cs" />
+    <Compile Include="PollingTable\Log\LogWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PollingTable\Log\LogWindow.Designer.cs">
+      <DependentUpon>LogWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="PollingTable\PollingProgram.cs" />
     <Compile Include="PollingTable\Controller.cs" />
     <Compile Include="PollingTable\Model.cs" />
@@ -192,6 +201,9 @@
     <EmbeddedResource Include="Central\Views\VoterSelectionWindow.resx">
       <DependentUpon>VoterSelectionWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PollingTable\Log\LogWindow.resx">
+      <DependentUpon>LogWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PollingTable\View\Root_elements\CancelBtn.resx">
       <DependentUpon>CancelBtn.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +247,7 @@
     <EmbeddedResource Include="PollingTable\View\SetupWindow.resx">
       <DependentUpon>SetupWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\DigitalVoterList.PollingTable.Log.LogModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

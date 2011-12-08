@@ -1,7 +1,9 @@
 ﻿namespace DigitalVoterList.Central.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
+
     using DBComm.DBComm;
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
@@ -30,10 +32,19 @@
             vDAO = new VoterDAO(DigitalVoterList.GetDefaultInstance());
 
             // Call database to get initial values (no selection, ie. entire DB)
-            voterCount = vDAO.Read(o => true).Count();
-            pollingStations = pDAO.Read(o => true);
-            municipalities = mDAO.Read(o => true);
-            currentFilter = null;
+            try
+            {
+                voterCount = vDAO.Read(o => true).Count();
+                pollingStations = pDAO.Read(o => true);
+                municipalities = mDAO.Read(o => true);
+                currentFilter = null;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    string.Format("The system was not able to connect to the server. The system said: {0}", e.Message));
+                Environment.Exit(-1);
+            }
         }
 
         public delegate void VoterCountHandler(int voterCount);

@@ -4,6 +4,8 @@ namespace DigitalVoterList
 {
     using System.Windows.Forms;
 
+    using DigitalVoterList.PollingTable.Log;
+
     static class Program
     {
         /// <summary>
@@ -17,7 +19,9 @@ namespace DigitalVoterList
 
 
             // Launch 'Central' client.
-            new Central.Main();
+            //new Central.Main();
+
+            new LogController(new LogWindow(), new LogModel());
 
             // Launch 'PollingTable' client.
             //new PollingTable
