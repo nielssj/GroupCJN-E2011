@@ -9,7 +9,6 @@ namespace DBComm.DBComm.DO
     using System;
     using System.Data.Linq.Mapping;
     using System.Diagnostics.Contracts;
-    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// TODO: Update summary.
@@ -22,10 +21,8 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
         /// </summary>
-        public LogDO(uint? primaryKey, DateTime? time, uint? table, uint? cpr, ActivityEnum? activity)
+        public LogDO(uint? table, uint? cpr, ActivityEnum? activity)
         {
-            this.PrimaryKey = primaryKey;
-            this.Time = time;
             this.Table = table;
             this.Cpr = cpr;
             this.Activity = activity;
@@ -42,7 +39,7 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Gets the primary key of this data object.
         /// </summary>
-        [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column(Name = "id", IsPrimaryKey = true)]
         public uint? PrimaryKey { get; private set; }
 
         /// <summary>
@@ -55,19 +52,19 @@ namespace DBComm.DBComm.DO
         /// Gets Table.
         /// </summary>
         [Column]
-        public uint? Table { get; private set; }
+        public uint? Table { get; set; }
 
         /// <summary>
         /// Gets Cpr.
         /// </summary>
         [Column]
-        public uint? Cpr { get; private set; }
+        public uint? Cpr { get; set; }
 
         /// <summary>
         /// Gets Activity.
         /// </summary>
         [Column]
-        public ActivityEnum? Activity { get; private set; }
+        public ActivityEnum? Activity { get; set; }
 
         /// <summary>
         /// Has all the fields of the object been initialized?
@@ -77,7 +74,7 @@ namespace DBComm.DBComm.DO
         /// </returns>
         public bool FullyInitialized()
         {
-            return PrimaryKey != null && Time != null && Table != null && Cpr != null && Activity != null;
+            return Table != null && Cpr != null && Activity != null;
         }
 
         /// <summary>

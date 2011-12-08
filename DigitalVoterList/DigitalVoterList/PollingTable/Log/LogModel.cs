@@ -6,10 +6,9 @@
 
 namespace DigitalVoterList.PollingTable.Log
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-
+    using System.Linq;
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
 
@@ -21,12 +20,13 @@ namespace DigitalVoterList.PollingTable.Log
         private BindingList<LogDO> logs;
         private LogDAO lDAO;
 
-        private List<VoterDO> voters;
+        private IEnumerable<VoterDO> voters;
         private VoterDAO vDAO;
 
-        private DateTime lastUpdate;
-
         private LogFilter filter;
+
+        private int totalVoters;
+        private int votedVoters;
 
         public BindingList<LogDO> Logs
         {
@@ -36,12 +36,28 @@ namespace DigitalVoterList.PollingTable.Log
             }
         }
 
+        public int TotalVoters
+        {
+            get
+            {
+                return totalVoters;
+            }
+        }
+
+        public int VotedVoters
+        {
+            get
+            {
+                return votedVoters;
+            }
+        }
+
         public LogModel()
         {
             this.logs = new BindingList<LogDO>();
             this.lDAO = new LogDAO();
 
-            this.lastUpdate = DateTime.MinValue;
+            this.vDAO = new VoterDAO();
 
             this.Update();
 
@@ -57,11 +73,11 @@ namespace DigitalVoterList.PollingTable.Log
 
         public void Update()
         {
-            var result = this.lDAO.Read(l => (this.filter.Activity != null ? l.Activity == this.filter.Activity : true) &&
+            var result = this.lDAO.Read(l =>
+                (this.filter.Activity != null ? l.Activity == this.filter.Activity : true) &&
                 (this.filter.Cpr != null ? l.Cpr == this.filter.Cpr : true) &&
                 (this.filter.From != null ? l.Time >= this.filter.From : true) &&
                 (this.filter.To != null ? l.Time <= this.filter.To : true) &&
-                (this.filter.Id != null ? l.PrimaryKey == this.filter.Id : true) &&
                 (this.filter.Table != null ? l.Table == this.filter.Table : true));
 
             foreach (var logDO in result)
@@ -69,9 +85,11 @@ namespace DigitalVoterList.PollingTable.Log
                 if (!logs.Contains(logDO)) logs.Add(logDO);
             }
 
-            this.lastUpdate = DateTime.Now;
+            voters = vDAO.Read(v => true).ToList();
 
+            totalVoters = voters.Count();
 
+            votedVoters = voters.Count(v => v.Voted == true);
         }
     }
 }

@@ -29,12 +29,15 @@ namespace DigitalVoterList.PollingTable.Log
 
             Timer t = new Timer(Update, null, 100, 60000);
 
+            this.view.ResetFields();
+
             Application.Run(view);
         }
 
         public void Update(object o)
         {
             model.Update();
+            view.VotersText = model.VotedVoters + " out of " + model.TotalVoters + " have voted thus far";
             view.RefreshGrid(model.Logs);
         }
 
@@ -42,9 +45,6 @@ namespace DigitalVoterList.PollingTable.Log
         {
             uint cprInt;
             uint.TryParse(view.Cpr, out cprInt);
-
-            uint idInt;
-            uint.TryParse(view.Id, out idInt);
 
             uint tableInt;
             uint.TryParse(view.Table, out tableInt);
@@ -54,7 +54,6 @@ namespace DigitalVoterList.PollingTable.Log
                     Activity = view.Activity,
                     Cpr = cprInt != 0 ? cprInt : (uint?)null,
                     From = view.From != view.To ? view.From : (DateTime?)null,
-                    Id = idInt != 0 ? idInt : (uint?)null,
                     Table = tableInt != 0 ? tableInt : (uint?)null,
                     To = view.To != view.From ? view.To : (DateTime?)null
                 };
