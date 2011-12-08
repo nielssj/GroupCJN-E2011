@@ -32,7 +32,7 @@
         {
             this.cancelPanel = new System.Windows.Forms.Panel();
             this.registerPanel = new System.Windows.Forms.Panel();
-            this.registerBtn = new System.Windows.Forms.Button();
+            this.registerBtn = new RegisterBtn();
             this.SuspendLayout();
             // 
             // cancelPanel
@@ -49,7 +49,7 @@
             this.registerPanel.Name = "registerPanel";
             this.registerPanel.Size = new System.Drawing.Size(162, 62);
             this.registerPanel.TabIndex = 2;
-            this.registerPanel.Controls.Add(new RegisterBtn());
+            this.registerPanel.Controls.Add(registerBtn);
             // 
             // RegAndCancelUC
             // 
@@ -67,10 +67,10 @@
 
         private System.Windows.Forms.Panel cancelPanel;
         private System.Windows.Forms.Panel registerPanel;
-        //Field for the register button. Colour needs to be changed when the voter window is in warning state.
-        private System.Windows.Forms.Button registerBtn;
+        //Field for the register button. 
+        private RegisterBtn registerBtn;
 
-        public Button RegisterBtn
+        public RegisterBtn RegisterBtn
         {
             get
             {

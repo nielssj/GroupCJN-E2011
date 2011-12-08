@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace DigitalVoterList
 {
@@ -16,15 +16,14 @@ namespace DigitalVoterList
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
+            
             // Launch 'Central' client.
             //new Central.Main();
 
             new LogController(new LogWindow(), new LogModel());
 
             // Launch 'PollingTable' client.
-            //new PollingTable
+            new PollingTable.PollingMain();
         }
     }
 }

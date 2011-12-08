@@ -30,6 +30,8 @@
         {
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label8
@@ -53,10 +55,33 @@
             this.label1.TabIndex = 29;
             this.label1.Text = "Warning!";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(-5, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(310, 24);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "The voter card is already registered!";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(-5, 1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(99, 26);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Warning!";
+            // 
             // WarningMsg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Name = "WarningMsg";
@@ -70,5 +95,7 @@
 
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

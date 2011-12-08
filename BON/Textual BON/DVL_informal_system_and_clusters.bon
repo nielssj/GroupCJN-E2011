@@ -56,73 +56,75 @@ cluster_chart CENTRAL_C
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
-  "The central module is responsible for generating voter cards and uploading data to voter boxes."
-cluster C_VIEW
+  "The Central application is responsible for generating voter cards and uploading subsets of voters to voter boxes."
+cluster C_MODELS
 description 
-	"Responsible for creating GUI elements at the central."
-cluster C_CONTROLLER
+	"Responsible for creating and managing instances of the sub-models."
+ cluster C_VIEWS
 description 
-	"Responsible for reacting to input from the GUI elements at the central. "
-cluster C_MODEL
+	"Responsible for creating instances of the sub-views."
+cluster C_CONTROLLERS
 description 
-	"Responsible for business logic in the central."
+	"Responsible for creating instances of the sub-views."
 end
 
-cluster_chart C_MODEL
+cluster_chart C_MODELS
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
   "Responsible for the logic in central."
-class CENTRAL_MAIN_MODEL
+class CENTRAL_MODEL
 description
-	"Holds all other model class in the central model."
+	"The main 'model' of the application. Responsible of creating and managing instances of the sub-models."
+class VOTER_SELECTOR
+	"Selects a subset of voters based on various parameters. The selection itself is represented as a VOTER_FILTER."
 class VOTER_CARD_GENERATOR
 description
-	"Responsible for the generation of votercards"
-class VOTER_BOX_MANAGEMENT
+	"Generates voter cards for a subset of voters based on a VOTER_FILTER."
+class VOTER_BOX_MANAGER
 description
-	"Responsible for uploading the right set of voters to the right voter box"
+	"Uploads voters to a specified VoterBox based on a VOTER_FILTER."
 class VOTER_FILTER
 description
-	"A filter describing a subset of voters chosen in the VOTER_SELECTION_WINDOW."
-class VOTING_PLACE_DISTRIBUTION_SEC_REQ
-description
-	"Responsible for the distributing of voter sets according to municpality or polling station"
+	"A filter describing a subset of voters chosen by VOTER_SELECTOR."
 end
 
-cluster_chart C_VIEW
+cluster_chart C_VIEWS
 indexing
     author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
    "Responsible for GUI elements at the central."
-class VOTER_BOX_MANAGEMENT_WINDOW_SEC_REQ
-description
-	"Window to manage voterboxes"
-class VOTER_SELECTION_WINDOW
+class C_VIEW
+explanation
+	"The main 'view' of the application. It has the sole responsibility of creating instances of the sub-views (windows forms)."
+class VOTER_SELECTOR_WINDOW
 description	
-	"Window used when selecting a subset to be uploaded to a voter box"
-class VOTER_CARD_WINDOW
+	"Window for representing and manipulating the VOTER_BOX_SELECTOR"
+class VOTER_BOX_MANAGER_WINDOW
 description
-	"Window where voter card generation is handled"
+	"Window for representing and manipulating a VOTER_BOX_MANAGER"
+class VOTER_CARD_GENERATOR_WINDOW
+description
+	"Window for representing and manipulating a VOTER_CARD_GENERATOR"
 end
 
-cluster_chart C_CONTROLLER
+cluster_chart C_CONTROLLERS
 indexing
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
 	"Responsible for reacting to input from the GUI elements in the central."
 class CENTRAL_CONTROLLER
 description
-	"Responsible for creating all central controllers."
-class VOTER_SELECTION_CONTROLLER
+	"The main 'controller' of the application. It has the sole responsibility of creating instances of the sub-controllers."
+class VOTER_SELECTOR_CONTROLLER
 description
-	"Responsible for reacting to GUI input from the VOTER_SELECTION_WINDOW."
-class VOTER_CARD_CONTROLLER
+	"Responsible for reacting to user input from the VOTER_SELECTOR_WINDOW."
+class VOTER_CARD_GENERATOR_CONTROLLER
 description
-	"Responsible for reacting to GUI input from the VOTER_CARD_WINDOW"
-class VOTER_BOX_MANAGEMENT_CONTROLLER_SEC_REQ
+	"Responsible for reacting to user input from the VOTER_CARD_GENERATOR_WINDOW"
+class VOTER_BOX_MANAGER_CONTROLLER
 description
-	"Responsible for reacting to GUI input from the VOTER_BOX_MANAGEMENT_WINDOW"
+	"Responsible for reacting to user input from the VOTER_BOX_MANAGER_WINDOW"
 end
 
 -- DB COMM related clusters #####
