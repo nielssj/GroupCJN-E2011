@@ -1,43 +1,28 @@
 -- ##### CENTRAL RELATED CLASSES #####
 
-class_chart CENTRAL_MAIN_MODEL
-indexing
-	in_cluster: "C_MODEL";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-12-01";
-	revised: "N/A"
-explanation
-	"Responsible for business logic in central and for holding other classes in the model cluster"
-query
-	"What is the available municipalities?",
-	"What is the available polling stations?",
-	"What is the current voter filter?"
-command
-	"Replace the current voter filter with this voter filter",
-	"Notify me when the number voters in the selection changes",
-	"Notify me when the number of available municipalities changes",
-	"Notify me when the number of available polling station changes"
-end
+--- C_MODELS
 
-class_chart VOTER_FILTER
-indexing 
-	in_cluster: "C_MODEL";
+class_chart CENTRAL_MODEL
+indexing
+	in_cluster: "C_MODELS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"A filter describing a subset of voters."
+	"The main 'model' of the application. Responsible of creating and managing instances of the sub-models."
 query
-	"What is the selected municipality?",
-	"What is the selected polling station?",
-	"What is the selected cprnr?"
+	"May I have the VOTER_SELECTOR?"
 command
-	"N/A"
+	"Notify me when a sub-model has been opened.",
+	"Open a VOTER_CARD_GENERATOR",
+	"Close this VOTER_CARD_GENERATOR",
+	"Open a VOTER_BOX_MANAGER",
+	"Close this VOTER_BOX_MANAGER"
 end
 
 class_chart VOTER_CARD_GENERATOR
 indexing
-	in_cluster: "C_MODEL";
+	in_cluster: "C_MODELS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
@@ -55,9 +40,9 @@ constraint
 	"N/A"
 end
 
-class_chart VOTER_BOX_MANAGEMENT
+class_chart VOTER_BOX_MANAGER
 indexing
-	in_cluster: "C_MODEL";
+	in_cluster: "C_MODELS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-02";
 	revised: "N/A"
@@ -77,41 +62,57 @@ constraint
 	"N/A"
 end
 
-class_chart VOTING_PLACE_DISTRIBUTION_SEC_REQ
+class_chart VOTER_FILTER
 indexing 
-	in_cluster: "C_MODEL";
+	in_cluster: "C_MODELS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-11-28";
+	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for the distributing of voter sets according to municpality or polling station"
+	"A filter describing a subset of voters."
 query
-	"Is the distribution finished?",
-	"How are the voters distributed?"
+	"What is the selected municipality?",
+	"What is the selected polling station?",
+	"What is the selected cprnr?"
 command
-	"Distribute among municipalities",
-	"Distribute among polling stations"
-constraint
 	"N/A"
 end
 
-class_chart VOTER_SELECTION_WINDOW
+--- C_VIEWS
+
+class_chart VOTER_SELECTOR_WINDOW
+indexing 
+	in_cluster: "C_VIEWS";
 explanation
-	"The main window in the central that shows selection criteria."
+	"Window for representing and manipulating the VOTER_BOX_SELECTOR."
+query
+	"N/A"
+command
+	"Replace the list of polling stations with this list.",
+	"Replace the voter count label with this.",
+	"Make this municipality the selected municipality.",
+	"Make this polling station the selected polling station"
+end
+
+class_chart VOTER_BOX_MANAGER_WINDOW
+indexing 
+	in_cluster: "C_VIEWS";
+explanation
+	"Window for representing and manipulating a VOTER_BOX_MANAGER"
 query
 	"N/A"
 command
 	"Open voter card window"
 end
 
-class_chart VOTER_CARD_WINDOW
+class_chart VOTER_CARD_GENERATOR_WINDOW
 indexing 
-	in_cluster: "C_VIEW";
+	in_cluster: "C_VIEWS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
 explanation 
-	"Represents the visual part of the CENTRAL gui in connection to voter card generation."
+	"Window for representing and manipulating a VOTER_CARD_GENERATOR"
 query
 	"N/A"
 command	
@@ -120,49 +121,44 @@ constraint
 	"N/A"
 end
 
-class_chart VOTER_BOX_MANAGEMENT_CONTROLLER_SEC_REQ
-indexing 
-	in_cluster: "C_CONTROLLER";
-	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
-	created: "2011-12-02";
-	revised: "N/A"
-explanation
-	"Responsible for reacting to GUI input from the VOTER_BOX_MANAGEMENT_WINDOW"
-query
-	"N/A"
-command
-	"React to connection request.",
-	"React to validation request.",
-	"React to upload request."
-end
+--- C_CONTROLLERS
 
-class_chart VOTER_SELECTION_CONTROLLER
-indexing 
-	in_cluster: "C_CONTROLLER";
+class_chart CENTRAL_CONTROLLER
+indexing
+	in_cluster: "C_CONTROLLERS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for reacting to GUI input from the VOTER_SELECTION_WINDOW."
+	"Responsible for creating all central controllers."
+end
+
+class_chart VOTER_SELECTOR_CONTROLLER
+indexing 
+	in_cluster: "C_CONTROLLERS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"Responsible for reacting to user input from the VOTER_SELECTOR_WINDOW."
 query
 	"N/A"
 command
-	"React to municipality filter being changed",
-	"React to polling station filter being changed", 
-	"React to voter card search",
-	"React to CPRNR search"
+	"React to municipality filter selection",
+	"React to polling station filter selection",
+	"React to CPR number search"
 constraint
 	"N/A"
 end
 
-class_chart VOTER_CARD_CONTROLLER
+class_chart VOTER_CARD_GENERATOR_CONTROLLER
 indexing
-	in_cluster: "C_CONTROLLER";
+	in_cluster: "C_CONTROLLERS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for reacting to GUI input from the VOTER_CARD_WINDOW"
+	"Responsible for reacting to user input from the VOTER_CARD_GENERATOR_WINDOW"
 query
 	"N/A"
 command
@@ -170,14 +166,19 @@ command
 	"React to grouping selection"
 end
 
-class_chart CENTRAL_CONTROLLER
+class_chart VOTER_BOX_MANAGER_CONTROLLER
 indexing
-	in_cluster: "C_CONTROLLER";
+	in_cluster: "C_CONTROLLERS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for creating all central controllers."
+	"Responsible for reacting to user input from the VOTER_BOX_MANAGER_WINDOW"
+query
+	"N/A"
+command
+	"React to upload request.",
+	"React to validation request."
 end
 
 -- ##### POLLING TABLE RELATED CLASSES ##### 

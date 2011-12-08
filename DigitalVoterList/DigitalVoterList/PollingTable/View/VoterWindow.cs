@@ -19,5 +19,12 @@ namespace DigitalVoterList
             voterAddressLabel.Text = voter.Address;
             voterCityLabel.Text = voter.City;
         }
+
+        //public VoterWindow(string name, string address, string city)
+        //{
+        //    voterNameLabel.Text = name;
+        //    voterAddressLabel.Text = address;
+        //    voterCityLabel.Text = city;
+        //}
     }
 }

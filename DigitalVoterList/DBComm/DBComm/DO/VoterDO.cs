@@ -138,7 +138,7 @@ namespace DBComm.DBComm.DO
         /// Gets a value indicating whether this voter has voted.
         /// </summary>
         [Column]
-        public bool? Voted { get; private set; }
+        public bool? Voted { get; set ; }
 
         private EntityRef<PollingStationDO> _pollingStation;
 

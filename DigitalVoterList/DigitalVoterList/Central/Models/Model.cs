@@ -27,7 +27,6 @@
         /// <summary> 
         /// Open a new 'Voter Card Generator'. 
         /// </summary>
-        /// <returns>The new 'Voter Card Generator'.</returns>
         public void OpenVCG(object sender, EventArgs e)
         {
             var vcg = new VoterCardGenerator();
@@ -47,7 +46,6 @@
         /// <summary>
         /// Open a new 'Voter Box Manager'.
         /// </summary>
-        /// <returns>The new 'Voter Box Manager'.</returns>
         public void OpenVBM(object sender, EventArgs e)
         {
             var vbm = new VoterBoxManager();

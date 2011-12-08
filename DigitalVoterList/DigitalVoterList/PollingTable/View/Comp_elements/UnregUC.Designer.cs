@@ -40,7 +40,6 @@
             this.unregAndCancelPanel.Name = "unregAndCancelPanel";
             this.unregAndCancelPanel.Size = new System.Drawing.Size(330, 62);
             this.unregAndCancelPanel.TabIndex = 28;
-            this.unregAndCancelPanel.Controls.Add(new UnRegAndCancelUC());
             // 
             // TypeInText
             // 
@@ -66,7 +65,6 @@
             this.WarningMsgPanel.Name = "WarningMsgPanel";
             this.WarningMsgPanel.Size = new System.Drawing.Size(330, 52);
             this.WarningMsgPanel.TabIndex = 25;
-            this.WarningMsgPanel.Controls.Add(new WarningUC());
             // 
             // UnregUC
             // 
