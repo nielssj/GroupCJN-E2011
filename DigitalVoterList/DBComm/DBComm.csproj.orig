@@ -2,21 +2,19 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AFE39FCC-8482-499F-A180-C25B8BAA921F}</ProjectGuid>
+    <ProjectGuid>{49A4B100-B97C-4064-A06C-BD09D06F61D5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DigitalVoterList</RootNamespace>
-    <AssemblyName>DigitalVoterList</AssemblyName>
+    <RootNamespace>DBComm</RootNamespace>
+    <AssemblyName>DBComm</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -49,9 +47,9 @@
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -63,9 +61,16 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="PDFjet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL" />    
-    <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+<<<<<<< HEAD:DigitalVoterList/DigitalVoterList/DigitalVoterList.csproj.orig
+<<<<<<< HEAD
+    <Reference Include="MySql.Data, Version=6.3.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+=======
+=======
+>>>>>>> a684392db034acf05c6ab7be2f54c74f968b8f96:DigitalVoterList/DBComm/DBComm.csproj
+    <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.4.4\Assemblies\v2.0\MySql.Data.dll</HintPath>
+    </Reference>
+>>>>>>> 66bb3b9f3b6f8439bffb00d53cbd742e8536ace8
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -73,50 +78,31 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Central\Controllers\Controller.cs" />
-    <Compile Include="Central\Controllers\VoterBoxManagerController.cs" />
-    <Compile Include="Central\Controllers\VoterCardGeneratorController.cs" />
-    <Compile Include="Central\Controllers\VoterSelectionController.cs" />
-    <Compile Include="Central\Main.cs" />
-    <Compile Include="Central\Models\ISubModel.cs" />
-    <Compile Include="Central\Models\VoterSelection.cs" />
-    <Compile Include="Central\Models\Model.cs" />
-    <Compile Include="Central\Models\VoterBoxManager.cs" />
-    <Compile Include="Central\Models\VoterCardGenerator.cs" />
-    <Compile Include="Central\Models\VoterFilter.cs" />
-    <Compile Include="Central\Views\ISubView.cs" />
-    <Compile Include="Central\Views\View.cs" />
-    <Compile Include="Central\Views\VoterBoxManagerWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Central\Views\VoterBoxManagerWindow.Designer.cs">
-      <DependentUpon>VoterBoxManagerWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Central\Views\VoterCardGeneratorWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Central\Views\VoterCardGeneratorWindow.Designer.cs">
-      <DependentUpon>VoterCardGeneratorWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Central\Views\VoterSelectionWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Central\Views\VoterSelectionWindow.Designer.cs">
-      <DependentUpon>VoterSelectionWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PollingTable\View\NormVW.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PollingTable\View\NormVW.Designer.cs">
-      <DependentUpon>NormVW.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PollingTable\PollingMain.cs" />
+    <Compile Include="DBComm\DAO\AbstractDataAccessObject.cs" />
+    <Compile Include="DBComm\DAO\IDataAccessObject.cs" />
+    <Compile Include="DBComm\DAO\IDataAccessObjectContract.cs" />
+    <Compile Include="DBComm\DAO\LogDAO.cs" />
+    <Compile Include="DBComm\DAO\MunicipalityDAO.cs" />
+    <Compile Include="DBComm\DAO\PessimisticVoterDAO.cs" />
+    <Compile Include="DBComm\DAO\PollingStationDAO.cs" />
+    <Compile Include="DBComm\DAO\VoterDAO.cs" />
+    <Compile Include="DBComm\DataGeneration\Data.cs" />
+    <Compile Include="DBComm\DataGeneration\DBCreator.cs" />
+    <Compile Include="DBComm\DataGeneration\Generator.cs" />
+    <Compile Include="DBComm\DigitalVoterList.cs" />
+    <Compile Include="DBComm\DO\ActivityEnum.cs" />
+    <Compile Include="DBComm\DO\IDataObject.cs" />
+    <Compile Include="DBComm\DO\IDataObjectContracts.cs" />
+    <Compile Include="DBComm\DO\LogDO.cs" />
+    <Compile Include="DBComm\DO\MunicipalityDO.cs" />
+    <Compile Include="DBComm\DO\PollingStationDO.cs" />
+    <Compile Include="DBComm\DO\VoterDO.cs" />
+    <Compile Include="DBComm\Program.cs" />
+<<<<<<< HEAD:DigitalVoterList/DigitalVoterList/DigitalVoterList.csproj.orig
+    <Compile Include="PollingTable\PollingProgram.cs" />
     <Compile Include="PollingTable\Controller.cs" />
     <Compile Include="PollingTable\Model.cs" />
     <Compile Include="PollingTable\View\Root_elements\CancelBtn.cs">
@@ -125,10 +111,10 @@
     <Compile Include="PollingTable\View\Root_elements\CancelBtn.Designer.cs">
       <DependentUpon>CancelBtn.cs</DependentUpon>
     </Compile>
-    <Compile Include="PollingTable\View\Comp_elements\RegAndCancelUC.cs">
+    <Compile Include="PollingTable\View\Root_elements\RegAndCancelUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PollingTable\View\Comp_elements\RegAndCancelUC.Designer.cs">
+    <Compile Include="PollingTable\View\Root_elements\RegAndCancelUC.Designer.cs">
       <DependentUpon>RegAndCancelUC.cs</DependentUpon>
     </Compile>
     <Compile Include="PollingTable\View\Root_elements\RegisterBtn.cs">
@@ -143,7 +129,7 @@
     <Compile Include="PollingTable\View\Root_elements\WarningMsg.Designer.cs">
       <DependentUpon>WarningMsg.cs</DependentUpon>
     </Compile>
-    <Compile Include="PollingTable\View\PtView.cs" />
+    <Compile Include="PollingTable\View\View.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PollingTable\View\Root_elements\UnRegBtn.cs">
@@ -188,18 +174,6 @@
     <Compile Include="PollingTable\View\SetupWindow.Designer.cs">
       <DependentUpon>SetupWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="PollingTable\View\WarningVW.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PollingTable\View\WarningVW.Designer.cs">
-      <DependentUpon>WarningVW.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PollingTable\View\UnRegVW.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PollingTable\View\UnRegVW.Designer.cs">
-      <DependentUpon>UnRegVW.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Central\Views\VoterBoxManagerWindow.resx">
       <DependentUpon>VoterBoxManagerWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,13 +183,10 @@
     <EmbeddedResource Include="Central\Views\VoterSelectionWindow.resx">
       <DependentUpon>VoterSelectionWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PollingTable\View\NormVW.resx">
-      <DependentUpon>NormVW.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PollingTable\View\Root_elements\CancelBtn.resx">
       <DependentUpon>CancelBtn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PollingTable\View\Comp_elements\RegAndCancelUC.resx">
+    <EmbeddedResource Include="PollingTable\View\Root_elements\RegAndCancelUC.resx">
       <DependentUpon>RegAndCancelUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PollingTable\View\Root_elements\RegisterBtn.resx">
@@ -223,9 +194,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PollingTable\View\Root_elements\WarningMsg.resx">
       <DependentUpon>WarningMsg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PollingTable\View\UnRegVW.resx">
-      <DependentUpon>UnRegVW.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -237,6 +205,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+<<<<<<< HEAD
+    <None Include="ClassDiagram1.cd" />
+=======
     <EmbeddedResource Include="PollingTable\View\Root_elements\UnRegBtn.resx">
       <DependentUpon>UnRegBtn.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,9 +229,7 @@
     <EmbeddedResource Include="PollingTable\View\SetupWindow.resx">
       <DependentUpon>SetupWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PollingTable\View\WarningVW.resx">
-      <DependentUpon>WarningVW.cs</DependentUpon>
-    </EmbeddedResource>
+>>>>>>> 66bb3b9f3b6f8439bffb00d53cbd742e8536ace8
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -270,22 +239,37 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DBComm\DBComm.csproj">
-      <Project>{49A4B100-B97C-4064-A06C-BD09D06F61D5}</Project>
-      <Name>DBComm</Name>
-    </ProjectReference>
+=======
+    <Compile Include="Properties\AssemblyInfo.cs" />
+>>>>>>> a684392db034acf05c6ab7be2f54c74f968b8f96:DigitalVoterList/DBComm/DBComm.csproj
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup />
   <ItemGroup>
+    <None Include="DBComm\DataGeneration\DBCommands.conf" />
+    <None Include="DBComm\DataGeneration\Namedata\boynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\citynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\girlnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\lastnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\municipalitynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\roadnames.data" />
+  </ItemGroup>
+  <ItemGroup>
+<<<<<<< HEAD:DigitalVoterList/DigitalVoterList/DigitalVoterList.csproj.orig
+    <None Include="DBComm\DataGeneration\Namedata\boynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\citynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\girlnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\lastnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\municipalitynames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\roadnames.data" />
+    <None Include="DBComm\DataGeneration\DBCommands.conf" />
     <None Include="Resources\lock_open.png" />
-    <Content Include="Libraries\PDFjet.dll" />
     <Content Include="Ressources\emblem_work.ico" />
     <Content Include="Ressources\info.ico" />
     <Content Include="Ressources\mail_message_new.ico" />
     <Content Include="Ressources\network_server_database.ico" />
+=======
+    <None Include="DBComm\DataGeneration\Namedata\stationnames.data" />
+>>>>>>> a684392db034acf05c6ab7be2f54c74f968b8f96:DigitalVoterList/DBComm/DBComm.csproj
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

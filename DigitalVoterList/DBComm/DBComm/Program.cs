@@ -19,7 +19,7 @@ namespace DBComm.DBComm
         static void Main(string[] args)
         {
             var dbc = new DBCreator(new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"));
+                    "server=localhost;" + "port=3306;" + "password=abc123;" + "uid=root;"));
 
             Console.WriteLine("done");
         }
