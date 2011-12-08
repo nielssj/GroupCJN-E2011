@@ -14,7 +14,7 @@ namespace DBComm.DBComm.DO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [Table(Name = "Municipality")]
+    [Table(Name = "municipality")]
     public class MunicipalityDO : IDataObject
     {
         /// <summary>
@@ -103,6 +103,11 @@ namespace DBComm.DBComm.DO
         [Column]
         public string Name { get; private set; }
 
+        public void ResetAssociations()
+        {
+            _pStations = new EntitySet<PollingStationDO>();
+        }
+
         #region Implementation of IDataObject
 
         /// <summary>
@@ -137,7 +142,7 @@ namespace DBComm.DBComm.DO
 
         public override string ToString()
         {
-            return this.Name;
+            return this.Name ?? string.Empty;
         }
 
         public override bool Equals(object obj)
@@ -156,7 +161,10 @@ namespace DBComm.DBComm.DO
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode();
+            if (Name != null)
+                return this.Name.GetHashCode();
+
+            return 0;
         }
     }
 }

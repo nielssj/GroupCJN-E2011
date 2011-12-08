@@ -19,9 +19,7 @@
         private PollingStationDO selectedPollingStation;
 
         private PollingStationDAO pDAO;
-
         private MunicipalityDAO mDAO;
-
         private VoterDAO vDAO;
 
         /// <summary> Initializes a new instance of the <see cref="VoterSelection"/> class with proper values for the default selection. </summary>
@@ -43,7 +41,10 @@
         public delegate void SelectedMunicipalityHandler(MunicipalityDO municipality);
         public delegate void SelectedPollingStationHandler(PollingStationDO pollingStation);
 
+        ///<summary> Notify me when the selected municipality changes. </summary>
         public event SelectedMunicipalityHandler SelectedMunicipalityChanged;
+
+        ///<summary> Notify me when the selected polling station changess. </summary>
         public event SelectedPollingStationHandler SelectedPollingStationChanged;
 
         ///<summary> Notify me when the number of voters in the selection changes. </summary>
@@ -135,19 +136,14 @@
         {
             this.currentFilter = filter;
 
-            if (filter.Municipality != null)
-            {
-                PollingStations = pDAO.Read(o => o.Municipality == filter.Municipality);
-            }
-
             IEnumerable<VoterDO> voters = null;
             if (filter.CPRNO != 0)
             {
                 voters = vDAO.Read(v => v.PrimaryKey == filter.CPRNO);
-                if(voters.Count() > 0)
+                if (voters.Count() > 0)
                 {
                     SelectedMunicipality = voters.Single().PollingStation.Municipality;
-                    SelectedPollingStation = voters.Single().PollingStation;    
+                    SelectedPollingStation = voters.Single().PollingStation;
                 }
             }
             else if (filter.PollingStation != null)
@@ -158,6 +154,7 @@
             else if (filter.Municipality != null)
             {
                 voters = vDAO.Read(v => v.PollingStation.Municipality == filter.Municipality);
+                PollingStations = pDAO.Read(o => o.Municipality == filter.Municipality);
             }
 
             VoterCount = voters.Count(); // The invariant for Filter stipulates, that at least one field will be initialized, and therefore this will never be null.

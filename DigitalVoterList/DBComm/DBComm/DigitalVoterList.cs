@@ -25,7 +25,7 @@ namespace DBComm.DBComm
 
         public Table<MunicipalityDO> municipalities;
 
-        public Table<LogDO> log; 
+        public Table<LogDO> log;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DigitalVoterList"/> class. 
@@ -54,6 +54,50 @@ namespace DBComm.DBComm
             return new DigitalVoterList(new MySqlConnection(
                     "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"
                     + "database=dvl;"));
+        }
+
+        /// <summary>
+        /// Create a new database with the default connection parameters but with user specified server.
+        /// * port = 3306
+        /// * uid = root
+        /// * password = abc123
+        /// * sql server mode = true
+        /// * database = dvl
+        /// </summary>
+        /// <param name="server">
+        /// The server.
+        /// </param>
+        /// <returns> A new datacontext instance. </returns>
+        public static DigitalVoterList GetInstanceFromServer(string server)
+        {
+            return new DigitalVoterList(new MySqlConnection(
+                    "server=" + server + ";port=3306;uid=root;password=abc123;Sql Server Mode=true;database=dvl;"));
+        }
+
+        /// <summary>
+        /// Create a new database with the default connection parameters but with user specified server.
+        /// * port = 3306
+        /// * uid = root
+        /// * password = abc123
+        /// * sql server mode = true
+        /// * database = dvl
+        /// </summary>
+        /// <param name="server">
+        /// The server.
+        /// </param>
+        /// <param name="db">
+        /// The db.
+        /// </param>
+        /// <returns>
+        /// A new datacontext instance. 
+        /// </returns>
+        public static DigitalVoterList GetInstanceFromServerAndDB(string server, string db)
+        {
+            return
+                new DigitalVoterList(
+                    new MySqlConnection(
+                        "server=" + server + ";port=3306;uid=root;password=abc123;Sql Server Mode=true;database=" + db
+                        + ";"));
         }
 
         /// <summary>

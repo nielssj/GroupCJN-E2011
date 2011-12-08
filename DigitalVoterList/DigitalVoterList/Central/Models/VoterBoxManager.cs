@@ -6,15 +6,24 @@
 
 namespace DigitalVoterList.Central.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+
+    using DBComm.DBComm.DO;
 
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public class VoterBoxManager : ISubModel
     {
+        public IEnumerable<VoterDO> Voters { get; set; }
+        public IEnumerable<MunicipalityDO> Municipalities { get; set; }
+        public IEnumerable<PollingStationDO> PollingStations { get; set; }
+        public VoterFilter Filter { get; private set; }
+        
+        public VoterBoxManager(VoterFilter filter)
+        {
+            this.Filter = filter;
+        }
+
     }
 }

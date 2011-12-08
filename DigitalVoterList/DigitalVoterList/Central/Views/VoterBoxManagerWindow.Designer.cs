@@ -2,6 +2,12 @@
 {
     partial class VoterBoxManagerWindow
     {
+        public VoterBoxManagerWindow()
+        {
+            this.progressBar1.Step = 1;
+            this.progressBar1.Maximum = 5;
+        }
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -30,12 +36,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoterBoxManagerWindow));
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.validateButton = new System.Windows.Forms.Button();
+            this.uploadButton = new System.Windows.Forms.Button();
+            this.progressTF = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.connectButton = new System.Windows.Forms.Button();
+            this.adressTB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -48,32 +54,32 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "Progress:";
             // 
-            // button3
+            // validateButton
             // 
-            this.button3.Location = new System.Drawing.Point(161, 199);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(68, 23);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Validate";
-            this.button3.UseVisualStyleBackColor = true;
+            this.validateButton.Location = new System.Drawing.Point(161, 199);
+            this.validateButton.Name = "validateButton";
+            this.validateButton.Size = new System.Drawing.Size(68, 23);
+            this.validateButton.TabIndex = 14;
+            this.validateButton.Text = "Validate";
+            this.validateButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // uploadButton
             // 
-            this.button2.Location = new System.Drawing.Point(235, 199);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Upload";
-            this.button2.UseVisualStyleBackColor = true;
+            this.uploadButton.Location = new System.Drawing.Point(235, 199);
+            this.uploadButton.Name = "uploadButton";
+            this.uploadButton.Size = new System.Drawing.Size(63, 23);
+            this.uploadButton.TabIndex = 13;
+            this.uploadButton.Text = "Upload";
+            this.uploadButton.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // progressTF
             // 
-            this.textBox2.Location = new System.Drawing.Point(14, 40);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(286, 111);
-            this.textBox2.TabIndex = 12;
+            this.progressTF.Location = new System.Drawing.Point(14, 40);
+            this.progressTF.Multiline = true;
+            this.progressTF.Name = "progressTF";
+            this.progressTF.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.progressTF.Size = new System.Drawing.Size(286, 111);
+            this.progressTF.TabIndex = 12;
             // 
             // progressBar1
             // 
@@ -82,22 +88,22 @@
             this.progressBar1.Size = new System.Drawing.Size(284, 23);
             this.progressBar1.TabIndex = 11;
             // 
-            // button1
+            // connectButton
             // 
-            this.button1.Location = new System.Drawing.Point(225, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
+            this.connectButton.Location = new System.Drawing.Point(225, 11);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(75, 23);
+            this.connectButton.TabIndex = 10;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // adressTB
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.Text = "192.168.20.11";
+            this.adressTB.Location = new System.Drawing.Point(98, 13);
+            this.adressTB.Name = "adressTB";
+            this.adressTB.Size = new System.Drawing.Size(119, 20);
+            this.adressTB.TabIndex = 9;
+            this.adressTB.Text = "192.168.20.11";
             // 
             // label1
             // 
@@ -114,12 +120,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 233);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.validateButton);
+            this.Controls.Add(this.uploadButton);
+            this.Controls.Add(this.progressTF);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.connectButton);
+            this.Controls.Add(this.adressTB);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VoterBoxManagerWindow";
@@ -132,12 +138,47 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button validateButton;
+        private System.Windows.Forms.Button uploadButton;
+        private System.Windows.Forms.TextBox progressTF;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button connectButton;
+        private System.Windows.Forms.TextBox adressTB;
         private System.Windows.Forms.Label label1;
+
+        public string Address
+        {
+            get
+            {
+                return adressTB.Text;
+            }
+        }
+
+        public delegate void ButtonHandler();
+
+        public void AddValidateHandler(ButtonHandler h)
+        {
+            this.validateButton.Click += (o, eA) => h();
+        }
+
+        public void AddUploadHandler(ButtonHandler h)
+        {
+            this.uploadButton.Click += (o, eA) => h();
+        }
+
+        public void AddConnectHandler(ButtonHandler h)
+        {
+            this.connectButton.Click += (o, eA) => h();
+        }
+
+        public void UpdateProgress()
+        {
+            this.progressBar1.PerformStep();
+        }
+
+        public void UpdateProgressText(string text)
+        {
+            this.progressTF.Text += text + "\n";
+        }
     }
 }

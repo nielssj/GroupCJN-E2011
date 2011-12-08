@@ -22,7 +22,11 @@ namespace DBComm.DBComm
             w.Start();
 
             var dbc = new DBCreator(new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;"));
+                    "server=mysql.itu.dk;" + "port=3306;" + "uid=jmei;" + "password=abc123;"));
+
+            var g = new Generator(DigitalVoterList.GetInstance(new MySqlConnection(
+                    "server=mysql.itu.dk;" + "port=3306;" + "uid=jmei;" + "password=abc123;")));
+            g.Generate(10, 100, 5000);
 
             w.Stop();
             Console.WriteLine(w.Elapsed);

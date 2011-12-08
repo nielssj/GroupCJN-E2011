@@ -77,6 +77,11 @@ namespace DBComm.DBComm.DO
             this.Activity = logDummy.Activity ?? this.Activity;
         }
 
+        public void ResetAssociations()
+        {
+
+        }
+
         #endregion
     }
 }

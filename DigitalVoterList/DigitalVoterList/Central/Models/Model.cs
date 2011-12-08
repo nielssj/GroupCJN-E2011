@@ -50,7 +50,7 @@
         /// <returns>The new 'Voter Box Manager'.</returns>
         public void OpenVBM(object sender, EventArgs e)
         {
-            var vbm = new VoterBoxManager();
+            var vbm = new VoterBoxManager(VoterSelection.CurrentFilter);
             voterBoxManagers.Add(vbm);
             SubModelOpened(ChangeType.VBM, vbm);
         }

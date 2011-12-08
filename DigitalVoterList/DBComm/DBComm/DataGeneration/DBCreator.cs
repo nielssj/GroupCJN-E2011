@@ -13,20 +13,38 @@ namespace DBComm.DBComm.DataGeneration
     /// </summary>
     public class DBCreator
     {
+        /// <summary>
+        /// Create a new creator connecting to the specified string.
+        /// The string can have two formats, specified below.
+        /// </summary>
+        /// <param name="conn">A fully initialized connection string specifying at least server, user and password.
+        /// A string only containing the server adress. This assumes that the server has a user root with password abc123</param>
+        public DBCreator(string conn)
+        {
+            if (conn.Contains(";"))
+            {
+                // We assume this string is properly initialized
+                this.createDB(new MySqlConnection(conn));
+            }
+            else
+            {
+                string connectionString = "server=" + conn + "; user=root; password=abc123;";
+                this.createDB(new MySqlConnection(connectionString));
+            }
+        }
+
         public DBCreator(MySqlConnection c)
         {
-            var createConnection = c.Clone(); // When a connection is closed, it looses its password, so we clone the connection,
-            var insertConnection = c.Clone(); // One for creating the database, and one for filling it with data.
+            this.createDB(c);
+        }
 
-            createConnection.Open();
-            var command = createConnection.CreateCommand();
-            command.CommandText = System.IO.File.ReadAllText(@"..\..\DBComm\DataGeneration\DBCommands.conf");
+        public void createDB(MySqlConnection c)
+        {
+            c.Open();
+            var command = c.CreateCommand();
+            command.CommandText = System.IO.File.ReadAllText(@"..\..\..\DBComm\DBComm\DataGeneration\DBCommands.conf");
             command.ExecuteNonQuery();
-            createConnection.Close();   // Can't reuse the connection, since we now append the db name to the connection string
-                                        // and that can't be done without closing.
-
-            var g = new Generator(DigitalVoterList.GetInstance(insertConnection));
-            g.Generate(100, 1000, 50000);
+            c.Close();
         }
     }
 }
