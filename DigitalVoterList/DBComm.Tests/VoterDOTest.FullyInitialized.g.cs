@@ -12,8 +12,8 @@
 using System;
 using Microsoft.Pex.Framework.Explorable;
 using System.Data.Linq;
-using Microsoft.Pex.Framework.Generated;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.Pex.Framework.Generated;
 
 namespace DBComm.DBComm.DO
 {
@@ -21,52 +21,14 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-public void FullyInitialized931()
+public void FullyInitialized837()
 {
     VoterDO voterDO;
     bool b;
     voterDO = PexInvariant.CreateInstance<VoterDO>();
+    PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
     PexInvariant.SetField<EntityRef<PollingStationDO>>
         ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-    PexInvariant.SetField<uint?>
-        ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
-    PexInvariant.SetField<uint?>
-        ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
-    PexInvariant.SetField<string>
-        ((object)voterDO, "<Name>k__BackingField", (string)null);
-    PexInvariant.SetField<string>
-        ((object)voterDO, "<Address>k__BackingField", (string)null);
-    PexInvariant.SetField<string>
-        ((object)voterDO, "<City>k__BackingField", (string)null);
-    PexInvariant.SetField<bool?>
-        ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
-    PexInvariant.SetField<bool?>
-        ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
-    PexInvariant.CheckInvariant((object)voterDO);
-    b = this.FullyInitialized(voterDO);
-    Assert.AreEqual<bool>(false, b);
-    Assert.IsNotNull((object)voterDO);
-    Assert.IsNull((object)(voterDO.PrimaryKey));
-    Assert.IsNull((object)(voterDO.PollingStationId));
-    Assert.AreEqual<string>((string)null, voterDO.Name);
-    Assert.AreEqual<string>((string)null, voterDO.Address);
-    Assert.AreEqual<string>((string)null, voterDO.City);
-    Assert.IsNotNull((object)(voterDO.CardPrinted));
-    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
-    Assert.IsNotNull((object)(voterDO.Voted));
-    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
-}
-[TestMethod]
-[PexGeneratedBy(typeof(VoterDOTest))]
-public void FullyInitialized812()
-{
-    VoterDO voterDO;
-    bool b;
-    voterDO = PexInvariant.CreateInstance<VoterDO>();
-    PexInvariant.SetField<EntityRef<PollingStationDO>>
-        ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-    PexInvariant.SetField<uint?>
-        ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
     PexInvariant.SetField<uint?>
         ((object)voterDO, "<PollingStationId>k__BackingField", new uint?(1u));
     PexInvariant.SetField<string>
@@ -86,6 +48,42 @@ public void FullyInitialized812()
     Assert.IsNull((object)(voterDO.PrimaryKey));
     Assert.IsNotNull((object)(voterDO.PollingStationId));
     Assert.AreEqual<uint>(1u, (uint)((object)(voterDO.PollingStationId)));
+    Assert.AreEqual<string>((string)null, voterDO.Name);
+    Assert.AreEqual<string>((string)null, voterDO.Address);
+    Assert.AreEqual<string>((string)null, voterDO.City);
+    Assert.IsNotNull((object)(voterDO.CardPrinted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
+    Assert.IsNotNull((object)(voterDO.Voted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+public void FullyInitialized83()
+{
+    VoterDO voterDO;
+    bool b;
+    voterDO = PexInvariant.CreateInstance<VoterDO>();
+    PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
+    PexInvariant.SetField<EntityRef<PollingStationDO>>
+        ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
+    PexInvariant.SetField<uint?>
+        ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
+    PexInvariant.SetField<string>
+        ((object)voterDO, "<Name>k__BackingField", (string)null);
+    PexInvariant.SetField<string>
+        ((object)voterDO, "<Address>k__BackingField", (string)null);
+    PexInvariant.SetField<string>
+        ((object)voterDO, "<City>k__BackingField", (string)null);
+    PexInvariant.SetField<bool?>
+        ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
+    PexInvariant.SetField<bool?>
+        ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
+    PexInvariant.CheckInvariant((object)voterDO);
+    b = this.FullyInitialized(voterDO);
+    Assert.AreEqual<bool>(false, b);
+    Assert.IsNotNull((object)voterDO);
+    Assert.IsNull((object)(voterDO.PrimaryKey));
+    Assert.IsNull((object)(voterDO.PollingStationId));
     Assert.AreEqual<string>((string)null, voterDO.Name);
     Assert.AreEqual<string>((string)null, voterDO.Address);
     Assert.AreEqual<string>((string)null, voterDO.City);

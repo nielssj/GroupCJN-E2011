@@ -27,18 +27,21 @@ public void Constructor01808()
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
-public void Constructor735()
+public void Constructor861()
 {
     MunicipalityDO municipalityDO;
-    municipalityDO = this.Constructor(default(uint?), (string)null, (string)null);
+    municipalityDO =
+      this.Constructor(default(uint?), (string)null, (string)null, (string)null);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
     }

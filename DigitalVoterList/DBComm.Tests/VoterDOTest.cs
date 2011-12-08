@@ -21,10 +21,11 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method VoterDOTest.PollingStationSet(VoterDO, PollingStationDO)
         }
         [PexMethod]
-        public void CprSet([PexAssumeUnderTest]VoterDO target, uint? value)
+        public uint? PrimaryKeyGet([PexAssumeUnderTest]VoterDO target)
         {
-            target.Cpr = value;
-            // TODO: add assertions to method VoterDOTest.CprSet(VoterDO, Nullable`1<UInt32>)
+            uint? result = target.PrimaryKey;
+            return result;
+            // TODO: add assertions to method VoterDOTest.PrimaryKeyGet(VoterDO)
         }
         [PexMethod]
         public PollingStationDO PollingStationGet([PexAssumeUnderTest]VoterDO target)
@@ -41,17 +42,17 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method VoterDOTest.CprStringGet(VoterDO)
         }
         [PexMethod]
-        public uint? CprGet([PexAssumeUnderTest]VoterDO target)
-        {
-            uint? result = target.Cpr;
-            return result;
-            // TODO: add assertions to method VoterDOTest.CprGet(VoterDO)
-        }
-        [PexMethod]
         public void UpdateValues([PexAssumeUnderTest]VoterDO target, IDataObject dummy)
         {
             target.UpdateValues(dummy);
             // TODO: add assertions to method VoterDOTest.UpdateValues(VoterDO, IDataObject)
+        }
+        [PexMethod]
+        public int GetHashCode01([PexAssumeUnderTest]VoterDO target)
+        {
+            int result = target.GetHashCode();
+            return result;
+            // TODO: add assertions to method VoterDOTest.GetHashCode01(VoterDO)
         }
         [PexMethod]
         public bool FullyInitialized([PexAssumeUnderTest]VoterDO target)
@@ -59,6 +60,13 @@ namespace DBComm.DBComm.DO
             bool result = target.FullyInitialized();
             return result;
             // TODO: add assertions to method VoterDOTest.FullyInitialized(VoterDO)
+        }
+        [PexMethod]
+        public bool Equals01([PexAssumeUnderTest]VoterDO target, object obj)
+        {
+            bool result = target.Equals(obj);
+            return result;
+            // TODO: add assertions to method VoterDOTest.Equals01(VoterDO, Object)
         }
         [PexMethod]
         public VoterDO Constructor01()

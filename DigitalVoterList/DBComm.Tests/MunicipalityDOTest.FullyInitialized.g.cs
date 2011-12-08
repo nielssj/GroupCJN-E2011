@@ -19,11 +19,29 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
+public void FullyInitialized98003()
+{
+    MunicipalityDO municipalityDO;
+    bool b;
+    municipalityDO = new MunicipalityDO(new uint?(1u), "", (string)null, "");
+    b = this.FullyInitialized(municipalityDO);
+    Assert.AreEqual<bool>(false, b);
+    Assert.IsNotNull((object)municipalityDO);
+    Assert.IsNotNull(municipalityDO.PollingStations);
+    Assert.IsNotNull((object)(municipalityDO.Id));
+    Assert.AreEqual<uint>(1u, (uint)((object)(municipalityDO.Id)));
+    Assert.AreEqual<string>("", municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
+    Assert.AreEqual<string>("", municipalityDO.Name);
+}
+[TestMethod]
+[PexGeneratedBy(typeof(MunicipalityDOTest))]
 public void FullyInitialized98002()
 {
     MunicipalityDO municipalityDO;
     bool b;
-    municipalityDO = new MunicipalityDO(new uint?(128u), "", (string)null);
+    municipalityDO =
+      new MunicipalityDO(new uint?(128u), "", (string)null, (string)null);
     b = this.FullyInitialized(municipalityDO);
     Assert.AreEqual<bool>(false, b);
     Assert.IsNotNull((object)municipalityDO);
@@ -31,6 +49,7 @@ public void FullyInitialized98002()
     Assert.IsNotNull((object)(municipalityDO.Id));
     Assert.AreEqual<uint>(128u, (uint)((object)(municipalityDO.Id)));
     Assert.AreEqual<string>("", municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
 [TestMethod]
@@ -40,14 +59,15 @@ public void FullyInitialized98001()
     MunicipalityDO municipalityDO;
     bool b;
     municipalityDO =
-      new MunicipalityDO(new uint?(1025u), (string)null, (string)null);
+      new MunicipalityDO(new uint?(1u), (string)null, (string)null, (string)null);
     b = this.FullyInitialized(municipalityDO);
     Assert.AreEqual<bool>(false, b);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNotNull((object)(municipalityDO.Id));
-    Assert.AreEqual<uint>(1025u, (uint)((object)(municipalityDO.Id)));
+    Assert.AreEqual<uint>(1u, (uint)((object)(municipalityDO.Id)));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
 [TestMethod]
@@ -56,13 +76,15 @@ public void FullyInitialized980()
 {
     MunicipalityDO municipalityDO;
     bool b;
-    municipalityDO = new MunicipalityDO(default(uint?), (string)null, (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
     b = this.FullyInitialized(municipalityDO);
     Assert.AreEqual<bool>(false, b);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
     }

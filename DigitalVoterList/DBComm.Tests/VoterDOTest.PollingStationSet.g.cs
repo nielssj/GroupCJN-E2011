@@ -10,12 +10,12 @@
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
 using System;
+using DBComm.DBComm.DO.Moles;
 using Microsoft.Pex.Framework.Explorable;
 using System.Data.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Pex.Framework.Generated;
 using Microsoft.Pex.Engine.Exceptions;
-using DBComm.DBComm.DO.Moles;
 
 namespace DBComm.DBComm.DO
 {
@@ -23,51 +23,14 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-[PexRaisedContractException(PexExceptionState.Expected)]
-public void PollingStationSetThrowsContractException890()
-{
-    try
-    {
-      VoterDO voterDO;
-      voterDO = PexInvariant.CreateInstance<VoterDO>();
-      PexInvariant.SetField<EntityRef<PollingStationDO>>
-          ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-      PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
-      PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<Name>k__BackingField", (string)null);
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<Address>k__BackingField", (string)null);
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<City>k__BackingField", (string)null);
-      PexInvariant.SetField<bool?>
-          ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
-      PexInvariant.SetField<bool?>
-          ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
-      PexInvariant.CheckInvariant((object)voterDO);
-      this.PollingStationSet(voterDO, (PollingStationDO)null);
-      throw 
-        new AssertFailedException("expected an exception of type ContractException");
-    }
-    catch(Exception ex)
-    {
-      if (!PexContract.IsContractException(ex))
-        throw ex;
-    }
-}
-[TestMethod]
-[PexGeneratedBy(typeof(VoterDOTest))]
-public void PollingStationSet433()
+public void PollingStationSet854()
 {
     VoterDO voterDO;
     SPollingStationDO sPollingStationDO;
     voterDO = PexInvariant.CreateInstance<VoterDO>();
+    PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
     PexInvariant.SetField<EntityRef<PollingStationDO>>
         ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-    PexInvariant.SetField<uint?>
-        ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
     PexInvariant.SetField<uint?>
         ((object)voterDO, "<PollingStationId>k__BackingField", new uint?(1u));
     PexInvariant.SetField<string>
@@ -94,6 +57,41 @@ public void PollingStationSet433()
     Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
     Assert.IsNotNull((object)(voterDO.Voted));
     Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+[PexRaisedContractException(PexExceptionState.Expected)]
+public void PollingStationSetThrowsContractException326()
+{
+    try
+    {
+      VoterDO voterDO;
+      voterDO = PexInvariant.CreateInstance<VoterDO>();
+      PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
+      PexInvariant.SetField<EntityRef<PollingStationDO>>
+          ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
+      PexInvariant.SetField<uint?>
+          ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
+      PexInvariant.SetField<string>
+          ((object)voterDO, "<Name>k__BackingField", (string)null);
+      PexInvariant.SetField<string>
+          ((object)voterDO, "<Address>k__BackingField", (string)null);
+      PexInvariant.SetField<string>
+          ((object)voterDO, "<City>k__BackingField", (string)null);
+      PexInvariant.SetField<bool?>
+          ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
+      PexInvariant.SetField<bool?>
+          ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
+      PexInvariant.CheckInvariant((object)voterDO);
+      this.PollingStationSet(voterDO, (PollingStationDO)null);
+      throw 
+        new AssertFailedException("expected an exception of type ContractException");
+    }
+    catch(Exception ex)
+    {
+      if (!PexContract.IsContractException(ex))
+        throw ex;
+    }
 }
     }
 }
