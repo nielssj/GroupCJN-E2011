@@ -64,7 +64,7 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Gets Name.
         /// </summary>
-        [Column]
+        [Column(Name = "name")]
         public string Name { get; private set; }
 
         /// <summary>
@@ -141,9 +141,15 @@ namespace DBComm.DBComm.DO
             this.Name = pollingDummy.Name ?? this.Name;
         }
 
+        public void ResetAssociations()
+        {
+            this._municipality = new EntityRef<MunicipalityDO>();
+            this._voters = new EntitySet<VoterDO>();
+        }
+
         public override string ToString()
         {
-            return this.Name;
+            return this.Name ?? string.Empty;
         }
 
         public override bool Equals(object obj)
@@ -162,7 +168,10 @@ namespace DBComm.DBComm.DO
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode();
+            if (Name != null)
+                return this.Name.GetHashCode();
+
+            return 0;
         }
     }
 }

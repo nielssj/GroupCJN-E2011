@@ -27,7 +27,8 @@ public void MunicipalitySet738()
     MunicipalityDO municipalityDO;
     pollingStationDO = new PollingStationDO
                            (default(uint?), default(uint?), (string)null, (string)null);
-    municipalityDO = new MunicipalityDO(default(uint?), (string)null, (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
     this.MunicipalitySet(pollingStationDO, municipalityDO);
     Assert.IsNotNull((object)pollingStationDO);
     Assert.IsNull((object)(pollingStationDO.PrimaryKey));
@@ -56,7 +57,7 @@ public void MunicipalitySet317()
 [TestMethod]
 [PexGeneratedBy(typeof(PollingStationDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void MunicipalitySetThrowsContractException701()
+public void MunicipalitySetThrowsContractException673()
 {
     try
     {

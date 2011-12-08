@@ -21,15 +21,14 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-public void PollingStationGet796()
+public void PollingStationGet418()
 {
     VoterDO voterDO;
     PollingStationDO pollingStationDO;
     voterDO = PexInvariant.CreateInstance<VoterDO>();
+    PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
     PexInvariant.SetField<EntityRef<PollingStationDO>>
         ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-    PexInvariant.SetField<uint?>
-        ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
     PexInvariant.SetField<uint?>
         ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
     PexInvariant.SetField<string>

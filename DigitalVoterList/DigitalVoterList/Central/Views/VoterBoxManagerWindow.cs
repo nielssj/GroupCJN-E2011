@@ -28,5 +28,10 @@ namespace DigitalVoterList.Central.Views
         {
             this.Closing += handler;
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

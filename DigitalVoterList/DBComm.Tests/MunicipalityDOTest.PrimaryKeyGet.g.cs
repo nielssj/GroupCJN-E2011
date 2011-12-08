@@ -23,13 +23,15 @@ public void PrimaryKeyGet637()
 {
     MunicipalityDO municipalityDO;
     uint? nullu;
-    municipalityDO = new MunicipalityDO(default(uint?), (string)null, (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
     nullu = this.PrimaryKeyGet(municipalityDO);
     Assert.IsNull((object)nullu);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
     }

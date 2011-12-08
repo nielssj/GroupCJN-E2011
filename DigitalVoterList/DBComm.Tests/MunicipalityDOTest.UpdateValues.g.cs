@@ -20,15 +20,32 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
-public void UpdateValues7103()
+public void UpdateValues7104()
 {
     MunicipalityDO municipalityDO;
-    municipalityDO = new MunicipalityDO(default(uint?), "", (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), "", (string)null, (string)null);
     this.UpdateValues(municipalityDO, (IDataObject)municipalityDO);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>("", municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
+    Assert.AreEqual<string>((string)null, municipalityDO.Name);
+}
+[TestMethod]
+[PexGeneratedBy(typeof(MunicipalityDOTest))]
+public void UpdateValues7103()
+{
+    MunicipalityDO municipalityDO;
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, "", (string)null);
+    this.UpdateValues(municipalityDO, (IDataObject)municipalityDO);
+    Assert.IsNotNull((object)municipalityDO);
+    Assert.IsNotNull(municipalityDO.PollingStations);
+    Assert.IsNull((object)(municipalityDO.Id));
+    Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>("", municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
 [TestMethod]
@@ -36,50 +53,57 @@ public void UpdateValues7103()
 public void UpdateValues7102()
 {
     MunicipalityDO municipalityDO;
-    municipalityDO = new MunicipalityDO(new uint?(1u), (string)null, (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, (string)null, "");
     this.UpdateValues(municipalityDO, (IDataObject)municipalityDO);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
-    Assert.IsNotNull((object)(municipalityDO.Id));
-    Assert.AreEqual<uint>(1u, (uint)((object)(municipalityDO.Id)));
+    Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
-    Assert.AreEqual<string>((string)null, municipalityDO.Name);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
+    Assert.AreEqual<string>("", municipalityDO.Name);
 }
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
 public void UpdateValues7101()
 {
     MunicipalityDO municipalityDO;
-    municipalityDO = new MunicipalityDO(default(uint?), (string)null, "");
+    municipalityDO =
+      new MunicipalityDO(new uint?(1u), (string)null, (string)null, (string)null);
     this.UpdateValues(municipalityDO, (IDataObject)municipalityDO);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
-    Assert.IsNull((object)(municipalityDO.Id));
+    Assert.IsNotNull((object)(municipalityDO.Id));
+    Assert.AreEqual<uint>(1u, (uint)((object)(municipalityDO.Id)));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
-    Assert.AreEqual<string>("", municipalityDO.Name);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
+    Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
 public void UpdateValues71()
 {
     MunicipalityDO municipalityDO;
-    municipalityDO = new MunicipalityDO(default(uint?), (string)null, (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
     this.UpdateValues(municipalityDO, (IDataObject)municipalityDO);
     Assert.IsNotNull((object)municipalityDO);
     Assert.IsNotNull(municipalityDO.PollingStations);
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException452()
+public void UpdateValuesThrowsContractException576()
 {
     try
     {
       MunicipalityDO municipalityDO;
-      municipalityDO = new MunicipalityDO(new uint?(1u), (string)null, (string)null);
+      municipalityDO =
+        new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
       this.UpdateValues(municipalityDO, (IDataObject)null);
       throw 
         new AssertFailedException("expected an exception of type ContractException");

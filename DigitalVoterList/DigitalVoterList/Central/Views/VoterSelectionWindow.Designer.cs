@@ -64,6 +64,7 @@
             this.lblVoterCount.TabIndex = 3;
             this.lblVoterCount.Text = "2.112.342 voters selected.";
             this.lblVoterCount.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblVoterCount.Click += new System.EventHandler(this.lblVoterCount_Click);
             // 
             // groupBox1
             // 
@@ -231,6 +232,7 @@
             this.toolStrip1.Size = new System.Drawing.Size(309, 31);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // toolStripButton1
             // 

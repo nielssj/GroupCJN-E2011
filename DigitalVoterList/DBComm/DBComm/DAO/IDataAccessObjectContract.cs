@@ -37,7 +37,8 @@ namespace DBComm.DBComm.DAO
         public IEnumerable<T> Read(Expression<Func<T, bool>> f)
         {
             Contract.Requires(f != null);
-            //Contract.Ensures(Contract.ForAll(Contract.Result<IEnumerable<T>>(), r => f.Compile().Invoke(r)));
+            /*Contract.Ensures(Contract.ForAll(Contract.Result<IEnumerable<T>>(), r => f.Compile().Invoke(r)));
+              This fails for more advanced predicates, i.e. ones that use associations.*/
             throw new NotImplementedException();
         }
 

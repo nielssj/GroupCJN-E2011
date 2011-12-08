@@ -9,6 +9,7 @@ namespace DBComm.DBComm.DO
     using System;
     using System.Data.Linq.Mapping;
     using System.Diagnostics.Contracts;
+    using MySql.Data.MySqlClient;
 
     /// <summary>
     /// TODO: Update summary.
@@ -17,6 +18,26 @@ namespace DBComm.DBComm.DO
     public class LogDO : IDataObject
     {
         #region Implementation of IDataObject
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+        /// </summary>
+        public LogDO(uint? primaryKey, DateTime? time, uint? table, uint? cpr, ActivityEnum? activity)
+        {
+            this.PrimaryKey = primaryKey;
+            this.Time = time;
+            this.Table = table;
+            this.Cpr = cpr;
+            this.Activity = activity;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogDO"/> class.
+        /// </summary>
+        public LogDO()
+        {
+
+        }
 
         /// <summary>
         /// Gets the primary key of this data object.
@@ -75,6 +96,11 @@ namespace DBComm.DBComm.DO
             this.Table = logDummy.Table ?? this.Table;
             this.Cpr = logDummy.Cpr ?? this.Cpr;
             this.Activity = logDummy.Activity ?? this.Activity;
+        }
+
+        public void ResetAssociations()
+        {
+
         }
 
         #endregion

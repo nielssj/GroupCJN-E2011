@@ -13,20 +13,42 @@ namespace DBComm.DBComm.DataGeneration
     /// </summary>
     public class DBCreator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCreator"/> class. 
+        /// Create a db on the following server.
+        /// </summary>
+        /// <param name="server">The server.
+        /// </param>
+        /// <param name="port">The port.
+        /// </param>
+        /// <param name="user">The user.
+        /// </param>
+        /// <param name="password">The password.
+        /// </param>
+        public DBCreator(string server, string port, string user, string password)
+        {
+            string connString = "server=" + server + ";uid=" + user + ";password=" + password + ";port=" + port + ";";
+            this.createDB(new MySqlConnection(connString));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCreator"/> class.
+        /// </summary>
+        /// <param name="c">
+        /// The connection
+        /// </param>
         public DBCreator(MySqlConnection c)
         {
-            var createConnection = c.Clone(); // When a connection is closed, it looses its password, so we clone the connection,
-            var insertConnection = c.Clone(); // One for creating the database, and one for filling it with data.
+            this.createDB(c);
+        }
 
-            createConnection.Open();
-            var command = createConnection.CreateCommand();
-            command.CommandText = System.IO.File.ReadAllText(@"..\..\DBComm\DataGeneration\DBCommands.conf");
+        private void createDB(MySqlConnection c)
+        {
+            c.Open();
+            var command = c.CreateCommand();
+            command.CommandText = System.IO.File.ReadAllText(@"..\..\..\DBComm\DBComm\DataGeneration\DBCommands.conf");
             command.ExecuteNonQuery();
-            createConnection.Close();   // Can't reuse the connection, since we now append the db name to the connection string
-                                        // and that can't be done without closing.
-
-            var g = new Generator(DigitalVoterList.GetInstance(insertConnection));
-            g.Generate(100, 1000, 50000);
+            c.Close();
         }
     }
 }

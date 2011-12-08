@@ -13,7 +13,7 @@ namespace DBComm.DBComm.DO
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    [Table(Name = "Voter")]
+    [Table(Name = "voter")]
     public class VoterDO : IDataObject
     {
         private uint? primaryKey;
@@ -161,6 +161,14 @@ namespace DBComm.DBComm.DO
         }
 
         /// <summary>
+        /// Reset all associations.
+        /// </summary>
+        public void ResetAssociations()
+        {
+            this._pollingStation = new EntityRef<PollingStationDO>();
+        }
+
+        /// <summary>
         /// Is the object fully initialized, i.e. do all fields have non-null values?
         /// </summary>
         /// <returns>True if no fields are null.</returns>
@@ -215,7 +223,10 @@ namespace DBComm.DBComm.DO
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode();
+            if (Name != null)
+                return this.Name.GetHashCode();
+
+            return 0;
         }
     }
 }

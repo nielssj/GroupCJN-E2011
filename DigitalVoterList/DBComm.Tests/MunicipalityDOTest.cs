@@ -16,10 +16,17 @@ namespace DBComm.DBComm.DO
     public partial class MunicipalityDOTest
     {
         [PexMethod]
-        public void PollingStationsSet([PexAssumeUnderTest]MunicipalityDO target, ICollection<PollingStationDO> value)
+        public void UpdateValues([PexAssumeUnderTest]MunicipalityDO target, IDataObject dummy)
         {
-            target.PollingStations = value;
-            // TODO: add assertions to method MunicipalityDOTest.PollingStationsSet(MunicipalityDO, ICollection`1<PollingStationDO>)
+            target.UpdateValues(dummy);
+            // TODO: add assertions to method MunicipalityDOTest.UpdateValues(MunicipalityDO, IDataObject)
+        }
+        [PexMethod]
+        public string ToString01([PexAssumeUnderTest]MunicipalityDO target)
+        {
+            string result = target.ToString();
+            return result;
+            // TODO: add assertions to method MunicipalityDOTest.ToString01(MunicipalityDO)
         }
         [PexMethod]
         public uint? PrimaryKeyGet([PexAssumeUnderTest]MunicipalityDO target)
@@ -29,6 +36,12 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method MunicipalityDOTest.PrimaryKeyGet(MunicipalityDO)
         }
         [PexMethod]
+        public void PollingStationsSet([PexAssumeUnderTest]MunicipalityDO target, ICollection<PollingStationDO> value)
+        {
+            target.PollingStations = value;
+            // TODO: add assertions to method MunicipalityDOTest.PollingStationsSet(MunicipalityDO, ICollection`1<PollingStationDO>)
+        }
+        [PexMethod]
         public ICollection<PollingStationDO> PollingStationsGet([PexAssumeUnderTest]MunicipalityDO target)
         {
             ICollection<PollingStationDO> result = target.PollingStations;
@@ -36,10 +49,11 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method MunicipalityDOTest.PollingStationsGet(MunicipalityDO)
         }
         [PexMethod]
-        public void UpdateValues([PexAssumeUnderTest]MunicipalityDO target, IDataObject dummy)
+        public int GetHashCode01([PexAssumeUnderTest]MunicipalityDO target)
         {
-            target.UpdateValues(dummy);
-            // TODO: add assertions to method MunicipalityDOTest.UpdateValues(MunicipalityDO, IDataObject)
+            int result = target.GetHashCode();
+            return result;
+            // TODO: add assertions to method MunicipalityDOTest.GetHashCode01(MunicipalityDO)
         }
         [PexMethod]
         public bool FullyInitialized([PexAssumeUnderTest]MunicipalityDO target)
@@ -47,6 +61,13 @@ namespace DBComm.DBComm.DO
             bool result = target.FullyInitialized();
             return result;
             // TODO: add assertions to method MunicipalityDOTest.FullyInitialized(MunicipalityDO)
+        }
+        [PexMethod]
+        public bool Equals01([PexAssumeUnderTest]MunicipalityDO target, object obj)
+        {
+            bool result = target.Equals(obj);
+            return result;
+            // TODO: add assertions to method MunicipalityDOTest.Equals01(MunicipalityDO, Object)
         }
         [PexMethod]
         public MunicipalityDO Constructor01()
@@ -59,12 +80,13 @@ namespace DBComm.DBComm.DO
         public MunicipalityDO Constructor(
             uint? id,
             string address,
+            string city,
             string name
         )
         {
-            MunicipalityDO target = new MunicipalityDO(id, address, name);
+            MunicipalityDO target = new MunicipalityDO(id, address, city, name);
             return target;
-            // TODO: add assertions to method MunicipalityDOTest.Constructor(Nullable`1<UInt32>, String, String)
+            // TODO: add assertions to method MunicipalityDOTest.Constructor(Nullable`1<UInt32>, String, String, String)
         }
     }
 }
