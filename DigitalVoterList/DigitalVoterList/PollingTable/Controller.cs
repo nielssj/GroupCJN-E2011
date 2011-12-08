@@ -7,6 +7,7 @@
 namespace DigitalVoterList.PollingTable
 {
     using System;
+    using System.Windows.Forms;
 
     using DBComm.DBComm.DO;
 
@@ -32,13 +33,20 @@ namespace DigitalVoterList.PollingTable
 
         private void ReactTofindVoterRequest(object sender, EventArgs e)
         {
+            
             //Validate that CPRNR doesn't contain letters
-            //int i = 
+            
 
             //Validate length of CPRNR. 
-
+            int i = view.ScannerWindow.CprnrTextBox.Text.Length;
+            if ( i > 10 || i < 10)
+            {
+                MessageBox.Show("Length of cprno is not valid");
+                view.ScannerWindow.CprnrTextBox.Text = ""; 
+                return;
+            }
             //validate if cprno is on the DB. If not show messagebox.
-
+            //Should be done in the model...
 
             //System.Windows.Forms.MessageBox.Show(view.ScannerWindow.CprnrTextBox.ToString());
             
@@ -48,7 +56,7 @@ namespace DigitalVoterList.PollingTable
         private void ReactToRegisterRequest()
         {
             //Console.WriteLine("Glen");
-            System.Windows.Forms.MessageBox.Show("The votercard is now registered");
+            System.Windows.Forms.MessageBox.Show("The voter card is registered");
             //Update the model so that the voter is registered.
             model.RegisterCurrentVoter();
             
@@ -56,7 +64,7 @@ namespace DigitalVoterList.PollingTable
 
         private void ReactToUnregRequest()
         {
-            System.Windows.Forms.MessageBox.Show("Unregistered");
+            System.Windows.Forms.MessageBox.Show("The voter card is Unregistered");
             model.unregisterCurrentVoter();
         }
     }
