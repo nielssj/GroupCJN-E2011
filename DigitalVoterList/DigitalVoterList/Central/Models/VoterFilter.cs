@@ -1,5 +1,9 @@
 ﻿namespace DigitalVoterList.Central.Models
 {
+    using System.Diagnostics.Contracts;
+
+    using DBComm.DBComm.DO;
+
     /// <summary>
     /// An immutable filter describing a subset of voters.
     /// </summary>
@@ -9,7 +13,7 @@
         /// <param name="municipality"> The selected municipality (null means not selected).</param>
         /// <param name="pollingStation"> The Selected polling station (null means not selected). </param>
         /// <param name="cprno"> The selected CPR number (0 means not selected). </param>
-        public VoterFilter(string municipality = null, string pollingStation = null, int cprno = 0)
+        public VoterFilter(MunicipalityDO municipality = null, PollingStationDO pollingStation = null, int cprno = 0)
         {
             this.Municipality = municipality;
             this.PollingStation = pollingStation;
@@ -17,12 +21,18 @@
         }
 
         /// <summary> What is the selected municipality? </summary>
-        public string Municipality { get; private set; }
+        public MunicipalityDO Municipality { get; private set; }
 
         /// <summary> What is the selected polling station? </summary>
-        public string PollingStation { get; private set; }
+        public PollingStationDO PollingStation { get; private set; }
 
         /// <summary> What is the selected cprnr? </summary>
         public int CPRNO { get; private set; }
+
+        [ContractInvariantMethod]
+        private void Invariant()
+        {
+            Contract.Invariant(Municipality != null || PollingStation != null || CPRNO != 0);
+        }
     }
 }

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DigitalVoterList.Central.Views
 {
+    using DBComm.DBComm.DO;
+
     using DigitalVoterList.Central.Models;
 
     public partial class VoterSelectionWindow : Form
@@ -21,44 +18,60 @@ namespace DigitalVoterList.Central.Views
             this.cbxMunicipalities.DataSource = model.Municipalities;
             this.cbxPollingStation.DataSource = model.PollingStations;
             this.setVoterCount(model.VoterCount);
-            
 
             // Subscribe to updates in model
             model.PollingStationsChanged += this.UpdatePollingStations;
             model.VoterCountChanged += this.UpdateVoterCount;
+            model.SelectedMunicipalityChanged += this.UpdateSelectedMunicipality;
+            model.SelectedPollingStationChanged += this.UpdateSelectedPollingStation;
+
+            // Setup text box
+            this.txbCPRNO.KeyPress += this.TextBoxOnlyAllowDigits;
         }
 
-        public void UpdatePollingStations(List<String> pollingStations)
+        public void UpdatePollingStations(IEnumerable<PollingStationDO> pollingStations)
         {
-            // .. Change the view (update combobox content)
+            this.cbxPollingStation.DataSource = pollingStations;
         }
 
         public void UpdateVoterCount(int voterCount)
         {
-            // .. Change the view (update 
+            this.setVoterCount(voterCount);
         }
 
-        public delegate void InputChangedHandler(String changedTo);
-        
+        public void UpdateSelectedMunicipality(MunicipalityDO municipality)
+        {
+            this.cbxMunicipalities.SelectedIndex = this.cbxMunicipalities.Items.IndexOf(municipality);
+        }
+
+        public void UpdateSelectedPollingStation(PollingStationDO pollingStation)
+        {
+            this.cbxPollingStation.SelectedIndex = this.cbxPollingStation.Items.IndexOf(pollingStation);
+        }
+
+        public delegate void CBInputChangedHandler(IDataObject changedTo);
+
+        public delegate void TextInputChangedHandler(string changedTo);
+
         /// <summary> Notify me when the polling station selection changes. </summary>
-        public void AddPSSelectionChangedHandler(InputChangedHandler handler)
+        public void AddPSSelectionChangedHandler(CBInputChangedHandler handler)
         {
             ComboBox cps = cbxPollingStation;
-            cps.SelectedIndexChanged += (o, eA) => handler(cps.SelectedItem.ToString());
+            cps.SelectedIndexChanged += (o, eA) => handler(cps.SelectedItem as IDataObject);
         }
 
         /// <summary> Notify me when the municipality selection changes. </summary>
-        public void AddMSelectionChangedHandler(InputChangedHandler handler)
+        public void AddMSelectionChangedHandler(CBInputChangedHandler handler)
         {
             ComboBox cmp = cbxMunicipalities;
-            cmp.SelectedIndexChanged += (o, eA) => handler(cmp.SelectedItem.ToString());
+            cmp.SelectedIndexChanged += (o, eA) => handler((IDataObject)cmp.SelectedItem);
         }
 
         /// <summary> Notify me when the CPR number text changes.</summary>
-        public void addCPRTextChangedHandler(InputChangedHandler handler)
+        public void addCPRTextChangedHandler(TextInputChangedHandler handler)
         {
             TextBox tbc = txbCPRNO;
-            tbc.TextChanged += (o, eA) => handler(tbc.Text.ToString());
+            tbc.TextChanged += (o, eA) => handler(tbc.Text);
         }
 
         /// <summary> Notify me when the 'Voter Card Generator' button is clicked. </summary>
@@ -78,6 +91,14 @@ namespace DigitalVoterList.Central.Views
         private void setVoterCount(int count)
         {
             lblVoterCount.Text = count + " voters selected.";
+        }
+
+        private void TextBoxOnlyAllowDigits(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
     }
 }
