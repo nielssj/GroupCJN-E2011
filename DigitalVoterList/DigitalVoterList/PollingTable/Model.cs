@@ -22,62 +22,55 @@ namespace DigitalVoterList.PollingTable
     public class Model
     {
         public VoterDO currentVoter = null;
-        private List<VoterDO> voterList;
+        //private List<VoterDO> voterList;
 
         public delegate void VoterChangedHandler(VoterDO voter);
+        
         public event VoterChangedHandler CurrentVoterChanged;
 
-        public Model()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cprno"></param>
+        public void FindVoter(uint cprno)
         {
-
-            //VoterDO v1 = new VoterDO(1, 1, "Peter Henningsen", "Tjørnevænget 10", "Ballerup", true, false);
-            //VoterDO v2 = new VoterDO(1, 2, "Henning Petersen", "Tjørnevænget 10", "ballerup", true, true);
-            //VoterDO v3 = new VoterDO(1, 42, "Peter Nielsen", "Testvej 1", "ballerup", true, false);
-
-            //voterList = new List<VoterDO>();
-            //voterList.Add(v1);
-            //voterList.Add(v2);
-            //voterList.Add(v3);
-
-            //Start program.
-        }
-
-        public void findVoter(int CPRNO)
-        {
-            //System.Windows.Forms.MessageBox.Show("Glen");
-            //1) Check if cprnr exists. If not get an error. else update current voter
-            //foreach (var voterDo in voterList)
-            //{
-            //    if (voterDo.PrimaryKey == CPRNO)
-            //    {
-            //        currentVoter = voterDo;
-            //        CurrentVoterChanged(currentVoter);
-            //        return true;
-            //    }
-            //}
-            VoterDAO vdao = new VoterDAO();
-            currentVoter = vdao.Read(v => v.PrimaryKey == CPRNO).ToList().Single() ;
+            this.currentVoter = FetchVoter(cprno);
             CurrentVoterChanged(currentVoter);
-            //contract
-            //To list
-            //Single
-
-
-
-            //return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void RegisterCurrentVoter()
         {
             Contract.Requires(currentVoter.Voted == false);
             Contract.Requires(currentVoter != null);
             Contract.Ensures(currentVoter.Voted == true);
-            PessimisticVoterDAO pvdo = new PessimisticVoterDAO();
-            pvdo.StartTransaction();
-            pvdo.Update((uint)currentVoter.PrimaryKey, true);
-            pvdo.EndTransaction();
+            PessimisticVoterDAO pvdao = new PessimisticVoterDAO();
+            pvdao.StartTransaction();
+            pvdao.Update((uint)currentVoter.PrimaryKey, true);
+            pvdao.EndTransaction();
+            currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cprno"></param>
+        /// <returns></returns>
+        private VoterDO FetchVoter(uint cprno)
+        {
+            VoterDAO vdao = new VoterDAO();
+            return vdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
+        }
 
+        public void unregisterCurrentVoter()
+        {
+            PessimisticVoterDAO pvdao = new PessimisticVoterDAO();
+            pvdao.StartTransaction();
+            pvdao.Update((uint)currentVoter.PrimaryKey, false);
+            pvdao.EndTransaction();
+            currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
+        }
     }
 }

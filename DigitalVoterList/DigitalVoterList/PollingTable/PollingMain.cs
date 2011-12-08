@@ -19,7 +19,6 @@ namespace DigitalVoterList.PollingTable
     {
         public PollingMain()
         {
-            MessageBox.Show("Glen");
             Model model = new Model();
             PtView view = new PtView(model);
             Controller controller = new Controller(model, view);

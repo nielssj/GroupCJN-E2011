@@ -42,7 +42,7 @@ namespace DigitalVoterList.PollingTable
 
             //System.Windows.Forms.MessageBox.Show(view.ScannerWindow.CprnrTextBox.ToString());
             
-            model.findVoter(Convert.ToInt32(view.ScannerWindow.CprnrTextBox.Text)); 
+            model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTextBox.Text)); 
         }
 
         private void ReactToRegisterRequest()
@@ -50,12 +50,14 @@ namespace DigitalVoterList.PollingTable
             //Console.WriteLine("Glen");
             System.Windows.Forms.MessageBox.Show("The votercard is now registered");
             //Update the model so that the voter is registered.
+            model.RegisterCurrentVoter();
             
         }
 
         private void ReactToUnregRequest()
         {
             System.Windows.Forms.MessageBox.Show("Unregistered");
+            model.unregisterCurrentVoter();
         }
     }
 }
