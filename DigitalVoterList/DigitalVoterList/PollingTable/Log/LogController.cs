@@ -7,7 +7,6 @@
 namespace DigitalVoterList.PollingTable.Log
 {
     using System;
-    using System.Windows.Forms;
 
     using Timer = System.Threading.Timer;
 
@@ -31,7 +30,7 @@ namespace DigitalVoterList.PollingTable.Log
 
             this.view.ResetFields();
 
-            Application.Run(view);
+            view.Show();
         }
 
         public void Update(object o)
