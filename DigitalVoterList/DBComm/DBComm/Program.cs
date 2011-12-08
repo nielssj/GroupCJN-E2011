@@ -22,7 +22,7 @@ namespace DBComm.DBComm
             w.Start();
 
             var dbc = new DBCreator(new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;"));
+                    "server=localhost;" + "port=3306;" + "password=abc123;" + "uid=root;"));
 
             w.Stop();
             Console.WriteLine(w.Elapsed);

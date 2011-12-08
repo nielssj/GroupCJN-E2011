@@ -21,6 +21,9 @@ namespace DigitalVoterList
 
             // Launch 'PollingTable' client.
             //new PollingTable
+
+            // Launch VoterCard generator directly
+            //new Central.Models.VoterCardGenerator();
         }
     }
 }
