@@ -46,14 +46,6 @@ namespace DigitalVoterList.PollingTable.Log
             }
         }
 
-        public string Id
-        {
-            get
-            {
-                return this.idBox.Text;
-            }
-        }
-
         public DateTime From
         {
             get
@@ -67,6 +59,14 @@ namespace DigitalVoterList.PollingTable.Log
             get
             {
                 return this.timeTo.Value;
+            }
+        }
+
+        public string VotersText
+        {
+            set
+            {
+                this.voterLabel.Text = value;
             }
         }
 
@@ -89,7 +89,6 @@ namespace DigitalVoterList.PollingTable.Log
 
         public void ResetFields()
         {
-            this.idBox.Text = string.Empty;
             this.cprBox.Text = string.Empty;
             this.tableBox.Text = string.Empty;
             this.activityBox.Text = string.Empty;

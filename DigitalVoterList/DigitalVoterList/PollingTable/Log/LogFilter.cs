@@ -15,8 +15,6 @@ namespace DigitalVoterList.PollingTable.Log
     /// </summary>
     public struct LogFilter
     {
-        public uint? Id { get; set; }
-
         public uint? Table { get; set; }
 
         public uint? Cpr { get; set; }
