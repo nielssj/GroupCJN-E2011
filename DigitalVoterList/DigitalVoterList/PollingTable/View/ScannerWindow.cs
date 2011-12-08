@@ -9,11 +9,18 @@ using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
+    using DigitalVoterList.PollingTable.Log;
+
     public partial class ScannerWindow : Form
     {
         public ScannerWindow()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new LogWindow().Show();
         }
     }
 }

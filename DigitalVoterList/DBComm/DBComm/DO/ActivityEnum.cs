@@ -2,7 +2,7 @@
 // <copyright file="ActivityEnum.cs" company="">
 // TODO: Update copyright text.
 // </copyright>
-// -----------------------------------------------------------------------
+// ---------------------------------------------------------------------
 
 namespace DBComm.DBComm.DO
 {

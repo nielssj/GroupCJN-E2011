@@ -6,6 +6,7 @@
 
 namespace DigitalVoterList.PollingTable
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Linq;
@@ -51,6 +52,8 @@ namespace DigitalVoterList.PollingTable
             pvdao.Update((uint)currentVoter.PrimaryKey, true);
             pvdao.EndTransaction();
             currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
+            this.UpdateLog(true);
+
         }
 
         /// <summary>
@@ -71,6 +74,17 @@ namespace DigitalVoterList.PollingTable
             pvdao.Update((uint)currentVoter.PrimaryKey, false);
             pvdao.EndTransaction();
             currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="wr">True means to log a write, false means to log a read</param>
+        private void UpdateLog(bool wr)
+        {
+            LogDO ldo = new LogDO(5, DateTime.Now, currentVoter.PrimaryKey, 5,  ActivityEnum.R);
+            LogDAO ldao = new LogDAO();
+            ldao.Create(ldo);
         }
     }
 }
