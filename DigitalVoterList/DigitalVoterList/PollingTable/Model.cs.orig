@@ -7,14 +7,18 @@
 namespace DigitalVoterList.PollingTable
 {
     using System.Collections.Generic;
+<<<<<<< HEAD
     using System.Diagnostics.Contracts;
     using System.Linq;
+    using System.Text;
+=======
+>>>>>>> 72ac173f4f5c752d7894fe0a4ac61b6c1e7b4cef
 
     using DBComm.DBComm.DO;
 
     //using System.Diagnostics.Contracts;
 
-    using DBComm.DBComm.DAO;
+    using DBComm.DAO;
 
     /// <summary>
     /// TODO: Update summary.
@@ -30,41 +34,32 @@ namespace DigitalVoterList.PollingTable
         public Model()
         {
 
-            //VoterDO v1 = new VoterDO(1, 1, "Peter Henningsen", "Tjørnevænget 10", "Ballerup", true, false);
-            //VoterDO v2 = new VoterDO(1, 2, "Henning Petersen", "Tjørnevænget 10", "ballerup", true, true);
-            //VoterDO v3 = new VoterDO(1, 42, "Peter Nielsen", "Testvej 1", "ballerup", true, false);
+            VoterDO v1 = new VoterDO(1, 1, "Peter Henningsen", "Tjørnevænget 10", "Ballerup", true, false);
+            VoterDO v2 = new VoterDO(1, 2, "Henning Petersen", "Tjørnevænget 10", "ballerup", true, true);
+            VoterDO v3 = new VoterDO(1, 42, "Peter Nielsen", "Testvej 1", "ballerup", true, false);
 
-            //voterList = new List<VoterDO>();
-            //voterList.Add(v1);
-            //voterList.Add(v2);
-            //voterList.Add(v3);
+            voterList = new List<VoterDO>();
+            voterList.Add(v1);
+            voterList.Add(v2);
+            voterList.Add(v3);
 
             //Start program.
         }
 
-        public void findVoter(int CPRNO)
+        public bool findVoter(int CPRNO)
         {
             //System.Windows.Forms.MessageBox.Show("Glen");
             //1) Check if cprnr exists. If not get an error. else update current voter
-            //foreach (var voterDo in voterList)
-            //{
-            //    if (voterDo.PrimaryKey == CPRNO)
-            //    {
-            //        currentVoter = voterDo;
-            //        CurrentVoterChanged(currentVoter);
-            //        return true;
-            //    }
-            //}
-            VoterDAO vdao = new VoterDAO();
-            currentVoter = vdao.Read(v => v.PrimaryKey == CPRNO).ToList().Single() ;
-            CurrentVoterChanged(currentVoter);
-            //contract
-            //To list
-            //Single
-
-
-
-            //return false;
+            foreach (var voterDo in voterList)
+            {
+                if (voterDo.PrimaryKey == CPRNO)
+                {
+                    currentVoter = voterDo;
+                    CurrentVoterChanged(currentVoter);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void RegisterCurrentVoter()
@@ -74,7 +69,7 @@ namespace DigitalVoterList.PollingTable
             Contract.Ensures(currentVoter.Voted == true);
             PessimisticVoterDAO pvdo = new PessimisticVoterDAO();
             pvdo.StartTransaction();
-            pvdo.Update((uint)currentVoter.PrimaryKey, true);
+            pvdo.Update((uint)currentVoter.Cpr, true);
             pvdo.EndTransaction();
         }
 

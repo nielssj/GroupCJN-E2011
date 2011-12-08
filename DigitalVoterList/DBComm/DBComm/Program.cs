@@ -16,16 +16,12 @@ namespace DBComm.DBComm
     /// </summary>
     public class Program
     {
-        //static void Main(string[] args)
-        //{
-
+        static void Main(string[] args)
+        {
             var dbc = new DBCreator(new MySqlConnection(
                     "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"));
 
-            w.Stop();
-            Console.WriteLine(w.Elapsed);
-
-        //    Console.WriteLine("done");
-        //}
+            Console.WriteLine("done");
+        }
     }
 }

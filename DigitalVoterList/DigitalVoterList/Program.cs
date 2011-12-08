@@ -14,7 +14,7 @@ namespace DigitalVoterList
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
             // Launch 'Central' client.
             //new Central.Main();
 
