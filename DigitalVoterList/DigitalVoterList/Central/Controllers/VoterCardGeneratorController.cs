@@ -6,6 +6,8 @@
 
 namespace DigitalVoterList.Central.Controllers
 {
+    using System;
+
     using DigitalVoterList.Central.Models;
     using DigitalVoterList.Central.Views;
 
@@ -23,6 +25,10 @@ namespace DigitalVoterList.Central.Controllers
             this.model = model;
             this.view = view;
 
+            // Subscribe to View
+            view.AddGenerateHandler(model.Generate);
+
+            // Show View
             view.Show();
         }
     }

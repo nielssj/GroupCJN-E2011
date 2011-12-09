@@ -10,9 +10,13 @@ namespace DigitalVoterList.Central.Views
 
     public partial class VoterSelectionWindow : Form
     {
+        private VoterSelection model;
+
         public VoterSelectionWindow(VoterSelection model)
         {
             InitializeComponent();
+
+            this.model = model;
 
             // Get initial values (default selection = no filter)
             this.cbxMunicipalities.DataSource = model.Municipalities;
@@ -75,10 +79,10 @@ namespace DigitalVoterList.Central.Views
         }
 
         /// <summary> Notify me when the 'Voter Card Generator' button is clicked. </summary>
-        public void AddVCGClickedHandler(EventHandler handler)
+        public void AddVCGClickedHandler(Action<VoterFilter> handler)
         {
-            tsbVCG.Click += handler;
-            tsmVCG.Click += handler;
+            tsbVCG.Click += (o, eA) => handler(model.CurrentFilter);
+            tsmVCG.Click += (o, eA) => handler(model.CurrentFilter);
         }
 
         /// <summary> Notify me when the 'Voter Box Manager' button is clicked. </summary>

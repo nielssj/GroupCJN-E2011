@@ -1,6 +1,8 @@
 ﻿namespace DigitalVoterList.Central.Models
 {
+    using System;
     using System.Diagnostics.Contracts;
+    using System.Linq.Expressions;
 
     using DBComm.DBComm.DO;
 
@@ -29,6 +31,16 @@
         /// <summary> What is the selected cprnr? </summary>
         public int CPRNO { get; private set; }
 
+        /// <summary> What would this filter look like as a predicate? </summary>
+        /// <returns> A predicate representing the filter. </returns>
+        public Expression<Func<VoterDO, bool>> ToPredicate()
+        {
+            return v =>
+                (this.Municipality == null || v.PollingStation.Municipality.Equals(this.Municipality)) && 
+                (this.PollingStation == null || v.PollingStation.Equals(this.PollingStation)) && 
+                (this.CPRNO == 0 || v.PrimaryKey.Equals(this.CPRNO));
+        }
+        
         [ContractInvariantMethod]
         private void Invariant()
         {
