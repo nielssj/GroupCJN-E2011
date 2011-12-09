@@ -30,21 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoterCardGeneratorWindow));
             this.btnCancel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGenerate = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.pbrGroups = new System.Windows.Forms.ProgressBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.pbrVoters = new System.Windows.Forms.ProgressBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbLimit = new System.Windows.Forms.CheckBox();
+            this.chbProperty = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.cbxProperty = new System.Windows.Forms.ComboBox();
+            this.txbLimit = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txbDestination = new System.Windows.Forms.TextBox();
             this.destinationFolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblCurrentGroup = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -59,54 +60,54 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // button1
+            // btnGenerate
             // 
-            this.button1.Location = new System.Drawing.Point(176, 265);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGenerate.Location = new System.Drawing.Point(176, 265);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(81, 23);
+            this.btnGenerate.TabIndex = 15;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 213);
+            this.label3.Location = new System.Drawing.Point(12, 213);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(171, 13);
+            this.label3.Size = new System.Drawing.Size(86, 13);
             this.label3.TabIndex = 14;
-            this.label3.Text = "Voters generated: 22.343 / 53.982";
+            this.label3.Text = "Overall progress:";
             // 
-            // progressBar2
+            // pbrGroups
             // 
-            this.progressBar2.Location = new System.Drawing.Point(13, 229);
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(244, 23);
-            this.progressBar2.TabIndex = 13;
+            this.pbrGroups.Location = new System.Drawing.Point(13, 229);
+            this.pbrGroups.Name = "pbrGroups";
+            this.pbrGroups.Size = new System.Drawing.Size(244, 23);
+            this.pbrGroups.TabIndex = 13;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 163);
+            this.label2.Location = new System.Drawing.Point(12, 163);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 13);
+            this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Groups generated: 12/100";
+            this.label2.Text = "Group progress:";
             // 
-            // progressBar1
+            // pbrVoters
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 179);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(244, 23);
-            this.progressBar1.TabIndex = 11;
+            this.pbrVoters.Location = new System.Drawing.Point(12, 179);
+            this.pbrVoters.Name = "pbrVoters";
+            this.pbrVoters.Size = new System.Drawing.Size(244, 23);
+            this.pbrVoters.TabIndex = 11;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.chbLimit);
+            this.groupBox1.Controls.Add(this.chbProperty);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.cbxProperty);
+            this.groupBox1.Controls.Add(this.txbLimit);
             this.groupBox1.Location = new System.Drawing.Point(11, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(245, 76);
@@ -114,56 +115,58 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Group By";
             // 
-            // checkBox2
+            // chbLimit
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(8, 47);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(47, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Limit";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chbLimit.AutoSize = true;
+            this.chbLimit.Location = new System.Drawing.Point(8, 47);
+            this.chbLimit.Name = "chbLimit";
+            this.chbLimit.Size = new System.Drawing.Size(47, 17);
+            this.chbLimit.TabIndex = 6;
+            this.chbLimit.Text = "Limit";
+            this.chbLimit.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chbProperty
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(8, 21);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(49, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Data";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chbProperty.AutoSize = true;
+            this.chbProperty.Checked = true;
+            this.chbProperty.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbProperty.Location = new System.Drawing.Point(8, 21);
+            this.chbProperty.Name = "chbProperty";
+            this.chbProperty.Size = new System.Drawing.Size(65, 17);
+            this.chbProperty.TabIndex = 5;
+            this.chbProperty.Text = "Property";
+            this.chbProperty.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(162, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "voters/group";
+            this.label1.Text = "voters / file";
             // 
-            // comboBox1
+            // cbxProperty
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbxProperty.FormattingEnabled = true;
+            this.cbxProperty.Items.AddRange(new object[] {
             "Municipality",
             "Polling Station",
             "Alphabet",
             "City"});
-            this.comboBox1.Location = new System.Drawing.Point(94, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.Text = "Municipality";
+            this.cbxProperty.Location = new System.Drawing.Point(94, 19);
+            this.cbxProperty.Name = "cbxProperty";
+            this.cbxProperty.Size = new System.Drawing.Size(142, 21);
+            this.cbxProperty.TabIndex = 3;
+            this.cbxProperty.Text = "Municipality";
             // 
-            // textBox3
+            // txbLimit
             // 
-            this.textBox3.Location = new System.Drawing.Point(94, 45);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(65, 20);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "1000";
+            this.txbLimit.Location = new System.Drawing.Point(94, 45);
+            this.txbLimit.Name = "txbLimit";
+            this.txbLimit.Size = new System.Drawing.Size(65, 20);
+            this.txbLimit.TabIndex = 2;
+            this.txbLimit.Text = "1000";
             // 
             // groupBox2
             // 
@@ -192,24 +195,33 @@
             this.txbDestination.Name = "txbDestination";
             this.txbDestination.Size = new System.Drawing.Size(166, 20);
             this.txbDestination.TabIndex = 0;
-            this.txbDestination.Text = "C:\\";
+            this.txbDestination.Text = "C:\\VoterCards";
             // 
             // destinationFolderBrowser
             // 
             this.destinationFolderBrowser.SelectedPath = "C:\\";
+            // 
+            // lblCurrentGroup
+            // 
+            this.lblCurrentGroup.Location = new System.Drawing.Point(100, 163);
+            this.lblCurrentGroup.Name = "lblCurrentGroup";
+            this.lblCurrentGroup.Size = new System.Drawing.Size(156, 13);
+            this.lblCurrentGroup.TabIndex = 18;
+            this.lblCurrentGroup.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // VoterCardGeneratorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(271, 299);
+            this.Controls.Add(this.lblCurrentGroup);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.progressBar2);
+            this.Controls.Add(this.pbrGroups);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.pbrVoters);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VoterCardGeneratorWindow";
@@ -226,20 +238,21 @@
         #endregion
 
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ProgressBar progressBar2;
+        private System.Windows.Forms.ProgressBar pbrGroups;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar pbrVoters;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox cbxProperty;
+        private System.Windows.Forms.TextBox txbLimit;
+        private System.Windows.Forms.CheckBox chbLimit;
+        private System.Windows.Forms.CheckBox chbProperty;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txbDestination;
         private System.Windows.Forms.FolderBrowserDialog destinationFolderBrowser;
+        private System.Windows.Forms.Label lblCurrentGroup;
     }
 }

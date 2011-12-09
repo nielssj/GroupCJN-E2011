@@ -27,9 +27,9 @@
         /// <summary> 
         /// Open a new 'Voter Card Generator'. 
         /// </summary>
-        public void OpenVCG(object sender, EventArgs e)
+        public void OpenVCG(VoterFilter filter)
         {
-            var vcg = new VoterCardGenerator();
+            var vcg = new VoterCardGenerator(filter);
             voterCardGenerators.Add(vcg);
             SubModelOpened(ChangeType.VCG, vcg);
         }
