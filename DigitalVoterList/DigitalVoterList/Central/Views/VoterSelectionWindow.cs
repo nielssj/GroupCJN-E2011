@@ -114,5 +114,10 @@ namespace DigitalVoterList.Central.Views
         {
 
         }
+
+        private void VoterSelectionWindow_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
