@@ -82,7 +82,7 @@ namespace DigitalVoterList.PollingTable
         /// <param name="wr">True means to log a write, false means to log a read</param>
         private void UpdateLog(bool wr)
         {
-            LogDO ldo = new LogDO(5, DateTime.Now, currentVoter.PrimaryKey, 5,  ActivityEnum.R);
+            LogDO ldo = new LogDO(5, currentVoter.PrimaryKey, ActivityEnum.W);
             LogDAO ldao = new LogDAO();
             ldao.Create(ldo);
         }

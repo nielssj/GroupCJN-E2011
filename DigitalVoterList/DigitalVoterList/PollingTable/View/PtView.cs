@@ -9,7 +9,8 @@ namespace DigitalVoterList.PollingTable
     using System;
 
     using DBComm.DBComm.DO;
-    using DigitalVoterList.PollingTable.View.Root_elements;
+
+    using DigitalVoterList.PollingTable.Log;
 
     /// <summary>
     /// TODO: Update summary.
@@ -23,10 +24,15 @@ namespace DigitalVoterList.PollingTable
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
         public delegate void UnregisterHandler();
+
+        public delegate void LogHandler();
+        
         
         public event VoterShownHandler VoterShown;
         public event UnlockHandler Unlock;
         public event UnlockHandler Unregister;
+
+        public event LogHandler Log;
 
         public PtView(Model model)
         {
@@ -65,9 +71,17 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         public void OpenUnregWindow()
         {
-            UnRegVW uvw = new UnRegVW();
+            UnRegVW uvw = new UnRegVW(model.currentVoter);
             uvw.UnregisterButton.Click += (o, eA) => this.Unregister();
             uvw.Show();
+        }
+
+        public void showLog()
+        {
+
+            LogWindow lw = new LogWindow();
+            LogModel lm = new LogModel();
+            LogController lc = new LogController(lw, lm);
         }
 
         public ScannerWindow ScannerWindow { get { return scannerWindow; } }        

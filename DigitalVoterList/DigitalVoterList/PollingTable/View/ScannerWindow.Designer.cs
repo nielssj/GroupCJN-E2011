@@ -209,6 +209,14 @@
             }
         }
 
+        public Button LockBtn
+        {
+            get
+            {
+                return button1;
+            }
+        }
+
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
