@@ -9,6 +9,8 @@
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
 
+    using DigitalVoterList.Central.Utility;
+
     using PDFjet.NET;
 
     /// <summary>
@@ -191,11 +193,12 @@
             t.DrawOn(page);
 
             // Add CPR barcode
-            var b = new BarCode(BarCode.CODE128, voter.CprString);
+            string barcode = BarCodeHashing.Hash(voter.PrimaryKey.Value).ToString();
+            var b = new BarCode(BarCode.CODE128, barcode);
             b.SetPosition(xO + 160 * U, yO + 60 * U);
             b.DrawOn(page);
 
-            t = new TextLine(font, voter.CprString);
+            t = new TextLine(font, barcode);
             t.SetPosition(xO + 160 * U, yO + 72 * U);
             t.DrawOn(page);
         }
