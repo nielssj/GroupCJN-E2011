@@ -7,13 +7,10 @@
 namespace DigitalVoterList.PollingTable
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Linq;
 
     using DBComm.DBComm.DO;
-
-    //using System.Diagnostics.Contracts;
 
     using DBComm.DBComm.DAO;
 
@@ -23,7 +20,8 @@ namespace DigitalVoterList.PollingTable
     public class Model
     {
         public VoterDO currentVoter = null;
-        //private List<VoterDO> voterList;
+
+        private readonly string adminPass = "abc123";
 
         public delegate void VoterChangedHandler(VoterDO voter);
         
@@ -121,6 +119,14 @@ namespace DigitalVoterList.PollingTable
             bool res = Int32.TryParse(cpr, out result);
             if (!res) return false;
             return true;
+        }
+
+        public string AdmPass
+        {
+            get
+            {
+                return adminPass;
+            }
         }
     }
 }
