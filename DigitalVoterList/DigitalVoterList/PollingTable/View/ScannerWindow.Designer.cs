@@ -37,7 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.CPRNR_textBox = new System.Windows.Forms.TextBox();
+            this.cprnrTxtBox = new System.Windows.Forms.TextBox();
             this.findVoterButton = new System.Windows.Forms.Button();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
@@ -117,15 +117,15 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "CPR NR:";
             // 
-            // CPRNR_textBox
+            // cprnrTxtBox
             // 
-            this.CPRNR_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CPRNR_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CPRNR_textBox.Location = new System.Drawing.Point(231, 56);
-            this.CPRNR_textBox.MaxLength = 10;
-            this.CPRNR_textBox.Name = "CPRNR_textBox";
-            this.CPRNR_textBox.Size = new System.Drawing.Size(273, 45);
-            this.CPRNR_textBox.TabIndex = 7;
+            this.cprnrTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cprnrTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cprnrTxtBox.Location = new System.Drawing.Point(231, 56);
+            this.cprnrTxtBox.MaxLength = 10;
+            this.cprnrTxtBox.Name = "cprnrTxtBox";
+            this.cprnrTxtBox.Size = new System.Drawing.Size(273, 45);
+            this.cprnrTxtBox.TabIndex = 7;
             // 
             // findVoterButton
             // 
@@ -176,10 +176,16 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.CPRNR_textBox);
+            this.Controls.Add(this.cprnrTxtBox);
             this.Controls.Add(this.findVoterButton);
             this.Controls.Add(this.shapeContainer1);
             this.HelpButton = true;
+            
+            // window is not resizable
+            var size = new System.Drawing.Size(536, 275);
+            this.MaximumSize = size;
+            this.MinimumSize = size;
+
             this.Name = "ScannerWindow";
             this.Text = "ScannerWindow";
             this.groupBox1.ResumeLayout(false);
@@ -191,15 +197,15 @@
 
         #endregion
 
-        public TextBox CprnrTextBox
+        public TextBox CprnrTxtBox
         {
             get
             {
-                return this.CPRNR_textBox;
+                return this.cprnrTxtBox;
             }
             set
             {
-                this.CPRNR_textBox = value;
+                this.cprnrTxtBox = value;
             }
         }
 
@@ -219,6 +225,11 @@
             }
         }
 
+        public void resetCprTxt()
+        {
+            cprnrTxtBox.Text = "";
+        }
+
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
@@ -226,7 +237,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox CPRNR_textBox;
+        private System.Windows.Forms.TextBox cprnrTxtBox;
         private System.Windows.Forms.Button findVoterButton;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;

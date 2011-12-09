@@ -56,6 +56,7 @@ namespace DigitalVoterList.PollingTable
             {
                 NormVW nvw = new NormVW(voter);
                 nvw.RegButton.Click += (o, eA) => this.VoterShown();
+                nvw.RegButton.Click += (o, eA) => nvw.Close();
                 nvw.Show();
             }
 
@@ -64,6 +65,7 @@ namespace DigitalVoterList.PollingTable
             {
                 WarningVW wvw = new WarningVW(voter);
                 wvw.UnlockButton.Click += (o, eA) => this.Unlock();
+                wvw.UnlockButton.Click += (o, eA) => wvw.Close();
                 wvw.Show();
             }
         }
@@ -75,6 +77,7 @@ namespace DigitalVoterList.PollingTable
         {
             UnRegVW uvw = new UnRegVW(model.currentVoter);
             uvw.UnregisterButton.Click += (o, eA) => this.Unregister();
+            uvw.UnregisterButton.Click += (o, eA) => uvw.Close();
             uvw.Show();
         }
 
@@ -83,6 +86,11 @@ namespace DigitalVoterList.PollingTable
             LogWindow lw = new LogWindow();
             LogModel lm = new LogModel();
             LogController lc = new LogController(lw, lm);
+        }
+
+        public void ShowMessageBox(string msg)
+        {
+            System.Windows.Forms.MessageBox.Show(msg);
         }
 
         public ScannerWindow ScannerWindow { get { return scannerWindow; } }        

@@ -125,11 +125,11 @@
             // 
             // UnlockBtn
             // 
+            this.UnlockBtn.Image = global::DigitalVoterList.Properties.Resources.lock_open;
             this.UnlockBtn.Location = new System.Drawing.Point(312, 108);
             this.UnlockBtn.Name = "UnlockBtn";
             this.UnlockBtn.Size = new System.Drawing.Size(30, 30);
             this.UnlockBtn.TabIndex = 36;
-            this.UnlockBtn.Text = "button1";
             this.UnlockBtn.UseVisualStyleBackColor = true;
             // 
             // warningMsg1
@@ -148,6 +148,8 @@
             this.Controls.Add(this.UnlockBtn);
             this.Controls.Add(this.cancelBtn1);
             this.Controls.Add(this.groupBox1);
+            this.MaximumSize = this.Size;
+            this.MinimumSize = new System.Drawing.Size(384, 277);
             this.Name = "WarningVW";
             this.Text = "WarningVW";
             this.groupBox1.ResumeLayout(false);
