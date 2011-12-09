@@ -33,23 +33,23 @@ namespace DigitalVoterList.PollingTable
 
         private void ReactTofindVoterRequest(object sender, EventArgs e)
         {
+            string cpr = view.ScannerWindow.CprnrTextBox.Text;
             
-            //Validate that CPRNR doesn't contain letters
-            
-
             //Validate length of CPRNR. 
-            int i = view.ScannerWindow.CprnrTextBox.Text.Length;
-            if ( i > 10 || i < 10)
+            if(!Model.CprLengtVal(cpr))
             {
-                MessageBox.Show("Length of cprno is not valid");
-                view.ScannerWindow.CprnrTextBox.Text = ""; 
+                MessageBox.Show("Length of cprno is not valid.");
+                view.ScannerWindow.CprnrTextBox.Text = "";
                 return;
             }
-            //validate if cprno is on the DB. If not show messagebox.
-            //Should be done in the model...
 
-            //System.Windows.Forms.MessageBox.Show(view.ScannerWindow.CprnrTextBox.ToString());
-            
+            //Validate that CPRNR doesn't contain letters
+            if (!Model.CprLetterVal(cpr))
+            {
+                MessageBox.Show("Cprno must not contain letters.");
+                view.ScannerWindow.CprnrTextBox.Text = "";
+                return;
+            }        
             model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTextBox.Text)); 
         }
 
@@ -65,7 +65,7 @@ namespace DigitalVoterList.PollingTable
         private void ReactToUnregRequest()
         {
             System.Windows.Forms.MessageBox.Show("The voter card is Unregistered");
-            model.unregisterCurrentVoter();
+            model.UnregisterCurrentVoter();
         }
     }
 }

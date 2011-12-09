@@ -119,8 +119,10 @@
             // 
             // CPRNR_textBox
             // 
+            this.CPRNR_textBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CPRNR_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CPRNR_textBox.Location = new System.Drawing.Point(231, 56);
+            this.CPRNR_textBox.MaxLength = 10;
             this.CPRNR_textBox.Name = "CPRNR_textBox";
             this.CPRNR_textBox.Size = new System.Drawing.Size(273, 45);
             this.CPRNR_textBox.TabIndex = 7;
@@ -164,7 +166,6 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Open log";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ScannerWindow
             // 
@@ -178,6 +179,7 @@
             this.Controls.Add(this.CPRNR_textBox);
             this.Controls.Add(this.findVoterButton);
             this.Controls.Add(this.shapeContainer1);
+            this.HelpButton = true;
             this.Name = "ScannerWindow";
             this.Text = "ScannerWindow";
             this.groupBox1.ResumeLayout(false);

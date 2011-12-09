@@ -30,14 +30,16 @@ namespace DigitalVoterList.PollingTable
         
         public event VoterShownHandler VoterShown;
         public event UnlockHandler Unlock;
-        public event UnlockHandler Unregister;
+        public event UnregisterHandler Unregister;
 
-        public event LogHandler Log;
+        public event LogHandler ShowLog;
 
         public PtView(Model model)
         {
             this.model = model;
             scannerWindow = new ScannerWindow();
+
+            scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
             
             model.CurrentVoterChanged += this.ShowSpecificVoter;
             this.Unlock += this.OpenUnregWindow;
@@ -76,9 +78,8 @@ namespace DigitalVoterList.PollingTable
             uvw.Show();
         }
 
-        public void showLog()
+        public void OpenLogWindow()
         {
-
             LogWindow lw = new LogWindow();
             LogModel lm = new LogModel();
             LogController lc = new LogController(lw, lm);
