@@ -101,8 +101,20 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.#ctor(MySql.Data.MySqlClient.MySqlConnection)"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.ConstructorStringStringStringString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.#ctor(System.String,System.String,System.String,System.String)"/>
+            </summary>
+        </member>
+        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.createDBMySqlConnection">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.createDB(MySql.Data.MySqlClient.MySqlConnection)"/>
+            </summary>
+        </member>
         <member name="T:DBComm.DBComm.DataGeneration.Moles.MDBCreator.AllInstances">
             <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.AllInstances.createDBMySqlConnection">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.createDB(MySql.Data.MySqlClient.MySqlConnection)"/>
+            </summary>
         </member>
         <member name="T:DBComm.DBComm.DataGeneration.Moles.MData">
             <summary>Mole type of <see cref="T:DBComm.DBComm.DataGeneration.Data"/>
@@ -272,8 +284,16 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetDefaultInstance"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceFromServerString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstanceFromServer(System.String)"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceMySqlConnection">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(MySql.Data.MySqlClient.MySqlConnection)"/>
+            </summary>
+        </member>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(System.String)"/>
             </summary>
         </member>
         <member name="T:DBComm.DBComm.Moles.MDigitalVoterList.AllInstances">
@@ -440,6 +460,10 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.LogDO.#ctor"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MLogDO.ConstructorNullableOfUInt32NullableOfUInt32NullableOfActivityEnum">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.LogDO.#ctor(System.Nullable`1{System.UInt32},System.Nullable`1{System.UInt32},System.Nullable`1{DBComm.DBComm.DO.ActivityEnum})"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.DO.Moles.MLogDO.CprGet">
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.LogDO.Cpr"/>
             </summary>
@@ -458,6 +482,10 @@
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MLogDO.PrimaryKeySetNullableOfUInt32">
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.LogDO.PrimaryKey"/>
+            </summary>
+        </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MLogDO.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.LogDO.ResetAssociations"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MLogDO.TableGet">
@@ -509,6 +537,10 @@
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MLogDO.AllInstances.PrimaryKeySetNullableOfUInt32">
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.LogDO.PrimaryKey"/>
+            </summary>
+        </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MLogDO.AllInstances.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.LogDO.ResetAssociations"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MLogDO.AllInstances.TableGet">
@@ -690,6 +722,10 @@
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.MunicipalityDO.PrimaryKey"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MMunicipalityDO.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.MunicipalityDO.ResetAssociations"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.DO.Moles.MMunicipalityDO.ToString">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.MunicipalityDO.ToString"/>
             </summary>
@@ -759,6 +795,10 @@
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MMunicipalityDO.AllInstances.PrimaryKeySetNullableOfUInt32">
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.MunicipalityDO.PrimaryKey"/>
+            </summary>
+        </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MMunicipalityDO.AllInstances.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.MunicipalityDO.ResetAssociations"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MMunicipalityDO.AllInstances.ToString01">
@@ -986,6 +1026,10 @@
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.PollingStationDO.PrimaryKey"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MPollingStationDO.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.PollingStationDO.ResetAssociations"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.DO.Moles.MPollingStationDO.ToString">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.PollingStationDO.ToString"/>
             </summary>
@@ -1055,6 +1099,10 @@
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MPollingStationDO.AllInstances.PrimaryKeySetNullableOfUInt32">
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.PollingStationDO.PrimaryKey"/>
+            </summary>
+        </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MPollingStationDO.AllInstances.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.PollingStationDO.ResetAssociations"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MPollingStationDO.AllInstances.ToString01">
@@ -1274,6 +1322,10 @@
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.VoterDO.PrimaryKey"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.ResetAssociations"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.UpdateValuesIDataObject">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.UpdateValues(DBComm.DBComm.DO.IDataObject)"/>
             </summary>
@@ -1365,6 +1417,10 @@
             <summary>Sets the mole of <see cref="P:DBComm.DBComm.DO.VoterDO.PrimaryKey"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.AllInstances.ResetAssociations">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.ResetAssociations"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.AllInstances.UpdateValuesIDataObject">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.UpdateValues(DBComm.DBComm.DO.IDataObject)"/>
             </summary>
@@ -1413,6 +1469,9 @@
             .</summary>
         </member>
         <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.#ctor(MySql.Data.MySqlClient.MySqlConnection)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.#ctor(System.String,System.String,System.String,System.String)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.InitializeStub">
@@ -1514,6 +1573,10 @@
             <summary>Sets the stub of <see cref="M:DBComm.DBComm.DO.IDataObject.FullyInitialized"/>
             </summary>
         </member>
+        <member name="M:DBComm.DBComm.DO.Moles.SIDataObject.dbc::DBComm#DBComm#DO#IDataObject#ResetAssociations">
+            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DO.IDataObject.ResetAssociations"/>
+            </summary>
+        </member>
         <member name="M:DBComm.DBComm.DO.Moles.SIDataObject.dbc::DBComm#DBComm#DO#IDataObject#UpdateValues(DBComm.DBComm.DO.IDataObject)">
             <summary>Sets the stub of <see cref="M:DBComm.DBComm.DO.IDataObject.UpdateValues(DBComm.DBComm.DO.IDataObject)"/>
             </summary>
@@ -1524,6 +1587,10 @@
         </member>
         <member name="F:DBComm.DBComm.DO.Moles.SIDataObject.PrimaryKeyGet">
             <summary>Sets the stub of <see cref="P:DBComm.DBComm.DO.IDataObject.PrimaryKey"/>
+            </summary>
+        </member>
+        <member name="F:DBComm.DBComm.DO.Moles.SIDataObject.ResetAssociations">
+            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DO.IDataObject.ResetAssociations"/>
             </summary>
         </member>
         <member name="F:DBComm.DBComm.DO.Moles.SIDataObject.UpdateValuesIDataObject">
@@ -1566,6 +1633,9 @@
             .</summary>
         </member>
         <member name="M:DBComm.DBComm.DO.Moles.SLogDO.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:DBComm.DBComm.DO.Moles.SLogDO.#ctor(System.Nullable{System.UInt32},System.Nullable{System.UInt32},System.Nullable{DBComm.DBComm.DO.ActivityEnum})">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DBComm.DBComm.DO.Moles.SLogDO.InitializeStub">

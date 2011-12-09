@@ -8,8 +8,6 @@ namespace DigitalVoterList.PollingTable
 {
     using System;
 
-    using DBComm.DBComm.DO;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -24,40 +22,53 @@ namespace DigitalVoterList.PollingTable
             this.model = model;
 
             view.ScannerWindow.FindVoterButton.Click += this.ReactTofindVoterRequest;
-            //view.RAC.RegisterBtn.Click += this.ReactToRegisterRequest;
             view.VoterShown += this.ReactToRegisterRequest;
-            //view.Unlock += this.ReactToUnlockBtn;
             view.Unregister += this.ReactToUnregRequest;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReactTofindVoterRequest(object sender, EventArgs e)
         {
-            //Validate that CPRNR doesn't contain letters
-            //int i = 
-
-            //Validate length of CPRNR. 
-
-            //validate if cprno is on the DB. If not show messagebox.
-
-
-            //System.Windows.Forms.MessageBox.Show(view.ScannerWindow.CprnrTextBox.ToString());
+            string cpr = view.ScannerWindow.CprnrTxtBox.Text;
             
-            model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTextBox.Text)); 
+            //Validate length of CPRNR. 
+            if(!Model.CprLengtVal(cpr)) { view.ShowMessageBox("Length of cprno is not valid."); return; }
+
+            //Validate that CPRNR doesn't contain letters
+            if (!Model.CprLetterVal(cpr)) { view.ShowMessageBox("Cprno must only contain numbers."); return; }
+            
+            // try to fetch the voter from the voter box. If no voter found write an error msg.
+            //try
+            //{ model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); }
+            //catch (Exception) 
+            //{ view.ShowMessageBox("Voter not registered at polling station."); }
+            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void ReactToRegisterRequest()
         {
-            //Console.WriteLine("Glen");
-            System.Windows.Forms.MessageBox.Show("The votercard is now registered");
+            view.ShowMessageBox("The voter card is registered");
             //Update the model so that the voter is registered.
             model.RegisterCurrentVoter();
-            
+            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void ReactToUnregRequest()
         {
-            System.Windows.Forms.MessageBox.Show("Unregistered");
-            model.unregisterCurrentVoter();
+            view.ShowMessageBox("The voter card is Unregistered");
+            //Update the model so that the voter is unregistered.
+            model.UnregisterCurrentVoter();
+            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
         }
     }
 }

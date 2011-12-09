@@ -166,6 +166,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(361, 307);
+
+            //Window is not resizable
+            var size = new System.Drawing.Size(377, 345);
+            this.MinimumSize = size;
+            this.MaximumSize = size;
+
             this.Controls.Add(this.UnRegisterBtn);
             this.Controls.Add(this.cancelBtn1);
             this.Controls.Add(this.label9);

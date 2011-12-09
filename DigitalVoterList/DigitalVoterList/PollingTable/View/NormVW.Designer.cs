@@ -137,12 +137,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 179);
+            this.ClientSize = new System.Drawing.Size(352, 180);
             this.Controls.Add(this.cancelBtn1);
             this.Controls.Add(this.regButton);
             this.Controls.Add(this.groupBox1);
             this.Name = "NormVW";
             this.Text = "NormVW";
+
+             //window is not resizable
+            var size = new System.Drawing.Size(368, 218);
+            this.MinimumSize = size;
+            this.MaximumSize = size;
+
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
