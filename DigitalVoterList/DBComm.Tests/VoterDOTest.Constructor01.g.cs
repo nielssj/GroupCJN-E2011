@@ -20,7 +20,7 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-public void Constructor0179()
+public void Constructor01389()
 {
     VoterDO voterDO;
     voterDO = this.Constructor01();
@@ -35,7 +35,7 @@ public void Constructor0179()
 }
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-public void Constructor324()
+public void Constructor327()
 {
     VoterDO voterDO;
     voterDO = this.Constructor
@@ -56,7 +56,7 @@ public void Constructor324()
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void ConstructorThrowsContractException586()
+public void ConstructorThrowsContractException771()
 {
     try
     {

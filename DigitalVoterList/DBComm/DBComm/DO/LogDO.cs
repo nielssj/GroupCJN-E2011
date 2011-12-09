@@ -19,9 +19,27 @@ namespace DBComm.DBComm.DO
         #region Implementation of IDataObject
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="T:System.Object"/> class.
+        /// </summary>
+        public LogDO(uint? table, uint? cpr, ActivityEnum? activity)
+        {
+            this.Table = table;
+            this.Cpr = cpr;
+            this.Activity = activity;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogDO"/> class.
+        /// </summary>
+        public LogDO()
+        {
+
+        }
+
+        /// <summary>
         /// Gets the primary key of this data object.
         /// </summary>
-        [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column(Name = "id", IsPrimaryKey = true)]
         public uint? PrimaryKey { get; private set; }
 
         /// <summary>
@@ -34,19 +52,19 @@ namespace DBComm.DBComm.DO
         /// Gets Table.
         /// </summary>
         [Column]
-        public uint? Table { get; private set; }
+        public uint? Table { get; set; }
 
         /// <summary>
         /// Gets Cpr.
         /// </summary>
         [Column]
-        public uint? Cpr { get; private set; }
+        public uint? Cpr { get; set; }
 
         /// <summary>
         /// Gets Activity.
         /// </summary>
         [Column]
-        public ActivityEnum? Activity { get; private set; }
+        public ActivityEnum? Activity { get; set; }
 
         /// <summary>
         /// Has all the fields of the object been initialized?
@@ -56,7 +74,7 @@ namespace DBComm.DBComm.DO
         /// </returns>
         public bool FullyInitialized()
         {
-            return PrimaryKey != null && Time != null && Table != null && Cpr != null && Activity != null;
+            return Table != null && Cpr != null && Activity != null;
         }
 
         /// <summary>
@@ -75,6 +93,11 @@ namespace DBComm.DBComm.DO
             this.Table = logDummy.Table ?? this.Table;
             this.Cpr = logDummy.Cpr ?? this.Cpr;
             this.Activity = logDummy.Activity ?? this.Activity;
+        }
+
+        public void ResetAssociations()
+        {
+
         }
 
         #endregion

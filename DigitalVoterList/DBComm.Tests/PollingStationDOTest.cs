@@ -22,17 +22,30 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method PollingStationDOTest.VotersSet(PollingStationDO, ICollection`1<VoterDO>)
         }
         [PexMethod]
-        public void MunicipalitySet([PexAssumeUnderTest]PollingStationDO target, MunicipalityDO value)
-        {
-            target.Municipality = value;
-            // TODO: add assertions to method PollingStationDOTest.MunicipalitySet(PollingStationDO, MunicipalityDO)
-        }
-        [PexMethod]
         public ICollection<VoterDO> VotersGet([PexAssumeUnderTest]PollingStationDO target)
         {
             ICollection<VoterDO> result = target.Voters;
             return result;
             // TODO: add assertions to method PollingStationDOTest.VotersGet(PollingStationDO)
+        }
+        [PexMethod]
+        public void UpdateValues([PexAssumeUnderTest]PollingStationDO target, IDataObject dummy)
+        {
+            target.UpdateValues(dummy);
+            // TODO: add assertions to method PollingStationDOTest.UpdateValues(PollingStationDO, IDataObject)
+        }
+        [PexMethod]
+        public string ToString01([PexAssumeUnderTest]PollingStationDO target)
+        {
+            string result = target.ToString();
+            return result;
+            // TODO: add assertions to method PollingStationDOTest.ToString01(PollingStationDO)
+        }
+        [PexMethod]
+        public void MunicipalitySet([PexAssumeUnderTest]PollingStationDO target, MunicipalityDO value)
+        {
+            target.Municipality = value;
+            // TODO: add assertions to method PollingStationDOTest.MunicipalitySet(PollingStationDO, MunicipalityDO)
         }
         [PexMethod]
         public MunicipalityDO MunicipalityGet([PexAssumeUnderTest]PollingStationDO target)
@@ -42,10 +55,11 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method PollingStationDOTest.MunicipalityGet(PollingStationDO)
         }
         [PexMethod]
-        public void UpdateValues([PexAssumeUnderTest]PollingStationDO target, IDataObject dummy)
+        public int GetHashCode01([PexAssumeUnderTest]PollingStationDO target)
         {
-            target.UpdateValues(dummy);
-            // TODO: add assertions to method PollingStationDOTest.UpdateValues(PollingStationDO, IDataObject)
+            int result = target.GetHashCode();
+            return result;
+            // TODO: add assertions to method PollingStationDOTest.GetHashCode01(PollingStationDO)
         }
         [PexMethod]
         public bool FullyInitialized([PexAssumeUnderTest]PollingStationDO target)
@@ -53,6 +67,13 @@ namespace DBComm.DBComm.DO
             bool result = target.FullyInitialized();
             return result;
             // TODO: add assertions to method PollingStationDOTest.FullyInitialized(PollingStationDO)
+        }
+        [PexMethod]
+        public bool Equals01([PexAssumeUnderTest]PollingStationDO target, object obj)
+        {
+            bool result = target.Equals(obj);
+            return result;
+            // TODO: add assertions to method PollingStationDOTest.Equals01(PollingStationDO, Object)
         }
         [PexMethod]
         public PollingStationDO Constructor01()

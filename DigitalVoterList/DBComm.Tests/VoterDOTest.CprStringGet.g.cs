@@ -23,17 +23,16 @@ namespace DBComm.DBComm.DO
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void CprStringGetThrowsContractException749()
+public void CprStringGetThrowsContractException654()
 {
     try
     {
       VoterDO voterDO;
       string s;
       voterDO = PexInvariant.CreateInstance<VoterDO>();
+      PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
       PexInvariant.SetField<EntityRef<PollingStationDO>>
           ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-      PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
       PexInvariant.SetField<uint?>
           ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
       PexInvariant.SetField<string>

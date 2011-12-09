@@ -24,7 +24,8 @@ public void PollingStationsGet673()
 {
     MunicipalityDO municipalityDO;
     ICollection<PollingStationDO> iCollection;
-    municipalityDO = new MunicipalityDO(default(uint?), (string)null, (string)null);
+    municipalityDO =
+      new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
     iCollection = this.PollingStationsGet(municipalityDO);
     Assert.IsNotNull((object)iCollection);
     Assert.IsNotNull((object)municipalityDO);
@@ -34,6 +35,7 @@ public void PollingStationsGet673()
         );
     Assert.IsNull((object)(municipalityDO.Id));
     Assert.AreEqual<string>((string)null, municipalityDO.Address);
+    Assert.AreEqual<string>((string)null, municipalityDO.City);
     Assert.AreEqual<string>((string)null, municipalityDO.Name);
 }
     }

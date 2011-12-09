@@ -9,7 +9,9 @@ using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
-    using DigitalVoterList.DBComm.DO;
+    using DBComm.DBComm.DO;
+
+    using DBComm.DBComm.DO;
 
     public partial class NormVW : Form
     {

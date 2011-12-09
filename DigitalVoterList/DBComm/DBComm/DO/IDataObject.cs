@@ -34,5 +34,10 @@ namespace DBComm.DBComm.DO
         /// The dummy object, representing new values.
         /// </param>
         void UpdateValues(IDataObject dummy);
+
+        /// <summary>
+        /// Reset all associations.
+        /// </summary>
+        void ResetAssociations();
     }
 }

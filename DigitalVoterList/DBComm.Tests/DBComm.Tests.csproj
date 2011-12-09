@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DBComm.Moles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ExtendedReflection, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Moles.Framework, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -73,7 +74,13 @@
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="MunicipalityDOTest.cs" />
+    <Compile Include="MunicipalityDOTest.Equals01.g.cs">
+      <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="MunicipalityDOTest.FullyInitialized.g.cs">
+      <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MunicipalityDOTest.GetHashCode01.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="MunicipalityDOTest.PollingStationsGet.g.cs">
@@ -85,6 +92,9 @@
     <Compile Include="MunicipalityDOTest.PrimaryKeyGet.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="MunicipalityDOTest.ToString01.g.cs">
+      <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="MunicipalityDOTest.UpdateValues.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
@@ -92,13 +102,22 @@
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="PollingStationDOTest.cs" />
+    <Compile Include="PollingStationDOTest.Equals01.g.cs">
+      <DependentUpon>PollingStationDOTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="PollingStationDOTest.FullyInitialized.g.cs">
+      <DependentUpon>PollingStationDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PollingStationDOTest.GetHashCode01.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="PollingStationDOTest.MunicipalityGet.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="PollingStationDOTest.MunicipalitySet.g.cs">
+      <DependentUpon>PollingStationDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PollingStationDOTest.ToString01.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="PollingStationDOTest.UpdateValues.g.cs">
@@ -116,23 +135,26 @@
     <Compile Include="VoterDOTest.Constructor01.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="VoterDOTest.CprGet.g.cs">
-      <DependentUpon>VoterDOTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VoterDOTest.CprSet.g.cs">
-      <DependentUpon>VoterDOTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="VoterDOTest.CprStringGet.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.cs" />
+    <Compile Include="VoterDOTest.Equals01.g.cs">
+      <DependentUpon>VoterDOTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="VoterDOTest.FullyInitialized.g.cs">
+      <DependentUpon>VoterDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VoterDOTest.GetHashCode01.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.PollingStationGet.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.PollingStationSet.g.cs">
+      <DependentUpon>VoterDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VoterDOTest.PrimaryKeyGet.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.UpdateValues.g.cs">

@@ -19,10 +19,9 @@ namespace DigitalVoterList.PollingTable
     {
         public PollingMain()
         {
-
-            var model = new Model();
+            Model model = new Model();
             PtView view = new PtView(model);
-            var controller = new Controller(model, view);
+            Controller controller = new Controller(model, view);
 
             Application.Run(view.ScannerWindow);
         } 

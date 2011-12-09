@@ -33,6 +33,10 @@ namespace DBComm.DBComm.DO
             Contract.Requires(dummy.GetType() == this.GetType());
         }
 
+        void IDataObject.ResetAssociations()
+        {
+        }
+
         #endregion
     }
 }

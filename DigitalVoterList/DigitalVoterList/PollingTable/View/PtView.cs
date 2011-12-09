@@ -8,7 +8,7 @@ namespace DigitalVoterList.PollingTable
 {
     using System;
 
-    using DigitalVoterList.DBComm.DO;
+    using DBComm.DBComm.DO;
     using DigitalVoterList.PollingTable.View.Root_elements;
 
     /// <summary>

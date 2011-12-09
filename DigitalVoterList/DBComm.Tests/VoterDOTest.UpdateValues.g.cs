@@ -23,52 +23,15 @@ namespace DBComm.DBComm.DO
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException823()
+public void UpdateValuesThrowsContractException913()
 {
     try
     {
       VoterDO voterDO;
       voterDO = PexInvariant.CreateInstance<VoterDO>();
+      PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
       PexInvariant.SetField<EntityRef<PollingStationDO>>
           ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-      PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
-      PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<Name>k__BackingField", (string)null);
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<Address>k__BackingField", (string)null);
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<City>k__BackingField", (string)null);
-      PexInvariant.SetField<bool?>
-          ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
-      PexInvariant.SetField<bool?>
-          ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
-      PexInvariant.CheckInvariant((object)voterDO);
-      this.UpdateValues(voterDO, (IDataObject)null);
-      throw 
-        new AssertFailedException("expected an exception of type ContractException");
-    }
-    catch(Exception ex)
-    {
-      if (!PexContract.IsContractException(ex))
-        throw ex;
-    }
-}
-[TestMethod]
-[PexGeneratedBy(typeof(VoterDOTest))]
-[PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException562()
-{
-    try
-    {
-      VoterDO voterDO;
-      voterDO = PexInvariant.CreateInstance<VoterDO>();
-      PexInvariant.SetField<EntityRef<PollingStationDO>>
-          ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
-      PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PrimaryKey>k__BackingField", default(uint?));
       PexInvariant.SetField<uint?>
           ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
       PexInvariant.SetField<string>
@@ -83,6 +46,41 @@ public void UpdateValuesThrowsContractException562()
           ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
       PexInvariant.CheckInvariant((object)voterDO);
       this.UpdateValues(voterDO, (IDataObject)voterDO);
+      throw 
+        new AssertFailedException("expected an exception of type ContractException");
+    }
+    catch(Exception ex)
+    {
+      if (!PexContract.IsContractException(ex))
+        throw ex;
+    }
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+[PexRaisedContractException(PexExceptionState.Expected)]
+public void UpdateValuesThrowsContractException668()
+{
+    try
+    {
+      VoterDO voterDO;
+      voterDO = PexInvariant.CreateInstance<VoterDO>();
+      PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
+      PexInvariant.SetField<EntityRef<PollingStationDO>>
+          ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
+      PexInvariant.SetField<uint?>
+          ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
+      PexInvariant.SetField<string>
+          ((object)voterDO, "<Name>k__BackingField", (string)null);
+      PexInvariant.SetField<string>
+          ((object)voterDO, "<Address>k__BackingField", (string)null);
+      PexInvariant.SetField<string>
+          ((object)voterDO, "<City>k__BackingField", (string)null);
+      PexInvariant.SetField<bool?>
+          ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
+      PexInvariant.SetField<bool?>
+          ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
+      PexInvariant.CheckInvariant((object)voterDO);
+      this.UpdateValues(voterDO, (IDataObject)null);
       throw 
         new AssertFailedException("expected an exception of type ContractException");
     }

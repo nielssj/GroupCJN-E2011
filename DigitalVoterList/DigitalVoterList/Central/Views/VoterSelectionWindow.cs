@@ -104,5 +104,15 @@ namespace DigitalVoterList.Central.Views
                 e.Handled = true;
             }
         }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void lblVoterCount_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
