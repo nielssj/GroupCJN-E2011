@@ -275,6 +275,7 @@
       <DependentUpon>SetupWindow.cs</DependentUpon>
     </EmbeddedResource>
     <Moles Include="MySql.Data.moles" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\DataSources\DigitalVoterList.PollingTable.Log.LogModel.datasource" />
     <EmbeddedResource Include="PollingTable\View\WarningVW.resx">
       <DependentUpon>WarningVW.cs</DependentUpon>

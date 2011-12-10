@@ -1,7 +1,5 @@
 ﻿namespace DigitalVoterList.Central.Views
 {
-    using System.Collections.Generic;
-
     using DigitalVoterList.Central.Models;
 
     /// <summary>
@@ -33,29 +31,19 @@
 
         public VoterSelectionWindow VoterSelectionView { get { return vsView; } }
 
-        private void OpenView(Model.ChangeType type, ISubModel model)
+        private void OpenView(Model.ChangeType type, ISubModel subModel)
         {
+            ISubView subView = null;
             switch(type)
             {
                 case Model.ChangeType.VCG :
-                    OpenVCGView((VoterCardGenerator) model);
+                    subView = new VoterCardGeneratorWindow((VoterCardGenerator)subModel);
                     break;
                 case Model.ChangeType.VBM :
-                    OpenVBMView((VoterBoxManager) model);
+                    subView = new VoterBoxManagerWindow((VoterBoxManager)subModel);
                     break;
             }
-        }
-
-        private void OpenVCGView(VoterCardGenerator vcg)
-        {
-            var vcgWindow = new VoterCardGeneratorWindow(vcg);
-            SubViewOpened(Model.ChangeType.VCG, vcg, vcgWindow);
-        }
-
-        private void OpenVBMView(VoterBoxManager vbm)
-        {
-            var vbmWindow = new VoterBoxManagerWindow(vbm);
-            SubViewOpened(Model.ChangeType.VBM, vbm, vbmWindow);
+            SubViewOpened(type, subModel, subView);
         }
     }
 }
