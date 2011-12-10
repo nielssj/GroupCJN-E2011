@@ -17,6 +17,8 @@
 
         /// <summary> Notify me when a submodel has been opened. </summary>
         public event ModelChangedHandler SubModelOpened;
+        /// <summary> Notify me when a submodel has been closed. </summary>
+        public event Action<ISubModel> SubModelClosed;
 
         /// <summary> Describes a kind of sub-model. </summary>
         public enum ChangeType { VCG, VBM };
@@ -41,7 +43,7 @@
                     break;
             }
             this.subModels.Add(subModel);
-            SubModelOpened(type, subModel);
+            if(SubModelOpened != null) SubModelOpened(type, subModel);
         }
 
         /// <summary>
@@ -51,6 +53,16 @@
         public void CloseSubModel(ISubModel subModel)
         {
             this.subModels.Remove(subModel);
+            if(SubModelClosed != null) SubModelClosed(subModel);
         }
+
+        /// <summary>
+        /// Which submodels are currently open?
+        /// </summary>
+        /// <returns>An enumerator of the current sub-models.</returns>
+        public IEnumerator<ISubModel> GetSubModels()
+        {
+            return subModels.GetEnumerator();
+        } 
     }
 }

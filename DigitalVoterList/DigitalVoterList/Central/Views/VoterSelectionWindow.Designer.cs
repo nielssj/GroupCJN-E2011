@@ -271,7 +271,6 @@
             this.tsbVBM.Size = new System.Drawing.Size(28, 28);
             this.tsbVBM.Text = "toolStripButton3";
             this.tsbVBM.ToolTipText = "Voter Box Manager";
-            this.tsbVBM.Click += new System.EventHandler(this.tsbVBM_Click);
             // 
             // VoterSelectionWindow
             // 
