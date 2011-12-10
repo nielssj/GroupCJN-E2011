@@ -6,7 +6,10 @@
 
 namespace DigitalVoterList.PollingTable
 {
+    using System;
     using System.Diagnostics;
+    using System.IO;
+    using System.Text;
     using System.Windows.Forms;
 
     
@@ -19,33 +22,57 @@ namespace DigitalVoterList.PollingTable
     public class PollingMain
     {
         //Determindes if it is alowed to have multible instances of polling table open.
-        private readonly bool singleInstance = false; 
+        private const bool SingleInstance = false;
 
         public PollingMain()
         {
+
             Model model = new Model();
             PtView view = new PtView(model);
             Controller controller = new Controller(model, view);
 
-            if (singleInstance)
-            {
-                // get the name of our process
-                string proc = Process.GetCurrentProcess().ProcessName;
+        //    this.SetupDVL();
+            
+        //    if (SingleInstance)
+        //    {
+        //        // get the name of our process
+        //        string proc = Process.GetCurrentProcess().ProcessName;
 
-                // get the list of all processes by that name
-                Process[] processes = Process.GetProcessesByName(proc);
+        //        // get the list of all processes by that name
+        //        Process[] processes = Process.GetProcessesByName(proc);
 
-                // if there is more than one process...
+        //        // if there is more than one process...
+        //        if (processes.Length > 1)
+        //        {
+        //            MessageBox.Show("Application is already running");
+        //            return;
+        //        }
+        //        else 
+        //        Application.Run(view.SetupWindow);
+        //    }
+        //    Application.Run(view.SetupWindow);
+        //} 
 
-                if (processes.Length > 1)
-                {
-                    MessageBox.Show("Application is already running");
-                    return;
-                }
-                else 
-                Application.Run(view.ScannerWindow);
-            }
-            Application.Run(view.ScannerWindow);
-        } 
+        //private void SetupDVL()
+        //{
+        //    //TODO Check if file doesn't exists - create new one
+        //    string path = "c:/SetupDVL.conf";
+
+        //    // If the setup.conf file doesn't exist. Create a new one with the input from the setup window.
+        //    if (!File.Exists(path))
+        //    {
+        //        string[] liness = { "First line", "Second line", "Third line" };
+        //        File.WriteAllLines(path, liness);
+        //    }
+
+
+        //    string[] lines = File.ReadAllLines(path);
+        //    foreach (var line in lines)
+        //    {
+                
+        //    Console.WriteLine(line);
+        //    }
+
+        }
     }
 }

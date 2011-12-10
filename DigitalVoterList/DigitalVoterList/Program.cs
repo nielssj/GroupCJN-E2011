@@ -20,7 +20,7 @@ namespace DigitalVoterList
             //new Central.Main();
 
             //I'm just tes-ting 
-            new LogController(new LogWindow(), new LogModel());
+            //new LogController(new LogWindow(), new LogModel());
 
             // Launch 'PollingTable' client.
             new PollingTable.PollingMain();

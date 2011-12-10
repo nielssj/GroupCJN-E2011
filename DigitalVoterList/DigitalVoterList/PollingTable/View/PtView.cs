@@ -18,26 +18,27 @@ namespace DigitalVoterList.PollingTable
     public class PtView
     {
         private Model model;
-
         private ScannerWindow scannerWindow;
+        private SetupWindow setupWindow;
 
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
         public delegate void UnregisterHandler(string admpass);
-
-        public delegate void LogHandler();
-        
+        //public delegate void LogHandler();
+        public delegate void SetupHandler(SetupInfo si);
         
         public event VoterShownHandler VoterShown;
         public event UnlockHandler Unlock;
         public event UnregisterHandler Unregister;
+        //public event LogHandler ShowLog;
 
-        public event LogHandler ShowLog;
 
         public PtView(Model model)
         {
             this.model = model;
             scannerWindow = new ScannerWindow();
+            //Initialize the setup window with
+            setupWindow = new SetupWindow(); 
 
             scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
             
@@ -93,6 +94,9 @@ namespace DigitalVoterList.PollingTable
             System.Windows.Forms.MessageBox.Show(msg);
         }
 
-        public ScannerWindow ScannerWindow { get { return scannerWindow; } }        
+
+
+        public ScannerWindow ScannerWindow { get { return scannerWindow; } }
+        public SetupWindow SetupWindow { get { return setupWindow; } }
     }
 }
