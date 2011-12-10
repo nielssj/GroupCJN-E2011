@@ -74,10 +74,11 @@ namespace DigitalVoterList.PollingTable
         {
             if (!Model.PswVal(adminPass))
             {
-                  view.ShowMessageBox("Incorrect password");
-                  view.OpenUnregWindow();
-                  return;
+                view.ShowMessageBox("Incorrect password");
+                view.OpenUnregWindow();
+                return;
             }
+            
             //Update the model so that the voter is unregistered.
             model.UnregisterCurrentVoter();
             view.ShowMessageBox("The voter card is now unregistered");
@@ -99,9 +100,6 @@ namespace DigitalVoterList.PollingTable
                 view.ShowMessageBox("Incorrect password");
                 return;
             }
-
-
-            view.ShowMessageBox("Glen");
             string ip = view.SetupWindow.IpTextBox;
             string table = view.SetupWindow.TableBox;
             SetupInfo si = new SetupInfo(ip, table, "");
@@ -116,8 +114,7 @@ namespace DigitalVoterList.PollingTable
             }
             view.SetupWindow.Hide();
             view.ScannerWindow.Show();
-            
-            
+         
         }
 
         public void StartPollingTable()
@@ -134,7 +131,8 @@ namespace DigitalVoterList.PollingTable
             }
             view.SetupWindow.IpTextBox = setupFilter.Ip;
             view.SetupWindow.TableBox = setupFilter.Table;
-            Application.Run(view.SetupWindow);
+            view.SetupWindow.ShowDialog();
+            Application.Run(view.ScannerWindow);
         }
     }
 }

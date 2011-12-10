@@ -58,7 +58,7 @@ namespace DigitalVoterList.PollingTable
                 NormVW nvw = new NormVW(voter);
                 nvw.RegButton.Click += (o, eA) => this.VoterShown();
                 nvw.RegButton.Click += (o, eA) => nvw.Close();
-                nvw.Show();
+                nvw.ShowDialog();
             }
 
             //Open a voter window with warning message indicating that the voter has alredy voted.
@@ -67,7 +67,7 @@ namespace DigitalVoterList.PollingTable
                 WarningVW wvw = new WarningVW(voter);
                 wvw.UnlockButton.Click += (o, eA) => this.Unlock();
                 wvw.UnlockButton.Click += (o, eA) => wvw.Close();
-                wvw.Show();
+                wvw.ShowDialog();
             }
         }
 
@@ -79,7 +79,7 @@ namespace DigitalVoterList.PollingTable
             UnRegVW uvw = new UnRegVW(model.currentVoter);
             uvw.UnregisterButton.Click += (o, eA) => this.Unregister(uvw.AdmPass);
             uvw.UnregisterButton.Click += (o, eA) => uvw.Close();
-            uvw.Show();
+            uvw.ShowDialog();
         }
 
         public void OpenLogWindow()
