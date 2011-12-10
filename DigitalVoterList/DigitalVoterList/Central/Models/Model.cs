@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
 
     /// <summary>
     /// The main 'model' of the application. 
@@ -10,56 +11,58 @@
     public class Model
     {
         private readonly VoterSelection voterSelection = new VoterSelection();
-        private readonly List<VoterCardGenerator> voterCardGenerators = new List<VoterCardGenerator>();
-        private readonly List<VoterBoxManager> voterBoxManagers = new List<VoterBoxManager>();
-        
+        private readonly List<ISubModel> subModels = new List<ISubModel>();
+
         public delegate void ModelChangedHandler(ChangeType type, ISubModel model);
 
         /// <summary> Notify me when a submodel has been opened. </summary>
         public event ModelChangedHandler SubModelOpened;
+        /// <summary> Notify me when a submodel has been closed. </summary>
+        public event Action<ISubModel> SubModelClosed;
 
-        /// <summary> Describes what kind of sub-model has been opened. </summary>
+        /// <summary> Describes a kind of sub-model. </summary>
         public enum ChangeType { VCG, VBM };
 
         /// <summary> May I have the voter selection model? </summary>
         public VoterSelection VoterSelection { get { return voterSelection; } }
 
-        /// <summary> 
-        /// Open a new 'Voter Card Generator'. 
-        /// </summary>
-        public void OpenVCG(VoterFilter filter)
-        {
-            var vcg = new VoterCardGenerator(filter);
-            voterCardGenerators.Add(vcg);
-            SubModelOpened(ChangeType.VCG, vcg);
-        }
-        
         /// <summary>
-        /// Close a given 'Voter Card Generator'.
+        /// Open a new submodel of a given type.
         /// </summary>
-        /// <param name="target">The 'Voter Card Generator' to be closed.</param>
-        public void CloseVCG(VoterCardGenerator target)
+        /// <param name="type">The type of submodel to be opened.</param>
+        public void OpenSubModel(ChangeType type)
         {
-            voterCardGenerators.Remove(target);
+            ISubModel subModel = null;
+            switch(type)
+            {
+                case ChangeType.VCG:
+                    subModel = new VoterCardGenerator(VoterSelection.CurrentFilter);
+                    break;
+                case ChangeType.VBM:
+                    subModel = new VoterBoxManager(VoterSelection.CurrentFilter);
+                    break;
+            }
+            this.subModels.Add(subModel);
+            if(SubModelOpened != null) SubModelOpened(type, subModel);
         }
 
         /// <summary>
-        /// Open a new 'Voter Box Manager'.
+        /// Close this submodel.
         /// </summary>
-        public void OpenVBM(object sender, EventArgs e)
+        /// <param name="subModel">The submodel to be closed.</param>
+        public void CloseSubModel(ISubModel subModel)
         {
-            var vbm = new VoterBoxManager(VoterSelection.CurrentFilter);
-            voterBoxManagers.Add(vbm);
-            SubModelOpened(ChangeType.VBM, vbm);
+            this.subModels.Remove(subModel);
+            if(SubModelClosed != null) SubModelClosed(subModel);
         }
 
         /// <summary>
-        /// Close a given 'Voter Box Manager'.
+        /// Which submodels are currently open?
         /// </summary>
-        /// <param name="target">The 'Voter Box Manager' to be closed.</param>
-        public void CloseVBM(VoterBoxManager target)
+        /// <returns>An enumerator of the current sub-models.</returns>
+        public IEnumerator<ISubModel> GetSubModels()
         {
-            voterBoxManagers.Remove(target);
-        }
+            return subModels.GetEnumerator();
+        } 
     }
 }

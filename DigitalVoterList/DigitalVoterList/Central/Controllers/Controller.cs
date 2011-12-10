@@ -43,24 +43,24 @@
                 case Model.ChangeType.VCG :
                     var vcgModel = (VoterCardGenerator)subModel;
                     var vcgView = (VoterCardGeneratorWindow)subView;
-                    vcgView.AddClosingHandler((o, eA) => this.model.CloseVCG(vcgModel));  // Remove references to model upon closing.
+                    vcgView.AddClosingHandler((o, eA) => this.model.CloseSubModel(vcgModel));  // Remove references to model upon closing.
                     new VoterCardGeneratorController(vcgModel, vcgView); // Instantiate controller
                     break;
                 case Model.ChangeType.VBM :
                     var vbmModel = (VoterBoxManager)subModel;
                     var vbmView = (VoterBoxManagerWindow)subView;
-                    vbmView.AddClosingHandler((o, eA) => this.model.CloseVBM(vbmModel));
+                    vbmView.AddClosingHandler((o, eA) => this.model.CloseSubModel(vbmModel));
                     new VoterBoxManagerController(vbmModel, vbmView);
                     break;
             }
         }
 
-        // Initiate default sub-controller.
+        // Initiate default sub-controller (Voter Selector).
         private void InitDefault()
         {
             VoterSelectionWindow vsView = view.VoterSelectionView;
-            vsView.AddVCGClickedHandler(model.OpenVCG);
-            vsView.AddVBMClickedHandler(model.OpenVBM);
+            vsView.AddVCGClickedHandler(model.OpenSubModel);
+            vsView.AddVBMClickedHandler(model.OpenSubModel);
             vsController = new VoterSelectionController(model.VoterSelection, view.VoterSelectionView);
         }
     }

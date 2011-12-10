@@ -79,17 +79,17 @@ namespace DigitalVoterList.Central.Views
         }
 
         /// <summary> Notify me when the 'Voter Card Generator' button is clicked. </summary>
-        public void AddVCGClickedHandler(Action<VoterFilter> handler)
+        public void AddVCGClickedHandler(Action<Model.ChangeType> handler)
         {
-            tsbVCG.Click += (o, eA) => handler(model.CurrentFilter);
-            tsmVCG.Click += (o, eA) => handler(model.CurrentFilter);
+            tsbVCG.Click += (o, eA) => handler(Model.ChangeType.VCG);
+            tsmVCG.Click += (o, eA) => handler(Model.ChangeType.VCG);
         }
 
         /// <summary> Notify me when the 'Voter Box Manager' button is clicked. </summary>
-        public void AddVBMClickedHandler(EventHandler handler)
+        public void AddVBMClickedHandler(Action<Model.ChangeType> handler)
         {
-            tsbVBM.Click += handler;
-            tsmVBM.Click += handler;
+            tsbVBM.Click += (o, eA) => handler(Model.ChangeType.VBM);
+            tsmVBM.Click += (o, eA) => handler(Model.ChangeType.VBM);
         }
 
         private void setVoterCount(int count)
