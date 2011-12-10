@@ -7,6 +7,7 @@
 namespace DigitalVoterList.PollingTable
 {
     using System;
+    using System.Windows.Forms;
 
     /// <summary>
     /// TODO: Update summary.
@@ -43,10 +44,11 @@ namespace DigitalVoterList.PollingTable
             
             // try to fetch the voter from the voter box. If no voter found write an error msg.
             //try
-            //{ model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); }
+            model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); 
             //catch (Exception) 
             //{ view.ShowMessageBox("Voter not registered at polling station."); }
-            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
+
+            this.ResetCprTxtBox();
         }
 
         /// <summary>
@@ -57,18 +59,33 @@ namespace DigitalVoterList.PollingTable
             view.ShowMessageBox("The voter card is registered");
             //Update the model so that the voter is registered.
             model.RegisterCurrentVoter();
-            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
+            this.ResetCprTxtBox();
+            view.ScannerWindow.Focus();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void ReactToUnregRequest()
+        private void ReactToUnregRequest(string adminPass)
         {
-            view.ShowMessageBox("The voter card is Unregistered");
+            {
+                if (!adminPass.Equals(model.AdmPass))
+                {
+                    view.ShowMessageBox("Incorrect password");
+                    view.OpenUnregWindow();
+                    return;
+                }
+            }
             //Update the model so that the voter is unregistered.
             model.UnregisterCurrentVoter();
-            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
+            view.ShowMessageBox("The voter card is now unregistered");
+            this.ResetCprTxtBox();
+            view.ScannerWindow.CprnrTxtBox.Focus();
+        }
+
+        private void ResetCprTxtBox()
+        {
+            view.ScannerWindow.resetCprTxt(); 
         }
     }
 }

@@ -210,5 +210,13 @@
             }
         }
 
+        public string AdmPass
+        {
+            get
+            {
+                return textBox1.Text;
+            }
+        }
+
     }
 }

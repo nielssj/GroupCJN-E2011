@@ -23,7 +23,7 @@ namespace DigitalVoterList.PollingTable
 
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
-        public delegate void UnregisterHandler();
+        public delegate void UnregisterHandler(string admpass);
 
         public delegate void LogHandler();
         
@@ -76,7 +76,7 @@ namespace DigitalVoterList.PollingTable
         public void OpenUnregWindow()
         {
             UnRegVW uvw = new UnRegVW(model.currentVoter);
-            uvw.UnregisterButton.Click += (o, eA) => this.Unregister();
+            uvw.UnregisterButton.Click += (o, eA) => this.Unregister(uvw.AdmPass);
             uvw.UnregisterButton.Click += (o, eA) => uvw.Close();
             uvw.Show();
         }

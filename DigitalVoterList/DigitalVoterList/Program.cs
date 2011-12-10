@@ -17,13 +17,13 @@ namespace DigitalVoterList
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Launch 'Central' client.
-            new Central.Main();
+            //new Central.Main();
 
             //I'm just tes-ting 
             new LogController(new LogWindow(), new LogModel());
 
             // Launch 'PollingTable' client.
-            //new PollingTable.PollingMain();
+            new PollingTable.PollingMain();
         }
     }
 }
