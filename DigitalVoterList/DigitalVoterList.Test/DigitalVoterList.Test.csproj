@@ -45,8 +45,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVCTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PollingTableTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DigitalVoterList\DigitalVoterList.csproj">
+      <Project>{AFE39FCC-8482-499F-A180-C25B8BAA921F}</Project>
+      <Name>DigitalVoterList</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

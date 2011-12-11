@@ -7,6 +7,7 @@
 namespace DigitalVoterList.PollingTable
 {
     using System;
+    using System.Windows.Forms;
 
     /// <summary>
     /// TODO: Update summary.
@@ -24,6 +25,10 @@ namespace DigitalVoterList.PollingTable
             view.ScannerWindow.FindVoterButton.Click += this.ReactTofindVoterRequest;
             view.VoterShown += this.ReactToRegisterRequest;
             view.Unregister += this.ReactToUnregRequest;
+            view.SetupWindow.ConnectBtn.Click += this.ReactToConnectRequest;
+
+            this.StartPollingTable();
+
         }
 
         /// <summary>
@@ -43,10 +48,11 @@ namespace DigitalVoterList.PollingTable
             
             // try to fetch the voter from the voter box. If no voter found write an error msg.
             //try
-            //{ model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); }
+            model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); 
             //catch (Exception) 
             //{ view.ShowMessageBox("Voter not registered at polling station."); }
-            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
+
+            this.ResetCprTxtBox();
         }
 
         /// <summary>
@@ -57,18 +63,76 @@ namespace DigitalVoterList.PollingTable
             view.ShowMessageBox("The voter card is registered");
             //Update the model so that the voter is registered.
             model.RegisterCurrentVoter();
-            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
+            this.ResetCprTxtBox();
+            view.ScannerWindow.Focus();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        private void ReactToUnregRequest()
+        private void ReactToUnregRequest(string adminPass)
         {
-            view.ShowMessageBox("The voter card is Unregistered");
+            if (!Model.PswVal(adminPass))
+            {
+                view.ShowMessageBox("Incorrect password");
+                view.OpenUnregWindow();
+                return;
+            }
+            
             //Update the model so that the voter is unregistered.
             model.UnregisterCurrentVoter();
-            view.ScannerWindow.resetCprTxt(); // resets the cpr field in the scanner window
+            view.ShowMessageBox("The voter card is now unregistered");
+            this.ResetCprTxtBox();
+            view.ScannerWindow.CprnrTxtBox.Focus();
+        }
+
+        private void ResetCprTxtBox()
+        {
+            view.ScannerWindow.resetCprTxt(); 
+        }
+
+
+        private void ReactToConnectRequest(object o, EventArgs e)
+        {
+            //check the password before continuation
+            if (!Model.PswVal(view.SetupWindow.Password))
+            {
+                view.ShowMessageBox("Incorrect password");
+                return;
+            }
+            string ip = view.SetupWindow.IpTextBox;
+            string table = view.SetupWindow.TableBox;
+            SetupInfo si = new SetupInfo(ip, table, "");
+
+            try
+            {               
+                model.WriteToConfig(si);
+            }
+            catch(Exception e1)
+            {
+                view.ShowMessageBox("unable to write to config file. " + e1.StackTrace);
+            }
+            view.SetupWindow.Hide();
+            view.ScannerWindow.Show();
+         
+        }
+
+        public void StartPollingTable()
+        {
+            SetupInfo setupFilter;
+            try
+            {
+                setupFilter = model.ReadConfig();
+            }
+            catch (Exception e2)
+            {
+                view.ShowMessageBox("unable to read from or write to config file. " + e2.StackTrace);
+                return;
+            }
+            view.SetupWindow.IpTextBox = setupFilter.Ip;
+            view.SetupWindow.TableBox = setupFilter.Table;
+            view.SetupWindow.ShowDialog();
+            Application.Run(view.ScannerWindow);
         }
     }
 }

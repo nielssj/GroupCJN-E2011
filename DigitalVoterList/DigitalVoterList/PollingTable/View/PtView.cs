@@ -18,26 +18,27 @@ namespace DigitalVoterList.PollingTable
     public class PtView
     {
         private Model model;
-
         private ScannerWindow scannerWindow;
+        private SetupWindow setupWindow;
 
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
-        public delegate void UnregisterHandler();
-
-        public delegate void LogHandler();
-        
+        public delegate void UnregisterHandler(string admpass);
+        //public delegate void LogHandler();
+        public delegate void SetupHandler(SetupInfo si);
         
         public event VoterShownHandler VoterShown;
         public event UnlockHandler Unlock;
         public event UnregisterHandler Unregister;
+        //public event LogHandler ShowLog;
 
-        public event LogHandler ShowLog;
 
         public PtView(Model model)
         {
             this.model = model;
             scannerWindow = new ScannerWindow();
+            //Initialize the setup window with
+            setupWindow = new SetupWindow(); 
 
             scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
             
@@ -57,7 +58,7 @@ namespace DigitalVoterList.PollingTable
                 NormVW nvw = new NormVW(voter);
                 nvw.RegButton.Click += (o, eA) => this.VoterShown();
                 nvw.RegButton.Click += (o, eA) => nvw.Close();
-                nvw.Show();
+                nvw.ShowDialog();
             }
 
             //Open a voter window with warning message indicating that the voter has alredy voted.
@@ -66,7 +67,7 @@ namespace DigitalVoterList.PollingTable
                 WarningVW wvw = new WarningVW(voter);
                 wvw.UnlockButton.Click += (o, eA) => this.Unlock();
                 wvw.UnlockButton.Click += (o, eA) => wvw.Close();
-                wvw.Show();
+                wvw.ShowDialog();
             }
         }
 
@@ -76,9 +77,9 @@ namespace DigitalVoterList.PollingTable
         public void OpenUnregWindow()
         {
             UnRegVW uvw = new UnRegVW(model.currentVoter);
-            uvw.UnregisterButton.Click += (o, eA) => this.Unregister();
+            uvw.UnregisterButton.Click += (o, eA) => this.Unregister(uvw.AdmPass);
             uvw.UnregisterButton.Click += (o, eA) => uvw.Close();
-            uvw.Show();
+            uvw.ShowDialog();
         }
 
         public void OpenLogWindow()
@@ -93,6 +94,9 @@ namespace DigitalVoterList.PollingTable
             System.Windows.Forms.MessageBox.Show(msg);
         }
 
-        public ScannerWindow ScannerWindow { get { return scannerWindow; } }        
+
+
+        public ScannerWindow ScannerWindow { get { return scannerWindow; } }
+        public SetupWindow SetupWindow { get { return setupWindow; } }
     }
 }

@@ -38,7 +38,6 @@ namespace DigitalVoterList.Central.Controllers
             Application.Run(view);
         }
 
-
         /// <summary>
         /// React to municipality filter selection.
         /// </summary>

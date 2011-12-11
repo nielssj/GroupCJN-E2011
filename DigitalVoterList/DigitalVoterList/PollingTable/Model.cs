@@ -7,14 +7,11 @@
 namespace DigitalVoterList.PollingTable
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+    using System.IO;
     using System.Linq;
 
     using DBComm.DBComm.DO;
-
-    //using System.Diagnostics.Contracts;
-
     using DBComm.DBComm.DAO;
 
     /// <summary>
@@ -23,7 +20,11 @@ namespace DigitalVoterList.PollingTable
     public class Model
     {
         public VoterDO currentVoter = null;
-        //private List<VoterDO> voterList;
+
+        private static string adminPass = "abc123";
+        private const string Path = "c:/SetupDVL.conf";
+        private string ip;
+        private int tableNo;
 
         public delegate void VoterChangedHandler(VoterDO voter);
         
@@ -49,7 +50,7 @@ namespace DigitalVoterList.PollingTable
             Contract.Requires(currentVoter.Voted == false);
             Contract.Requires(currentVoter != null);
             Contract.Ensures(currentVoter.Voted == true);
-            PessimisticVoterDAO pvdao = new PessimisticVoterDAO();
+            var pvdao = new PessimisticVoterDAO();
             pvdao.StartTransaction();
             pvdao.Update((uint)currentVoter.PrimaryKey, true);
             pvdao.EndTransaction();
@@ -66,14 +67,14 @@ namespace DigitalVoterList.PollingTable
         /// <returns></returns>
         private VoterDO FetchVoter(uint cprno)
         {
-            VoterDAO vdao = new VoterDAO();
+            var vdao = new VoterDAO();
             return vdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
         }
 
         public void UnregisterCurrentVoter()
         {
             ///contracts
-            PessimisticVoterDAO pvdao = new PessimisticVoterDAO();
+            var pvdao = new PessimisticVoterDAO();
             pvdao.StartTransaction();
             pvdao.Update((uint)currentVoter.PrimaryKey, false);
             pvdao.EndTransaction();
@@ -91,8 +92,8 @@ namespace DigitalVoterList.PollingTable
         private void UpdateLog(ActivityEnum ae)
         {
             ///table number should be a static variable in model read from the config file.
-            LogDO ldo = new LogDO(5, currentVoter.PrimaryKey, ae);
-            LogDAO ldao = new LogDAO();
+            var ldo = new LogDO(5, currentVoter.PrimaryKey, ae);
+            var ldao = new LogDAO();
             ldao.Create(ldo);
         }
 
@@ -122,5 +123,50 @@ namespace DigitalVoterList.PollingTable
             if (!res) return false;
             return true;
         }
+
+        /// <summary>
+        /// evaluates a password...
+        /// </summary>
+        /// <param name="psw"></param>
+        /// <returns></returns>
+        public static bool PswVal(string psw)
+        {
+            
+            return psw.Equals(adminPass);
+        }
+
+        public SetupInfo ReadConfig()
+        {
+            
+            SetupInfo si;
+
+            //If it doesn't exist, create a new one (with blank lines).
+            if (!File.Exists(Path))
+            {
+                string[] write = {};
+                File.WriteAllLines(Path, write);
+            }
+            //try to read the file. 
+            string[] arr = File.ReadAllLines(Path);
+            if (arr.Length > 0)
+            {
+                si = new SetupInfo(arr[0], arr[1], "");
+            }
+            else {si = new SetupInfo("","","");}
+            return si;
+        }
+        
+        public void WriteToConfig(SetupInfo si)
+        {
+            if (!File.Exists(Path))
+            {
+                this.ReadConfig(); //calling this method creates the config file.
+            }
+            string[] arr = new string[2];
+            arr[0] = si.ip;
+            arr[1] = si.Table;
+            File.WriteAllLines(Path, arr);
+        }
+
     }
 }

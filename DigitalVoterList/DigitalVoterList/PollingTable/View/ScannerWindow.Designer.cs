@@ -42,6 +42,8 @@
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +85,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(193, 131);
+            this.groupBox1.Size = new System.Drawing.Size(193, 143);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Location:";
@@ -103,9 +105,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(228, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(270, 17);
+            this.label2.Size = new System.Drawing.Size(272, 17);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Please scan voter card or type in CPR No";
+            this.label2.Text = "Please scan or type in voter card number:";
             // 
             // label1
             // 
@@ -121,17 +123,17 @@
             // 
             this.cprnrTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cprnrTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cprnrTxtBox.Location = new System.Drawing.Point(231, 56);
+            this.cprnrTxtBox.Location = new System.Drawing.Point(231, 109);
             this.cprnrTxtBox.MaxLength = 10;
             this.cprnrTxtBox.Name = "cprnrTxtBox";
-            this.cprnrTxtBox.Size = new System.Drawing.Size(273, 45);
+            this.cprnrTxtBox.Size = new System.Drawing.Size(275, 45);
             this.cprnrTxtBox.TabIndex = 7;
             // 
             // findVoterButton
             // 
             this.findVoterButton.BackColor = System.Drawing.Color.LightGreen;
             this.findVoterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findVoterButton.Location = new System.Drawing.Point(290, 142);
+            this.findVoterButton.Location = new System.Drawing.Point(289, 172);
             this.findVoterButton.Name = "findVoterButton";
             this.findVoterButton.Size = new System.Drawing.Size(162, 62);
             this.findVoterButton.TabIndex = 6;
@@ -145,7 +147,7 @@
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(520, 237);
+            this.shapeContainer1.Size = new System.Drawing.Size(520, 251);
             this.shapeContainer1.TabIndex = 11;
             this.shapeContainer1.TabStop = false;
             // 
@@ -154,8 +156,8 @@
             this.lineShape1.Name = "lineShape1";
             this.lineShape1.X1 = 215;
             this.lineShape1.X2 = 215;
-            this.lineShape1.Y1 = 16;
-            this.lineShape1.Y2 = 227;
+            this.lineShape1.Y1 = 21;
+            this.lineShape1.Y2 = 232;
             // 
             // button1
             // 
@@ -167,11 +169,32 @@
             this.button1.Text = "Open log";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(231, 29);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(275, 45);
+            this.textBox1.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(228, 87);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(141, 17);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "... or type in CPR No:";
+            // 
             // ScannerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 237);
+            this.ClientSize = new System.Drawing.Size(520, 251);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -180,19 +203,12 @@
             this.Controls.Add(this.findVoterButton);
             this.Controls.Add(this.shapeContainer1);
             this.HelpButton = true;
-            
-            // window is not resizable
-            var size = new System.Drawing.Size(536, 275);
-            this.MaximumSize = size;
-            this.MinimumSize = size;
-
             this.Name = "ScannerWindow";
             this.Text = "ScannerWindow";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -242,5 +258,7 @@
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private Button button1;
+        private TextBox textBox1;
+        private Label label7;
     }
 }
