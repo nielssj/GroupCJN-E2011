@@ -36,22 +36,22 @@ namespace DBComm.DBComm.DO
 
         }
 
-        /// <summary>
-        /// Gets the primary key of this data object.
-        /// </summary>
-        [Column(Name = "id", IsPrimaryKey = true)]
+        ///// <summary>
+        ///// Gets the primary key of this data object.
+        ///// </summary>
+        [Column(Name = "id")]
         public uint? PrimaryKey { get; private set; }
 
         /// <summary>
         /// Gets Time.
         /// </summary>
-        [Column]
+        [Column(IsPrimaryKey = true)]
         public DateTime? Time { get; private set; }
 
         /// <summary>
         /// Gets Table.
         /// </summary>
-        [Column(Name = "tableNo")]
+        [Column(Name = "tableNo", IsPrimaryKey = true)]
         public uint? Table { get; set; }
 
         /// <summary>
@@ -88,7 +88,6 @@ namespace DBComm.DBComm.DO
             LogDO logDummy = dummy as LogDO;
             Contract.Assert(logDummy != null);
 
-            this.PrimaryKey = logDummy.PrimaryKey ?? this.PrimaryKey;
             this.Time = logDummy.Time ?? this.Time;
             this.Table = logDummy.Table ?? this.Table;
             this.Cpr = logDummy.Cpr ?? this.Cpr;

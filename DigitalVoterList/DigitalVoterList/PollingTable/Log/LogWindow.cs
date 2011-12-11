@@ -70,7 +70,7 @@ namespace DigitalVoterList.PollingTable.Log
             }
         }
 
-        public void RefreshGrid(BindingList<LogDO> voters)
+        public void SetDataSource(BindingList<LogDO> voters)
         {
             this.dataGridView1.DataSource = voters;
         }
