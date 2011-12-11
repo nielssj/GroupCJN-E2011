@@ -52,6 +52,14 @@ namespace DigitalVoterList.PollingTable
         /// <param name="voter"></param>
         public void ShowSpecificVoter(VoterDO voter)
         {
+            //If the voter is null it doesn't exists in the 
+            if(voter == null)
+            {
+                //this.ShowMessageBox("Voter is not registered at polling station.");
+                //scannerWindow.resetCprTxt();
+                return;
+            }
+
             //Open an ordinary voter window if the voter has not voted yet.
             if (voter.Voted == false)
             {
@@ -92,7 +100,10 @@ namespace DigitalVoterList.PollingTable
         public void ShowMessageBox(string msg)
         {
             System.Windows.Forms.MessageBox.Show(msg);
+
         }
+
+        //TODO PAssword msg box. -> after show clear the password box. 
 
 
 

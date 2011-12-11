@@ -36,7 +36,13 @@ namespace DigitalVoterList.PollingTable
         /// <param name="cprno"></param>
         public void FindVoter(uint cprno)
         {
-            this.currentVoter = FetchVoter(cprno);
+            
+            //this.currentVoter = FetchVoter(cprno);
+
+            PessimisticVoterDAO pvdao = new PessimisticVoterDAO();
+            pvdao.StartTransaction();
+            currentVoter = pvdao.Read(cprno);
+            pvdao.EndTransaction();
             CurrentVoterChanged(currentVoter);
             //Update log with read entry
             this.UpdateLog(ActivityEnum.R);
@@ -65,10 +71,16 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         /// <param name="cprno"></param>
         /// <returns></returns>
-        private VoterDO FetchVoter(uint cprno)
+        public VoterDO FetchVoter(uint cprno)
         {
-            var vdao = new VoterDAO();
-            return vdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
+            var pvdao = new PessimisticVoterDAO();
+            //return pvdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
+            pvdao.StartTransaction();
+            VoterDO voter = pvdao.Read(cprno);
+            pvdao.EndTransaction();
+            return voter;
+            ///TODO use pesimistic. 
+
         }
 
         public void UnregisterCurrentVoter()
@@ -118,8 +130,8 @@ namespace DigitalVoterList.PollingTable
         /// <returns>false if cpr is not valid, true if it is.</returns>
         public static bool CprLetterVal(string cpr)
         {
-            int result;
-            bool res = Int32.TryParse(cpr, out result);
+            uint result;
+            bool res = uint.TryParse(cpr, out result);
             if (!res) return false;
             return true;
         }
@@ -137,7 +149,6 @@ namespace DigitalVoterList.PollingTable
 
         public SetupInfo ReadConfig()
         {
-            
             SetupInfo si;
 
             //If it doesn't exist, create a new one (with blank lines).
@@ -167,6 +178,5 @@ namespace DigitalVoterList.PollingTable
             arr[1] = si.Table;
             File.WriteAllLines(Path, arr);
         }
-
     }
 }
