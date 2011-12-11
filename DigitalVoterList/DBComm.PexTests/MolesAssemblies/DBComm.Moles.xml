@@ -399,12 +399,12 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO._Createb__2LogDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__2(DBComm.DBComm.DO.LogDO)"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO._Createb__0LogDO">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__0(DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO._Createb__3LogDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__3(DBComm.DBComm.DO.LogDO)"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO._Createb__1LogDO">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__1(DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
         <member name="T:DBComm.DBComm.DAO.Moles.MLogDAO.AllInstances">
@@ -422,8 +422,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO.AllInstances._Createb__3LogDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__3(DBComm.DBComm.DO.LogDO)"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO.AllInstances._Createb__1LogDO">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__1(DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
         <member name="T:DBComm.DBComm.DO.Moles.MLogDO">

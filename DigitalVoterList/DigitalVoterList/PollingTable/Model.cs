@@ -43,6 +43,7 @@ namespace DigitalVoterList.PollingTable
             pvdao.StartTransaction();
             currentVoter = pvdao.Read(cprno);
             pvdao.EndTransaction();
+            //Update the current voter to the 
             CurrentVoterChanged(currentVoter);
             //Update log with read entry
             this.UpdateLog(ActivityEnum.R);

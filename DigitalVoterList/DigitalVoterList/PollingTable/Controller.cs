@@ -29,6 +29,8 @@ namespace DigitalVoterList.PollingTable
 
             this.StartPollingTable();
 
+            
+
         }
 
         /// <summary>
@@ -138,6 +140,7 @@ namespace DigitalVoterList.PollingTable
             }
             view.SetupWindow.IpTextBox = setupFilter.Ip;
             view.SetupWindow.TableBox = setupFilter.Table;
+
             view.SetupWindow.ShowDialog();
             Application.Run(view.ScannerWindow);
         }
