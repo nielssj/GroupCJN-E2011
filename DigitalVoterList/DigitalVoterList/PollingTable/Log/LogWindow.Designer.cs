@@ -29,8 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cprDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.logsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.activityBox = new System.Windows.Forms.ComboBox();
             this.cprBox = new System.Windows.Forms.TextBox();
             this.tableBox = new System.Windows.Forms.TextBox();
@@ -46,15 +51,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.voterLabel = new System.Windows.Forms.Label();
-            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cprDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.logsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logsBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -78,12 +78,56 @@
             this.dataGridView1.Size = new System.Drawing.Size(548, 346);
             this.dataGridView1.TabIndex = 0;
             // 
+            // timeDataGridViewTextBoxColumn
+            // 
+            this.timeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            dataGridViewCellStyle2.Format = "MM/dd-yyyy HH:mm:ss";
+            dataGridViewCellStyle2.NullValue = null;
+            this.timeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
+            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
+            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.timeDataGridViewTextBoxColumn.Width = 126;
+            // 
+            // tableDataGridViewTextBoxColumn
+            // 
+            this.tableDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.tableDataGridViewTextBoxColumn.DataPropertyName = "Table";
+            this.tableDataGridViewTextBoxColumn.HeaderText = "Table";
+            this.tableDataGridViewTextBoxColumn.Name = "tableDataGridViewTextBoxColumn";
+            this.tableDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tableDataGridViewTextBoxColumn.Width = 126;
+            // 
+            // cprDataGridViewTextBoxColumn
+            // 
+            this.cprDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.cprDataGridViewTextBoxColumn.DataPropertyName = "Cpr";
+            this.cprDataGridViewTextBoxColumn.HeaderText = "Cpr";
+            this.cprDataGridViewTextBoxColumn.Name = "cprDataGridViewTextBoxColumn";
+            this.cprDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cprDataGridViewTextBoxColumn.Width = 126;
+            // 
+            // activityDataGridViewTextBoxColumn
+            // 
+            this.activityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.activityDataGridViewTextBoxColumn.DataPropertyName = "Activity";
+            this.activityDataGridViewTextBoxColumn.HeaderText = "Activity";
+            this.activityDataGridViewTextBoxColumn.Name = "activityDataGridViewTextBoxColumn";
+            this.activityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.activityDataGridViewTextBoxColumn.Width = 126;
+            // 
+            // logsBindingSource
+            // 
+            this.logsBindingSource.DataSource = typeof(DBComm.DBComm.DO.LogDO);
+            // 
             // activityBox
             // 
             this.activityBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.activityBox.FormattingEnabled = true;
             this.activityBox.Items.AddRange(new object[] {
             "",
+            "W",
             "R",
             "U"});
             this.activityBox.Location = new System.Drawing.Point(396, 16);
@@ -227,49 +271,6 @@
             this.voterLabel.Text = "label1";
             this.voterLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // timeDataGridViewTextBoxColumn
-            // 
-            this.timeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            dataGridViewCellStyle4.Format = "MM/dd-yyyy HH:mm:ss";
-            dataGridViewCellStyle4.NullValue = null;
-            this.timeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
-            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
-            this.timeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.timeDataGridViewTextBoxColumn.Width = 126;
-            // 
-            // tableDataGridViewTextBoxColumn
-            // 
-            this.tableDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.tableDataGridViewTextBoxColumn.DataPropertyName = "Table";
-            this.tableDataGridViewTextBoxColumn.HeaderText = "Table";
-            this.tableDataGridViewTextBoxColumn.Name = "tableDataGridViewTextBoxColumn";
-            this.tableDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tableDataGridViewTextBoxColumn.Width = 126;
-            // 
-            // cprDataGridViewTextBoxColumn
-            // 
-            this.cprDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.cprDataGridViewTextBoxColumn.DataPropertyName = "Cpr";
-            this.cprDataGridViewTextBoxColumn.HeaderText = "Cpr";
-            this.cprDataGridViewTextBoxColumn.Name = "cprDataGridViewTextBoxColumn";
-            this.cprDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cprDataGridViewTextBoxColumn.Width = 126;
-            // 
-            // activityDataGridViewTextBoxColumn
-            // 
-            this.activityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.activityDataGridViewTextBoxColumn.DataPropertyName = "Activity";
-            this.activityDataGridViewTextBoxColumn.HeaderText = "Activity";
-            this.activityDataGridViewTextBoxColumn.Name = "activityDataGridViewTextBoxColumn";
-            this.activityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.activityDataGridViewTextBoxColumn.Width = 126;
-            // 
-            // logsBindingSource
-            // 
-            this.logsBindingSource.DataSource = typeof(DBComm.DBComm.DO.LogDO);
-            // 
             // LogWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,10 +283,10 @@
             this.Text = "LogWindow";
             this.Load += new System.EventHandler(this.LogWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logsBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

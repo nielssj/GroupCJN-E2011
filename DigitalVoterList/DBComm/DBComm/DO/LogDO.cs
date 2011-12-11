@@ -63,7 +63,7 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Gets Activity.
         /// </summary>
-        [Column]
+        [Column(IsPrimaryKey = true)]
         public ActivityEnum? Activity { get; set; }
 
         /// <summary>
