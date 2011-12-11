@@ -101,11 +101,11 @@ namespace DigitalVoterList.PollingTable
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="wr">True means to log a write, false means to log a read</param>
+        /// <param name="ae">The activity to be logged</param>
         private void UpdateLog(ActivityEnum ae)
         {
             ///table number should be a static variable in model read from the config file.
-            var ldo = new LogDO(5, currentVoter.PrimaryKey, ae);
+            var ldo = new LogDO((uint) tableNo, currentVoter.PrimaryKey, ae);
             var ldao = new LogDAO();
             ldao.Create(ldo);
         }
@@ -163,21 +163,38 @@ namespace DigitalVoterList.PollingTable
             if (arr.Length > 0)
             {
                 si = new SetupInfo(arr[0], arr[1], "");
+                ip = arr[0];
+                ip = arr[1];
             }
+            
             else {si = new SetupInfo("","","");}
+            ip = "";
+            ip = "";
             return si;
         }
         
-        public void WriteToConfig(SetupInfo si)
+        public void WriteToConfig()
         {
             if (!File.Exists(Path))
             {
                 this.ReadConfig(); //calling this method creates the config file.
             }
             string[] arr = new string[2];
-            arr[0] = si.ip;
-            arr[1] = si.Table;
+            arr[0] = ip;
+            arr[1] = tableNo.ToString();
             File.WriteAllLines(Path, arr);
+        }
+
+        public string IP 
+        {
+            get { return ip; } 
+            set { ip = value; }
+        }
+
+        public int TableNo
+        {
+            get { return tableNo; }
+            set { tableNo = value; }
         }
     }
 }

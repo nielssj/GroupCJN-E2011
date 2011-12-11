@@ -48,9 +48,10 @@ namespace DigitalVoterList.PollingTable
             //Validate that CPRNR doesn't contain letters
             if (!Model.CprLetterVal(cpr)) { view.ShowMessageBox("Cprno must only contain numbers."); return; }
 
+            //Validate if the voter is listed at the polling station.
             if (model.FetchVoter(uint.Parse(cpr)) == null)
             {
-                view.ShowMessageBox("Voter is listed not at polling station");
+                view.ShowMessageBox("Voter is not listed at polling station");
                 return;
             }
             // try to fetch the voter from the voter box. If no voter found write an error msg.
@@ -109,13 +110,12 @@ namespace DigitalVoterList.PollingTable
                 view.ShowMessageBox("Incorrect password");
                 return;
             }
-            string ip = view.SetupWindow.IpTextBox;
-            string table = view.SetupWindow.TableBox;
-            SetupInfo si = new SetupInfo(ip, table, "");
-
+            model.IP = view.SetupWindow.IpTextBox;
+            model.TableNo = Int32.Parse(view.SetupWindow.TableBox);
+            
             try
             {               
-                model.WriteToConfig(si);
+                model.WriteToConfig();
             }
             catch(Exception e1)
             {
