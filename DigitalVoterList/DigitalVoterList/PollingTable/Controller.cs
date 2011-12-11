@@ -45,7 +45,12 @@ namespace DigitalVoterList.PollingTable
 
             //Validate that CPRNR doesn't contain letters
             if (!Model.CprLetterVal(cpr)) { view.ShowMessageBox("Cprno must only contain numbers."); return; }
-            
+
+            if (model.FetchVoter(uint.Parse(cpr)) == null)
+            {
+                view.ShowMessageBox("Voter is listed not at polling station");
+                return;
+            }
             // try to fetch the voter from the voter box. If no voter found write an error msg.
             //try
             model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); 
@@ -75,8 +80,10 @@ namespace DigitalVoterList.PollingTable
             if (!Model.PswVal(adminPass))
             {
                 view.ShowMessageBox("Incorrect password");
-                view.OpenUnregWindow();
-                return;
+                //view.OpenUnregWindow();
+                //return;
+                //TODO clear the password box and set focus
+                //React to message box OK button and open. 
             }
             
             //Update the model so that the voter is unregistered.
