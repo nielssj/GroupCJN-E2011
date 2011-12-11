@@ -139,7 +139,7 @@ namespace DigitalVoterList.PollingTable
                 return;
             }
             view.SetupWindow.IpTextBox = setupFilter.Ip;
-            view.SetupWindow.TableBox = setupFilter.Table;
+            view.SetupWindow.TableBox = setupFilter.TableNo;
 
             view.SetupWindow.ShowDialog();
             Application.Run(view.ScannerWindow);

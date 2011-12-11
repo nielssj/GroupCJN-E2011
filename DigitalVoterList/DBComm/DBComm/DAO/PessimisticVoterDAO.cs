@@ -18,13 +18,19 @@ namespace DBComm.DBComm.DAO
     /// </summary>
     public class PessimisticVoterDAO
     {
+
         private MySqlTransaction transaction;
 
-        private readonly MySqlConnection connection = new MySqlConnection("server=localhost;"
-                                                                + "port=3306;"
-                                                                + "uid=root;"
-                                                                + "password=abc123;"
-                                                                + "database=dvl");
+        private readonly MySqlConnection connection; 
+
+        public PessimisticVoterDAO(string server)
+        {
+            connection = new MySqlConnection("server=" + server + ";"
+                                + "port=3306;"
+                                + "uid=root;"
+                                + "password=abc123;"
+                                + "database=dvl");
+        }
 
         /// <summary>
         /// Open the connection and begin a new transaction.

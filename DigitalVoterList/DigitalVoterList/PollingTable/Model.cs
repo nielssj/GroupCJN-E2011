@@ -11,6 +11,7 @@ namespace DigitalVoterList.PollingTable
     using System.IO;
     using System.Linq;
 
+    using DBComm.DBComm;
     using DBComm.DBComm.DO;
     using DBComm.DBComm.DAO;
 
@@ -39,7 +40,7 @@ namespace DigitalVoterList.PollingTable
             
             //this.currentVoter = FetchVoter(cprno);
 
-            PessimisticVoterDAO pvdao = new PessimisticVoterDAO();
+            PessimisticVoterDAO pvdao = new PessimisticVoterDAO(ip);
             pvdao.StartTransaction();
             currentVoter = pvdao.Read(cprno);
             pvdao.EndTransaction();
@@ -57,7 +58,7 @@ namespace DigitalVoterList.PollingTable
             Contract.Requires(currentVoter.Voted == false);
             Contract.Requires(currentVoter != null);
             Contract.Ensures(currentVoter.Voted == true);
-            var pvdao = new PessimisticVoterDAO();
+            var pvdao = new PessimisticVoterDAO(ip);
             pvdao.StartTransaction();
             pvdao.Update((uint)currentVoter.PrimaryKey, true);
             pvdao.EndTransaction();
@@ -74,7 +75,7 @@ namespace DigitalVoterList.PollingTable
         /// <returns></returns>
         public VoterDO FetchVoter(uint cprno)
         {
-            var pvdao = new PessimisticVoterDAO();
+            var pvdao = new PessimisticVoterDAO(ip);
             //return pvdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
             pvdao.StartTransaction();
             VoterDO voter = pvdao.Read(cprno);
@@ -87,7 +88,7 @@ namespace DigitalVoterList.PollingTable
         public void UnregisterCurrentVoter()
         {
             ///contracts
-            var pvdao = new PessimisticVoterDAO();
+            var pvdao = new PessimisticVoterDAO(ip);
             pvdao.StartTransaction();
             pvdao.Update((uint)currentVoter.PrimaryKey, false);
             pvdao.EndTransaction();
@@ -106,7 +107,7 @@ namespace DigitalVoterList.PollingTable
         {
             ///table number should be a static variable in model read from the config file.
             var ldo = new LogDO((uint) tableNo, currentVoter.PrimaryKey, ae);
-            var ldao = new LogDAO();
+            var ldao = new LogDAO(DigitalVoterList.GetInstanceFromServer(ip));
             ldao.Create(ldo);
         }
 
@@ -120,7 +121,7 @@ namespace DigitalVoterList.PollingTable
         public static bool CprLengtVal(string cpr)
         {
             int j = cpr.Length;
-            if (j > 10 || j < 10) return false;
+            if (j > 10 || j < 9) return false;
             return true;
         }
 
@@ -162,12 +163,12 @@ namespace DigitalVoterList.PollingTable
             string[] arr = File.ReadAllLines(Path);
             if (arr.Length > 0)
             {
-                si = new SetupInfo(arr[0], arr[1], "");
+                si = new SetupInfo(arr[0], arr[1]);
                 ip = arr[0];
                 ip = arr[1];
             }
             
-            else {si = new SetupInfo("","","");}
+            else {si = new SetupInfo("","");}
             ip = "";
             ip = "";
             return si;

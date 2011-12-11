@@ -17,6 +17,8 @@ namespace DBComm.ManualTests
     [TestClass]
     public class PVDAOTest
     {
+        private string server = "localhost";
+
         private IEnumerable<VoterDO> voters;
 
         private IEnumerable<PessimisticVoterDAO> daos;
@@ -69,8 +71,8 @@ namespace DBComm.ManualTests
              * expected to do, the test fails as the program reaches assert false.
              */
 
-            PessimisticVoterDAO dao1 = new PessimisticVoterDAO();
-            PessimisticVoterDAO dao2 = new PessimisticVoterDAO();
+            PessimisticVoterDAO dao1 = new PessimisticVoterDAO(server);
+            PessimisticVoterDAO dao2 = new PessimisticVoterDAO(server);
             this.daos = this.daos.Concat(new List<PessimisticVoterDAO> { dao1, dao2 });
 
             uint voterID = (uint)this.voters.First().PrimaryKey;
@@ -93,8 +95,8 @@ namespace DBComm.ManualTests
         [TestMethod]
         public void PositiveConcurrencyTest()
         {
-            PessimisticVoterDAO dao1 = new PessimisticVoterDAO();
-            PessimisticVoterDAO dao2 = new PessimisticVoterDAO();
+            PessimisticVoterDAO dao1 = new PessimisticVoterDAO(server);
+            PessimisticVoterDAO dao2 = new PessimisticVoterDAO(server);
             this.daos = this.daos.Concat(new List<PessimisticVoterDAO> { dao1, dao2 });
 
             uint voterID = (uint)this.voters.First().PrimaryKey;
@@ -111,8 +113,8 @@ namespace DBComm.ManualTests
         [TestMethod]
         public void PositiveConcurrencyTest2()
         {
-            PessimisticVoterDAO dao1 = new PessimisticVoterDAO();
-            PessimisticVoterDAO dao2 = new PessimisticVoterDAO();
+            PessimisticVoterDAO dao1 = new PessimisticVoterDAO(server);
+            PessimisticVoterDAO dao2 = new PessimisticVoterDAO(server);
             this.daos = this.daos.Concat(new List<PessimisticVoterDAO> { dao1, dao2 });
 
             uint voterID = (uint)this.voters.First().PrimaryKey;
@@ -130,8 +132,8 @@ namespace DBComm.ManualTests
         [TestMethod]
         public void PossitiveConcurrencyTest3()
         {
-            PessimisticVoterDAO dao1 = new PessimisticVoterDAO();
-            PessimisticVoterDAO dao2 = new PessimisticVoterDAO();
+            PessimisticVoterDAO dao1 = new PessimisticVoterDAO(server);
+            PessimisticVoterDAO dao2 = new PessimisticVoterDAO(server);
             this.daos = this.daos.Concat(new List<PessimisticVoterDAO> { dao1, dao2 });
 
             uint voter1ID = (uint)this.voters.First().PrimaryKey;
