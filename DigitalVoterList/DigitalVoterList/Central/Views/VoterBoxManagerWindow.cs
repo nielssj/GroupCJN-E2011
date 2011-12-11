@@ -24,14 +24,14 @@ namespace DigitalVoterList.Central.Views
 
         /// <summary> Notify me when the window is closing. </summary>
         /// <param name="handler">The handler to be called upon closing.</param>
-        public void AddClosingHandler(CancelEventHandler handler)
+        public void AddClosingHandler(Action<ISubModel> handler)
         {
-            this.Closing += handler;
+            this.Disposed += (o, eA) => handler(model);
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        public ISubModel GetModel()
         {
-
+            return model;
         }
     }
 }

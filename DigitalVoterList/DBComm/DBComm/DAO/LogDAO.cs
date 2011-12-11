@@ -51,7 +51,10 @@ namespace DBComm.DBComm.DAO
             // Method is re-implemented here, because it is not possible to add the ensures in the abstract DAO.
             Contract.Requires(t != null);
             Contract.Requires(t.FullyInitialized());
-            Contract.Ensures(this.Read(o => o.PrimaryKey == t.PrimaryKey).Contains(t));
+            /*
+             * Primary key is DB generated, so we cannot stipulate that the key of the t.PrimaryKey
+             * should be the same as the result, i.e. no ensures here.
+             */
             return base.Create(t);
         }
 

@@ -8,7 +8,7 @@ namespace DigitalVoterList.Central.Views
 
     using DigitalVoterList.Central.Models;
 
-    public partial class VoterSelectionWindow : Form
+    public partial class VoterSelectionWindow : Form, ISubView
     {
         private VoterSelection model;
 
@@ -92,6 +92,11 @@ namespace DigitalVoterList.Central.Views
             tsmVBM.Click += (o, eA) => handler(Model.ChangeType.VBM);
         }
 
+        public ISubModel GetModel()
+        {
+            return model;
+        }
+
         private void setVoterCount(int count)
         {
             lblVoterCount.Text = count + " voters selected.";
@@ -103,21 +108,6 @@ namespace DigitalVoterList.Central.Views
             {
                 e.Handled = true;
             }
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void lblVoterCount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VoterSelectionWindow_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

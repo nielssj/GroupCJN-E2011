@@ -6,9 +6,12 @@
 
 namespace DigitalVoterList.Central
 {
+    using System.Windows.Forms;
+
     using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
     using DigitalVoterList.Central.Controllers;
+
+    using View = DigitalVoterList.Central.Views.View;
 
     /// <summary>
     /// TODO: Update summary.
@@ -21,13 +24,8 @@ namespace DigitalVoterList.Central
             var model = new Model();
             var view = new View(model);
             var controller = new Controller(model, view);
-        
 
-            /*var model = new VoterSelection();
-            var view = new VoterSelectionWindow(model);
-            var controller = new VoterSelectionController(model, view);
-
-            Application.Run(view);*/
+            Application.Run();
         }
     }
 }

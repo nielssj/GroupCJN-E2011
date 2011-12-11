@@ -11,7 +11,7 @@
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class VoterSelection
+    public class VoterSelection : ISubModel
     {
         private int voterCount;
         private IEnumerable<PollingStationDO> pollingStations;

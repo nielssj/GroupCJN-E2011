@@ -31,13 +31,14 @@ namespace DigitalVoterList.PollingTable.Log
             this.view.ResetFields();
 
             view.Show();
+
+            view.SetDataSource(model.Logs);
         }
 
         public void Update(object o)
         {
             model.Update();
             view.VotersText = model.VotedVoters + " out of " + model.TotalVoters + " have voted thus far";
-            view.RefreshGrid(model.Logs);
         }
 
         public void RefreshClicked()

@@ -29,7 +29,7 @@ namespace DBComm.DBComm.DAO
         /// <summary>
         /// The database.
         /// </summary>
-        private readonly DigitalVoterList db;
+        protected readonly DigitalVoterList db;
 
         protected AbstractDataAccessObject()
         {
