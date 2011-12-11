@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{AFE39FCC-8482-499F-A180-C25B8BAA921F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DigitalVoterList</RootNamespace>
     <AssemblyName>DigitalVoterList</AssemblyName>
@@ -60,7 +60,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>DVL.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Moles.Framework, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -119,6 +125,7 @@
     <Compile Include="PollingTable\Log\LogWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PollingTable\SetupInfo.cs" />
     <Compile Include="PollingTable\View\NormVW.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,7 +280,7 @@
     <EmbeddedResource Include="PollingTable\View\SetupWindow.resx">
       <DependentUpon>SetupWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram2.cd" />
+    <None Include="DVL.manifest" />
     <None Include="Properties\DataSources\DigitalVoterList.PollingTable.Log.LogModel.datasource" />
     <EmbeddedResource Include="PollingTable\View\WarningVW.resx">
       <DependentUpon>WarningVW.cs</DependentUpon>

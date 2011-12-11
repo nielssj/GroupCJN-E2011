@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LogDO.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="LogDO.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ namespace DBComm.DBComm.DO
     using System.Diagnostics.Contracts;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The class representing a Log entry entity
     /// </summary>
     [Table(Name = "log")]
     public class LogDO : IDataObject
@@ -51,7 +51,7 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Gets Table.
         /// </summary>
-        [Column]
+        [Column(Name = "tableNo")]
         public uint? Table { get; set; }
 
         /// <summary>

@@ -1,0 +1,13 @@
+scenario_chart TESTING_SCENARIOS
+explanation
+	"Test cases for the pessimistic voter DAO. Further explanation of the testing strategy can be found in [REF HERE!]."
+scenario "Negative testing, scenario one"
+	description "Client 1 opens a transaction, and reads a value. Client 2 then opens a transaction, and tries to read the same value. After a given time client 2 should time-out and return unsuccesfully."
+scenario "Positive testing, scenario one"
+	description "Client 1 opens a transaction, reads a value, and closes the transaction again. Client 2 then opens a transaction, reads the same value and closes the transaction."
+scenario "Positive testing, scenario two"
+	description "Same as above, but both clients read and write within the transaction."
+scenario "Positive testing, scenario three"
+	description "Client 1 opens a transaction and reads a value. Client 2 opens a transaction, and reads another value. The two transactions should not block each other."
+end
+    

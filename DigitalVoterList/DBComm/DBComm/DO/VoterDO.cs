@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Voter.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="VoterDO.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ namespace DBComm.DBComm.DO
     using System.Diagnostics.Contracts;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The class representing a Voter entity
     /// </summary>
     [Table(Name = "voter")]
     public class VoterDO : IDataObject
@@ -138,7 +138,7 @@ namespace DBComm.DBComm.DO
         /// Gets a value indicating whether this voter has voted.
         /// </summary>
         [Column]
-        public bool? Voted { get; set ; }
+        public bool? Voted { get; set; }
 
         private EntityRef<PollingStationDO> _pollingStation;
 

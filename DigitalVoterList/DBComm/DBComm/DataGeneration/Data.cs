@@ -18,13 +18,13 @@ namespace DBComm.DBComm.DataGeneration
     {
         private readonly Random random = new Random();
 
-        private readonly string[] boynames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\boynames.data");
-        private readonly string[] citynames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\citynames.data");
-        private readonly string[] girlnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\girlnames.data");
-        private readonly string[] lastnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\lastnames.data");
-        private readonly string[] municipalitynames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\municipalitynames.data");
-        private readonly string[] roadnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\roadnames.data");
-        private readonly string[] stationnames = System.IO.File.ReadAllLines(@"..\..\DBComm\DataGeneration\Namedata\stationnames.data");
+        private readonly string[] boynames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\boynames.data");
+        private readonly string[] citynames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\citynames.data");
+        private readonly string[] girlnames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\girlnames.data");
+        private readonly string[] lastnames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\lastnames.data");
+        private readonly string[] municipalitynames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\municipalitynames.data");
+        private readonly string[] roadnames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\roadnames.data");
+        private readonly string[] stationnames = System.IO.File.ReadAllLines(@"..\..\..\DBcomm\DBComm\DataGeneration\Namedata\stationnames.data");
 
         private ICollection<string> cprs = new HashSet<string>();
 

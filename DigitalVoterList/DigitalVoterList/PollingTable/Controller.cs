@@ -25,6 +25,10 @@ namespace DigitalVoterList.PollingTable
             view.ScannerWindow.FindVoterButton.Click += this.ReactTofindVoterRequest;
             view.VoterShown += this.ReactToRegisterRequest;
             view.Unregister += this.ReactToUnregRequest;
+            view.SetupWindow.ConnectBtn.Click += this.ReactToConnectRequest;
+
+            this.StartPollingTable();
+
         }
 
         /// <summary>
@@ -68,14 +72,13 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         private void ReactToUnregRequest(string adminPass)
         {
+            if (!Model.PswVal(adminPass))
             {
-                if (!adminPass.Equals(model.AdmPass))
-                {
-                    view.ShowMessageBox("Incorrect password");
-                    view.OpenUnregWindow();
-                    return;
-                }
+                view.ShowMessageBox("Incorrect password");
+                view.OpenUnregWindow();
+                return;
             }
+            
             //Update the model so that the voter is unregistered.
             model.UnregisterCurrentVoter();
             view.ShowMessageBox("The voter card is now unregistered");
@@ -86,6 +89,50 @@ namespace DigitalVoterList.PollingTable
         private void ResetCprTxtBox()
         {
             view.ScannerWindow.resetCprTxt(); 
+        }
+
+
+        private void ReactToConnectRequest(object o, EventArgs e)
+        {
+            //check the password before continuation
+            if (!Model.PswVal(view.SetupWindow.Password))
+            {
+                view.ShowMessageBox("Incorrect password");
+                return;
+            }
+            string ip = view.SetupWindow.IpTextBox;
+            string table = view.SetupWindow.TableBox;
+            SetupInfo si = new SetupInfo(ip, table, "");
+
+            try
+            {               
+                model.WriteToConfig(si);
+            }
+            catch(Exception e1)
+            {
+                view.ShowMessageBox("unable to write to config file. " + e1.StackTrace);
+            }
+            view.SetupWindow.Hide();
+            view.ScannerWindow.Show();
+         
+        }
+
+        public void StartPollingTable()
+        {
+            SetupInfo setupFilter;
+            try
+            {
+                setupFilter = model.ReadConfig();
+            }
+            catch (Exception e2)
+            {
+                view.ShowMessageBox("unable to read from or write to config file. " + e2.StackTrace);
+                return;
+            }
+            view.SetupWindow.IpTextBox = setupFilter.Ip;
+            view.SetupWindow.TableBox = setupFilter.Table;
+            view.SetupWindow.ShowDialog();
+            Application.Run(view.ScannerWindow);
         }
     }
 }
