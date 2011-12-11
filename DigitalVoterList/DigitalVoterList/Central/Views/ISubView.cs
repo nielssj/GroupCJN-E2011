@@ -6,10 +6,13 @@
 
 namespace DigitalVoterList.Central.Views
 {
+    using DigitalVoterList.Central.Models;
+
     /// <summary>
     /// Marker interface for sub-views.
     /// </summary>
     public interface ISubView
     {
+        ISubModel GetModel();
     }
 }

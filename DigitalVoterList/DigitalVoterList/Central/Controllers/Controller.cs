@@ -34,22 +34,21 @@
         /// <summary> React to a request for a view to be opened; 
         /// Instantiate an appropiate controller. </summary>
         /// <param name="type">The type of view to be opened.</param>
-        /// <param name="subModel">The model to be used.</param>
         /// <param name="subView">The View to be used.</param>
-        public void ViewOpened(Model.ChangeType type, ISubModel subModel, ISubView subView)
+        public void ViewOpened(Model.ChangeType type, ISubView subView)
         {
             switch(type)
             {
                 case Model.ChangeType.VCG :
-                    var vcgModel = (VoterCardGenerator)subModel;
+                    var vcgModel = (VoterCardGenerator)subView.GetModel();
                     var vcgView = (VoterCardGeneratorWindow)subView;
-                    vcgView.AddClosingHandler((o, eA) => this.model.CloseSubModel(vcgModel));  // Remove references to model upon closing.
-                    new VoterCardGeneratorController(vcgModel, vcgView); // Instantiate controller
+                    vcgView.AddClosingHandler(this.model.CloseSubModel);  
+                    new VoterCardGeneratorController(vcgModel, vcgView);
                     break;
                 case Model.ChangeType.VBM :
-                    var vbmModel = (VoterBoxManager)subModel;
+                    var vbmModel = (VoterBoxManager)subView.GetModel();
                     var vbmView = (VoterBoxManagerWindow)subView;
-                    vbmView.AddClosingHandler((o, eA) => this.model.CloseSubModel(vbmModel));
+                    vbmView.AddClosingHandler(this.model.CloseSubModel);
                     new VoterBoxManagerController(vbmModel, vbmView);
                     break;
             }

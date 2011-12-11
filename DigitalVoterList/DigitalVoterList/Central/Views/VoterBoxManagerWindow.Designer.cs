@@ -138,7 +138,6 @@
             this.userLabel.Size = new System.Drawing.Size(32, 13);
             this.userLabel.TabIndex = 17;
             this.userLabel.Text = "User:";
-            this.userLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // pwBox
             // 

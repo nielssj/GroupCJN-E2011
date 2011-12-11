@@ -35,7 +35,7 @@ namespace DigitalVoterList.Central.Controllers
             view.AddMSelectionChangedHandler(this.MSelectionChanged);
             view.addCPRTextChangedHandler(this.CPRTextChanged);
 
-            Application.Run(view);
+            view.Show();
         }
 
         /// <summary>
