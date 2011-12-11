@@ -56,7 +56,7 @@ public void Constructor327()
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void ConstructorThrowsContractException771()
+public void ConstructorThrowsContractException232()
 {
     try
     {

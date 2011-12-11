@@ -13,11 +13,6 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Pex.Framework.Generated;
-using Microsoft.Pex.Framework.Moles;
-using System.Collections.Generic.Moles;
-using Microsoft.Pex.Framework;
-using Microsoft.Moles.Framework;
-using System.Data.Linq;
 using Microsoft.Pex.Engine.Exceptions;
 
 namespace DBComm.DBComm.DO
@@ -60,52 +55,6 @@ public void PollingStationsSet900()
 }
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
-[Ignore]
-[PexDescription("the test state was: duplicate path")]
-public void PollingStationsSetThrowsOverflowException877()
-{
-    using (PexChooseBehavedBehavior.Setup())
-    {
-      MunicipalityDO municipalityDO;
-      SICollection01<PollingStationDO> sICollection01;
-      municipalityDO =
-        new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
-      sICollection01 = new SICollection01<PollingStationDO>();
-      sICollection01.CopyToTArrayInt32 =
-        PexChoose.CreateDelegate<MolesDelegates.Action<PollingStationDO[], int>>();
-      IPexChoiceRecorder choices = PexChoose.Replay.Setup();
-      choices.NextSegment(2).DefaultSession
-          .At(0, 
-                                            "sICollection01`1.System.Collections.Generic.ICollection`1<!0>.get_Count", 
-                                            (object)(-2147483646));
-      this.PollingStationsSet
-          (municipalityDO, (ICollection<PollingStationDO>)sICollection01);
-    }
-}
-[TestMethod]
-[PexGeneratedBy(typeof(MunicipalityDOTest))]
-public void PollingStationsSet862()
-{
-    using (PexChooseBehavedBehavior.Setup())
-    {
-      MunicipalityDO municipalityDO;
-      SICollection01<PollingStationDO> sICollection01;
-      municipalityDO =
-        new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
-      sICollection01 = new SICollection01<PollingStationDO>();
-      sICollection01.CountGet = PexChoose.CreateDelegate<MolesDelegates.Func<int>>();
-      this.PollingStationsSet
-          (municipalityDO, (ICollection<PollingStationDO>)sICollection01);
-      Assert.IsNotNull((object)municipalityDO);
-      Assert.IsNotNull(municipalityDO.PollingStations);
-      Assert.IsNull((object)(municipalityDO.Id));
-      Assert.AreEqual<string>((string)null, municipalityDO.Address);
-      Assert.AreEqual<string>((string)null, municipalityDO.City);
-      Assert.AreEqual<string>((string)null, municipalityDO.Name);
-    }
-}
-[TestMethod]
-[PexGeneratedBy(typeof(MunicipalityDOTest))]
 public void PollingStationsSet798()
 {
     MunicipalityDO municipalityDO;
@@ -140,25 +89,8 @@ public void PollingStationsSet623()
 }
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
-public void PollingStationsSet820()
-{
-    MunicipalityDO municipalityDO;
-    municipalityDO =
-      new MunicipalityDO(default(uint?), (string)null, (string)null, (string)null);
-    EntitySet<PollingStationDO> entitySet = new EntitySet<PollingStationDO>();
-    this.PollingStationsSet
-        (municipalityDO, (ICollection<PollingStationDO>)entitySet);
-    Assert.IsNotNull((object)municipalityDO);
-    Assert.IsNotNull(municipalityDO.PollingStations);
-    Assert.IsNull((object)(municipalityDO.Id));
-    Assert.AreEqual<string>((string)null, municipalityDO.Address);
-    Assert.AreEqual<string>((string)null, municipalityDO.City);
-    Assert.AreEqual<string>((string)null, municipalityDO.Name);
-}
-[TestMethod]
-[PexGeneratedBy(typeof(MunicipalityDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void PollingStationsSetThrowsContractException152()
+public void PollingStationsSetThrowsContractException531()
 {
     try
     {

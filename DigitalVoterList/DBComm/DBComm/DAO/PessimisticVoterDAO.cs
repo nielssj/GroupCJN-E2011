@@ -82,7 +82,7 @@ namespace DBComm.DBComm.DAO
             command.CommandType = CommandType.StoredProcedure;
             command.CommandText = "voter_read";
 
-            MySqlParameter p = new MySqlParameter("id_param", MySqlDbType.Int32) { Value = id };
+            MySqlParameter p = new MySqlParameter("id_param", MySqlDbType.UInt32) { Value = id };
             command.Parameters.Add(p);
 
             // Query execution
@@ -135,7 +135,7 @@ namespace DBComm.DBComm.DAO
             MySqlParameter votedParam = new MySqlParameter("voted_param", SqlDbType.TinyInt) { Value = votedStatus };
             command.Parameters.Add(votedParam);
 
-            MySqlParameter idParam = new MySqlParameter("id_param", MySqlDbType.Int32) { Value = id };
+            MySqlParameter idParam = new MySqlParameter("id_param", MySqlDbType.UInt32) { Value = id };
             command.Parameters.Add(idParam);
 
             // Query execution

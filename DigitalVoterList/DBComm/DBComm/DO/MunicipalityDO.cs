@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Municipality.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="MunicipalityDO.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ namespace DBComm.DBComm.DO
     using System.Diagnostics.Contracts;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The entity representing a Municipality entity
     /// </summary>
     [Table(Name = "municipality")]
     public class MunicipalityDO : IDataObject

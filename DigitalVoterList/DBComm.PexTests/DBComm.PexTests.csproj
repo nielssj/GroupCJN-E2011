@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2379C202-B771-448F-B78F-6E1B650F07F2}</ProjectGuid>
+    <ProjectGuid>{8178DA8D-58F3-42FE-AAB7-8E1CB88753EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DBComm.Tests</RootNamespace>
-    <AssemblyName>DBComm.Tests</AssemblyName>
+    <RootNamespace>DBComm.PexTests</RootNamespace>
+    <AssemblyName>DBComm.PexTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,7 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DBComm.Moles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ExtendedReflection, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Moles.Framework, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -49,11 +48,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="mscorlib.Behaviors, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="mscorlib.Moles, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0ae41878053f6703, processorArchitecture=MSIL" />
-    <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.4.4\Assemblies\v2.0\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -72,8 +66,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBComm\DAO\PessimisticVoterDAOTest.cs" />
-    <Compile Include="Factories\LogDOFactory.cs" />
     <Compile Include="MunicipalityDOTest.Constructor01.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
@@ -94,6 +86,9 @@
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="MunicipalityDOTest.PrimaryKeyGet.g.cs">
+      <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MunicipalityDOTest.ResetAssociations.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="MunicipalityDOTest.ToString01.g.cs">
@@ -121,6 +116,9 @@
     <Compile Include="PollingStationDOTest.MunicipalitySet.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="PollingStationDOTest.ResetAssociations.g.cs">
+      <DependentUpon>PollingStationDOTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="PollingStationDOTest.ToString01.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
@@ -133,7 +131,6 @@
     <Compile Include="PollingStationDOTest.VotersSet.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Preparations\RandomPreparation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
     <Compile Include="VoterDOTest.Constructor01.g.cs">
@@ -159,6 +156,9 @@
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.PrimaryKeyGet.g.cs">
+      <DependentUpon>VoterDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VoterDOTest.ResetAssociations.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.UpdateValues.g.cs">

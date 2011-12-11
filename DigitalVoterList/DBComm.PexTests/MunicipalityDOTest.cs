@@ -16,6 +16,26 @@ namespace DBComm.DBComm.DO
     public partial class MunicipalityDOTest
     {
         [PexMethod]
+        public void PollingStationsSet([PexAssumeUnderTest]MunicipalityDO target, ICollection<PollingStationDO> value)
+        {
+            target.PollingStations = value;
+            // TODO: add assertions to method MunicipalityDOTest.PollingStationsSet(MunicipalityDO, ICollection`1<PollingStationDO>)
+        }
+        [PexMethod]
+        public uint? PrimaryKeyGet([PexAssumeUnderTest]MunicipalityDO target)
+        {
+            uint? result = target.PrimaryKey;
+            return result;
+            // TODO: add assertions to method MunicipalityDOTest.PrimaryKeyGet(MunicipalityDO)
+        }
+        [PexMethod]
+        public ICollection<PollingStationDO> PollingStationsGet([PexAssumeUnderTest]MunicipalityDO target)
+        {
+            ICollection<PollingStationDO> result = target.PollingStations;
+            return result;
+            // TODO: add assertions to method MunicipalityDOTest.PollingStationsGet(MunicipalityDO)
+        }
+        [PexMethod]
         public void UpdateValues([PexAssumeUnderTest]MunicipalityDO target, IDataObject dummy)
         {
             target.UpdateValues(dummy);
@@ -29,24 +49,10 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method MunicipalityDOTest.ToString01(MunicipalityDO)
         }
         [PexMethod]
-        public uint? PrimaryKeyGet([PexAssumeUnderTest]MunicipalityDO target)
+        public void ResetAssociations([PexAssumeUnderTest]MunicipalityDO target)
         {
-            uint? result = target.PrimaryKey;
-            return result;
-            // TODO: add assertions to method MunicipalityDOTest.PrimaryKeyGet(MunicipalityDO)
-        }
-        [PexMethod]
-        public void PollingStationsSet([PexAssumeUnderTest]MunicipalityDO target, ICollection<PollingStationDO> value)
-        {
-            target.PollingStations = value;
-            // TODO: add assertions to method MunicipalityDOTest.PollingStationsSet(MunicipalityDO, ICollection`1<PollingStationDO>)
-        }
-        [PexMethod]
-        public ICollection<PollingStationDO> PollingStationsGet([PexAssumeUnderTest]MunicipalityDO target)
-        {
-            ICollection<PollingStationDO> result = target.PollingStations;
-            return result;
-            // TODO: add assertions to method MunicipalityDOTest.PollingStationsGet(MunicipalityDO)
+            target.ResetAssociations();
+            // TODO: add assertions to method MunicipalityDOTest.ResetAssociations(MunicipalityDO)
         }
         [PexMethod]
         public int GetHashCode01([PexAssumeUnderTest]MunicipalityDO target)

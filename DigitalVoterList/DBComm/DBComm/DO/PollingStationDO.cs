@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="PollingStationDO.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="PollingStationDO.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ namespace DBComm.DBComm.DO
     using System.Diagnostics.Contracts;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The class representing a Polling station entity
     /// </summary>
     [Table(Name = "pollingstation")]
     public class PollingStationDO : IDataObject

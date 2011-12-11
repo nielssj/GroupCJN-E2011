@@ -97,7 +97,7 @@ public void UpdateValues71()
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException576()
+public void UpdateValuesThrowsContractException628()
 {
     try
     {

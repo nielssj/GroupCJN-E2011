@@ -42,6 +42,12 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method PollingStationDOTest.ToString01(PollingStationDO)
         }
         [PexMethod]
+        public void ResetAssociations([PexAssumeUnderTest]PollingStationDO target)
+        {
+            target.ResetAssociations();
+            // TODO: add assertions to method PollingStationDOTest.ResetAssociations(PollingStationDO)
+        }
+        [PexMethod]
         public void MunicipalitySet([PexAssumeUnderTest]PollingStationDO target, MunicipalityDO value)
         {
             target.Municipality = value;

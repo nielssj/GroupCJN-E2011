@@ -48,6 +48,12 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method VoterDOTest.UpdateValues(VoterDO, IDataObject)
         }
         [PexMethod]
+        public void ResetAssociations([PexAssumeUnderTest]VoterDO target)
+        {
+            target.ResetAssociations();
+            // TODO: add assertions to method VoterDOTest.ResetAssociations(VoterDO)
+        }
+        [PexMethod]
         public int GetHashCode01([PexAssumeUnderTest]VoterDO target)
         {
             int result = target.GetHashCode();
