@@ -51,7 +51,7 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Gets Table.
         /// </summary>
-        [Column]
+        [Column(Name = "tableNo")]
         public uint? Table { get; set; }
 
         /// <summary>
