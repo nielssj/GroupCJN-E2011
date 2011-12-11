@@ -97,5 +97,19 @@ namespace DBComm.DBComm
             // No harm will be done if this parameter is already set.
             return new DigitalVoterList(new MySqlConnection(c));
         }
+
+        /// <summary>
+        /// Get a server connection based on the given parameters.
+        /// </summary>
+        /// <param name="user">The user</param>
+        /// <param name="password">The password</param>
+        /// <param name="server">The adress to the server. Assuming localhost if no adress is provided</param>
+        /// <param name="port">The port number to this connection. Assuming 3306 if no port is provided.</param>
+        /// <returns>A new connection.</returns>
+        public static MySqlConnection GetConnectionInstance(string user, string password, string server = "localhost", int port = 3306)
+        {
+            return new MySqlConnection(
+                string.Format("server={0};uid={1};password={2};port={3},Sql Server Mode = true;database=dvl", server, user, password, port));
+        }
     }
 }
