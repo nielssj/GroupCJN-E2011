@@ -20,6 +20,8 @@ namespace DBComm.DBComm.DAO
     {
         private MySqlTransaction transaction;
 
+        private int timeout;
+
         private readonly MySqlConnection connection = new MySqlConnection("server=localhost;"
                                                                 + "port=3306;"
                                                                 + "uid=root;"
@@ -29,12 +31,16 @@ namespace DBComm.DBComm.DAO
         /// <summary>
         /// Open the connection and begin a new transaction.
         /// </summary>
-        public void StartTransaction()
+        /// <param name="commTimeout">
+        /// The timeout for each command in the transaction. Default is 3 seconds.
+        /// </param>
+        public void StartTransaction(int commTimeout = 3)
         {
             if (!this.TransactionStarted())
             {
-                connection.Open();
-                transaction = connection.BeginTransaction(IsolationLevel.Serializable);
+                this.timeout = commTimeout;
+                this.connection.Open();
+                this.transaction = this.connection.BeginTransaction(IsolationLevel.Serializable);
             }
         }
 
@@ -73,10 +79,11 @@ namespace DBComm.DBComm.DAO
             Contract.Ensures(Contract.Result<VoterDO>() != null ? Contract.Result<VoterDO>().PrimaryKey == id : true);
 
             // Command building
-            MySqlCommand command = connection.CreateCommand();
+            MySqlCommand command = this.connection.CreateCommand();
 
-            command.Connection = connection;
-            command.Transaction = transaction;
+            command.Connection = this.connection;
+            command.Transaction = this.transaction;
+            command.CommandTimeout = this.timeout;
 
             // Query building
             command.CommandType = CommandType.StoredProcedure;
@@ -124,9 +131,11 @@ namespace DBComm.DBComm.DAO
             Contract.Ensures(this.Read(id) == null || this.Read(id).Voted == votedStatus);
 
             // Command building
-            MySqlCommand command = connection.CreateCommand();
-            command.Connection = connection;
-            command.Transaction = transaction;
+            MySqlCommand command = this.connection.CreateCommand();
+
+            command.Connection = this.connection;
+            command.Transaction = this.transaction;
+            command.CommandTimeout = this.timeout;
 
             // Query building
             command.CommandType = CommandType.StoredProcedure;
