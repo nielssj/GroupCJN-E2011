@@ -116,6 +116,7 @@
             this.Text = "SetupWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.Closed += (o, Ea ) => this.Form1_Closed();
 
         }
 

@@ -31,6 +31,9 @@ namespace DigitalVoterList
             this.InitializeComponent();
         }
 
-        
+        private void Form1_Closed()
+        {
+            Application.Exit();
+        }
     }
 }
