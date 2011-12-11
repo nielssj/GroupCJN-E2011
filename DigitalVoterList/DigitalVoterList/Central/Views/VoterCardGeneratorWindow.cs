@@ -9,7 +9,7 @@ namespace DigitalVoterList.Central.Views
 
     public partial class VoterCardGeneratorWindow : Form, ISubView
     {
-        private VoterCardGenerator model;
+        private readonly VoterCardGenerator model;
 
         public VoterCardGeneratorWindow(VoterCardGenerator model)
         {
@@ -25,24 +25,23 @@ namespace DigitalVoterList.Central.Views
             model.CurrentGroupChanged += this.UpdateCurrentGroup;
         }
 
-        private void UpdateCurrentGroup(string groupName)
-        {
-            lblCurrentGroup.Text = groupName;
-            this.Refresh();
-        }
-
-        /// <summary> Notify me when the window is closing. </summary>
-        /// <param name="handler">The handler to be called upon closing.</param>
-        public void AddClosingHandler(CancelEventHandler handler)
-        {
-            this.Closing += handler;
-        }
-
         /// <summary> Notify me when the generate button is clicked. </summary>
         /// <param name="handler">The handler to be called upon click.</param>
         public void AddGenerateHandler(Action<String, int, int> handler)
         {
             btnGenerate.Click += (a, eA) => this.fetchGrouping(handler);
+        }
+
+        /// <summary> Notify me when the view has been ordered to close. </summary>
+        /// <param name="handler">The handler to be called.</param>
+        public void AddClosingHandler(Action<ISubModel> handler)
+        {
+            this.Disposed += (o, eA) => handler(model);
+        }
+
+        public ISubModel GetModel()
+        {
+            return model;
         }
 
         private void fetchGrouping(Action<String, int, int> handler)
@@ -54,6 +53,12 @@ namespace DigitalVoterList.Central.Views
             if (chbLimit.Checked) limit = Convert.ToInt16(txbLimit.Text);
             
             handler(txbDestination.Text, property, limit);
+        }
+
+        private void UpdateCurrentGroup(string groupName)
+        {
+            lblCurrentGroup.Text = groupName;
+            this.Refresh();
         }
 
         // Open folderBrowser upon 'Browse' button clicked.
@@ -68,5 +73,7 @@ namespace DigitalVoterList.Central.Views
         {
             this.Close();
         }
+
+
     }
 }
