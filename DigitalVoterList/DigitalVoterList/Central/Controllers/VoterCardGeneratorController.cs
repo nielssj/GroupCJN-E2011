@@ -6,7 +6,8 @@
 
 namespace DigitalVoterList.Central.Controllers
 {
-    using System;
+    using System.IO;
+    using System.Windows.Forms;
 
     using DigitalVoterList.Central.Models;
     using DigitalVoterList.Central.Views;
@@ -26,11 +27,29 @@ namespace DigitalVoterList.Central.Controllers
             this.view = view;
 
             // Subscribe to View
-            view.AddGenerateHandler(model.Generate);
+            view.AddGenerateHandler(this.GenerateHandler);
             view.AddAbortHandler(model.Abort);
 
             // Show View
             view.Show();
+        }
+
+        public void GenerateHandler(string destination, int property, int limit)
+        {
+            // Selection validation.
+            int old = model.ValidateSelection();
+            DialogResult result = DialogResult.None;
+            if (old > 0) result = MessageBox.Show("The selection contains " + old + " voters who already had their voter cards generated previously, do you wish to continue?", "Cards already generated", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No) return;
+
+            // Destination validation.
+            result = DialogResult.None;
+            if (!model.ValidateDestination(destination)) result = MessageBox.Show("The specified folder does not exist and will be created, do you wish to continue?", "Unknown folder", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK) Directory.CreateDirectory(destination);
+            else if (result == DialogResult.Cancel) return;
+
+            view.GenerateMode("Initializing..");
+            model.Generate(destination, property, limit);
         }
     }
 }

@@ -29,7 +29,7 @@
         
         private const double U = (100.0 / 35.278); // Conversion factor from 'mm' to 'points' (DPI = 72).
         
-        private VoterFilter filter;
+        private readonly VoterFilter filter;
         private string destination;
         private int property;
         private int limit;
@@ -63,6 +63,9 @@
         /// <summary> Notify me when the generation process ends (interrupted or completed) </summary>
         public event Action<String> GenerationEnded;
 
+        /// <summary> May I have the filter of this Voter Card Generator? </summary>
+        public VoterFilter Filter { get { return filter; } }
+
         public int VoterDonePerc
         {
             get { return voterDonePerc; }
@@ -85,11 +88,31 @@
         }
 
         /// <summary>
+        /// How many of the given voters have already had their voter cards generated?
+        /// </summary>
+        /// <returns>The number of given voters who has already had their voter cards generated.</returns>
+        public int ValidateSelection()
+        {
+            IEnumerable<VoterDO> voters = new VoterDAO().Read(v => v.Name.StartsWith("A"));
+            //IEnumerable<VoterDO> voters = new VoterDAO().Read(filter.ToPredicate());
+            return voters.Where(v => v.CardPrinted.Equals(true)).Count();
+        }
+
+        /// <summary>
+        /// Does the given destination (folder path) exist?
+        /// </summary>
+        /// <returns>Answer to query (true = yes | false = no).</returns>
+        public bool ValidateDestination(string destination)
+        {
+            return Directory.Exists(destination);
+        }
+
+        /// <summary>
         /// Abort the current generator process, if one is currently running.
         /// </summary>
         public void Abort()
         {
-            if (worker != null)
+            if (worker != null && worker.IsBusy)
             {
                 worker.CancelAsync();
                 if (GenerationEnded != null) GenerationEnded("Aborted");
