@@ -37,13 +37,16 @@ namespace DigitalVoterList.PollingTable
             this.model = model;
             scannerWindow = new ScannerWindow();
             
-            setupWindow = new SetupWindow(); 
+            setupWindow = new SetupWindow();
+            
 
             scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
             
+            
             model.CurrentVoterChanged += this.ShowSpecificVoter;
             model.SetupInfoChanged += this.UpdateSetupWindow;
-
+            //model.SetupInfoChanged += this.UpdateScannerWindow;
+            
             this.Unlock += this.OpenUnregWindow;
         }
 
@@ -102,10 +105,6 @@ namespace DigitalVoterList.PollingTable
 
         }
 
-        
-
-        //TODO PAssword msg box. -> after show clear the password box. 
-
         private void UpdateSetupWindow(SetupInfo setupInfo)
         {
             this.SetupWindow.TableBox = setupInfo.TableNo.ToString();
@@ -114,13 +113,6 @@ namespace DigitalVoterList.PollingTable
 
         public ScannerWindow ScannerWindow { get { return scannerWindow; } }
         public SetupWindow SetupWindow { get { return setupWindow; } }
-
-        public UnRegVW UnregWindow
-        {
-            get
-            {
-                return this.unregWindow;
-            }
-        }
+        public UnRegVW UnregWindow { get { return this.unregWindow; } }
     }
 }

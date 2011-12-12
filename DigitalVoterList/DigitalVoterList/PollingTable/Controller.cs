@@ -29,7 +29,6 @@ namespace DigitalVoterList.PollingTable
             view.SetupWindow.ConnectBtn.Click += this.ReactToConnectRequest;
 
             this.StartPollingTable();
-
         }
 
         /// <summary>
@@ -41,35 +40,42 @@ namespace DigitalVoterList.PollingTable
         {
             string cprStr = view.ScannerWindow.CprnrTxtBox.Text;
 
-            //Validate that CPRNR doesn't contain letters
+            //Validate that CPRNO doesn't contain letters
             if (!Model.CprLetterVal(cprStr))
             {
                 view.ShowMessageBox("Cprno must only contain numbers.");
                 return;
             }
-            Int64 cpr = Convert.ToInt64(cprStr);
-            
+
+
+            uint cpr;
 
             //unhash the cpr nr if it has a length of 11 chars or above.
-            if (cpr > 10)
+            if (cprStr.Length > 10)
             {
-                Central.Utility.BarCodeHashing.UnHash(cpr);
+                cpr = Central.Utility.BarCodeHashing.UnHash(cprStr);
             }
+            else
+            {
+                cpr = Convert.ToUInt32(cprStr);
+            }
+            
            
-                //Validate length of CPRNR. 
-                if (!Model.CprLengtVal(cpr.ToString()))
+           //Validate length of CPRNO.
+                if (!Model.CprLengtVal(cpr))
                 {
                     view.ShowMessageBox("Length of cprno is not valid.");
                     return;
                 }
 
-            uint cprUint = uint.Parse(cpr.ToString());
+            //uint cprUint = uint.Parse(cpr.ToString());
 
                 model.initializeStaticDAO();
 
                 try
                 {
-                    if (model.FetchVoter(cprUint) == null)
+                    //Validate if the voter is listed at the polling station.
+                    if (model.FetchVoter(cpr) == null)
                     {
                         view.ShowMessageBox("Voter is not listed at polling station");
                         return;
@@ -83,14 +89,8 @@ namespace DigitalVoterList.PollingTable
                         return;
                     }
                 }
-                //Validate if the voter is listed at the polling station.
-
-                // try to fetch the voter from the voter box. If no voter found write an error msg.
-                //try
-                model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text));
-                //catch (Exception) 
-                //{ view.ShowMessageBox("Voter not registered at polling station."); }
-
+                
+                model.FindVoter(cpr);
                 this.ResetCprTxtBox();
             
         }
@@ -205,6 +205,8 @@ namespace DigitalVoterList.PollingTable
             //view.SetupWindow.TableBox = setupFilter.TableNo;
 
             view.SetupWindow.ShowDialog();
+
+            view.ScannerWindow.TableNumber.Text = model.SetupInfo.TableNo.ToString();
             Application.Run(view.ScannerWindow);
         }
 
