@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="VoterBoxManagerController.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="VoterBoxManagerController.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -33,18 +33,34 @@ namespace DigitalVoterList.Central.Controllers
             view.AddValidateHandler(this.Validate);
 
             view.Show();
+            if (model.Filter != null)
+            {
+                view.UpdateProgressText("Selecting municipality: " + model.Filter.Municipality);
+                view.UpdateProgressText("Selecting polling station: " + model.Filter.PollingStation);
+                view.UpdateProgressText("Selecting voter: " + model.Filter.CPRNO);
+            }
+            else
+            {
+                view.UpdateProgressText("Please specify a filter in the previous window.");
+            }
 
-            view.UpdateProgressText("Selecting municipality: " + model.Filter.Municipality);
-            view.UpdateProgressText("Selecting polling station: " + model.Filter.PollingStation);
-            view.UpdateProgressText("Selecting voter: " + model.Filter.CPRNO);
         }
 
         public void Validate()
         {
-            view.UpdateProgressText(model.ValidateMunicipalities() ? "Municipalities successfully validated" : "Something went wrong trying to validate municipalities");
-            view.UpdateProgressText(model.ValidatePollingStations() ? "Polling stations successfully validated" : "Something went wrong trying to validate polling stations");
-            view.UpdateProgressText(model.ValidateVoters() ? "Voters successfully validated" : "Something went wrong trying to validate voters");
-            view.UpdateProgress();
+            try
+            {
+                view.UpdateProgressText(model.ValidateMunicipalities() ? "Municipalities successfully validated" : "Municipality validation un-sucessful. Please reconnect to the server and try to transfer again.");
+                view.UpdateProgressText(model.ValidatePollingStations() ? "Polling stations successfully validated" : "Polling station validation un-sucessful. Please reconnect to the server and try to transfer again.");
+                view.UpdateProgressText(model.ValidateVoters() ? "Voters successfully validated" : "Voter validation un-sucessful. Please reconnect to the server and try to transfer again.");
+                view.UpdateProgress();
+            }
+            catch (Exception e)
+            {
+                view.UpdateProgressText("The system was not able to validate. The system said:");
+                view.UpdateProgressText(e.Message);
+                return;
+            }
         }
 
         public void Connect()

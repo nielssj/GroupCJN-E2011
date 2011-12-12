@@ -46,8 +46,7 @@ namespace DBComm.DBComm.DAO
         {
             Contract.Requires(f != null);
             Contract.Requires(dummy != null);
-            Contract.Requires(dummy.PrimaryKey != null ? dummy.FullyInitialized() : true);
-            Contract.Ensures(Contract.ForAll(Contract.OldValue(this.Read(f)), old => !this.Read(f).Contains(old)));
+            Contract.Requires(dummy.PrimaryKey == null);
             throw new NotImplementedException();
         }
 

@@ -10,6 +10,7 @@ namespace DBComm.DBComm.DO
     using System.Data.Linq.Mapping;
     using System.Diagnostics.Contracts;
 
+
     /// <summary>
     /// The class representing a Voter entity
     /// </summary>
@@ -47,7 +48,7 @@ namespace DBComm.DBComm.DO
             Contract.Requires(cpr == null || (cpr >= 101000001 && cpr <= 3112999999));
 
             this.PollingStationId = pollingStationId;
-            this.PrimaryKey = cpr;
+            this.primaryKey = cpr;
             this.Name = name;
             this.Address = address;
             this.City = city;
@@ -188,23 +189,24 @@ namespace DBComm.DBComm.DO
         {
             Contract.Requires(dummy != null); // Re-stipulate this contract, since it must be checked before the added contracts.
             Contract.Requires(dummy.GetType() == this.GetType());
-            Contract.Requires(((VoterDO)dummy).PrimaryKey >= 101000001 && ((VoterDO)dummy).PrimaryKey <= 3012999999);
+            Contract.Requires(dummy.PrimaryKey == null || (((VoterDO)dummy).PrimaryKey >= 101000001 && ((VoterDO)dummy).PrimaryKey <= 3012999999));
 
             VoterDO voterDummy = dummy as VoterDO;
             Contract.Assert(voterDummy != null);
 
-            PollingStationId = voterDummy.PollingStationId ?? this.PollingStationId;
-            PrimaryKey = voterDummy.PrimaryKey ?? this.PrimaryKey;
-            Name = voterDummy.Name ?? this.Name;
-            Address = voterDummy.Address ?? this.Address;
-            CardPrinted = voterDummy.CardPrinted ?? this.CardPrinted;
-            Voted = voterDummy.Voted ?? this.Voted;
+            this.PollingStationId = voterDummy.PollingStationId ?? this.PollingStationId;
+            this.PrimaryKey = voterDummy.PrimaryKey ?? this.PrimaryKey;
+            this.Name = voterDummy.Name ?? this.Name;
+            this.City = voterDummy.City ?? this.City;
+            this.Address = voterDummy.Address ?? this.Address;
+            this.CardPrinted = voterDummy.CardPrinted ?? this.CardPrinted;
+            this.Voted = voterDummy.Voted ?? this.Voted;
         }
 
         [ContractInvariantMethod]
         private void Invariant()
         {
-            Contract.Invariant((PrimaryKey >= 101000001 && PrimaryKey <= 3112999999) || PrimaryKey == null);
+            Contract.Invariant((this.PrimaryKey >= 101000001 && this.PrimaryKey <= 3112999999) || this.PrimaryKey == null);
         }
 
         public override bool Equals(object obj)
@@ -216,17 +218,17 @@ namespace DBComm.DBComm.DO
 
             var other = obj as VoterDO;
 
-            return other.Name == this.Name && other.PollingStationId == this.PollingStationId
-                   && other.Address == this.Address;
+            return other.PrimaryKey == this.PrimaryKey && other.Name == this.Name && other.PollingStationId == this.PollingStationId
+                   && other.Address == this.Address && other.City == this.City && other.Voted == this.Voted && other.CardPrinted == this.CardPrinted;
         }
 
         // override object.GetHashCode
         public override int GetHashCode()
         {
-            if (Name != null)
-                return this.Name.GetHashCode();
+            var result = 0;
+            if (this.Name != null) result += this.Name.GetHashCode();
 
-            return 0;
+            return result;
         }
     }
 }

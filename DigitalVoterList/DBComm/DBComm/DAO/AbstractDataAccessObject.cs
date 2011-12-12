@@ -33,14 +33,12 @@ namespace DBComm.DBComm.DAO
 
         protected AbstractDataAccessObject()
         {
-            db = DigitalVoterList.GetDefaultInstance();
-            //db.Log = Console.Out;
+            this.db = DigitalVoterList.GetDefaultInstance();
         }
 
         protected AbstractDataAccessObject(DigitalVoterList dc)
         {
-            db = dc;
-            //db.Log = Console.Out;
+            this.db = dc;
         }
 
         /// <summary>
@@ -54,8 +52,8 @@ namespace DBComm.DBComm.DAO
         /// </returns>
         public bool Create(T t)
         {
-            db.GetTable<T>().InsertOnSubmit(t);
-            db.SubmitChanges();
+            this.db.GetTable<T>().InsertOnSubmit(t);
+            this.db.SubmitChanges();
 
             return true;
         }
@@ -71,8 +69,8 @@ namespace DBComm.DBComm.DAO
         /// </returns>
         public bool Create(IEnumerable<T> t)
         {
-            db.GetTable<T>().InsertAllOnSubmit(t);
-            db.SubmitChanges();
+            this.db.GetTable<T>().InsertAllOnSubmit(t);
+            this.db.SubmitChanges();
 
             return true;
         }
@@ -88,7 +86,7 @@ namespace DBComm.DBComm.DAO
         /// </returns>
         public IEnumerable<T> Read(Expression<Func<T, bool>> f)
         {
-            return db.GetTable<T>().AsQueryable().Where(f);
+            return this.db.GetTable<T>().AsQueryable().Where(f);
         }
 
         /// <summary>
@@ -108,25 +106,19 @@ namespace DBComm.DBComm.DAO
         /// </returns>
         public bool Update(Expression<Func<T, bool>> f, T dummy)
         {
-            var oldValues = this.Read(f);
+            IQueryable<T> oldValues = this.Read(f) as IQueryable<T>;
 
             if (oldValues != null)
             {
                 foreach (var oldValue in oldValues)
                 {
-                    if (oldValue.PrimaryKey != dummy.PrimaryKey)
-                    {
-                        // Delete the old value and insert a new one, since trying to directly update the primary is not allowed.
-                        this.DeleteAndInsert(oldValue, dummy);
-
-                        return true;
-                    }
-
                     oldValue.UpdateValues(dummy);
                 }
             }
 
-            db.SubmitChanges();
+            var changes = this.db.GetChangeSet();
+
+            this.db.SubmitChanges();
 
             return true;
         }
@@ -149,27 +141,9 @@ namespace DBComm.DBComm.DAO
                 this.db.GetTable<T>().DeleteAllOnSubmit(oldValues);
             }
 
-            db.SubmitChanges();
+            this.db.SubmitChanges();
 
             return true;
         }
-
-        /// <summary>
-        /// <para>Update the primary key by first deleting the entry and 
-        /// inserting a new one. Implementation of this method is left to
-        /// child classes, since trying to build predicates using
-        /// IDataObject.PrimaryKey yields an error.</para>
-        /// <para>Most implementations will suffice by just implementing the 
-        /// following two lines of code:
-        /// <code>this.Delete(v => v.PrimaryKey == oldValue.PrimaryKey);
-        /// this.Create(dummy);</code></para>
-        /// </summary>
-        /// <param name="oldValue">
-        /// The old value to be deleted.
-        /// </param>
-        /// <param name="dummy">
-        /// The dummy to be inserted.
-        /// </param>
-        protected abstract void DeleteAndInsert(T oldValue, T dummy);
     }
 }

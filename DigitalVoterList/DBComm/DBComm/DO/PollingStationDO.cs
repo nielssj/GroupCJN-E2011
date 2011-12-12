@@ -161,7 +161,7 @@ namespace DBComm.DBComm.DO
 
             var other = obj as PollingStationDO;
 
-            return other.Address == this.Address && other.MunicipalityId == this.MunicipalityId
+            return other.PrimaryKey == this.PrimaryKey && other.Address == this.Address && other.MunicipalityId == this.MunicipalityId
                    && other.Name == this.Name;
         }
 

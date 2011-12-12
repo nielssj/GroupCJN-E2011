@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DBComm.Moles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ExtendedReflection, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Moles.Framework, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -66,6 +67,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogDOTest.Constructor.g.cs">
+      <DependentUpon>LogDOTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogDOTest.cs" />
     <Compile Include="MunicipalityDOTest.Constructor01.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>

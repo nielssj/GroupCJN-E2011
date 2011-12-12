@@ -6,7 +6,7 @@
 
 namespace DigitalVoterList.Central.Controllers
 {
-    using System.Windows.Forms;
+    using System;
 
     using DBComm.DBComm.DO;
 
@@ -35,7 +35,7 @@ namespace DigitalVoterList.Central.Controllers
             view.AddMSelectionChangedHandler(this.MSelectionChanged);
             view.addCPRTextChangedHandler(this.CPRTextChanged);
 
-            view.Show();
+            this.view.Closed += (o, eA) => Environment.Exit(-1);
         }
 
         /// <summary>
@@ -51,11 +51,13 @@ namespace DigitalVoterList.Central.Controllers
                 MunicipalityDO m = changedTo as MunicipalityDO;
                 VoterFilter filter = new VoterFilter(m);
 
-                mainModel.ReplaceFilter(filter);
+                this.view.DisablePSSelectionHandlers();
 
-                System.Windows.Forms.MessageBox.Show(view, "Municipality Selected: " + changedTo);
+                mainModel.ReplaceFilter(filter);
             }
             this.updating = false;
+
+            this.view.EnablePSSelectionHandlers();
         }
 
         /// <summary> 
@@ -64,18 +66,16 @@ namespace DigitalVoterList.Central.Controllers
         /// <param name="changedTo">The polling station that has been selected.</param>
         public void PSSelectionChanged(object changedTo)
         {
-            if (!this.updating)
-            {
-                this.updating = true;
+            this.view.ResetCPRText();
 
-                PollingStationDO p = changedTo as PollingStationDO;
-                VoterFilter filter = new VoterFilter(p.Municipality, p);
+            PollingStationDO p = changedTo as PollingStationDO;
+            VoterFilter filter = new VoterFilter(p.Municipality, p);
 
-                mainModel.ReplaceFilter(filter);
+            this.view.DisablePSSelectionHandlers();
 
-                System.Windows.Forms.MessageBox.Show(view, "Polling Station Selected: " + changedTo);
-            }
-            this.updating = false;
+            this.mainModel.ReplaceFilter(filter);
+
+            this.view.EnablePSSelectionHandlers();
         }
 
         /// <summary>

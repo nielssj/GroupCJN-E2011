@@ -90,7 +90,7 @@ public void PollingStationsSet623()
 [TestMethod]
 [PexGeneratedBy(typeof(MunicipalityDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void PollingStationsSetThrowsContractException531()
+public void PollingStationsSetThrowsContractException887()
 {
     try
     {

@@ -33,10 +33,7 @@ static_diagram DAO
 				require
 					predicate /= Void;
 					t /= Void;
-					dummy.PrimaryKey /= Void -> dummy.FullyInitialized();
-				ensure
-					for_all t : T such_that old read(predicate).contains(t) it_holds
-						not t member_of read(f); -- All elements that were read before the update, have now changed, and will therefore no longer exist in a new read operation.
+					t.PrimaryKey == Void;
 			end
 			
 			deferred delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
@@ -135,6 +132,10 @@ static_diagram DAO
 			name: String
 			cpr: int -- Unsigned
 			address: String
+			city: String
+			pollingStationId: INTEGER
+			voted: BOOLEAN
+			cardPrinted: BOOLEAN
 			
 			cprString : String
 				require
@@ -159,7 +160,7 @@ static_diagram DAO
 			id: INTEGER
 			address: String
 			name: String
-			municipality: MunicipalityDO
+			municipalityId: INTEGER
 			
 			effective fullyInitialized : BOOLEAN 
 			effective UpdateValues -> dummy : DATA_OBJECT
@@ -170,7 +171,8 @@ static_diagram DAO
 			feature
 			id: INTEGER
 			address: String
-			name:String
+			city: String
+			name: String
 			
 			effective fullyInitialized : BOOLEAN 
 			effective UpdateValues -> dummy : DATA_OBJECT
@@ -193,7 +195,7 @@ static_diagram DAO
 			value: CHARACTER
 			
 			invariant
-			value element_of { 'W', 'R' }
+			value element_of { 'W', 'R', 'U' }
 		end
 end
 	

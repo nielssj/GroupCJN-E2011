@@ -1,6 +1,5 @@
 ﻿namespace DigitalVoterList.Central.Views
 {
-    using System;
 
     partial class VoterBoxManagerWindow
     {
@@ -66,7 +65,7 @@
             this.connectButton.Location = new System.Drawing.Point(225, 11);
             this.connectButton.Name = "connectButton";
             this.connectButton.Size = new System.Drawing.Size(75, 70);
-            this.connectButton.TabIndex = 10;
+            this.connectButton.TabIndex = 4;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
             // 
@@ -75,7 +74,7 @@
             this.adressTB.Location = new System.Drawing.Point(98, 13);
             this.adressTB.Name = "adressTB";
             this.adressTB.Size = new System.Drawing.Size(75, 20);
-            this.adressTB.TabIndex = 9;
+            this.adressTB.TabIndex = 0;
             this.adressTB.Text = "192.168.20.11";
             // 
             // addressLabel
@@ -98,6 +97,7 @@
             // 
             // progressTF
             // 
+            this.progressTF.Enabled = false;
             this.progressTF.Location = new System.Drawing.Point(14, 91);
             this.progressTF.Multiline = true;
             this.progressTF.Name = "progressTF";
@@ -128,7 +128,7 @@
             this.userBox.Location = new System.Drawing.Point(96, 39);
             this.userBox.Name = "userBox";
             this.userBox.Size = new System.Drawing.Size(119, 20);
-            this.userBox.TabIndex = 16;
+            this.userBox.TabIndex = 2;
             // 
             // userLabel
             // 
@@ -146,7 +146,7 @@
             this.pwBox.Name = "pwBox";
             this.pwBox.PasswordChar = '*';
             this.pwBox.Size = new System.Drawing.Size(119, 20);
-            this.pwBox.TabIndex = 18;
+            this.pwBox.TabIndex = 3;
             // 
             // pwLabel
             // 
@@ -162,7 +162,7 @@
             this.portBox.Location = new System.Drawing.Point(178, 13);
             this.portBox.Name = "portBox";
             this.portBox.Size = new System.Drawing.Size(37, 20);
-            this.portBox.TabIndex = 20;
+            this.portBox.TabIndex = 1;
             this.portBox.Text = "3306";
             // 
             // label1
@@ -196,7 +196,7 @@
             this.Controls.Add(this.addressLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VoterBoxManagerWindow";
-            this.Text = "v";
+            this.Text = "Voter Box Manager";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,65 +208,6 @@
         private System.Windows.Forms.Button connectButton;
         private System.Windows.Forms.TextBox adressTB;
         private System.Windows.Forms.Label addressLabel;
-
-        public string Address
-        {
-            get
-            {
-                return adressTB.Text;
-            }
-        }
-
-        public string Port
-        {
-            get
-            {
-                return portBox.Text;
-            }
-        }
-
-        public string User
-        {
-            get
-            {
-                return userBox.Text;
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                return pwBox.Text;
-            }
-        }
-
-        public delegate void ButtonHandler();
-
-        public void AddValidateHandler(ButtonHandler h)
-        {
-            this.validateButton.Click += (o, eA) => h();
-        }
-
-        public void AddUploadHandler(ButtonHandler h)
-        {
-            this.uploadButton.Click += (o, eA) => h();
-        }
-
-        public void AddConnectHandler(ButtonHandler h)
-        {
-            this.connectButton.Click += (o, eA) => h();
-        }
-
-        public void UpdateProgress()
-        {
-            this.progressBar1.PerformStep();
-        }
-
-        public void UpdateProgressText(string text)
-        {
-            this.progressTF.Text += text + Environment.NewLine;
-        }
 
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox progressTF;

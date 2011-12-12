@@ -276,6 +276,10 @@
         <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.ConnStringGet">
+            <summary>Sets the mole of <see cref="P:DBComm.DBComm.DigitalVoterList.ConnString"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.ConstructorMySqlConnection">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.#ctor(MySql.Data.MySqlClient.MySqlConnection)"/>
             </summary>
@@ -292,12 +296,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstanceFromServer(System.String)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceMySqlConnection">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(MySql.Data.MySqlClient.MySqlConnection)"/>
-            </summary>
-        </member>
-        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceString">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(System.String)"/>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceStringStringStringString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(System.String,System.String,System.String,System.String)"/>
             </summary>
         </member>
         <member name="T:DBComm.DBComm.Moles.MDigitalVoterList.AllInstances">
@@ -399,10 +399,6 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.Create(DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO.DeleteAndInsertLogDOLogDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)"/>
-            </summary>
-        </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO._Createb__0LogDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.&lt;Create&gt;b__0(DBComm.DBComm.DO.LogDO)"/>
             </summary>
@@ -420,10 +416,6 @@
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO.AllInstances.CreateLogDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.Create(DBComm.DBComm.DO.LogDO)"/>
-            </summary>
-        </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO.AllInstances.DeleteAndInsertLogDOLogDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.LogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MLogDAO.AllInstances._Createb__1LogDO">
@@ -605,10 +597,6 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.Create(DBComm.DBComm.DO.MunicipalityDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MMunicipalityDAO.DeleteAndInsertMunicipalityDOMunicipalityDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.DeleteAndInsert(DBComm.DBComm.DO.MunicipalityDO,DBComm.DBComm.DO.MunicipalityDO)"/>
-            </summary>
-        </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MMunicipalityDAO._Createb__2MunicipalityDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.&lt;Create&gt;b__2(DBComm.DBComm.DO.MunicipalityDO)"/>
             </summary>
@@ -626,10 +614,6 @@
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MMunicipalityDAO.AllInstances.CreateMunicipalityDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.Create(DBComm.DBComm.DO.MunicipalityDO)"/>
-            </summary>
-        </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MMunicipalityDAO.AllInstances.DeleteAndInsertMunicipalityDOMunicipalityDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.DeleteAndInsert(DBComm.DBComm.DO.MunicipalityDO,DBComm.DBComm.DO.MunicipalityDO)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MMunicipalityDAO.AllInstances._Createb__3MunicipalityDO">
@@ -917,10 +901,6 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.Create(DBComm.DBComm.DO.PollingStationDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MPollingStationDAO.DeleteAndInsertPollingStationDOPollingStationDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.DeleteAndInsert(DBComm.DBComm.DO.PollingStationDO,DBComm.DBComm.DO.PollingStationDO)"/>
-            </summary>
-        </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPollingStationDAO._Createb__2PollingStationDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.&lt;Create&gt;b__2(DBComm.DBComm.DO.PollingStationDO)"/>
             </summary>
@@ -938,10 +918,6 @@
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPollingStationDAO.AllInstances.CreatePollingStationDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.Create(DBComm.DBComm.DO.PollingStationDO)"/>
-            </summary>
-        </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MPollingStationDAO.AllInstances.DeleteAndInsertPollingStationDOPollingStationDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.DeleteAndInsert(DBComm.DBComm.DO.PollingStationDO,DBComm.DBComm.DO.PollingStationDO)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPollingStationDAO.AllInstances._Createb__3PollingStationDO">
@@ -1193,10 +1169,6 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.VoterDAO.Create(DBComm.DBComm.DO.VoterDO)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MVoterDAO.DeleteAndInsertVoterDOVoterDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.VoterDAO.DeleteAndInsert(DBComm.DBComm.DO.VoterDO,DBComm.DBComm.DO.VoterDO)"/>
-            </summary>
-        </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MVoterDAO._Createb__2VoterDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.VoterDAO.&lt;Create&gt;b__2(DBComm.DBComm.DO.VoterDO)"/>
             </summary>
@@ -1214,10 +1186,6 @@
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MVoterDAO.AllInstances.CreateVoterDO">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.VoterDAO.Create(DBComm.DBComm.DO.VoterDO)"/>
-            </summary>
-        </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MVoterDAO.AllInstances.DeleteAndInsertVoterDOVoterDO">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.VoterDAO.DeleteAndInsert(DBComm.DBComm.DO.VoterDO,DBComm.DBComm.DO.VoterDO)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MVoterDAO.AllInstances._Createb__3VoterDO">
@@ -1451,14 +1419,6 @@
         <member name="M:DBComm.DBComm.DAO.Moles.SAbstractDataAccessObject`1.#ctor(DBComm.DBComm.DigitalVoterList)">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SAbstractDataAccessObject`1.DeleteAndInsert(`0,`0)">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.AbstractDataAccessObject`1.DeleteAndInsert(`1,`1)"/>
-            </summary>
-        </member>
-        <member name="F:DBComm.DBComm.DAO.Moles.SAbstractDataAccessObject`1.DeleteAndInsertTT">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.AbstractDataAccessObject`1.DeleteAndInsert(`1,`1)"/>
-            </summary>
-        </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SAbstractDataAccessObject`1.InitializeStub">
             <summary>Initializes a new instance of type SAbstractDataAccessObject</summary>
         </member>
@@ -1615,14 +1575,6 @@
         <member name="M:DBComm.DBComm.DAO.Moles.SLogDAO.#ctor(DBComm.DBComm.DigitalVoterList)">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SLogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.LogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)"/>
-            </summary>
-        </member>
-        <member name="F:DBComm.DBComm.DAO.Moles.SLogDAO.DeleteAndInsertLogDOLogDO">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.LogDAO.DeleteAndInsert(DBComm.DBComm.DO.LogDO,DBComm.DBComm.DO.LogDO)"/>
-            </summary>
-        </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SLogDAO.InitializeStub">
             <summary>Initializes a new instance of type SLogDAO</summary>
         </member>
@@ -1660,14 +1612,6 @@
         </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SMunicipalityDAO.#ctor(DBComm.DBComm.DigitalVoterList)">
             <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SMunicipalityDAO.DeleteAndInsert(DBComm.DBComm.DO.MunicipalityDO,DBComm.DBComm.DO.MunicipalityDO)">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.DeleteAndInsert(DBComm.DBComm.DO.MunicipalityDO,DBComm.DBComm.DO.MunicipalityDO)"/>
-            </summary>
-        </member>
-        <member name="F:DBComm.DBComm.DAO.Moles.SMunicipalityDAO.DeleteAndInsertMunicipalityDOMunicipalityDO">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.MunicipalityDAO.DeleteAndInsert(DBComm.DBComm.DO.MunicipalityDO,DBComm.DBComm.DO.MunicipalityDO)"/>
-            </summary>
         </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SMunicipalityDAO.InitializeStub">
             <summary>Initializes a new instance of type SMunicipalityDAO</summary>
@@ -1747,14 +1691,6 @@
         <member name="M:DBComm.DBComm.DAO.Moles.SPollingStationDAO.#ctor(DBComm.DBComm.DigitalVoterList)">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SPollingStationDAO.DeleteAndInsert(DBComm.DBComm.DO.PollingStationDO,DBComm.DBComm.DO.PollingStationDO)">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.DeleteAndInsert(DBComm.DBComm.DO.PollingStationDO,DBComm.DBComm.DO.PollingStationDO)"/>
-            </summary>
-        </member>
-        <member name="F:DBComm.DBComm.DAO.Moles.SPollingStationDAO.DeleteAndInsertPollingStationDOPollingStationDO">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.PollingStationDAO.DeleteAndInsert(DBComm.DBComm.DO.PollingStationDO,DBComm.DBComm.DO.PollingStationDO)"/>
-            </summary>
-        </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SPollingStationDAO.InitializeStub">
             <summary>Initializes a new instance of type SPollingStationDAO</summary>
         </member>
@@ -1832,14 +1768,6 @@
         </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SVoterDAO.#ctor(DBComm.DBComm.DigitalVoterList)">
             <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SVoterDAO.DeleteAndInsert(DBComm.DBComm.DO.VoterDO,DBComm.DBComm.DO.VoterDO)">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.VoterDAO.DeleteAndInsert(DBComm.DBComm.DO.VoterDO,DBComm.DBComm.DO.VoterDO)"/>
-            </summary>
-        </member>
-        <member name="F:DBComm.DBComm.DAO.Moles.SVoterDAO.DeleteAndInsertVoterDOVoterDO">
-            <summary>Sets the stub of <see cref="M:DBComm.DBComm.DAO.VoterDAO.DeleteAndInsert(DBComm.DBComm.DO.VoterDO,DBComm.DBComm.DO.VoterDO)"/>
-            </summary>
         </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SVoterDAO.InitializeStub">
             <summary>Initializes a new instance of type SVoterDAO</summary>

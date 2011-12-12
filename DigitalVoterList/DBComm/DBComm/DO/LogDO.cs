@@ -94,9 +94,12 @@ namespace DBComm.DBComm.DO
             this.Activity = logDummy.Activity ?? this.Activity;
         }
 
+        /// <summary>
+        /// Reset all associations.
+        /// </summary>
         public void ResetAssociations()
         {
-
+            // No associations, so nothing to reset here.
         }
 
         #endregion

@@ -331,7 +331,7 @@ command
 	"Write any updated fields to the database.",
 	"Delete this object from the database."
 constraint
-	"N/A"
+	"Data objects are immuteable."
 end
 
 class_chart PESSIMISTIC_VOTER_DAO

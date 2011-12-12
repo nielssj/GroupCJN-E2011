@@ -23,22 +23,20 @@ namespace DBComm.DBComm.DO
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException676()
+public void UpdateValuesThrowsContractException254()
 {
     try
     {
       VoterDO voterDO;
-      PollingStationDO pollingStationDO;
       voterDO = PexInvariant.CreateInstance<VoterDO>();
       PexInvariant.SetField<uint?>((object)voterDO, "primaryKey", default(uint?));
       PexInvariant.SetField<EntityRef<PollingStationDO>>
           ((object)voterDO, "_pollingStation", default(EntityRef<PollingStationDO>));
       PexInvariant.SetField<uint?>
-          ((object)voterDO, "<PollingStationId>k__BackingField", default(uint?));
+          ((object)voterDO, "<PollingStationId>k__BackingField", new uint?(1u));
       PexInvariant.SetField<string>
           ((object)voterDO, "<Name>k__BackingField", (string)null);
-      PexInvariant.SetField<string>
-          ((object)voterDO, "<Address>k__BackingField", (string)null);
+      PexInvariant.SetField<string>((object)voterDO, "<Address>k__BackingField", "");
       PexInvariant.SetField<string>
           ((object)voterDO, "<City>k__BackingField", (string)null);
       PexInvariant.SetField<bool?>
@@ -46,9 +44,7 @@ public void UpdateValuesThrowsContractException676()
       PexInvariant.SetField<bool?>
           ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
       PexInvariant.CheckInvariant((object)voterDO);
-      pollingStationDO = new PollingStationDO
-                             (default(uint?), default(uint?), (string)null, (string)null);
-      this.UpdateValues(voterDO, (IDataObject)pollingStationDO);
+      this.UpdateValues(voterDO, (IDataObject)voterDO);
       throw 
         new AssertFailedException("expected an exception of type ContractException");
     }
@@ -61,7 +57,7 @@ public void UpdateValuesThrowsContractException676()
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException533()
+public void UpdateValuesThrowsContractException652()
 {
     try
     {
@@ -96,7 +92,7 @@ public void UpdateValuesThrowsContractException533()
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException333()
+public void UpdateValuesThrowsContractException534()
 {
     try
     {

@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="DBCreator.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="DBCreator.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 

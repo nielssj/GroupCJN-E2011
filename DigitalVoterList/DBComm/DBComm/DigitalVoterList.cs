@@ -6,11 +6,13 @@
 
 namespace DBComm.DBComm
 {
+    using System;
+    using System.Collections.Generic;
     using System.Data.Linq;
     using System.Data.Linq.Mapping;
-
+    using System.IO;
+    using System.Linq;
     using global::DBComm.DBComm.DO;
-
     using MySql.Data.MySqlClient;
 
     /// <summary>
@@ -19,6 +21,11 @@ namespace DBComm.DBComm
     [Database(Name = ("dvl"))]
     public class DigitalVoterList : DataContext
     {
+        private const string Path = "c:/ServerSetupDVL.conf";
+
+        private const string Default =
+            "server=localhost;port=3306;id=root;password=abc123;Sql Server Mode=true;database=dvl;";
+
         public Table<PollingStationDO> pollingStations;
 
         public Table<VoterDO> voters;
@@ -40,7 +47,30 @@ namespace DBComm.DBComm
         }
 
         /// <summary>
-        /// Create a new database with the default connection parameters.
+        /// Gets ConnString. Tries to read from "c:/ServerSetupDVL.conf" or falls back to the default string
+        /// </summary>
+        private static string ConnString
+        {
+            get
+            {
+                try
+                {
+                    List<string> lines = File.ReadLines(Path).ToList();
+                    string server = lines[0];
+                    string port = lines[1];
+                    string user = lines[2];
+                    string password = lines[3];
+                    return string.Format("server={0};uid={1};password={2};port={3};Sql Server Mode = true;database=dvl", server, user, password, port);
+                }
+                catch (Exception e)
+                {
+                    return Default;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Create a new database with the connection parameters read from the config file.
         /// * server = localhost
         /// * port = 3306
         /// * uid = root
@@ -51,55 +81,56 @@ namespace DBComm.DBComm
         /// <returns>A new datacontext instance.</returns>
         public static DigitalVoterList GetDefaultInstance()
         {
-            return new DigitalVoterList(new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"
-                    + "database=dvl;"));
+            return new DigitalVoterList(new MySqlConnection(ConnString));
         }
 
         /// <summary>
-        /// Create a new database with the default connection parameters but with user specified server.
-        /// * port = 3306
-        /// * uid = root
-        /// * password = abc123
-        /// * sql server mode = true
-        /// * database = dvl
+        /// Create a new database instance based on the connection parameters.
         /// </summary>
-        /// <param name="server">
-        /// The server.
-        /// </param>
-        /// <returns> A new datacontext instance. </returns>
+        /// <param name="user">The user. </param>
+        /// <param name="password">The password. </param>
+        /// <param name="server">The server.</param>
+        /// <param name="port">The port.</param>
+        /// <returns>
+        /// A new datacontext.
+        /// </returns>
+        public static DigitalVoterList GetInstance(string user, string password, string server, string port = "3306")
+        {
+            var conn = new MySqlConnection(
+                string.Format(
+                    "server={0};uid={1};password={2};port={3};Sql Server Mode = true;database=dvl",
+                    server,
+                    user,
+                    password,
+                    port));
+            conn.Open();
+
+            return new DigitalVoterList(conn);
+        }
+
+        /// <summary>
+        /// Create a new database instance based on the connection parameters.
+        /// </summary>
+        /// <param name="server">The server. </param>
+        /// <returns>
+        /// A new datacontext.
+        /// </returns>
         public static DigitalVoterList GetInstanceFromServer(string server)
         {
-            return new DigitalVoterList(new MySqlConnection(
-                    "server=" + server + ";port=3306;uid=root;password=abc123;Sql Server Mode=true;database=dvl;"));
+            var conn = new MySqlConnection(
+                string.Format(
+                    "server={0};uid={1};password={2};port={3};Sql Server Mode = true;database=dvl",
+                    server,
+                    "root",
+                    "abc123",
+                    "3306"));
+            conn.Open();
+
+            return new DigitalVoterList(conn);
         }
 
         /// <summary>
-        /// Create a new database instance based on the connection.
-        /// </summary>
-        /// <param name="c">The connection to the db. The connection should be initialized and ready to connect.</param>
-        /// <returns>A new datacontext.</returns>
-        public static DigitalVoterList GetInstance(MySqlConnection c)
-        {
-            c.ConnectionString += "; Sql Server Mode=true; database=dvl;"; // Added to be sure that LINQ queries are supported by the DB. 
-            // No harm will be done if this parameter is already set.
-            return new DigitalVoterList(c);
-        }
-
-        /// <summary>
-        /// Create a new database instance based on the connection.
-        /// </summary>
-        /// <param name="c">The connection string to the db.</param>
-        /// <returns>A new datacontext.</returns>
-        public static DigitalVoterList GetInstance(string c)
-        {
-            c += "; Sql Server Mode=true; database=dvl;"; // Added to be sure that LINQ queries are supported by the DB. 
-            // No harm will be done if this parameter is already set.
-            return new DigitalVoterList(new MySqlConnection(c));
-        }
-
-        /// <summary>
-        /// Get a server connection based on the given parameters.
+        /// Get an open server connection based on the given parameters.
         /// </summary>
         /// <param name="user">The user</param>
         /// <param name="password">The password</param>
@@ -108,8 +139,16 @@ namespace DBComm.DBComm
         /// <returns>A new connection.</returns>
         public static MySqlConnection GetConnectionInstance(string user, string password, string server = "localhost", int port = 3306)
         {
-            return new MySqlConnection(
-                string.Format("server={0};uid={1};password={2};port={3},Sql Server Mode = true;database=dvl", server, user, password, port));
+            var conn = new MySqlConnection(
+                string.Format(
+                    "server={0};uid={1};password={2};port={3};Sql Server Mode = true;database=dvl",
+                    server,
+                    user,
+                    password,
+                    port));
+            conn.Open();
+
+            return conn;
         }
     }
 }

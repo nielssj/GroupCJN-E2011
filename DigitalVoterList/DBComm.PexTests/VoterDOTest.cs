@@ -83,18 +83,18 @@ namespace DBComm.DBComm.DO
         }
         [PexMethod]
         public VoterDO Constructor(
-            uint pollingStationId,
-            uint cpr,
+            uint? pollingStationId,
+            uint? cpr,
             string name,
             string address,
             string city,
-            bool cardPrinted,
-            bool voted
+            bool? cardPrinted,
+            bool? voted
         )
         {
             VoterDO target = new VoterDO(pollingStationId, cpr, name, address, city, cardPrinted, voted);
             return target;
-            // TODO: add assertions to method VoterDOTest.Constructor(UInt32, UInt32, String, String, String, Boolean, Boolean)
+            // TODO: add assertions to method VoterDOTest.Constructor(Nullable`1<UInt32>, Nullable`1<UInt32>, String, String, String, Nullable`1<Boolean>, Nullable`1<Boolean>)
         }
     }
 }

@@ -23,7 +23,7 @@ namespace DBComm.DBComm.DO
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void CprStringGetThrowsContractException976()
+public void CprStringGetThrowsContractException515()
 {
     try
     {

@@ -135,7 +135,6 @@
             this.cbxMunicipalities.Name = "cbxMunicipalities";
             this.cbxMunicipalities.Size = new System.Drawing.Size(157, 21);
             this.cbxMunicipalities.TabIndex = 2;
-            this.cbxMunicipalities.Text = "All";
             // 
             // label1
             // 

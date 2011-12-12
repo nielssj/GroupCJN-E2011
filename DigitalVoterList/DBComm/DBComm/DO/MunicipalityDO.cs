@@ -154,7 +154,7 @@ namespace DBComm.DBComm.DO
 
             var other = obj as MunicipalityDO;
 
-            return other.Address == this.Address && other.City == this.City && other.Id == this.Id
+            return other.PrimaryKey == this.PrimaryKey && other.Address == this.Address && other.City == this.City && other.Id == this.Id
                    && other.Name == this.Name;
         }
 

@@ -1,4 +1,4 @@
-scenario_chart TESTING_SCENARIOS
+scenario_chart TESTING_SCENARIOS_PESSIMISTIC_VOTER_DAO
 explanation
 	"Test cases for the pessimistic voter DAO. Further explanation of the testing strategy can be found in [REF HERE!]."
 scenario "Negative testing, scenario one"
@@ -11,3 +11,12 @@ scenario "Positive testing, scenario three"
 	description "Client 1 opens a transaction and reads a value. Client 2 opens a transaction, and reads another value. The two transactions should not block each other."
 end
     
+scenario_chart TESTING_SCENARIOS_ABSTRACT_DAO
+explanation
+	"Test cases for the abstract DAO. These test specifically test contracts which may not have been fully implemented in the program due to limitations \
+	\in the LINQ / Entity-mapping framework. Furthermore it calls all methods of the DAO to test that no postconditions break. Almost all of the implementaion \
+	\of DAOs are placed here, so any subclass is suitable for testing."
+scenario "Read operation - predicate should hold for all elements in the result-set"
+	description "This post-condition fails for some LINQ queries, specifically those use associations. Test by creating various predicates and ensure that \
+	\they hold for all elements of the results."
+end

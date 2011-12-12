@@ -1,6 +1,7 @@
 ﻿namespace DigitalVoterList.Central.Models
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -34,9 +35,9 @@
             // Call database to get initial values (no selection, ie. entire DB)
             try
             {
+                Municipalities = mDAO.Read(o => true);
+                PollingStations = pDAO.Read(o => true);
                 voterCount = vDAO.Read(o => true).Count();
-                pollingStations = pDAO.Read(o => true);
-                municipalities = mDAO.Read(o => true);
                 currentFilter = null;
             }
             catch (Exception e)
@@ -91,8 +92,10 @@
 
             private set
             {
-                this.pollingStations = value;
-                this.PollingStationsChanged(this.pollingStations);
+                this.pollingStations =
+                    new List<PollingStationDO>() { new PollingStationDO(uint.MaxValue, uint.MaxValue, "All Polling Stations", "NONE") }.Union(
+                            value).ToList();
+                this.OnPollingStationsChanged(this.pollingStations);
             }
         }
 
@@ -102,6 +105,13 @@
             get
             {
                 return municipalities;
+            }
+
+            private set
+            {
+                this.municipalities =
+                    new List<MunicipalityDO>() { new MunicipalityDO(uint.MaxValue, "NONE", "NONE", "All Municipalities") }.Union(
+                        value).ToList();
             }
         }
 
@@ -159,16 +169,38 @@
             }
             else if (filter.PollingStation != null)
             {
-                voters = vDAO.Read(v => v.PollingStation == filter.PollingStation);
-                SelectedMunicipality = filter.PollingStation.Municipality;
+                if (filter.PollingStation.Name.Equals("All Polling Stations"))
+                {
+                    voters = vDAO.Read(v => v.PollingStation.MunicipalityId == selectedMunicipality.Id);
+                }
+                else
+                {
+                    voters = vDAO.Read(v => v.PollingStation == filter.PollingStation);
+                    SelectedMunicipality = filter.PollingStation.Municipality;
+                    PollingStations = pDAO.Read(p => p.MunicipalityId == filter.PollingStation.MunicipalityId);
+                    SelectedPollingStation = filter.PollingStation;
+                }
             }
             else if (filter.Municipality != null)
             {
-                voters = vDAO.Read(v => v.PollingStation.Municipality == filter.Municipality);
-                PollingStations = pDAO.Read(o => o.Municipality == filter.Municipality);
+                if (filter.Municipality.Name.Equals("All Municipalities"))
+                {
+                    voters = vDAO.Read(v => true);
+                    PollingStations = pDAO.Read(o => true);
+                }
+                else
+                {
+                    voters = vDAO.Read(v => v.PollingStation.Municipality == filter.Municipality);
+                    PollingStations = pDAO.Read(o => o.Municipality == filter.Municipality);
+                }
             }
 
             VoterCount = voters.Count(); // The invariant for Filter stipulates, that at least one field will be initialized, and therefore this will never be null.
+        }
+
+        public void OnPollingStationsChanged(IEnumerable<PollingStationDO> pollingStations)
+        {
+            if (PollingStationsChanged != null) PollingStationsChanged(pollingStations);
         }
     }
 }

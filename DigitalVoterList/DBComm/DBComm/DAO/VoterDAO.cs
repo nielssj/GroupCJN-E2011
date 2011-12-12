@@ -72,21 +72,5 @@ namespace DBComm.DBComm.DAO
             Contract.Ensures(Contract.ForAll(t, ts => this.Read(o => o.PrimaryKey == ts.PrimaryKey).Contains(ts)));
             return base.Create(t);
         }
-
-        /// <summary>
-        /// Update the primary key by first deleting the entry and 
-        /// inserting a new one.
-        /// </summary>
-        /// <param name="oldValue">
-        /// The old value.
-        /// </param>
-        /// <param name="dummy">
-        /// The dummy.
-        /// </param>
-        protected override void DeleteAndInsert(VoterDO oldValue, VoterDO dummy)
-        {
-            this.Delete(v => v.PrimaryKey == oldValue.PrimaryKey);
-            this.Create(dummy);
-        }
     }
 }

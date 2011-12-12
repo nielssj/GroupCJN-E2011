@@ -22,11 +22,24 @@ namespace DBComm.DBComm.DO
             // TODO: add assertions to method PollingStationDOTest.VotersSet(PollingStationDO, ICollection`1<VoterDO>)
         }
         [PexMethod]
+        public void MunicipalitySet([PexAssumeUnderTest]PollingStationDO target, MunicipalityDO value)
+        {
+            target.Municipality = value;
+            // TODO: add assertions to method PollingStationDOTest.MunicipalitySet(PollingStationDO, MunicipalityDO)
+        }
+        [PexMethod]
         public ICollection<VoterDO> VotersGet([PexAssumeUnderTest]PollingStationDO target)
         {
             ICollection<VoterDO> result = target.Voters;
             return result;
             // TODO: add assertions to method PollingStationDOTest.VotersGet(PollingStationDO)
+        }
+        [PexMethod]
+        public MunicipalityDO MunicipalityGet([PexAssumeUnderTest]PollingStationDO target)
+        {
+            MunicipalityDO result = target.Municipality;
+            return result;
+            // TODO: add assertions to method PollingStationDOTest.MunicipalityGet(PollingStationDO)
         }
         [PexMethod]
         public void UpdateValues([PexAssumeUnderTest]PollingStationDO target, IDataObject dummy)
@@ -46,19 +59,6 @@ namespace DBComm.DBComm.DO
         {
             target.ResetAssociations();
             // TODO: add assertions to method PollingStationDOTest.ResetAssociations(PollingStationDO)
-        }
-        [PexMethod]
-        public void MunicipalitySet([PexAssumeUnderTest]PollingStationDO target, MunicipalityDO value)
-        {
-            target.Municipality = value;
-            // TODO: add assertions to method PollingStationDOTest.MunicipalitySet(PollingStationDO, MunicipalityDO)
-        }
-        [PexMethod]
-        public MunicipalityDO MunicipalityGet([PexAssumeUnderTest]PollingStationDO target)
-        {
-            MunicipalityDO result = target.Municipality;
-            return result;
-            // TODO: add assertions to method PollingStationDOTest.MunicipalityGet(PollingStationDO)
         }
         [PexMethod]
         public int GetHashCode01([PexAssumeUnderTest]PollingStationDO target)

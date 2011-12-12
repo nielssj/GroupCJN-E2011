@@ -35,34 +35,15 @@ public void Constructor01389()
 }
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-public void Constructor327()
-{
-    VoterDO voterDO;
-    voterDO = this.Constructor
-                  (0u, 101008193u, (string)null, (string)null, (string)null, false, false);
-    Assert.IsNotNull((object)voterDO);
-    Assert.IsNotNull((object)(voterDO.PrimaryKey));
-    Assert.AreEqual<uint>(101008193u, (uint)((object)(voterDO.PrimaryKey)));
-    Assert.IsNotNull((object)(voterDO.PollingStationId));
-    Assert.AreEqual<uint>(0u, (uint)((object)(voterDO.PollingStationId)));
-    Assert.AreEqual<string>((string)null, voterDO.Name);
-    Assert.AreEqual<string>((string)null, voterDO.Address);
-    Assert.AreEqual<string>((string)null, voterDO.City);
-    Assert.IsNotNull((object)(voterDO.CardPrinted));
-    Assert.AreEqual<bool>(false, (bool)((object)(voterDO.CardPrinted)));
-    Assert.IsNotNull((object)(voterDO.Voted));
-    Assert.AreEqual<bool>(false, (bool)((object)(voterDO.Voted)));
-}
-[TestMethod]
-[PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void ConstructorThrowsContractException232()
+public void ConstructorThrowsContractException277()
 {
     try
     {
       VoterDO voterDO;
-      voterDO = this.Constructor
-                    (0u, 0u, (string)null, (string)null, (string)null, false, false);
+      voterDO =
+        this.Constructor(default(uint?), new uint?(3180150660u), (string)null, 
+                         (string)null, (string)null, new bool?(true), new bool?(true));
       throw 
         new AssertFailedException("expected an exception of type ContractException");
     }
@@ -71,6 +52,80 @@ public void ConstructorThrowsContractException232()
       if (!PexContract.IsContractException(ex))
         throw ex;
     }
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+public void Constructor194()
+{
+    VoterDO voterDO;
+    voterDO = this.Constructor(default(uint?), new uint?(101024648u), (string)null, 
+                               (string)null, (string)null, new bool?(true), new bool?(true));
+    Assert.IsNotNull((object)voterDO);
+    Assert.IsNotNull((object)(voterDO.PrimaryKey));
+    Assert.AreEqual<uint>(101024648u, (uint)((object)(voterDO.PrimaryKey)));
+    Assert.IsNull((object)(voterDO.PollingStationId));
+    Assert.AreEqual<string>((string)null, voterDO.Name);
+    Assert.AreEqual<string>((string)null, voterDO.Address);
+    Assert.AreEqual<string>((string)null, voterDO.City);
+    Assert.IsNotNull((object)(voterDO.CardPrinted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
+    Assert.IsNotNull((object)(voterDO.Voted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+[PexRaisedContractException(PexExceptionState.Expected)]
+public void ConstructorThrowsContractException512()
+{
+    try
+    {
+      VoterDO voterDO;
+      voterDO = this.Constructor(default(uint?), new uint?(0u), (string)null, 
+                                 (string)null, (string)null, new bool?(true), new bool?(true));
+      throw 
+        new AssertFailedException("expected an exception of type ContractException");
+    }
+    catch(Exception ex)
+    {
+      if (!PexContract.IsContractException(ex))
+        throw ex;
+    }
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+public void Constructor36501()
+{
+    VoterDO voterDO;
+    voterDO = this.Constructor(default(uint?), default(uint?), (string)null, 
+                               (string)null, (string)null, new bool?(true), new bool?(true));
+    Assert.IsNotNull((object)voterDO);
+    Assert.IsNull((object)(voterDO.PrimaryKey));
+    Assert.IsNull((object)(voterDO.PollingStationId));
+    Assert.AreEqual<string>((string)null, voterDO.Name);
+    Assert.AreEqual<string>((string)null, voterDO.Address);
+    Assert.AreEqual<string>((string)null, voterDO.City);
+    Assert.IsNotNull((object)(voterDO.CardPrinted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
+    Assert.IsNotNull((object)(voterDO.Voted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
+}
+[TestMethod]
+[PexGeneratedBy(typeof(VoterDOTest))]
+public void Constructor365()
+{
+    VoterDO voterDO;
+    voterDO = this.Constructor(default(uint?), default(uint?), (string)null, 
+                               (string)null, (string)null, new bool?(true), new bool?(true));
+    Assert.IsNotNull((object)voterDO);
+    Assert.IsNull((object)(voterDO.PrimaryKey));
+    Assert.IsNull((object)(voterDO.PollingStationId));
+    Assert.AreEqual<string>((string)null, voterDO.Name);
+    Assert.AreEqual<string>((string)null, voterDO.Address);
+    Assert.AreEqual<string>((string)null, voterDO.City);
+    Assert.IsNotNull((object)(voterDO.CardPrinted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
+    Assert.IsNotNull((object)(voterDO.Voted));
+    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
 }
     }
 }

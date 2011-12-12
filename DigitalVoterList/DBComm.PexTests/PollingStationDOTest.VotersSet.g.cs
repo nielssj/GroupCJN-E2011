@@ -86,7 +86,7 @@ public void VotersSet623()
 [TestMethod]
 [PexGeneratedBy(typeof(PollingStationDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void VotersSetThrowsContractException453()
+public void VotersSetThrowsContractException17()
 {
     try
     {

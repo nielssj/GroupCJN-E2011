@@ -57,7 +57,7 @@ public void MunicipalitySet317()
 [TestMethod]
 [PexGeneratedBy(typeof(PollingStationDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void MunicipalitySetThrowsContractException377()
+public void MunicipalitySetThrowsContractException373()
 {
     try
     {

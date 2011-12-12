@@ -10,6 +10,7 @@ namespace DigitalVoterList.Central.Views
 
     public partial class VoterSelectionWindow : Form, ISubView
     {
+        private List<EventHandler> pshandlers;
         private VoterSelection model;
 
         public VoterSelectionWindow(VoterSelection model)
@@ -17,6 +18,8 @@ namespace DigitalVoterList.Central.Views
             InitializeComponent();
 
             this.model = model;
+
+            this.pshandlers = new List<EventHandler>();
 
             // Get initial values (default selection = no filter)
             this.cbxMunicipalities.DataSource = model.Municipalities;
@@ -61,7 +64,34 @@ namespace DigitalVoterList.Central.Views
         public void AddPSSelectionChangedHandler(CBInputChangedHandler handler)
         {
             ComboBox cps = cbxPollingStation;
-            cps.SelectedIndexChanged += (o, eA) => handler(cps.SelectedItem as IDataObject);
+
+            EventHandler pshandler = (o, eA) => handler(cps.SelectedItem as IDataObject);
+            pshandlers.Add(pshandler);
+
+            cps.SelectedIndexChanged += pshandler;
+        }
+
+        /// <summary>Temporarily disable handlers for polling station selection.</summary>
+        public void DisablePSSelectionHandlers()
+        {
+            foreach (EventHandler handler in pshandlers)
+            {
+                cbxPollingStation.SelectedIndexChanged -= handler;
+            }
+        }
+
+        /// <summary>Enable handlers for polling station selection.</summary>
+        public void EnablePSSelectionHandlers()
+        {
+            foreach (EventHandler handler in pshandlers)
+            {
+                cbxPollingStation.SelectedIndexChanged += handler;
+            }
+        }
+
+        public void ResetCPRText()
+        {
+            this.txbCPRNO.Text = string.Empty;
         }
 
         /// <summary> Notify me when the municipality selection changes. </summary>

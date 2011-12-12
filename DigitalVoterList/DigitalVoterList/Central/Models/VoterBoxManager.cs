@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="VoterBoxManager.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="VoterBoxManger.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ namespace DigitalVoterList.Central.Models
 
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The model for a voter box manager, the class responsible for transfering data to voting boxes
     /// </summary>
     public class VoterBoxManager : ISubModel
     {
@@ -132,11 +132,11 @@ namespace DigitalVoterList.Central.Models
                 voter.ResetAssociations();
             }
 
-            string connString = "server=" + server + ";uid=" + user + ";password=" + password + ";port=" + port + ";";
+            var context = DigitalVoterList.GetInstance(user, password, server, port);
 
-            mDAO = new MunicipalityDAO(DigitalVoterList.GetInstance(connString));
-            pDAO = new PollingStationDAO(DigitalVoterList.GetInstance(connString));
-            vDAO = new VoterDAO(DigitalVoterList.GetInstance(connString));
+            mDAO = new MunicipalityDAO(context);
+            pDAO = new PollingStationDAO(context);
+            vDAO = new VoterDAO(context);
 
             mDAO.Create(this.Municipalities);
             pDAO.Create(this.PollingStations);
