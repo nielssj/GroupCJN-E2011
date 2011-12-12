@@ -42,9 +42,9 @@ namespace DBComm.DBComm.DO
         /// <param name="voted">
         /// The voted status.
         /// </param>
-        public VoterDO(uint pollingStationId, uint cpr, string name, string address, string city, bool cardPrinted, bool voted)
+        public VoterDO(uint? pollingStationId, uint? cpr, string name, string address, string city, bool? cardPrinted, bool? voted)
         {
-            Contract.Requires(cpr >= 101000001 && cpr <= 3112999999);
+            Contract.Requires(cpr == null || (cpr >= 101000001 && cpr <= 3112999999));
 
             this.PollingStationId = pollingStationId;
             this.PrimaryKey = cpr;
