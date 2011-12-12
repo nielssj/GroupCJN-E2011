@@ -59,40 +59,40 @@ namespace DigitalVoterList.PollingTable
             {
                 cpr = Convert.ToUInt32(cprStr);
             }
-            
-           
-           //Validate length of CPRNO.
-                if (!Model.CprLengtVal(cpr))
-                {
-                    view.ShowMessageBox("Length of cprno is not valid.");
-                    return;
-                }
+
+
+            //Validate length of CPRNO.
+            if (!Model.CprLengtVal(cpr))
+            {
+                view.ShowMessageBox("Length of cprno is not valid.");
+                return;
+            }
 
             //uint cprUint = uint.Parse(cpr.ToString());
 
-                model.initializeStaticDAO();
+            model.initializeStaticDAO();
 
-                try
+            try
+            {
+                //Validate if the voter is listed at the polling station.
+                if (model.FetchVoter(cpr) == null)
                 {
-                    //Validate if the voter is listed at the polling station.
-                    if (model.FetchVoter(cpr) == null)
-                    {
-                        view.ShowMessageBox("Voter is not listed at polling station");
-                        return;
-                    }
+                    view.ShowMessageBox("Voter is not listed at polling station");
+                    return;
                 }
-                catch (Exception e4)
+            }
+            catch (Exception e4)
+            {
+                if (e4.Message.Contains("timeout"))
                 {
-                    if (e4.Message.Contains("timeout"))
-                    {
-                        view.ShowMessageBox("The voter card is being accessed at another table!");
-                        return;
-                    }
+                    view.ShowMessageBox("The voter card is being accessed at another table!");
+                    return;
                 }
-                
-                model.FindVoter(cpr);
-                this.ResetCprTxtBox();
-            
+            }
+
+            model.FindVoter(cpr);
+            this.ResetCprTxtBox();
+
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace DigitalVoterList.PollingTable
             if (!model.AdminPass.Equals(adminPass))
             {
                 view.ShowMessageBox("Incorrect password");
-                view.UnregWindow.AdmPass.Text = ""; 
+                view.UnregWindow.AdmPass.Text = "";
             }
             else
             {
@@ -131,7 +131,7 @@ namespace DigitalVoterList.PollingTable
 
         private void ResetCprTxtBox()
         {
-            view.ScannerWindow.resetCprTxt(); 
+            view.ScannerWindow.resetCprTxt();
         }
 
 
@@ -155,9 +155,9 @@ namespace DigitalVoterList.PollingTable
 
             try
             {
-                //PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, password);
-                //pvdao.StartTransaction();
-                //pvdao.EndTransaction();
+                PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, password);
+                pvdao.StartTransaction();
+                pvdao.EndTransaction();
             }
             catch (Exception e1)
             {
@@ -177,16 +177,16 @@ namespace DigitalVoterList.PollingTable
             model.AdminPass = password;
 
             try
-            {               
+            {
                 model.WriteToConfig();
             }
-            catch(Exception e2)
+            catch (Exception e2)
             {
                 view.ShowMessageBox("unable to write to config file. " + e2.StackTrace);
             }
             view.SetupWindow.Hide();
             view.ScannerWindow.Show();
-         
+
         }
 
         public void StartPollingTable()
@@ -201,18 +201,13 @@ namespace DigitalVoterList.PollingTable
                 view.ShowMessageBox("unable to read from or write to config file. " + e3.StackTrace);
                 return;
             }
-            //view.SetupWindow.IpTextBox = model.SetupInfo.Ip;
-            //view.SetupWindow.TableBox = setupFilter.TableNo;
 
-            view.SetupWindow.ShowDialog();
-
-            view.ScannerWindow.TableNumber.Text = model.SetupInfo.TableNo.ToString();
-            Application.Run(view.ScannerWindow);
+            //Application.Run(view.ScannerWindow);
         }
 
         private void CheckConnection()
         {
-            
+            //TODO check for loss of connection???    
         }
     }
 }

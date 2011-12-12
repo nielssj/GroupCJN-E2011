@@ -52,6 +52,10 @@
     <Compile Include="PollingTableTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBComm\DBComm.csproj">
+      <Project>{49A4B100-B97C-4064-A06C-BD09D06F61D5}</Project>
+      <Name>DBComm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DigitalVoterList\DigitalVoterList.csproj">
       <Project>{AFE39FCC-8482-499F-A180-C25B8BAA921F}</Project>
       <Name>DigitalVoterList</Name>

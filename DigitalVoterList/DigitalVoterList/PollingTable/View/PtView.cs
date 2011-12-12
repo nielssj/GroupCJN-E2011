@@ -26,7 +26,7 @@ namespace DigitalVoterList.PollingTable
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
         public delegate void UnregisterHandler(string admpass);
-        
+
         public event VoterShownHandler VoterShown;
         public event UnlockHandler Unlock;
         public event UnregisterHandler Unregister;
@@ -36,17 +36,16 @@ namespace DigitalVoterList.PollingTable
         {
             this.model = model;
             scannerWindow = new ScannerWindow();
-            
+
             setupWindow = new SetupWindow();
-            
 
             scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
-            
-            
+
             model.CurrentVoterChanged += this.ShowSpecificVoter;
             model.SetupInfoChanged += this.UpdateSetupWindow;
+            model.ConnectionError += this.ConnectionLostMsg;
             //model.SetupInfoChanged += this.UpdateScannerWindow;
-            
+
             this.Unlock += this.OpenUnregWindow;
         }
 
@@ -56,8 +55,8 @@ namespace DigitalVoterList.PollingTable
         /// <param name="voter"></param>
         public void ShowSpecificVoter(VoterDO voter)
         {
-            //If the voter is null it doesn't exists in the 
-            if(voter == null)
+            //If the voter is null it doesn't exists in the database
+            if (voter == null)
             {
                 return;
             }
@@ -82,7 +81,7 @@ namespace DigitalVoterList.PollingTable
         }
 
         /// <summary>
-        /// When the user presses the lock 
+        /// When the user presses the lock to go to the unregister window.
         /// </summary>
         public void OpenUnregWindow()
         {
@@ -111,8 +110,15 @@ namespace DigitalVoterList.PollingTable
             this.SetupWindow.IpTextBox = setupInfo.Ip;
         }
 
+        private void ConnectionLostMsg()
+        {
+            this.ShowMessageBox("Connection to server lost!");
+        }
+
         public ScannerWindow ScannerWindow { get { return scannerWindow; } }
         public SetupWindow SetupWindow { get { return setupWindow; } }
         public UnRegVW UnregWindow { get { return this.unregWindow; } }
+
     }
+
 }
