@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VoterCardGeneratorWindow));
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAbort = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.pbrGroups = new System.Windows.Forms.ProgressBar();
@@ -50,15 +50,15 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCancel
+            // btnAbort
             // 
-            this.btnCancel.Location = new System.Drawing.Point(104, 265);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(65, 23);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnAbort.Location = new System.Drawing.Point(176, 264);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(80, 23);
+            this.btnAbort.TabIndex = 19;
+            this.btnAbort.Text = "Abort";
+            this.btnAbort.UseVisualStyleBackColor = true;
+            this.btnAbort.Visible = false;
             // 
             // btnGenerate
             // 
@@ -214,9 +214,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(271, 299);
+            this.Controls.Add(this.btnAbort);
             this.Controls.Add(this.lblCurrentGroup);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pbrGroups);
@@ -237,7 +237,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ProgressBar pbrGroups;

@@ -1,10 +1,10 @@
 ﻿namespace DigitalVoterList.Central.Models
 {
     using System;
+    using System.ComponentModel;
     using System.Linq;
     using System.Collections.Generic;
     using System.IO;
-    using System.Linq.Expressions;
 
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
@@ -19,7 +19,7 @@
     public class VoterCardGenerator : ISubModel
     {
         /// <summary> Predicates to group upon (Based on individual properties).</summary>
-        public readonly List<Func<VoterDO, String>> GroupPredicates = new List<Func<VoterDO, string>>()
+        public readonly List<Func<VoterDO, String>> GroupPredicates = new List<Func<VoterDO, string>>
         {
             (v => v.PollingStation.Municipality.Name),  // Municipality
             (v => v.PollingStation.Name),               // Polling Station
@@ -31,12 +31,18 @@
         
         private VoterFilter filter;
         private string destination;
+        private int property;
+        private int limit;
+        private BackgroundWorker worker;
 
         private int voterCount;
         private int voterDoneCount;
+        private int voterDonePerc;
         private int groupCount;
         private int groupDoneCount;
-        private string currentGroup;
+        private string currentGroupName;
+        private IGrouping<String, VoterDO> currentGroup;
+        private IEnumerator<IGrouping<String, VoterDO>> groupsEnumerator;
 
         public VoterCardGenerator(VoterFilter filter)
         {
@@ -50,22 +56,17 @@
         public event CountChangedHandler GroupCountChanged;
         /// <summary> Notify me when the number of generated groups changes. </summary>
         public event CountChangedHandler GroupDoneCountChanged;
-        /// <summary> Notify me when the number of voters to be generatedchanges. </summary>
-        public event CountChangedHandler VoterCountChanged;
-        /// <summary>Notify me when the number of generated groups changes. </summary>
-        public event CountChangedHandler VoterDoneCountChanged;
+        /// <summary> Notify me when the percentage of generated voters (in the current group) changes. </summary>
+        public event CountChangedHandler VoterDonePercChanged;
         /// <summary> Notify me when the name of the current group being generated changes. </summary>
         public event TextChangedHandler CurrentGroupChanged;
+        /// <summary> Notify me when the generation process ends (interrupted or completed) </summary>
+        public event Action<String> GenerationEnded;
 
-        public int VoterCount
+        public int VoterDonePerc
         {
-            get { return voterCount; }
-            private set { voterCount = value; VoterCountChanged(voterCount); }
-        }
-        public int VoterDoneCount
-        {
-            get { return voterDoneCount; }
-            private set { voterDoneCount = value; VoterDoneCountChanged(voterDoneCount); }
+            get { return voterDonePerc; }
+            private set { voterDonePerc = value; VoterDonePercChanged(voterDonePerc); }
         }
         public int GroupCount
         {
@@ -77,10 +78,22 @@
             get { return groupDoneCount; }
             private set { groupDoneCount = value; GroupDoneCountChanged(groupDoneCount); }
         }
-        public string CurrentGroup
+        public string CurrentGroupName
         {
-            get { return currentGroup; }
-            private set { currentGroup = value; CurrentGroupChanged(currentGroup); }
+            get { return this.currentGroupName; }
+            private set { this.currentGroupName = value; CurrentGroupChanged(this.currentGroupName); }
+        }
+
+        /// <summary>
+        /// Abort the current generator process, if one is currently running.
+        /// </summary>
+        public void Abort()
+        {
+            if (worker != null)
+            {
+                worker.CancelAsync();
+                if (GenerationEnded != null) GenerationEnded("Aborted");
+            }
         }
 
         /// <summary>
@@ -92,30 +105,97 @@
         public void Generate(String destination, int property, int limit)
         {
             this.destination = destination;
-            var voterDAO = new VoterDAO();
-            //IEnumerable<VoterDO> voters = voterDAO.Read(v => v.Name.StartsWith("A")).ToList();
-            IEnumerable<VoterDO> voters = voterDAO.Read(filter.ToPredicate()).ToList();
+            this.property = property;
+            this.limit = limit;
 
-            GroupDoneCount = 0;
-            GroupCount = this.GroupByData(voters, property).Count();
-            foreach (var group in GroupByData(voters, property))
+            var voterDAO = new VoterDAO();
+            IEnumerable<VoterDO> voters = voterDAO.Read(v => v.Name.StartsWith("A")).ToList();
+            //IEnumerable<VoterDO> voters = voterDAO.Read(filter.ToPredicate()).ToList();
+
+            IEnumerable<IGrouping<String, VoterDO>> groups = this.GroupByData(voters, property);
+            this.GroupCount = groups.Count();
+            this.groupsEnumerator = GroupByData(voters, property).GetEnumerator();
+            this.GroupDoneCount = 0;
+            
+            if(this.groupsEnumerator.MoveNext())
             {
-                CurrentGroup = group.Key;
-                VoterDoneCount = 0;
-                VoterCount = group.Count();
-                if (limit > 0)
-                {
-                    int i = 0;
-                    foreach (var limitGroup in GroupByLimit(group, limit))
-                        this.GenerateFile(limitGroup, group.Key + (i++));
-                }
-                else
-                {
-                    this.GenerateFile(group, group.Key);
-                }
-                GroupDoneCount++;
+                this.currentGroup = this.groupsEnumerator.Current;
+                this.CurrentGroupName = this.currentGroup.Key;
+                this.voterCount = this.currentGroup.Count();
+                this.voterDoneCount = 0;
+                this.voterDonePerc = 0;
+
+                worker = new BackgroundWorker();
+                worker.WorkerReportsProgress = true;
+                worker.WorkerSupportsCancellation = true;
+                worker.ProgressChanged += (o, eA) => VoterDonePerc = eA.ProgressPercentage;
+                worker.RunWorkerCompleted += this.GroupGenerated;
+                worker.DoWork += this.GenerateGroup;
+                worker.RunWorkerAsync();
             }
-            CurrentGroup = "Complete!";
+        }
+
+        /// <summary>
+        /// Generate file(s) for the current group.
+        /// </summary>
+        /// <param name="sender">BackgroundWorker to handle the generation process.</param>
+        /// <param name="e">Worker event parameters (currently not used).</param>
+        private void GenerateGroup(object sender, DoWorkEventArgs e)
+        {
+            var worker = sender as BackgroundWorker;
+            
+            // If 'limit' is set split the group into multiple files (partial groups).
+            if (limit > 0)
+            {
+                int i = 0;
+                foreach (var partialGroup in GroupByLimit(currentGroup, limit))
+                {
+                    string partialGroupName = currentGroupName + (i++); //numbered 0 to n 'number of parital groups'.
+                    this.GenerateFile(sender, e, partialGroup, partialGroupName);
+                    if (e.Cancel) break;
+                }
+            }
+            // ..Otherwise generate the entire group.
+            else
+                this.GenerateFile(sender, e, currentGroup, currentGroupName);
+        }
+
+        /// <summary>
+        /// (To be called when a group has finished being generated)
+        /// Prepares for and starts the generation of the next group, if any remain.
+        /// If no groups remain; the voters are updated in the database.
+        /// </summary>
+        /// <param name="sender">BackgroundWorker that just completed a generation process.</param>
+        /// <param name="e">Worker event completion parameters (currently not used).</param>
+        private void GroupGenerated(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled) return;
+            var worker = sender as BackgroundWorker;
+            this.GroupDoneCount++;
+            
+            // Prepare and start generation of next group, if any remain.
+            if (this.groupsEnumerator.MoveNext())
+            {
+                this.currentGroup = this.groupsEnumerator.Current;
+                this.CurrentGroupName = this.currentGroup.Key;
+                this.voterCount = this.currentGroup.Count();
+                this.voterDoneCount = 0;
+                this.VoterDonePerc = 0;
+
+                worker.RunWorkerAsync();
+            }
+            // ..Otherwise update voters in db and declare completed.
+            else
+            {
+                this.CurrentGroupName = "Updating Database..";
+                
+                var voterDAO = new VoterDAO();
+                var template = new VoterDO(null, null, null, null, null, true, null);
+                voterDAO.Update(v => v.Name.StartsWith("A"), template);
+                //voterDAO.Update(filter.ToPredicate(), template);
+
+                GenerationEnded("Completed");
+            }
         }
 
         /// <summary>
@@ -291,8 +371,10 @@
         /// </summary>
         /// <param name="voters">The voter(s) to be on the voter card(s) in the file.</param>
         /// <param name="fileName">The name of the file.</param>
-        private void GenerateFile(IEnumerable<VoterDO> voters, String fileName)
+        private void GenerateFile(object sender, DoWorkEventArgs e, IEnumerable<VoterDO> voters, String fileName)
         {
+            var worker = sender as BackgroundWorker;
+
             String path = destination + "\\" + fileName + ".pdf";
             var fos = new FileStream(path, FileMode.Create);
             var bos = new BufferedStream(fos);
@@ -314,7 +396,20 @@
                     pageCount = 0;
                     page = new Page(pdf, A4.PORTRAIT);
                 }
-                VoterDoneCount++;
+                
+                // Update progress percentage?
+                voterDoneCount++;
+                double perc = (Convert.ToDouble(voterDoneCount) / Convert.ToDouble(voterCount)) * 100;
+                int iperc = (int)perc;
+                if(iperc != VoterDonePerc) worker.ReportProgress(iperc);
+
+                // Cancelled? 
+                // If yes, flag cancelled and break, but make sure file stream is closed properly.
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
             }
 
             pdf.Flush();

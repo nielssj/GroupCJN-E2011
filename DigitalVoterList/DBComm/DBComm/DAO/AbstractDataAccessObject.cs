@@ -34,13 +34,11 @@ namespace DBComm.DBComm.DAO
         protected AbstractDataAccessObject()
         {
             db = DigitalVoterList.GetDefaultInstance();
-            //db.Log = Console.Out;
         }
 
         protected AbstractDataAccessObject(DigitalVoterList dc)
         {
             db = dc;
-            //db.Log = Console.Out;
         }
 
         /// <summary>
