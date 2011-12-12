@@ -144,8 +144,9 @@ namespace DigitalVoterList.PollingTable
         /// <returns>false if cpr is not valid, true if it is.</returns>
         public static bool CprLetterVal(string cpr)
         {
-            uint result;
-            bool res = uint.TryParse(cpr, out result);
+
+            UInt64 result;
+            bool res = UInt64.TryParse(cpr, out result);
             if (!res) return false;
             return true;
         }

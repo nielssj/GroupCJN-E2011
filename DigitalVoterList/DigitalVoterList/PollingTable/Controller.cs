@@ -39,41 +39,60 @@ namespace DigitalVoterList.PollingTable
         /// <param name="e"></param>
         private void ReactTofindVoterRequest(object sender, EventArgs e)
         {
-            string cpr = view.ScannerWindow.CprnrTxtBox.Text;
-            
-            //Validate length of CPRNR. 
-            if(!Model.CprLengtVal(cpr)) { view.ShowMessageBox("Length of cprno is not valid."); return; }
+            string cprStr = view.ScannerWindow.CprnrTxtBox.Text;
 
             //Validate that CPRNR doesn't contain letters
-            if (!Model.CprLetterVal(cpr)) { view.ShowMessageBox("Cprno must only contain numbers."); return; }
-
-            model.initializeStaticDAO();
-
-            try
+            if (!Model.CprLetterVal(cprStr))
             {
-                if (model.FetchVoter(uint.Parse(cpr)) == null)
-                {
-                    view.ShowMessageBox("Voter is not listed at polling station");
-                    return;
-                }
+                view.ShowMessageBox("Cprno must only contain numbers.");
+                return;
             }
-            catch (Exception e4)
-            {
-                if (e4.Message.Contains("timeout"))
-                {
-                    view.ShowMessageBox("The voter card is being accessed at another table!");
-                    return;
-                }
-            }
-            //Validate if the voter is listed at the polling station.
+            Int64 cpr = Convert.ToInt64(cprStr);
             
-            // try to fetch the voter from the voter box. If no voter found write an error msg.
-            //try
-            model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); 
-            //catch (Exception) 
-            //{ view.ShowMessageBox("Voter not registered at polling station."); }
 
-            this.ResetCprTxtBox();
+            //unhash the cpr nr if it has a length of 11 chars or above.
+            if (cpr > 10)
+            {
+                Central.Utility.BarCodeHashing.UnHash(cpr);
+            }
+           
+                //Validate length of CPRNR. 
+                if (!Model.CprLengtVal(cpr.ToString()))
+                {
+                    view.ShowMessageBox("Length of cprno is not valid.");
+                    return;
+                }
+
+            uint cprUint = uint.Parse(cpr.ToString());
+
+                model.initializeStaticDAO();
+
+                try
+                {
+                    if (model.FetchVoter(cprUint) == null)
+                    {
+                        view.ShowMessageBox("Voter is not listed at polling station");
+                        return;
+                    }
+                }
+                catch (Exception e4)
+                {
+                    if (e4.Message.Contains("timeout"))
+                    {
+                        view.ShowMessageBox("The voter card is being accessed at another table!");
+                        return;
+                    }
+                }
+                //Validate if the voter is listed at the polling station.
+
+                // try to fetch the voter from the voter box. If no voter found write an error msg.
+                //try
+                model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text));
+                //catch (Exception) 
+                //{ view.ShowMessageBox("Voter not registered at polling station."); }
+
+                this.ResetCprTxtBox();
+            
         }
 
         /// <summary>
