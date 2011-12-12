@@ -47,12 +47,26 @@ namespace DigitalVoterList.PollingTable
             //Validate that CPRNR doesn't contain letters
             if (!Model.CprLetterVal(cpr)) { view.ShowMessageBox("Cprno must only contain numbers."); return; }
 
-            //Validate if the voter is listed at the polling station.
-            if (model.FetchVoter(uint.Parse(cpr)) == null)
+            model.initializeStaticDAO();
+
+            try
             {
-                view.ShowMessageBox("Voter is not listed at polling station");
-                return;
+                if (model.FetchVoter(uint.Parse(cpr)) == null)
+                {
+                    view.ShowMessageBox("Voter is not listed at polling station");
+                    return;
+                }
             }
+            catch (Exception e4)
+            {
+                if (e4.Message.Contains("timeout"))
+                {
+                    view.ShowMessageBox("The voter card is being accessed at another table!");
+                    return;
+                }
+            }
+            //Validate if the voter is listed at the polling station.
+            
             // try to fetch the voter from the voter box. If no voter found write an error msg.
             //try
             model.FindVoter(Convert.ToUInt32(view.ScannerWindow.CprnrTxtBox.Text)); 
@@ -122,9 +136,9 @@ namespace DigitalVoterList.PollingTable
 
             try
             {
-                PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, password);
-                pvdao.StartTransaction();
-                pvdao.EndTransaction();
+                //PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, password);
+                //pvdao.StartTransaction();
+                //pvdao.EndTransaction();
             }
             catch (Exception e1)
             {
