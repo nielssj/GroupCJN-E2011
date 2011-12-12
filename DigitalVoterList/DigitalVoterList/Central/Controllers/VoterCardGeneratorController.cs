@@ -27,6 +27,7 @@ namespace DigitalVoterList.Central.Controllers
 
             // Subscribe to View
             view.AddGenerateHandler(model.Generate);
+            view.AddAbortHandler(model.Abort);
 
             // Show View
             view.Show();

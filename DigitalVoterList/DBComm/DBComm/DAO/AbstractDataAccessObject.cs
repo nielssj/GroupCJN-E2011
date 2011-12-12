@@ -34,13 +34,11 @@ namespace DBComm.DBComm.DAO
         protected AbstractDataAccessObject()
         {
             db = DigitalVoterList.GetDefaultInstance();
-            //db.Log = Console.Out;
         }
 
         protected AbstractDataAccessObject(DigitalVoterList dc)
         {
             db = dc;
-            //db.Log = Console.Out;
         }
 
         /// <summary>
@@ -114,7 +112,7 @@ namespace DBComm.DBComm.DAO
             {
                 foreach (var oldValue in oldValues)
                 {
-                    if (oldValue.PrimaryKey != dummy.PrimaryKey)
+                    if (oldValue.PrimaryKey != dummy.PrimaryKey && dummy.PrimaryKey != null)
                     {
                         // Delete the old value and insert a new one, since trying to directly update the primary is not allowed.
                         this.DeleteAndInsert(oldValue, dummy);
