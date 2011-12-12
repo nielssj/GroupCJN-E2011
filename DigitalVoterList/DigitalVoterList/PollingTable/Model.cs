@@ -26,11 +26,24 @@ namespace DigitalVoterList.PollingTable
         private const string Path = "c:/SetupDVL.conf";
         private SetupInfo setupInfo = new SetupInfo("", 0);
 
+        private static PessimisticVoterDAO staticPvdao;
+
         public delegate void VoterChangedHandler(VoterDO voter);
         public delegate void SetupInfoChangedHandler(SetupInfo setupInfo);
 
         public event VoterChangedHandler CurrentVoterChanged;
         public event SetupInfoChangedHandler SetupInfoChanged;
+
+        public void initializeStaticDAO()
+        {
+            staticPvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass); //Initialize the pvdao.
+            staticPvdao.StartTransaction();
+        }
+
+        public void cleanUpDAO()
+        {
+            staticPvdao.EndTransaction();
+        }
 
         /// <summary>
         /// 
@@ -38,10 +51,11 @@ namespace DigitalVoterList.PollingTable
         /// <param name="cprno"></param>
         public void FindVoter(uint cprno)
         {
-            PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            pvdao.StartTransaction();
-            currentVoter = pvdao.Read(cprno);
-            pvdao.EndTransaction();
+            //PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
+            
+            //staticPvdao.StartTransaction();
+            currentVoter = staticPvdao.Read(cprno);
+            //vdao.EndTransaction();
             //Update the current voter to the 
             CurrentVoterChanged(currentVoter);
             //Update log with read entry
@@ -56,14 +70,17 @@ namespace DigitalVoterList.PollingTable
             Contract.Requires(currentVoter.Voted == false);
             Contract.Requires(currentVoter != null);
             Contract.Ensures(currentVoter.Voted == true);
-            var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            pvdao.StartTransaction();
-            pvdao.Update((uint)currentVoter.PrimaryKey, true);
-            pvdao.EndTransaction();
-            //refresh the current voter to reflect the new voted status
+            //var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
+            //pvdao.StartTransaction();
+            staticPvdao.Update((uint)currentVoter.PrimaryKey, true);
+            //pvdao.EndTransaction();
+            
             currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
+            
+            //refresh the current voter to reflect the new voted status
             //Update log with write entry
             this.UpdateLog(ActivityEnum.W);
+            staticPvdao.EndTransaction();
         }
 
         /// <summary>
@@ -73,11 +90,11 @@ namespace DigitalVoterList.PollingTable
         /// <returns></returns>
         public VoterDO FetchVoter(uint cprno)
         {
-            var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
+            //ar pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
             //return pvdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
-            pvdao.StartTransaction();
-            VoterDO voter = pvdao.Read(cprno);
-            pvdao.EndTransaction();
+            //staticPvdao.StartTransaction();
+            VoterDO voter = staticPvdao.Read(cprno);
+            //staticPvdao.EndTransaction();
             return voter;
             ///TODO use pesimistic. 
 
@@ -86,13 +103,13 @@ namespace DigitalVoterList.PollingTable
         public void UnregisterCurrentVoter()
         {
             ///contracts
-            var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            pvdao.StartTransaction();
-            pvdao.Update((uint)currentVoter.PrimaryKey, false);
-            pvdao.EndTransaction();
+            //var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
+            //staticPvdao.StartTransaction();
+            staticPvdao.Update((uint)currentVoter.PrimaryKey, false);
             //refresh the current voter to reflect the new voted status
             currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
             //Update log with unregister entry
+            staticPvdao.EndTransaction();
             this.UpdateLog(ActivityEnum.U);
 
         }
@@ -106,7 +123,7 @@ namespace DigitalVoterList.PollingTable
             ///table number should be a static variable in model read from the config file.
             var ldo = new LogDO((uint) setupInfo.TableNo, currentVoter.PrimaryKey, ae);
             var ldao = new LogDAO(DigitalVoterList.GetInstanceFromServer(setupInfo.Ip));
-            ldao.Create(ldo);
+            //ldao.Create(ldo);
         }
 
         // ##### Utility methods to validate user input ##### //
@@ -226,5 +243,13 @@ namespace DigitalVoterList.PollingTable
                 this.adminPass = value;
             }
         }
+
+        //public static PessimisticVoterDAO StaticPvdao
+        //{
+        //    get
+        //    {
+        //        return staticPvdao;
+        //    }
+        //}
     }
 }
