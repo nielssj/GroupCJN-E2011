@@ -21,28 +21,29 @@ namespace DigitalVoterList.PollingTable
         private ScannerWindow scannerWindow;
         private SetupWindow setupWindow;
 
+        private UnRegVW unregWindow;
+
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
         public delegate void UnregisterHandler(string admpass);
-        //public delegate void LogHandler();
-        public delegate void SetupHandler(SetupInfo si);
         
         public event VoterShownHandler VoterShown;
         public event UnlockHandler Unlock;
         public event UnregisterHandler Unregister;
-        //public event LogHandler ShowLog;
 
 
         public PtView(Model model)
         {
             this.model = model;
             scannerWindow = new ScannerWindow();
-            //Initialize the setup window with
+            
             setupWindow = new SetupWindow(); 
 
             scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
             
             model.CurrentVoterChanged += this.ShowSpecificVoter;
+            model.SetupInfoChanged += this.UpdateSetupWindow;
+
             this.Unlock += this.OpenUnregWindow;
         }
 
@@ -55,8 +56,6 @@ namespace DigitalVoterList.PollingTable
             //If the voter is null it doesn't exists in the 
             if(voter == null)
             {
-                //this.ShowMessageBox("Voter is not registered at polling station.");
-                //scannerWindow.resetCprTxt();
                 return;
             }
 
@@ -84,10 +83,10 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         public void OpenUnregWindow()
         {
-            UnRegVW uvw = new UnRegVW(model.currentVoter);
-            uvw.UnregisterButton.Click += (o, eA) => this.Unregister(uvw.AdmPass);
-            uvw.UnregisterButton.Click += (o, eA) => uvw.Close();
-            uvw.ShowDialog();
+            this.unregWindow = new UnRegVW(model.currentVoter);
+            this.unregWindow.UnregisterButton.Click += (o, eA) => this.Unregister(this.unregWindow.AdmPass.Text);
+            //unregWindow.UnregisterButton.Click += (o, eA) => unregWindow.Close();
+            this.unregWindow.ShowDialog();
         }
 
         public void OpenLogWindow()
@@ -103,11 +102,25 @@ namespace DigitalVoterList.PollingTable
 
         }
 
+        
+
         //TODO PAssword msg box. -> after show clear the password box. 
 
-
+        private void UpdateSetupWindow(SetupInfo setupInfo)
+        {
+            this.SetupWindow.TableBox = setupInfo.TableNo.ToString();
+            this.SetupWindow.IpTextBox = setupInfo.Ip;
+        }
 
         public ScannerWindow ScannerWindow { get { return scannerWindow; } }
         public SetupWindow SetupWindow { get { return setupWindow; } }
+
+        public UnRegVW UnregWindow
+        {
+            get
+            {
+                return this.unregWindow;
+            }
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace DigitalVoterList.PollingTable.View.Root_elements
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.ParentForm.Close();
+            Model.cleanUpDAO();
         }
     }
 }

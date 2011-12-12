@@ -21,8 +21,8 @@ namespace DBComm.DBComm.DAO
 
         private MySqlTransaction transaction;
 
+<<<<<<< HEAD
         private readonly MySqlConnection connection; 
-        private int timeout;
 
         public PessimisticVoterDAO(string server, string password)
         {
@@ -32,6 +32,15 @@ namespace DBComm.DBComm.DAO
                                 + "password=" + password + ";" 
                                 + "database=dvl");
         }
+=======
+        private int timeout;
+
+        private readonly MySqlConnection connection = new MySqlConnection("server=localhost;"
+                                                                + "port=3306;"
+                                                                + "uid=root;"
+                                                                + "password=abc123;"
+                                                                + "database=dvl");
+>>>>>>> 383ce67e88c5059a801cb22e14bd93fb735804ef
 
         /// <summary>
         /// Open the connection and begin a new transaction.

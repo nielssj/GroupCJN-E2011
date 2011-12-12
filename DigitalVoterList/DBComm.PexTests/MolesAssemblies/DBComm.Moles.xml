@@ -280,6 +280,10 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.#ctor(MySql.Data.MySqlClient.MySqlConnection)"/>
             </summary>
         </member>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetConnectionInstanceStringStringStringInt32">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetConnectionInstance(System.String,System.String,System.String,System.Int32)"/>
+            </summary>
+        </member>
         <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetDefaultInstance">
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetDefaultInstance"/>
             </summary>
@@ -828,8 +832,8 @@
         <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.Constructor">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.#ctor"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.ConstructorStringString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.#ctor(System.String,System.String)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.EndTransaction">
@@ -840,8 +844,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.Read(System.UInt32)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.StartTransaction">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.StartTransaction"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.StartTransactionInt32">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.StartTransaction(System.Int32)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.TransactionStarted">
@@ -863,8 +867,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.Read(System.UInt32)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.AllInstances.StartTransaction">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.StartTransaction"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.AllInstances.StartTransactionInt32">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.StartTransaction(System.Int32)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.AllInstances.TransactionStarted">
@@ -1270,8 +1274,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.#ctor"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.ConstructorUInt32UInt32StringStringStringBooleanBoolean">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.#ctor(System.UInt32,System.UInt32,System.String,System.String,System.String,System.Boolean,System.Boolean)"/>
+        <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.ConstructorNullableOfUInt32NullableOfUInt32StringStringStringNullableOfBooleanNullableOfBoolean">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DO.VoterDO.#ctor(System.Nullable`1{System.UInt32},System.Nullable`1{System.UInt32},System.String,System.String,System.String,System.Nullable`1{System.Boolean},System.Nullable`1{System.Boolean})"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DO.Moles.MVoterDO.CprStringGet">
@@ -1721,7 +1725,7 @@
             <summary>Stub type of <see cref="T:DBComm.DBComm.DAO.PessimisticVoterDAO"/>
             .</summary>
         </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SPessimisticVoterDAO.#ctor">
+        <member name="M:DBComm.DBComm.DAO.Moles.SPessimisticVoterDAO.#ctor(System.String,System.String)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SPessimisticVoterDAO.InitializeStub">
@@ -1853,7 +1857,7 @@
         <member name="M:DBComm.DBComm.DO.Moles.SVoterDO.#ctor">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:DBComm.DBComm.DO.Moles.SVoterDO.#ctor(System.UInt32,System.UInt32,System.String,System.String,System.String,System.Boolean,System.Boolean)">
+        <member name="M:DBComm.DBComm.DO.Moles.SVoterDO.#ctor(System.Nullable{System.UInt32},System.Nullable{System.UInt32},System.String,System.String,System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DBComm.DBComm.DO.Moles.SVoterDO.Equals(System.Object)">
