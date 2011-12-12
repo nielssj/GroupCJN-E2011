@@ -22,7 +22,7 @@ namespace DigitalVoterList
             this.si = si;
 
             ipTextBox.Text = this.si.Ip;
-            tableBox.Text = this.si.TableNo;
+            tableBox.Text = this.si.TableNo.ToString();
         }
 
         public SetupWindow()

@@ -23,12 +23,12 @@ namespace DBComm.DBComm.DAO
 
         private readonly MySqlConnection connection; 
 
-        public PessimisticVoterDAO(string server)
+        public PessimisticVoterDAO(string server, string password)
         {
             connection = new MySqlConnection("server=" + server + ";"
                                 + "port=3306;"
                                 + "uid=root;"
-                                + "password=abc123;"
+                                + "password=" + password + ";" 
                                 + "database=dvl");
         }
 

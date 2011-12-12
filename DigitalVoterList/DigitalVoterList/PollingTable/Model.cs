@@ -22,14 +22,15 @@ namespace DigitalVoterList.PollingTable
     {
         public VoterDO currentVoter = null;
 
-        private static string adminPass = "abc123";
+        private string adminPass = "";
         private const string Path = "c:/SetupDVL.conf";
-        private string ip;
-        private int tableNo;
+        private SetupInfo setupInfo = new SetupInfo("", 0);
 
         public delegate void VoterChangedHandler(VoterDO voter);
-        
+        public delegate void SetupInfoChangedHandler(SetupInfo setupInfo);
+
         public event VoterChangedHandler CurrentVoterChanged;
+        public event SetupInfoChangedHandler SetupInfoChanged;
 
         /// <summary>
         /// 
@@ -37,10 +38,7 @@ namespace DigitalVoterList.PollingTable
         /// <param name="cprno"></param>
         public void FindVoter(uint cprno)
         {
-            
-            //this.currentVoter = FetchVoter(cprno);
-
-            PessimisticVoterDAO pvdao = new PessimisticVoterDAO(ip);
+            PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
             pvdao.StartTransaction();
             currentVoter = pvdao.Read(cprno);
             pvdao.EndTransaction();
@@ -58,7 +56,7 @@ namespace DigitalVoterList.PollingTable
             Contract.Requires(currentVoter.Voted == false);
             Contract.Requires(currentVoter != null);
             Contract.Ensures(currentVoter.Voted == true);
-            var pvdao = new PessimisticVoterDAO(ip);
+            var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
             pvdao.StartTransaction();
             pvdao.Update((uint)currentVoter.PrimaryKey, true);
             pvdao.EndTransaction();
@@ -75,7 +73,7 @@ namespace DigitalVoterList.PollingTable
         /// <returns></returns>
         public VoterDO FetchVoter(uint cprno)
         {
-            var pvdao = new PessimisticVoterDAO(ip);
+            var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
             //return pvdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
             pvdao.StartTransaction();
             VoterDO voter = pvdao.Read(cprno);
@@ -88,7 +86,7 @@ namespace DigitalVoterList.PollingTable
         public void UnregisterCurrentVoter()
         {
             ///contracts
-            var pvdao = new PessimisticVoterDAO(ip);
+            var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
             pvdao.StartTransaction();
             pvdao.Update((uint)currentVoter.PrimaryKey, false);
             pvdao.EndTransaction();
@@ -106,8 +104,8 @@ namespace DigitalVoterList.PollingTable
         private void UpdateLog(ActivityEnum ae)
         {
             ///table number should be a static variable in model read from the config file.
-            var ldo = new LogDO((uint) tableNo, currentVoter.PrimaryKey, ae);
-            var ldao = new LogDAO(DigitalVoterList.GetInstanceFromServer(ip));
+            var ldo = new LogDO((uint) setupInfo.TableNo, currentVoter.PrimaryKey, ae);
+            var ldao = new LogDAO(DigitalVoterList.GetInstanceFromServer(setupInfo.Ip));
             ldao.Create(ldo);
         }
 
@@ -121,7 +119,7 @@ namespace DigitalVoterList.PollingTable
         public static bool CprLengtVal(string cpr)
         {
             int j = cpr.Length;
-            if (j > 10 || j < 9) return false;
+            if (j > 10 || j < 10) return false;
             return true;
         }
 
@@ -138,20 +136,20 @@ namespace DigitalVoterList.PollingTable
             return true;
         }
 
-        /// <summary>
-        /// evaluates a password...
-        /// </summary>
-        /// <param name="psw"></param>
-        /// <returns></returns>
-        public static bool PswVal(string psw)
-        {
+        ///// <summary>
+        ///// evaluates a password...
+        ///// </summary>
+        ///// <param name="psw"></param>
+        ///// <returns></returns>
+        //public bool PswVal(string psw)
+        //{
             
-            return psw.Equals(adminPass);
-        }
+        //    return psw.Equals(adminPass);
+        //}
 
-        public SetupInfo ReadConfig()
+        public void ReadConfig()
         {
-            SetupInfo si;
+           
 
             //If it doesn't exist, create a new one (with blank lines).
             if (!File.Exists(Path))
@@ -163,15 +161,22 @@ namespace DigitalVoterList.PollingTable
             string[] arr = File.ReadAllLines(Path);
             if (arr.Length > 0)
             {
-                si = new SetupInfo(arr[0], arr[1]);
-                ip = arr[0];
-                ip = arr[1];
+
+                setupInfo.Ip = arr[0];
+
+                //test if the read string can be parsed to an int
+                string str = arr[1];
+                uint i;
+                bool res = UInt32.TryParse(str, out i);
+                if (res) setupInfo.TableNo = i;
+                SetupInfoChanged(this.setupInfo);
+                //setupInfo = si;
             }
             
-            else {si = new SetupInfo("","");}
-            ip = "";
-            ip = "";
-            return si;
+            else
+            {
+                
+            }
         }
         
         public void WriteToConfig()
@@ -181,21 +186,45 @@ namespace DigitalVoterList.PollingTable
                 this.ReadConfig(); //calling this method creates the config file.
             }
             string[] arr = new string[2];
-            arr[0] = ip;
-            arr[1] = tableNo.ToString();
+            arr[0] = setupInfo.Ip;
+            arr[1] = setupInfo.TableNo.ToString();
             File.WriteAllLines(Path, arr);
         }
 
-        public string IP 
+        //public string IP 
+        //{
+        //    get { return ip; } 
+        //    set { ip = value; }
+        //}
+
+        //public int TableNo
+        //{
+        //    get { return tableNo; }
+        //    set { tableNo = value; }
+        //}
+
+        public SetupInfo SetupInfo
         {
-            get { return ip; } 
-            set { ip = value; }
+            get
+            {
+                return this.setupInfo;
+            }
+            set
+            {
+                this.setupInfo = value;
+            }
         }
 
-        public int TableNo
+        public string AdminPass
         {
-            get { return tableNo; }
-            set { tableNo = value; }
+            get
+            {
+                return this.adminPass;
+            }
+            set
+            {
+                this.adminPass = value;
+            }
         }
     }
 }

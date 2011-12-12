@@ -13,24 +13,26 @@ namespace DigitalVoterList.PollingTable
     {
         #region Constants and Fields
 
-        public SetupInfo(string ip, string TableNoNo)
+        public SetupInfo(string ip, uint tableNo)
         {
             this.ip = ip;
-            this.TableNoNo = TableNoNo;
+            this.tableNo = tableNo;
         }
 
-        public string Ip { get { return this.ip; } }
-
-        public string TableNo
+        public string Ip
         {
-            get
-            {
-                return this.TableNoNo;
-            }
+            get { return ip; }
+            set { ip = value; }
         }
 
-        public string ip;
-        public string TableNoNo;
+        public uint TableNo
+        {
+            get { return tableNo; }
+            set { tableNo = value; }
+        }
+
+        private string ip;
+        private uint tableNo;
 
         #endregion
     }

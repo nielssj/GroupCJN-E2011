@@ -828,8 +828,8 @@
         <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
-        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.ConstructorString">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.#ctor(System.String)"/>
+        <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.ConstructorStringString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DAO.PessimisticVoterDAO.#ctor(System.String,System.String)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DAO.Moles.MPessimisticVoterDAO.EndTransaction">
@@ -1721,7 +1721,7 @@
             <summary>Stub type of <see cref="T:DBComm.DBComm.DAO.PessimisticVoterDAO"/>
             .</summary>
         </member>
-        <member name="M:DBComm.DBComm.DAO.Moles.SPessimisticVoterDAO.#ctor(System.String)">
+        <member name="M:DBComm.DBComm.DAO.Moles.SPessimisticVoterDAO.#ctor(System.String,System.String)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DBComm.DBComm.DAO.Moles.SPessimisticVoterDAO.InitializeStub">
