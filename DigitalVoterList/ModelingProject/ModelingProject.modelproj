@@ -17,6 +17,13 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
   <ItemGroup>
+    <Content Include="MultipleViews.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="MultipleViews.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>MultipleViews.sequencediagram</DependentUpon>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="Central.classdiagram">
       <SubType>Content</SubType>
