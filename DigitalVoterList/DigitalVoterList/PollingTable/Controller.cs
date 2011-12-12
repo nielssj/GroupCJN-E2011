@@ -8,6 +8,7 @@ namespace DigitalVoterList.PollingTable
 {
     using System;
     using System.Windows.Forms;
+    using DBComm.DBComm.DAO;
 
     /// <summary>
     /// TODO: Update summary.
@@ -29,8 +30,6 @@ namespace DigitalVoterList.PollingTable
 
             this.StartPollingTable();
 
-            
-
         }
 
         /// <summary>
@@ -48,9 +47,10 @@ namespace DigitalVoterList.PollingTable
             //Validate that CPRNR doesn't contain letters
             if (!Model.CprLetterVal(cpr)) { view.ShowMessageBox("Cprno must only contain numbers."); return; }
 
+            //Validate if the voter is listed at the polling station.
             if (model.FetchVoter(uint.Parse(cpr)) == null)
             {
-                view.ShowMessageBox("Voter is listed not at polling station");
+                view.ShowMessageBox("Voter is not listed at polling station");
                 return;
             }
             // try to fetch the voter from the voter box. If no voter found write an error msg.
@@ -79,11 +79,12 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         private void ReactToUnregRequest(string adminPass)
         {
-            if (!Model.PswVal(adminPass))
+            
+            if (!model.AdminPass.Equals(adminPass))
             {
                 view.ShowMessageBox("Incorrect password");
                 //view.OpenUnregWindow();
-                //return;
+                return;
                 //TODO clear the password box and set focus
                 //React to message box OK button and open. 
             }
@@ -103,23 +104,52 @@ namespace DigitalVoterList.PollingTable
 
         private void ReactToConnectRequest(object o, EventArgs e)
         {
+
+            SetupInfo setupInfo = new SetupInfo(); //The setup info to be checked and then updated to the setup info in model if valid. 
+            setupInfo.Ip = view.SetupWindow.IpTextBox;
+            setupInfo.TableNo = uint.Parse(view.SetupWindow.TableBox);
+
             //check the password before continuation
-            if (!Model.PswVal(view.SetupWindow.Password))
+            //if (!Model.PswVal(view.SetupWindow.Password))
+            //{
+            //    view.ShowMessageBox("Incorrect password");
+            //    return;
+            //}
+            //model.SetupInfo.Ip = view.SetupWindow.IpTextBox;
+            //model.TableNo = Int32.Parse(view.SetupWindow.TableBox);
+
+            string password = view.SetupWindow.Password; //Password from setup window to be tested.
+
+            try
             {
-                view.ShowMessageBox("Incorrect password");
-                return;
+                PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, password);
+                pvdao.StartTransaction();
+                pvdao.EndTransaction();
             }
-            string ip = view.SetupWindow.IpTextBox;
-            string table = view.SetupWindow.TableBox;
-            SetupInfo si = new SetupInfo(ip, table, "");
+            catch (Exception e1)
+            {
+                if (e1.Message.Contains("Access"))
+                {
+                    view.ShowMessageBox("Incorrect password");
+                    return;
+                }
+                if (e1.Message.Contains("connect"))
+                {
+                    view.ShowMessageBox("No connection to server. Please check connection or target address.");
+                    return;
+                }
+            }
+
+            model.SetupInfo = setupInfo;
+            model.AdminPass = password;
 
             try
             {               
-                model.WriteToConfig(si);
+                model.WriteToConfig();
             }
-            catch(Exception e1)
+            catch(Exception e2)
             {
-                view.ShowMessageBox("unable to write to config file. " + e1.StackTrace);
+                view.ShowMessageBox("unable to write to config file. " + e2.StackTrace);
             }
             view.SetupWindow.Hide();
             view.ScannerWindow.Show();
@@ -128,21 +158,26 @@ namespace DigitalVoterList.PollingTable
 
         public void StartPollingTable()
         {
-            SetupInfo setupFilter;
+            //SetupInfo setupFilter;
             try
             {
-                setupFilter = model.ReadConfig();
+                model.ReadConfig();
             }
-            catch (Exception e2)
+            catch (Exception e3)
             {
-                view.ShowMessageBox("unable to read from or write to config file. " + e2.StackTrace);
+                view.ShowMessageBox("unable to read from or write to config file. " + e3.StackTrace);
                 return;
             }
-            view.SetupWindow.IpTextBox = setupFilter.Ip;
-            view.SetupWindow.TableBox = setupFilter.Table;
+            //view.SetupWindow.IpTextBox = model.SetupInfo.Ip;
+            //view.SetupWindow.TableBox = setupFilter.TableNo;
 
             view.SetupWindow.ShowDialog();
             Application.Run(view.ScannerWindow);
+        }
+
+        private void CheckConnection()
+        {
+            
         }
     }
 }
