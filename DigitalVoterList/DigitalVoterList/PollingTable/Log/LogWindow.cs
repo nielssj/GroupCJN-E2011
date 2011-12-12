@@ -26,6 +26,7 @@ namespace DigitalVoterList.PollingTable.Log
                 {
                     return e;
                 }
+
                 return null;
             }
         }

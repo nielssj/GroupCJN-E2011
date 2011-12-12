@@ -14,16 +14,16 @@ namespace DBComm.DBComm.DO
         /// <summary>
         /// Write operation. Used to register voter cards
         /// </summary>
-        W = 1,
+        W = 0,
 
         /// <summary>
         /// Read operation.
         /// </summary>
-        R = 2,
+        R = 1,
 
         /// <summary>
         /// Unregister opreation. Used to register voter cards
         /// </summary>
-        U = 3
+        U = 2
     }
 }

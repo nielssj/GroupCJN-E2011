@@ -34,13 +34,13 @@ namespace DBComm.DBComm.DAO
         protected AbstractDataAccessObject()
         {
             db = DigitalVoterList.GetDefaultInstance();
-            db.Log = Console.Out;
+            //db.Log = Console.Out;
         }
 
         protected AbstractDataAccessObject(DigitalVoterList dc)
         {
             db = dc;
-            db.Log = Console.Out;
+            //db.Log = Console.Out;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace DBComm.DBComm.DAO
         /// The predicate to select by (where).
         /// </param>
         /// <param name="dummy">
-        /// The dummy.
+        /// The dummy object representing the new values to update to. If a value is null, it is not updated.
         /// </param>
         /// <returns>
         /// True if the update was successful, false otherwise.
