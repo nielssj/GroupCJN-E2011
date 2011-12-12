@@ -18,12 +18,13 @@ namespace DigitalVoterList.Central.Utility
     {
         public static long Hash(uint cprno)
         {
-            return Convert.ToInt64(cprno) * 17;
+            return Convert.ToInt64(cprno) * 101;
         }
 
-        public static uint UnHash(long barcode)
+        public static uint UnHash(string barcode)
         {
-            return Convert.ToUInt32(barcode / 17);
+            long bc = Convert.ToInt64(barcode);
+            return Convert.ToUInt32(bc / 101);
         }
     }
 }

@@ -116,8 +116,6 @@ namespace DBComm.DBComm.DAO
                 }
             }
 
-            var changes = this.db.GetChangeSet();
-
             this.db.SubmitChanges();
 
             return true;

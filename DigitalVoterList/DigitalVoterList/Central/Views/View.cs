@@ -1,6 +1,5 @@
 ﻿namespace DigitalVoterList.Central.Views
 {
-    using System;
     using System.Collections.Generic;
     using System.Windows.Forms;
 
@@ -45,31 +44,36 @@
         public IEnumerator<ISubView> GetSubViews()
         {
             return subViews.GetEnumerator();
-        } 
+        }
 
         private void OpenView(Model.ChangeType type, ISubModel subModel)
         {
             ISubView subView = null;
-            switch(type)
+            switch (type)
             {
-                case Model.ChangeType.VCG :
+                case Model.ChangeType.VCG:
                     subView = new VoterCardGeneratorWindow((VoterCardGenerator)subModel);
                     break;
-                case Model.ChangeType.VBM :
+                case Model.ChangeType.VBM:
                     subView = new VoterBoxManagerWindow((VoterBoxManager)subModel);
                     break;
             }
             subViews.Add(subView);
-            if(SubViewOpened != null) SubViewOpened(type, subView);
+            if (SubViewOpened != null) SubViewOpened(type, subView);
         }
 
         private void CloseView(ISubModel subModel)
         {
             ISubView subView = subViews.Find(v => v.GetModel().Equals(subModel));
             subViews.Remove(subView);
-            
+
             var form = (Form)subView;
-            if(!form.Disposing) form.Close();
+            if (!form.Disposing) form.Close();
+        }
+
+        public void ShowView()
+        {
+            this.vsView.Show();
         }
     }
 }
