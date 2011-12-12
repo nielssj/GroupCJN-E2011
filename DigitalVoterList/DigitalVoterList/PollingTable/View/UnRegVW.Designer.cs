@@ -210,11 +210,11 @@
             }
         }
 
-        public string AdmPass
+        public TextBox AdmPass
         {
             get
             {
-                return textBox1.Text;
+                return textBox1;
             }
         }
 

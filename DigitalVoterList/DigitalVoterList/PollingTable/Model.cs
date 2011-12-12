@@ -23,15 +23,19 @@ namespace DigitalVoterList.PollingTable
         public VoterDO currentVoter = null;
 
         private string adminPass = "";
+
         private const string Path = "c:/SetupDVL.conf";
+
         private SetupInfo setupInfo = new SetupInfo("", 0);
 
         private static PessimisticVoterDAO staticPvdao;
 
         public delegate void VoterChangedHandler(VoterDO voter);
+
         public delegate void SetupInfoChangedHandler(SetupInfo setupInfo);
 
         public event VoterChangedHandler CurrentVoterChanged;
+
         public event SetupInfoChangedHandler SetupInfoChanged;
 
         public void initializeStaticDAO()
@@ -40,7 +44,7 @@ namespace DigitalVoterList.PollingTable
             staticPvdao.StartTransaction();
         }
 
-        public void cleanUpDAO()
+        public static void cleanUpDAO()
         {
             staticPvdao.EndTransaction();
         }
@@ -51,11 +55,8 @@ namespace DigitalVoterList.PollingTable
         /// <param name="cprno"></param>
         public void FindVoter(uint cprno)
         {
-            //PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            
-            //staticPvdao.StartTransaction();
             currentVoter = staticPvdao.Read(cprno);
-            //vdao.EndTransaction();
+
             //Update the current voter to the 
             CurrentVoterChanged(currentVoter);
             //Update log with read entry
@@ -70,14 +71,12 @@ namespace DigitalVoterList.PollingTable
             Contract.Requires(currentVoter.Voted == false);
             Contract.Requires(currentVoter != null);
             Contract.Ensures(currentVoter.Voted == true);
-            //var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            //pvdao.StartTransaction();
+
             staticPvdao.Update((uint)currentVoter.PrimaryKey, true);
-            //pvdao.EndTransaction();
-            
-            currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
-            
+
             //refresh the current voter to reflect the new voted status
+            currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
+
             //Update log with write entry
             this.UpdateLog(ActivityEnum.W);
             staticPvdao.EndTransaction();
@@ -90,27 +89,25 @@ namespace DigitalVoterList.PollingTable
         /// <returns></returns>
         public VoterDO FetchVoter(uint cprno)
         {
-            //ar pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            //return pvdao.Read(v => v.PrimaryKey == cprno).ToList().Single();
-            //staticPvdao.StartTransaction();
+
             VoterDO voter = staticPvdao.Read(cprno);
-            //staticPvdao.EndTransaction();
+
             return voter;
-            ///TODO use pesimistic. 
+
 
         }
 
         public void UnregisterCurrentVoter()
         {
             ///contracts
-            //var pvdao = new PessimisticVoterDAO(setupInfo.Ip, adminPass);
-            //staticPvdao.StartTransaction();
+
             staticPvdao.Update((uint)currentVoter.PrimaryKey, false);
+
             //refresh the current voter to reflect the new voted status
             currentVoter = FetchVoter((uint)currentVoter.PrimaryKey);
-            //Update log with unregister entry
+
             staticPvdao.EndTransaction();
-            this.UpdateLog(ActivityEnum.U);
+            this.UpdateLog(ActivityEnum.U); //Update log with unregister entry
 
         }
 
@@ -120,10 +117,10 @@ namespace DigitalVoterList.PollingTable
         /// <param name="ae">The activity to be logged</param>
         private void UpdateLog(ActivityEnum ae)
         {
-            ///table number should be a static variable in model read from the config file.
-            var ldo = new LogDO((uint) setupInfo.TableNo, currentVoter.PrimaryKey, ae);
+
+            var ldo = new LogDO((uint)setupInfo.TableNo, currentVoter.PrimaryKey, ae);
             var ldao = new LogDAO(DigitalVoterList.GetInstanceFromServer(setupInfo.Ip));
-            //ldao.Create(ldo);
+            ldao.Create(ldo);
         }
 
         // ##### Utility methods to validate user input ##### //
@@ -153,25 +150,12 @@ namespace DigitalVoterList.PollingTable
             return true;
         }
 
-        ///// <summary>
-        ///// evaluates a password...
-        ///// </summary>
-        ///// <param name="psw"></param>
-        ///// <returns></returns>
-        //public bool PswVal(string psw)
-        //{
-            
-        //    return psw.Equals(adminPass);
-        //}
-
         public void ReadConfig()
         {
-           
-
             //If it doesn't exist, create a new one (with blank lines).
             if (!File.Exists(Path))
             {
-                string[] write = {};
+                string[] write = { };
                 File.WriteAllLines(Path, write);
             }
             //try to read the file. 
@@ -187,15 +171,9 @@ namespace DigitalVoterList.PollingTable
                 bool res = UInt32.TryParse(str, out i);
                 if (res) setupInfo.TableNo = i;
                 SetupInfoChanged(this.setupInfo);
-                //setupInfo = si;
-            }
-            
-            else
-            {
-                
             }
         }
-        
+
         public void WriteToConfig()
         {
             if (!File.Exists(Path))
@@ -207,18 +185,6 @@ namespace DigitalVoterList.PollingTable
             arr[1] = setupInfo.TableNo.ToString();
             File.WriteAllLines(Path, arr);
         }
-
-        //public string IP 
-        //{
-        //    get { return ip; } 
-        //    set { ip = value; }
-        //}
-
-        //public int TableNo
-        //{
-        //    get { return tableNo; }
-        //    set { tableNo = value; }
-        //}
 
         public SetupInfo SetupInfo
         {
@@ -244,12 +210,6 @@ namespace DigitalVoterList.PollingTable
             }
         }
 
-        //public static PessimisticVoterDAO StaticPvdao
-        //{
-        //    get
-        //    {
-        //        return staticPvdao;
-        //    }
-        //}
+
     }
 }

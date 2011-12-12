@@ -93,21 +93,21 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         private void ReactToUnregRequest(string adminPass)
         {
-            
+
             if (!model.AdminPass.Equals(adminPass))
             {
                 view.ShowMessageBox("Incorrect password");
-                //view.OpenUnregWindow();
-                return;
-                //TODO clear the password box and set focus
-                //React to message box OK button and open. 
+                view.UnregWindow.AdmPass.Text = ""; 
             }
-            
-            //Update the model so that the voter is unregistered.
-            model.UnregisterCurrentVoter();
-            view.ShowMessageBox("The voter card is now unregistered");
-            this.ResetCprTxtBox();
-            view.ScannerWindow.CprnrTxtBox.Focus();
+            else
+            {
+                //Update the model so that the voter is unregistered.
+                model.UnregisterCurrentVoter();
+                view.ShowMessageBox("The voter card is now unregistered");
+                view.UnregWindow.Close();
+                this.ResetCprTxtBox();
+                view.ScannerWindow.CprnrTxtBox.Focus();
+            }
         }
 
         private void ResetCprTxtBox()
