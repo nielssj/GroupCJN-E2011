@@ -130,11 +130,11 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         /// <param name="cpr">the cprno to be validated</param>
         /// <returns>false if cpr is not valid, true if it is.</returns>
-        public static bool CprLengtVal(string cpr)
+        public static bool CprLengtVal(uint cpr)
         {
-            int j = cpr.Length;
-            if (j > 10 || j < 10) return false;
-            return true;
+            //int j = cpr.Length;
+            return (cpr > 10 || cpr < 10);
+            
         }
 
         /// <summary>
@@ -144,8 +144,9 @@ namespace DigitalVoterList.PollingTable
         /// <returns>false if cpr is not valid, true if it is.</returns>
         public static bool CprLetterVal(string cpr)
         {
-            uint result;
-            bool res = uint.TryParse(cpr, out result);
+
+            UInt64 result;
+            bool res = UInt64.TryParse(cpr, out result);
             if (!res) return false;
             return true;
         }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
+    using DigitalVoterList.PollingTable;
     using DigitalVoterList.PollingTable.Log;
 
     public partial class ScannerWindow : Form
@@ -17,7 +18,5 @@ namespace DigitalVoterList
         {
             InitializeComponent();
         }
-
-
     }
 }
