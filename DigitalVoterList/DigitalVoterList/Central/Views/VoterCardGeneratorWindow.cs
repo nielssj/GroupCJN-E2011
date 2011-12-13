@@ -1,19 +1,30 @@
-﻿using System;
-using System.Windows.Forms;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Author: Niels Søholm (nm@9la.dk)
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace DigitalVoterList.Central.Views
 {
-    using System.ComponentModel;
-    using System.IO;
-
+    using System;
+    using System.Windows.Forms;
     using DigitalVoterList.Central.Models;
 
+    /// <summary>
+    /// A view for controlling and monitoring a voter card generator.
+    /// 
+    /// Depicts the current state of a Voter Card Generator.
+    /// Raises events about user input (to be listened to by controllers).
+    /// </summary>
     public partial class VoterCardGeneratorWindow : Form, ISubView
     {
         private const string DefaultDestination = "C:\\VoterCards";
-
         private readonly VoterCardGenerator model;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VoterCardGeneratorWindow"/> class.
+        /// </summary>
+        /// <param name="model"> Model depicted by the view. </param>
         public VoterCardGeneratorWindow(VoterCardGenerator model)
         {
             InitializeComponent();
@@ -43,20 +54,26 @@ namespace DigitalVoterList.Central.Views
             this.Disposed += (o, eA) => handler(model);
         }
 
-        // Switch to 'generating state'.
-        public void GenerateMode(String status)
+        /// <summary>
+        /// Switch to 'Generating Mode'.
+        /// </summary>
+        /// <param name="statusText">The status text to be shown.</param>
+        public void GeneratingMode(String statusText)
         {
             btnAbort.Visible = true;
             btnGenerate.Visible = false;
-            this.lblStatus.Text = status;
+            this.lblStatus.Text = statusText;
         }
 
-        // Return to original state.
-        public void NormalMode(String status)
+        /// <summary>
+        /// Return to 'Inactive Mode'.
+        /// </summary>
+        /// <param name="statusText">The status text to be shown.</param>
+        public void InactiveMode(String statusText)
         {
             btnGenerate.Visible = true;
             btnAbort.Visible = false;
-            this.lblStatus.Text = status;
+            this.lblStatus.Text = statusText;
         }
 
         /// <summary> What model is associated with this view? </summary>
@@ -66,7 +83,9 @@ namespace DigitalVoterList.Central.Views
             return model;
         }
 
-        // Set up initial values for controls
+        /// <summary>
+        /// Set up initial values for controls.
+        /// </summary>
         private void InitialValues()
         {
             VoterFilter filter = model.Filter;
@@ -79,32 +98,44 @@ namespace DigitalVoterList.Central.Views
             txbDestination.Text = DefaultDestination;
         }
 
-        // Subscribe to changes in model.
+        /// <summary>
+        /// Subscribe to changes in model.
+        /// </summary>
         private void SubscribeToModel()
         {
             this.model.VoterDonePercChanged += (i => pbrVoters.Value = i);
             this.model.GroupCountChanged += (i => pbrGroups.Maximum = i);
             this.model.GroupDoneCountChanged += (i => pbrGroups.Value = i);
-            this.model.CurrentGroupChanged += this.UpdateCurrentGroup;
-            this.model.GenerationEnded += this.NormalMode;
+            this.model.CurrentGroupChanged += this.UpdateStatus;
+            this.model.GenerationEnded += this.InactiveMode;
         }
 
-        // Update the current group label 
-        // (requires an explicit refresh to avoid being overshadowed by ProgressBar updates).
-        private void UpdateCurrentGroup(string groupName)
+        /// <summary>
+        /// Update the status label.
+        /// (Requires an explicit refresh to avoid being overshadowed by ProgressBar updates).
+        /// </summary>
+        /// <param name="statusText">The status text to be shown.</param>
+        private void UpdateStatus(string statusText)
         {
-            this.lblStatus.Text = groupName;
+            this.lblStatus.Text = statusText;
             this.Refresh();
         }
 
-        // Open FolderBrowser upon 'Browse' button clicked.
+        /// <summary>
+        /// Open FolderBrowser upon 'Browse' button clicked.
+        /// </summary>
+        /// <param name="sender">The caller (browse button).</param>
+        /// <param name="e">Parameters describing the event.</param>
         private void Browse(object sender, EventArgs e)
         {
             destinationFolderBrowser.ShowDialog();
             txbDestination.Text = destinationFolderBrowser.SelectedPath;
         }
 
-        // Prepare for generation and call generate handler when done.
+        /// <summary>
+        /// Prepare for generation and call generate handler when done.
+        /// </summary>
+        /// <param name="handler">The generate handler.</param>
         private void SetUpGeneration(Action<String, int, int> handler)
         {
             // Retrieve grouping input, if checked by user.

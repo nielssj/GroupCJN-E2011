@@ -1,21 +1,26 @@
-﻿namespace DigitalVoterList.Central.Controllers
-{
-    using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Author: Niels Søholm (nm@9la.dk)
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
+namespace DigitalVoterList.Central.Controllers
+{
     using DigitalVoterList.Central.Models;
     using DigitalVoterList.Central.Views;
 
     /// <summary>
     /// The main 'controller' of the application. 
     /// It has the sole responsibility of instantiating instances of the sub-controllers.
+    /// 
+    /// Monitors the main view for open events and initializes appropiate controllers.
     /// </summary>
     public class Controller
     {
-        private readonly Model model;
-        private readonly View view;
+        private readonly Model model; // The assocciated model.
+        private readonly View view; // The associated view.
         
-        /// <summary> Voter Selection Controller (Abbreviated VS) </summary>
-        private VoterSelectionController vsController;
+        private VoterSelectionController vsController; // Voter selection controller (default controller)
 
         /// <summary> Initializes a new instance of the <see cref="Controller"/> class. </summary>
         /// <param name="model">The model object to rebort to.</param>
@@ -31,8 +36,10 @@
             this.InitDefault();
         }
 
-        /// <summary> React to a request for a view to be opened; 
-        /// Instantiate an appropiate controller. </summary>
+        /// <summary> 
+        /// React to a request for a view to be opened; 
+        /// Instantiate an appropiate controller. 
+        /// </summary>
         /// <param name="type">The type of view to be opened.</param>
         /// <param name="subView">The View to be used.</param>
         public void ViewOpened(Model.ChangeType type, ISubView subView)
@@ -54,7 +61,9 @@
             }
         }
 
-        // Initiate default sub-controller (Voter Selector).
+        /// <summary>
+        /// Initiate default sub-controller.
+        /// </summary>
         private void InitDefault()
         {
             VoterSelectionWindow vsView = view.VoterSelectionView;

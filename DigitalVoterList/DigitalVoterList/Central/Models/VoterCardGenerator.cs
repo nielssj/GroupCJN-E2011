@@ -1,4 +1,10 @@
-﻿namespace DigitalVoterList.Central.Models
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Author: Niels Søholm (nm@9la.dk)
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace DigitalVoterList.Central.Models
 {
     using System;
     using System.ComponentModel;
@@ -14,12 +20,15 @@
     using PDFjet.NET;
 
     /// <summary>
-    /// The class responsible votercard generation.
+    /// Responsible for voter card generation.
+    /// 
+    /// NOTICE: Uses an evaluation version of the PDF
+    /// generator library 'PDFjet' (pdfjet.com).
     /// </summary>
     public class VoterCardGenerator : ISubModel
     {
-        /// <summary> Predicates to group upon (Based on individual properties).</summary>
-        public readonly List<Func<VoterDO, String>> GroupPredicates = new List<Func<VoterDO, string>>
+        /// <summary> Functions to group upon, returns the name of a given voters group (Based on individual properties).</summary>
+        public readonly List<Func<VoterDO, String>> GroupFunctions = new List<Func<VoterDO, string>>
         {
             (v => v.PollingStation.Municipality.Name),  // Municipality
             (v => v.PollingStation.Name),               // Polling Station
@@ -29,26 +38,31 @@
         
         private const double U = (100.0 / 35.278); // Conversion factor from 'mm' to 'points' (DPI = 72).
         
-        private readonly VoterFilter filter;
-        private string destination;
-        private int property;
-        private int limit;
-        private BackgroundWorker worker;
+        private readonly VoterFilter filter; // Filter describing the selected subset of voters
+        private string destination;     // Folder path to be generated to.
+        private int property;           // Index of the currently selected grouping property
+        private int limit;              // File size limit (voters/file)
+        private BackgroundWorker worker;// Worker to avoid main thread being blocked during generation..
 
-        private int voterCount;
-        private int voterDoneCount;
-        private int voterDonePerc;
-        private int groupCount;
-        private int groupDoneCount;
-        private string currentGroupName;
-        private IGrouping<String, VoterDO> currentGroup;
-        private IEnumerator<IGrouping<String, VoterDO>> groupsEnumerator;
+        private int voterCount;         // Total number of voters in the current group
+        private int voterDoneCount;     // Number of generated voters in the current group
+        private int voterDonePerc;      // Percentage of generated voters in the current group.
+        private int groupCount;         // Total number of groups in the current grouping.
+        private int groupDoneCount;     // Number of generated groups in the current grouping.
+        private string currentGroupName;// Name of the current grouop
+        private IGrouping<String, VoterDO> currentGroup;    // The group currently being generated.
+        private IEnumerator<IGrouping<String, VoterDO>> groupsEnumerator;   // Enumerator over all groups in the current grouping.
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VoterCardGenerator"/> class. 
+        /// </summary>
+        /// <param name="filter">The filter describing the selected subset of voters.</param>
         public VoterCardGenerator(VoterFilter filter)
         {
             this.filter = filter;
         }
         
+        // Custom delegates for the events below
         public delegate void CountChangedHandler(int changedTo);
         public delegate void TextChangedHandler(string changedTo);
 
@@ -60,28 +74,28 @@
         public event CountChangedHandler VoterDonePercChanged;
         /// <summary> Notify me when the name of the current group being generated changes. </summary>
         public event TextChangedHandler CurrentGroupChanged;
-        /// <summary> Notify me when the generation process ends (interrupted or completed) </summary>
-        public event Action<String> GenerationEnded;
+        /// <summary> Notify me when the generation process ends (interrupted or completed). </summary>
+        public event TextChangedHandler GenerationEnded;
 
         /// <summary> May I have the filter of this Voter Card Generator? </summary>
         public VoterFilter Filter { get { return filter; } }
 
-        public int VoterDonePerc
+        public int VoterDonePerc        // See voterDonePerc field
         {
             get { return voterDonePerc; }
             private set { voterDonePerc = value; VoterDonePercChanged(voterDonePerc); }
         }
-        public int GroupCount
+        public int GroupCount           // See groupCount field
         {
             get { return groupCount; }
             private set { groupCount = value; GroupCountChanged(groupCount); }
         }
-        public int GroupDoneCount
+        public int GroupDoneCount       // See groupCount field
         {
             get { return groupDoneCount; }
             private set { groupDoneCount = value; GroupDoneCountChanged(groupDoneCount); }
         }
-        public string CurrentGroupName
+        public string CurrentGroupName  // See currentGroupName field
         {
             get { return this.currentGroupName; }
             private set { this.currentGroupName = value; CurrentGroupChanged(this.currentGroupName); }
@@ -95,15 +109,6 @@
         {
             IEnumerable<VoterDO> voters = new VoterDAO().Read(filter.ToPredicate());
             return voters.Where(v => v.CardPrinted.Equals(true)).Count();
-        }
-
-        /// <summary>
-        /// Does the given destination (folder path) exist?
-        /// </summary>
-        /// <returns>Answer to query (true = yes | false = no).</returns>
-        public bool ValidateDestination(string destination)
-        {
-            return Directory.Exists(destination);
         }
 
         /// <summary>
@@ -121,8 +126,8 @@
         /// <summary>
         /// Generate voter card(s) based on voter filter and grouping selection.
         /// </summary>
-        /// <param name="destination">Destination folder for resulting files (path).</param>
-        /// <param name="property">Index of the desired group predicate to for grouping.</param>
+        /// <param name="destination">Destination folder for resulting files (folder path).</param>
+        /// <param name="property">Index of the desired grouping function.</param>
         /// <param name="limit">Batch size limit (voters / file).</param>
         public void Generate(String destination, int property, int limit)
         {
@@ -133,9 +138,9 @@
             var voterDAO = new VoterDAO();
             IEnumerable<VoterDO> voters = voterDAO.Read(filter.ToPredicate()).ToList();
 
-            IEnumerable<IGrouping<String, VoterDO>> groups = this.GroupByData(voters, property);
+            IEnumerable<IGrouping<String, VoterDO>> groups = this.GroupByData(voters);
             this.GroupCount = groups.Count();
-            this.groupsEnumerator = GroupByData(voters, property).GetEnumerator();
+            this.groupsEnumerator = GroupByData(voters).GetEnumerator();
             this.GroupDoneCount = 0;
             
             if(this.groupsEnumerator.MoveNext())
@@ -146,9 +151,7 @@
                 this.voterDoneCount = 0;
                 this.voterDonePerc = 0;
 
-                worker = new BackgroundWorker();
-                worker.WorkerReportsProgress = true;
-                worker.WorkerSupportsCancellation = true;
+                worker = new BackgroundWorker { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
                 worker.ProgressChanged += (o, eA) => VoterDonePerc = eA.ProgressPercentage;
                 worker.RunWorkerCompleted += this.GroupGenerated;
                 worker.DoWork += this.GenerateGroup;
@@ -169,7 +172,7 @@
             if (limit > 0)
             {
                 int i = 0;
-                foreach (var partialGroup in GroupByLimit(currentGroup, limit))
+                foreach (var partialGroup in GroupByLimit(currentGroup))
                 {
                     string partialGroupName = currentGroupName + (i++); //numbered 0 to n 'number of parital groups'.
                     this.GenerateFile(sender, e, partialGroup, partialGroupName);
@@ -219,7 +222,167 @@
         }
 
         /// <summary>
-        /// Populate a card with the information of a given voter.
+        /// Group voters by the selected data property (such as municipality or polling station).
+        /// </summary>
+        /// <param name="voters">The voters to be grouped.</param>
+        /// <returns>An IEnumerable containing the resulting batches.</returns>
+        private IEnumerable<IGrouping<String, VoterDO>> GroupByData(IEnumerable<VoterDO> voters)
+        {
+            return voters.GroupBy(this.GroupFunctions[this.property]);
+        }
+
+        /// <summary>
+        /// Group voters into batches of the selected limit.
+        /// </summary>
+        /// <param name="voters">The voters to be grouped.</param>
+        /// <returns>An IEnumerable containing the resulting batches.</returns>
+        private IEnumerable<IEnumerable<VoterDO>> GroupByLimit(IEnumerable<VoterDO> voters)
+        {
+            var groups = new List<IEnumerable<VoterDO>>();
+
+            for (int i = 0; i <= voters.Count() / this.limit; i++)
+                groups.Add(voters.Skip(i * this.limit).Take(this.limit));
+
+            return groups;
+        }
+
+        
+        
+
+        /// <summary>
+        /// Generate a single batch (pdf-file) containing one or more voter cards.
+        /// </summary>
+        /// <param name="sender">The worker which has ordered the generation.</param>
+        /// <param name="e">Arguments describing the current DoWork event.</param>
+        /// <param name="voters">The voter(s) to be on the voter card(s) in the file.</param>
+        /// <param name="fileName">The name of the file.</param>
+        private void GenerateFile(object sender, DoWorkEventArgs e, IEnumerable<VoterDO> voters, String fileName)
+        {
+            var worker = sender as BackgroundWorker;
+
+            String path = destination + "\\" + fileName + ".pdf";
+            var fos = new FileStream(path, FileMode.Create);
+            var bos = new BufferedStream(fos);
+
+            var pdf = new PDF(bos); // PDF in file
+
+            var page = new Page(pdf, A4.PORTRAIT); // First page in PDF
+
+            int pageCount = 0;
+            foreach (var voter in voters)
+            {
+                GenerateCard(page, pdf, 0, pageCount * U);
+                PopulateCard(page, pdf, 0, pageCount * U, voter);
+                if (pageCount != 200) pageCount += 100;
+                else
+                {
+                    pageCount = 0;
+                    page = new Page(pdf, A4.PORTRAIT);
+                }
+
+                // Update progress percentage?
+                voterDoneCount++;
+                double perc = (Convert.ToDouble(voterDoneCount) / Convert.ToDouble(voterCount)) * 100;
+                int iperc = (int)perc;
+                if (iperc != VoterDonePerc) worker.ReportProgress(iperc);
+
+                // Cancelled? 
+                // If yes, flag cancelled and break, but make sure file stream is closed properly.
+                if (worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+            }
+
+            pdf.Flush();
+            bos.Close();
+        }
+
+        /// <summary>
+        /// Generate lines, boxes, watermark and default text of a single voter card.
+        /// </summary>
+        /// <param name="page">The page containing the card.</param>
+        /// <param name="pdf">The pdf containing the page.</param>
+        /// <param name="xO">The horizontal offset of the card in points.</param>
+        /// <param name="yO">The vertical offset of the card in points.</param>
+        private static void GenerateCard(Page page, PDF pdf, double xO, double yO)
+        {
+            // Add watermark.
+            var font = new Font(pdf, CoreFont.HELVETICA_BOLD);
+            font.SetSize(55);
+            var t = new TextLine(font, "FAKE VALGKORT");
+            var lightBlue = new[] { 0.647, 0.812, 0.957 };
+            t.SetColor(lightBlue);
+            t.SetPosition(xO + 20 * U, yO + 50 * U);
+            t.DrawOn(page);
+
+            // Add 'Afstemningssted' box.
+            var b = new Box(xO + 6 * U, yO + 20 * U, 80 * U, 22 * U);
+            b.DrawOn(page);
+
+            // Add 'Valgbord' box.
+            b = new Box(xO + 6 * U, yO + 44.5 * U, 80 * U, 7 * U);
+            b.DrawOn(page);
+
+            // Add 'Vælgernr' box.
+            b = new Box(xO + 6 * U, yO + 54 * U, 80 * U, 7 * U);
+            b.DrawOn(page);
+
+            // Add 'Afstemningstid' box.
+            b = new Box(xO + 6 * U, yO + 63.5 * U, 80 * U, 7 * U);
+            b.DrawOn(page);
+
+            // Add lines.
+            var l = new Line(xO + 96 * U, yO + 5 * U, xO + 96 * U, yO + 85 * U);
+            l.DrawOn(page);
+            l = new Line(xO + 96 * U, yO + 25 * U, xO + 205 * U, yO + 25 * U);
+            l.DrawOn(page);
+            l = new Line(xO + 96 * U, yO + 45 * U, xO + 205 * U, yO + 45 * U);
+            l.DrawOn(page);
+            l = new Line(xO + 6 * U, yO + 85 * U, xO + 205 * U, yO + 85 * U);
+            l.DrawOn(page);
+
+            // Add default text.
+            font = new Font(pdf, CoreFont.HELVETICA);
+            font.SetSize(7);
+            t = new TextLine(font, "Afstemningssted:");
+            t.SetPosition(xO + 7 * U, yO + 23 * U);
+            t.DrawOn(page);
+            t = new TextLine(font, "Vælgernr.:");
+            t.SetPosition(xO + 7 * U, yO + 58 * U);
+            t.DrawOn(page);
+            t = new TextLine(font, "Afstemningstid:");
+            t.SetPosition(xO + 7 * U, yO + 68 * U);
+            t.DrawOn(page);
+            t = new TextLine(font, "Afsender:");
+            t.SetPosition(xO + 98 * U, yO + 29 * U);
+            t.DrawOn(page);
+            t = new TextLine(font, "Modtager:");
+            t.SetPosition(xO + 98 * U, yO + 49 * U);
+            t.DrawOn(page);
+
+            font = new Font(pdf, CoreFont.HELVETICA);
+            font.SetSize(9);
+            t = new TextLine(font, "Folketingsvalg");
+            t.SetPosition(xO + 7 * U, yO + 10 * U);
+            t.DrawOn(page);
+            t = new TextLine(font, "20. november 2001");
+            t.SetPosition(xO + 7 * U, yO + 14 * U);
+            t.DrawOn(page);
+            t = new TextLine(font, "Valgbord:");
+            t.SetPosition(xO + 7 * U, yO + 49 * U);
+            t.DrawOn(page);
+
+            font = new Font(pdf, CoreFont.HELVETICA_OBLIQUE);
+            font.SetSize(7);
+            t = new TextLine(font, "Medbring kortet ved afstemningen");
+            t.SetPosition(xO + 6.5 * U, yO + 18.5 * U);
+            t.DrawOn(page);
+        }
+
+        /// <summary>
+        /// Populate a voter card with the information of a given voter.
         /// </summary>
         /// <param name="page">The page containing the card.</param>
         /// <param name="pdf">The pdf containing the page.</param>
@@ -302,164 +465,5 @@
             t.SetPosition(xO + 160 * U, yO + 72 * U);
             t.DrawOn(page);
         }
-
-        /// <summary>
-        /// Generate lines, boxes, watermark and default text of voter card
-        /// </summary>
-        /// <param name="page">The page containing the card.</param>
-        /// <param name="pdf">The pdf containing the page.</param>
-        /// <param name="xO">The horizontal offset of the card in points.</param>
-        /// <param name="yO">The vertical offset of the card in points.</param>
-        private static void GenerateCard(Page page, PDF pdf, double xO, double yO)
-        {
-            // Add watermark.
-            var font = new Font(pdf, CoreFont.HELVETICA_BOLD);
-            font.SetSize(55);
-            var t = new TextLine(font, "FAKE VALGKORT");
-            var lightBlue = new[] { 0.647, 0.812, 0.957 };
-            t.SetColor(lightBlue);
-            t.SetPosition(xO + 20 * U, yO + 50 * U);
-            t.DrawOn(page);
-
-            // Add 'Afstemningssted' box.
-            var b = new Box(xO + 6 * U, yO + 20 * U, 80 * U, 22 * U);
-            b.DrawOn(page);
-
-            // Add 'Valgbord' box.
-            b = new Box(xO + 6 * U, yO + 44.5 * U, 80 * U, 7 * U);
-            b.DrawOn(page);
-
-            // Add 'Vælgernr' box.
-            b = new Box(xO + 6 * U, yO + 54 * U, 80 * U, 7 * U);
-            b.DrawOn(page);
-
-            // Add 'Afstemningstid' box.
-            b = new Box(xO + 6 * U, yO + 63.5 * U, 80 * U, 7 * U);
-            b.DrawOn(page);
-
-            // Add lines.
-            var l = new Line(xO + 96 * U, yO + 5 * U, xO + 96 * U, yO + 85 * U);
-            l.DrawOn(page);
-            l = new Line(xO + 96 * U, yO + 25 * U, xO + 205 * U, yO + 25 * U);
-            l.DrawOn(page);
-            l = new Line(xO + 96 * U, yO + 45 * U, xO + 205 * U, yO + 45 * U);
-            l.DrawOn(page);
-            l = new Line(xO + 6 * U, yO + 85 * U, xO + 205 * U, yO + 85 * U);
-            l.DrawOn(page);
-
-            // Add default text.
-            font = new Font(pdf, CoreFont.HELVETICA);
-            font.SetSize(7);
-            t = new TextLine(font, "Afstemningssted:");
-            t.SetPosition(xO + 7 * U, yO + 23 * U);
-            t.DrawOn(page);
-            t = new TextLine(font, "Vælgernr.:");
-            t.SetPosition(xO + 7 * U, yO + 58 * U);
-            t.DrawOn(page);
-            t = new TextLine(font, "Afstemningstid:");
-            t.SetPosition(xO + 7 * U, yO + 68 * U);
-            t.DrawOn(page);
-            t = new TextLine(font, "Afsender:");
-            t.SetPosition(xO + 98 * U, yO + 29 * U);
-            t.DrawOn(page);
-            t = new TextLine(font, "Modtager:");
-            t.SetPosition(xO + 98 * U, yO + 49 * U);
-            t.DrawOn(page);
-
-
-            font = new Font(pdf, CoreFont.HELVETICA);
-            font.SetSize(9);
-            t = new TextLine(font, "Folketingsvalg");
-            t.SetPosition(xO + 7 * U, yO + 10 * U);
-            t.DrawOn(page);
-            t = new TextLine(font, "20. november 2001");
-            t.SetPosition(xO + 7 * U, yO + 14 * U);
-            t.DrawOn(page);
-            t = new TextLine(font, "Valgbord:");
-            t.SetPosition(xO + 7 * U, yO + 49 * U);
-            t.DrawOn(page);
-
-            font = new Font(pdf, CoreFont.HELVETICA_OBLIQUE);
-            font.SetSize(7);
-            t = new TextLine(font, "Medbring kortet ved afstemningen");
-            t.SetPosition(xO + 6.5 * U, yO + 18.5 * U);
-            t.DrawOn(page);
-        }
-
-        /// <summary>
-        /// Generate a single batch (pdf-file) containing one or more voter cards.
-        /// </summary>
-        /// <param name="voters">The voter(s) to be on the voter card(s) in the file.</param>
-        /// <param name="fileName">The name of the file.</param>
-        private void GenerateFile(object sender, DoWorkEventArgs e, IEnumerable<VoterDO> voters, String fileName)
-        {
-            var worker = sender as BackgroundWorker;
-
-            String path = destination + "\\" + fileName + ".pdf";
-            var fos = new FileStream(path, FileMode.Create);
-            var bos = new BufferedStream(fos);
-
-            // Compose PDF
-            var pdf = new PDF(bos);
-
-            // Compose Page
-            var page = new Page(pdf, A4.PORTRAIT);
-
-            int pageCount = 0;
-            foreach (var voter in voters)
-            {
-                GenerateCard(page, pdf, 0, pageCount * U);
-                PopulateCard(page, pdf, 0, pageCount * U, voter);
-                if (pageCount != 200) pageCount += 100;
-                else
-                {
-                    pageCount = 0;
-                    page = new Page(pdf, A4.PORTRAIT);
-                }
-                
-                // Update progress percentage?
-                voterDoneCount++;
-                double perc = (Convert.ToDouble(voterDoneCount) / Convert.ToDouble(voterCount)) * 100;
-                int iperc = (int)perc;
-                if(iperc != VoterDonePerc) worker.ReportProgress(iperc);
-
-                // Cancelled? 
-                // If yes, flag cancelled and break, but make sure file stream is closed properly.
-                if (worker.CancellationPending)
-                {
-                    e.Cancel = true;
-                    break;
-                }
-            }
-
-            pdf.Flush();
-            bos.Close();
-        }
-
-        /// <summary>
-        /// Group voters by the selected data property (such as municipality or polling station).
-        /// </summary>
-        /// <param name="voters">The voters to be grouped.</param>
-        /// <returns>An IEnumerable containing the resulting batches.</returns>
-        private IEnumerable<IGrouping<String, VoterDO>> GroupByData(IEnumerable<VoterDO> voters, int property)
-        {
-            return voters.GroupBy(this.GroupPredicates[property]);
-        }
-
-        /// <summary>
-        /// Group voters into batches of the selected limit.
-        /// </summary>
-        /// <param name="voters">The voters to be grouped.</param>
-        /// <returns>An IEnumerable containing the resulting batches.</returns>
-        private IEnumerable<IEnumerable<VoterDO>> GroupByLimit(IEnumerable<VoterDO> voters, int limit)
-        {
-            var groups = new List<IEnumerable<VoterDO>>();
-
-            for (int i = 0; i <= voters.Count() / limit; i++)
-                groups.Add(voters.Skip(i * limit).Take(limit));
-
-            return groups;
-        }
-
     }
 }

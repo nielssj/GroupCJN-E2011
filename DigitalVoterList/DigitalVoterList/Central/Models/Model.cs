@@ -1,8 +1,13 @@
-﻿namespace DigitalVoterList.Central.Models
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Author: Niels Søholm (nm@9la.dk)
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace DigitalVoterList.Central.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
 
     /// <summary>
     /// The main 'model' of the application. 
@@ -20,7 +25,7 @@
         /// <summary> Notify me when a submodel has been closed. </summary>
         public event Action<ISubModel> SubModelClosed;
 
-        /// <summary> Describes a kind of sub-model. </summary>
+        /// <summary> Describes a kind of sub-system. </summary>
         public enum ChangeType { VCG, VBM };
 
         /// <summary> May I have the voter selection model? </summary>

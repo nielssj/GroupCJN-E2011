@@ -1,4 +1,10 @@
-﻿namespace DigitalVoterList.Central.Models
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Author: Niels Søholm (nm@9la.dk)
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace DigitalVoterList.Central.Models
 {
     using System;
     using System.Diagnostics.Contracts;
@@ -41,6 +47,7 @@
                 (this.CPRNO == 0 || v.PrimaryKey.Equals(this.CPRNO));
         }
         
+        /// <summary> At least one property should be specified. </summary>
         [ContractInvariantMethod]
         private void Invariant()
         {
