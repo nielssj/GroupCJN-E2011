@@ -106,9 +106,9 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         private void ReactToRegisterRequest()
         {
-            view.ShowMessageBox("The voter card is registered");
             //Update the model so that the voter is registered.
             model.RegisterCurrentVoter();
+            view.ShowMessageBox("The voter card is registered");
             this.ResetCprTxtBox();
             view.ScannerWindow.Focus();
         }
