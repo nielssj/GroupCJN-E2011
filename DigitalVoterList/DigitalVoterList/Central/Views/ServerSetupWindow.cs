@@ -37,14 +37,6 @@ namespace DigitalVoterList.Central.Views
             }
         }
 
-        public string DB
-        {
-            get
-            {
-                return this.dbBox.Text;
-            }
-        }
-
         public string User
         {
             get

@@ -21,16 +21,12 @@ namespace DBComm.DBComm.DAO
 
         private MySqlTransaction transaction;
 
-        private readonly MySqlConnection connection; 
+        private readonly MySqlConnection connection;
         private int timeout;
 
         public PessimisticVoterDAO(string server, string password)
         {
-            connection = new MySqlConnection("server=" + server + ";"
-                                + "port=3306;"
-                                + "uid=root;"
-                                + "password=" + password + ";" 
-                                + "database=dvl");
+            this.connection = DigitalVoterList.GetConnectionInstance("groupCJN", password, server);
         }
 
         /// <summary>

@@ -18,13 +18,13 @@ namespace DBComm.DBComm
     /// <summary>
     /// The data context representing the DVL database.
     /// </summary>
-    [Database(Name = ("dvl"))]
+    [Database(Name = ("groupcjn"))]
     public class DigitalVoterList : DataContext
     {
         private const string Path = "c:/ServerSetupDVL.conf";
 
         private const string Default =
-            "server=localhost;port=3306;uid=root;password=abc123;Sql Server Mode=true;database=dvl;";
+            "server=localhost;port=3306;uid=groupCJN;password=abc123;Sql Server Mode=true;database=groupCJN;";
 
         public Table<PollingStationDO> pollingStations;
 
@@ -60,7 +60,7 @@ namespace DBComm.DBComm
                     string port = lines[1];
                     string user = lines[2];
                     string password = lines[3];
-                    return string.Format("server={0};uid={1};password={2};port={3};Sql Server Mode = true;database=dvl", server, user, password, port);
+                    return string.Format("server={0};uid={1};password={2};port={3};Sql Server Mode = true;database={4}", server, user, password, port, "groupCJN");
                 }
                 catch (Exception e)
                 {
@@ -73,10 +73,10 @@ namespace DBComm.DBComm
         /// Create a new database with the connection parameters read from the config file.
         /// * server = localhost
         /// * port = 3306
-        /// * uid = root
+        /// * uid = groupCJN
         /// * password = abc123
         /// * sql server mode = true
-        /// * database = dvl
+        /// * database = groupCJN
         /// </summary>
         /// <returns>A new datacontext instance.</returns>
         public static DigitalVoterList GetDefaultInstance()
@@ -93,7 +93,7 @@ namespace DBComm.DBComm
         /// <param name="server">The server.</param>
         /// <param name="port">The port.</param>
         /// <returns>A new datacontext.</returns>
-        public static DigitalVoterList GetInstance(string user, string password, string dbName, string server, string port = "3306")
+        public static DigitalVoterList GetInstance(string user, string password, string server, string port = "3306")
         {
             var conn = new MySqlConnection(
                 string.Format(
@@ -102,7 +102,7 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    dbName));
+                    "groupCJN"));
             conn.Open();
 
             return new DigitalVoterList(conn);
@@ -119,26 +119,28 @@ namespace DBComm.DBComm
         {
             var conn = new MySqlConnection(
                 string.Format(
-                    "server={0};uid={1};password={2};port={3};Sql Server Mode = true;database=dvl",
+                    "server={0};uid={1};password={2};port={3};Sql Server Mode = true;database={4}",
                     server,
-                    "root",
+                    "groupCJN",
                     "abc123",
-                    "3306"));
+                    "3306",
+                    "groupCJN"));
             conn.Open();
 
             return new DigitalVoterList(conn);
         }
 
         /// <summary>
-        /// Get an open connection based on the given parameters.
+        /// Get a connection based on the given parameters.
         /// </summary>
         /// <param name="user">The user</param>
         /// <param name="password">The password</param>
-        /// <param name="dbName">The name of the database to connect to.</param>
-        /// <param name="server">The adress to the server. Assuming localhost if no adress is provided</param>
+        /// <param name="server">The adress to the server. Assuming localhost if no adress is provided.</param>
         /// <param name="port">The port number to this connection. Assuming 3306 if no port is provided.</param>
-        /// <returns>A new connection.</returns>
-        public static MySqlConnection GetConnectionInstance(string user, string password, string dbName, string server = "localhost", int port = 3306)
+        /// <returns>
+        /// A new connection.
+        /// </returns>
+        public static MySqlConnection GetConnectionInstance(string user, string password, string server = "localhost", int port = 3306)
         {
             var conn = new MySqlConnection(
                 string.Format(
@@ -147,8 +149,7 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    dbName));
-            conn.Open();
+                    "groupcjn"));
 
             return conn;
         }

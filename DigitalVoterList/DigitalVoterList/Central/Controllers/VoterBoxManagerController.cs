@@ -68,7 +68,7 @@ namespace DigitalVoterList.Central.Controllers
             view.UpdateProgressText("Making connection to remote server and creating DB.");
             try
             {
-                DBCreator creator = new DBCreator(view.Address, view.Port, view.DB, view.User, view.Password);
+                DBCreator creator = new DBCreator(view.Address, view.Port, view.User, view.Password);
             }
             catch (Exception e)
             {
@@ -104,7 +104,7 @@ namespace DigitalVoterList.Central.Controllers
 
                 try
                 {
-                    model.InsertData(view.Address, view.Port, view.DB, view.User, view.Password);
+                    model.InsertData(view.Address, view.Port, view.User, view.Password);
                 }
                 catch (Exception e)
                 {

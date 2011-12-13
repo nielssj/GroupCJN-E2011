@@ -23,9 +23,9 @@ namespace DBComm.ManualTests
         {
             var connection = new MySqlConnection(
                     "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"
-                    + "database=dvl;");
+                    + "database=groupCJN;");
 
-            var creator = new DBCreator(connection, "dvl");
+            var creator = new DBCreator(connection);
 
             var generator = new Generator(DigitalVoterList.GetDefaultInstance());
 
