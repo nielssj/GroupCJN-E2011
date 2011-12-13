@@ -1,23 +1,16 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="PollingMain.cs" company="">
-// TODO: Update copyright text.
+// Author: Claes Martinsen
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace DigitalVoterList.PollingTable
 {
-    using System;
     using System.Diagnostics;
-    using System.IO;
-    using System.Text;
     using System.Windows.Forms;
 
-    
-
-    //using PtView = DigitalVoterList.PollingTable.PtView.PtView;
-
     /// <summary>
-    /// TODO: Update summary.
+    /// The main class in polling table. Used for creating the MVC pattern; model, view, controller.
     /// </summary>
     public class PollingMain
     {
@@ -30,8 +23,6 @@ namespace DigitalVoterList.PollingTable
             Model model = new Model();
             PtView view = new PtView(model);
             Controller controller = new Controller(model, view);
-
-        //    this.SetupDVL();
 
             if (SingleInstance)
             {
