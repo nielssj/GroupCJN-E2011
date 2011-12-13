@@ -33,19 +33,17 @@ namespace DigitalVoterList.PollingTable
         }
 
         /// <summary>
-        /// Reacts to the find voter request.
+        /// Unhash and validate the cpr.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ReactTofindVoterRequest(object sender, EventArgs e)
+        /// <param name="cprStr">The cpr to be unhashed</param>
+        /// <returns>The unhashed uint cpr </returns>
+        private uint UnhashCPR(string cprStr)
         {
-            string cprStr = view.ScannerWindow.CprnrTxtBox.Text;
-
             //Validate that CPRNO doesn't contain letters
             if (!Model.CprLetterVal(cprStr))
             {
                 view.ShowMessageBox("Cprno must only contain numbers.");
-                return;
+                return 0;
             }
 
             uint cpr;
@@ -55,18 +53,33 @@ namespace DigitalVoterList.PollingTable
             {
                 cpr = Central.Utility.BarCodeHashing.UnHash(cprStr);
             }
-            else
-            {
+            
                 uint result;
                 bool res = uint.TryParse(cprStr, out result);
                 if (!res)
                 {
                     view.ShowMessageBox("Cprno is not valid.");
-                    return;
+                    return 0;
                 }
                 cpr = Convert.ToUInt32(cprStr);
-                
-            }
+
+            
+            
+
+            return cpr;
+        }
+
+        /// <summary>
+        /// Reacts to the find voter request.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReactTofindVoterRequest(object sender, EventArgs e)
+        {
+            string cprStr = view.ScannerWindow.CprnrTxtBox.Text;
+
+            uint cpr = this.UnhashCPR(cprStr); //Try to unhash and validate that the cpr doesn't contain letters.
+
             //Validate length of CPRNO.
             if (!Model.CprLengtVal(cpr))
             {
@@ -74,15 +87,13 @@ namespace DigitalVoterList.PollingTable
                 return;
             }
 
-            //uint cpr = this.Validate();
-            try
-            {
-                model.initializeStaticDAO();
-            }
+            //Try to start the transaction and test if there is a connection to the voter box.
+            try { model.initializeStaticDAO(); }
             catch (Exception)
             {
                 view.ShowMessageBox("Connetcion Lost");
-            }
+                return;
+            } 
 
             try
             {
@@ -106,11 +117,7 @@ namespace DigitalVoterList.PollingTable
                 model.FindVoter(cpr);
                 this.ResetCprTxtBox();
             }
-            catch (Exception)
-            {
-                view.ShowMessageBox("Connection lost.");
-            }
-
+            catch (Exception) { view.ShowMessageBox("Connection lost."); }
         }
 
         /// <summary>
