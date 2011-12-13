@@ -28,9 +28,9 @@ namespace DBComm.DBComm.DAO
         {
             connection = new MySqlConnection("server=" + server + ";"
                                 + "port=3306;"
-                                + "uid=root;"
+                                + "uid=groupCJN;"
                                 + "password=" + password + ";" 
-                                + "database=dvl");
+                                + "database=groupCJN");
         }
 
         /// <summary>

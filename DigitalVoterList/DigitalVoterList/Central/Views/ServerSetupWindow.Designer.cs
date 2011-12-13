@@ -39,14 +39,12 @@
             this.adressBox = new System.Windows.Forms.TextBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.passwordLabel = new System.Windows.Forms.Label();
-            this.dbBox = new System.Windows.Forms.TextBox();
-            this.dbLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // userBox
             // 
             this.userBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.userBox.Location = new System.Drawing.Point(109, 82);
+            this.userBox.Location = new System.Drawing.Point(109, 56);
             this.userBox.Name = "userBox";
             this.userBox.Size = new System.Drawing.Size(112, 20);
             this.userBox.TabIndex = 3;
@@ -73,7 +71,7 @@
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(12, 85);
+            this.userLabel.Location = new System.Drawing.Point(12, 59);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(32, 13);
             this.userLabel.TabIndex = 10;
@@ -90,7 +88,7 @@
             // 
             // connectBtn
             // 
-            this.connectBtn.Location = new System.Drawing.Point(145, 136);
+            this.connectBtn.Location = new System.Drawing.Point(145, 106);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(75, 23);
             this.connectBtn.TabIndex = 5;
@@ -109,7 +107,7 @@
             // passwordBox
             // 
             this.passwordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordBox.Location = new System.Drawing.Point(109, 108);
+            this.passwordBox.Location = new System.Drawing.Point(109, 82);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(112, 20);
@@ -118,37 +116,17 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(12, 111);
+            this.passwordLabel.Location = new System.Drawing.Point(12, 85);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(87, 13);
             this.passwordLabel.TabIndex = 14;
             this.passwordLabel.Text = "Admin password:";
             // 
-            // dbBox
-            // 
-            this.dbBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dbBox.Location = new System.Drawing.Point(109, 57);
-            this.dbBox.Name = "dbBox";
-            this.dbBox.Size = new System.Drawing.Size(112, 20);
-            this.dbBox.TabIndex = 2;
-            this.dbBox.Text = "groupCJN";
-            // 
-            // dbLabel
-            // 
-            this.dbLabel.AutoSize = true;
-            this.dbLabel.Location = new System.Drawing.Point(12, 60);
-            this.dbLabel.Name = "dbLabel";
-            this.dbLabel.Size = new System.Drawing.Size(53, 13);
-            this.dbLabel.TabIndex = 16;
-            this.dbLabel.Text = "Db name:";
-            // 
             // ServerSetupWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 162);
-            this.Controls.Add(this.dbBox);
-            this.Controls.Add(this.dbLabel);
+            this.ClientSize = new System.Drawing.Size(228, 134);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userBox);
@@ -213,8 +191,6 @@
         private System.Windows.Forms.TextBox adressBox;
         private TextBox passwordBox;
         private Label passwordLabel;
-        private TextBox dbBox;
-        private Label dbLabel;
 
         public Button ConnectBtn
         {

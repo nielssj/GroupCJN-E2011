@@ -49,14 +49,12 @@
             this.pwLabel = new System.Windows.Forms.Label();
             this.portBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dbBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 238);
+            this.label2.Location = new System.Drawing.Point(11, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 15;
@@ -66,7 +64,7 @@
             // 
             this.connectButton.Location = new System.Drawing.Point(225, 11);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(75, 99);
+            this.connectButton.Size = new System.Drawing.Size(75, 74);
             this.connectButton.TabIndex = 5;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
@@ -90,7 +88,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(14, 254);
+            this.progressBar1.Location = new System.Drawing.Point(14, 221);
             this.progressBar1.Maximum = 4;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(284, 26);
@@ -100,7 +98,7 @@
             // progressTF
             // 
             this.progressTF.Enabled = false;
-            this.progressTF.Location = new System.Drawing.Point(14, 124);
+            this.progressTF.Location = new System.Drawing.Point(14, 91);
             this.progressTF.Multiline = true;
             this.progressTF.Name = "progressTF";
             this.progressTF.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -109,7 +107,7 @@
             // 
             // uploadButton
             // 
-            this.uploadButton.Location = new System.Drawing.Point(235, 283);
+            this.uploadButton.Location = new System.Drawing.Point(235, 250);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(63, 26);
             this.uploadButton.TabIndex = 13;
@@ -118,7 +116,7 @@
             // 
             // validateButton
             // 
-            this.validateButton.Location = new System.Drawing.Point(161, 283);
+            this.validateButton.Location = new System.Drawing.Point(161, 250);
             this.validateButton.Name = "validateButton";
             this.validateButton.Size = new System.Drawing.Size(68, 26);
             this.validateButton.TabIndex = 14;
@@ -177,30 +175,11 @@
             this.label1.TabIndex = 21;
             this.label1.Text = ":";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 13);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Database name:";
-            // 
-            // dbBox
-            // 
-            this.dbBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.dbBox.Location = new System.Drawing.Point(96, 90);
-            this.dbBox.Name = "dbBox";
-            this.dbBox.Size = new System.Drawing.Size(119, 20);
-            this.dbBox.TabIndex = 4;
-            // 
             // VoterBoxManagerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 313);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dbBox);
+            this.ClientSize = new System.Drawing.Size(311, 281);
             this.Controls.Add(this.portBox);
             this.Controls.Add(this.adressTB);
             this.Controls.Add(this.label1);
@@ -240,7 +219,5 @@
         private System.Windows.Forms.Label pwLabel;
         private System.Windows.Forms.TextBox portBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox dbBox;
     }
 }

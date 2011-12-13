@@ -62,11 +62,10 @@ namespace DigitalVoterList.Central.Controllers
             int.TryParse(this.view.Port, out port);
             string user = this.view.User;
             string password = this.view.Pw;
-            string db = this.view.DB;
 
             try
             {
-                DigitalVoterList.GetConnectionInstance(user, password, db, address, port);
+                DigitalVoterList.GetConnectionInstance(user, password, address, port);
             }
             catch (System.FormatException)
             {
@@ -95,7 +94,7 @@ namespace DigitalVoterList.Central.Controllers
                 return;
             }
 
-            this.model.SaveCredentials(address, port, user, password, db);
+            this.model.SaveCredentials(address, port, user, password);
             this.OnConnected();
         }
     }

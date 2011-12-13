@@ -127,7 +127,7 @@ namespace DigitalVoterList.Central.Models
         /// <param name="port">The port of the server.</param>
         /// <param name="user">The username.</param>
         /// <param name="password">The password.</param>
-        public void InsertData(string server, string port, string dbName, string user, string password)
+        public void InsertData(string server, string port, string user, string password)
         {
             foreach (var municipality in this.Municipalities)
             {
@@ -142,7 +142,7 @@ namespace DigitalVoterList.Central.Models
                 voter.ResetAssociations();
             }
 
-            var context = DigitalVoterList.GetInstance(user, password, dbName, server, port);
+            var context = DigitalVoterList.GetInstance(user, password, server, port);
 
             mDAO = new MunicipalityDAO(context);
             pDAO = new PollingStationDAO(context);
