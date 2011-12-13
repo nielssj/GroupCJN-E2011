@@ -24,6 +24,11 @@ namespace DigitalVoterList
             voterNameLabel.Text = voter.Name;
             voterAddressLabel.Text = voter.Address;
             voterCityLabel.Text = voter.City;
+
+            //Window is not resizable
+            var size = new System.Drawing.Size(377, 345);
+            this.MinimumSize = size;
+            this.MaximumSize = size;
         }
     }
 }

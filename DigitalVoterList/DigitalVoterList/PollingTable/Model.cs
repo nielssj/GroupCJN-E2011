@@ -107,6 +107,7 @@ namespace DigitalVoterList.PollingTable
             {
                 Console.WriteLine(e);
                 ConnectionError(); // notify that the connection has been lost.
+                return;
             }
         }
 
@@ -157,6 +158,7 @@ namespace DigitalVoterList.PollingTable
             catch (Exception)
             {
                 ConnectionError();
+                return;
             }
         }
 
@@ -180,6 +182,7 @@ namespace DigitalVoterList.PollingTable
             catch (Exception)
             {
                 ConnectionError();
+                return;
             }
         }
 

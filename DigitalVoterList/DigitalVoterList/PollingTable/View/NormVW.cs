@@ -24,6 +24,9 @@ namespace DigitalVoterList
             voterNameLabel.Text = voter.Name;
             voterAddressLabel.Text = voter.Address;
             voterCityLabel.Text = voter.City;
+
+            this.MaximumSize = new System.Drawing.Size(368, 218);
+            this.MinimumSize = new System.Drawing.Size(368, 218);
         }
     }
 }

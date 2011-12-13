@@ -14,7 +14,7 @@ query
 	"May I have the VOTER_SELECTOR sub-model?"
 command
 	"Notify me when a sub-model has been opened.",
-	"Open a new sub-model of this type."
+	"Open a new sub-model of this type.",
 	"Close this sub-model."
 end
 

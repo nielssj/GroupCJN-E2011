@@ -135,7 +135,7 @@ indexing
     author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
    "Responsible for GUI elements at the central."
-class C_VIEW
+class CENTRAL_VIEW
 description
 	"The main 'view' of the application. It has the sole responsibility of creating instances of the sub-views (windows forms)."
 class VOTER_SELECTOR_WINDOW

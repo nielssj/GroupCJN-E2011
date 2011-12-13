@@ -143,13 +143,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 239);
+            this.ClientSize = new System.Drawing.Size(356, 242);
             this.Controls.Add(this.warningMsg1);
             this.Controls.Add(this.UnlockBtn);
             this.Controls.Add(this.cancelBtn1);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = this.Size;
-            this.MinimumSize = new System.Drawing.Size(384, 277);
             this.Name = "WarningVW";
             this.Text = "WarningVW";
             this.groupBox1.ResumeLayout(false);
