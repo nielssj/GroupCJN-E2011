@@ -1,4 +1,6 @@
-﻿
+﻿///author: Claes Martinsen
+
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DigitalVoterList.Test

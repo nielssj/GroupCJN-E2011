@@ -45,28 +45,36 @@ namespace DigitalVoterList.PollingTable
                 view.ShowMessageBox("Cprno must only contain numbers.");
                 return 0;
             }
-
-            uint cpr;
-
+            
             //unhash the cpr nr if it has a length of 11 chars or above.
             if (cprStr.Length > 10)
             {
-                cpr = Central.Utility.BarCodeHashing.UnHash(cprStr);
-            }
-            
-                uint result;
-                bool res = uint.TryParse(cprStr, out result);
-                if (!res)
+                try
                 {
-                    view.ShowMessageBox("Cprno is not valid.");
+                    return Central.Utility.BarCodeHashing.UnHash(cprStr);
+                }
+                catch (Exception)
+                {
+                    view.ShowMessageBox("Cpr no not valid");
                     return 0;
                 }
-                cpr = Convert.ToUInt32(cprStr);
+            }
 
-            
-            
+            return Convert.ToUInt32(cprStr);
+        }
 
-            return cpr;
+
+        /// <summary>
+        /// teste wether the string conforms to an uint
+        /// </summary>
+        /// <param name="_uint">the string to be tested</param>
+        /// <returns>true if string conforms false otherwise</returns>
+        private bool IsUint(string _uint)
+        {
+            UInt64 result;
+            bool res = UInt64.TryParse(_uint, out result);
+            if (!res) return false;
+            return true;
         }
 
         /// <summary>
@@ -81,7 +89,7 @@ namespace DigitalVoterList.PollingTable
             uint cpr = this.UnhashCPR(cprStr); //Try to unhash and validate that the cpr doesn't contain letters.
 
             //Validate length of CPRNO.
-            if (!Model.CprLengtVal(cpr))
+            if (Model.CprLengtVal(cpr))
             {
                 view.ShowMessageBox("Length of cprno is not valid.");
                 return;
@@ -178,6 +186,11 @@ namespace DigitalVoterList.PollingTable
                 return;
             }
             setupInfo.TableNo = uint.Parse(view.SetupWindow.TableBox);
+            if(setupInfo.Ip.Length == 0)
+            {
+                view.ShowMessageBox("Please type in the target connection");
+                return;
+            }
 
             string password = view.SetupWindow.Password; //Password from setup window to be tested.
 

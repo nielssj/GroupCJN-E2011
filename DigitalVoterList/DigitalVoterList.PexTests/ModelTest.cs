@@ -1,4 +1,5 @@
 // <copyright file="ModelTest.cs">Copyright ©  2011</copyright>
+///Author: Claes Martinsen (but mostly pex)
 
 using System;
 using DigitalVoterList.PollingTable;

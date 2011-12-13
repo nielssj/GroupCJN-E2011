@@ -88,7 +88,7 @@
             this.cprnrTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cprnrTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cprnrTxtBox.Location = new System.Drawing.Point(229, 80);
-            this.cprnrTxtBox.MaxLength = 2056;
+            this.cprnrTxtBox.MaxLength = 12;
             this.cprnrTxtBox.Name = "cprnrTxtBox";
             this.cprnrTxtBox.Size = new System.Drawing.Size(275, 45);
             this.cprnrTxtBox.TabIndex = 7;

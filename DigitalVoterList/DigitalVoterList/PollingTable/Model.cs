@@ -49,7 +49,8 @@ namespace DigitalVoterList.PollingTable
         /// <returns>false if cpr is not valid, true if it is.</returns>
         public static bool CprLengtVal(uint cpr)
         {
-            return (cpr > 10 || cpr < 10);
+            bool val = (cpr.ToString().Length > 12 || cpr.ToString().Length < 10);
+            return val;
         }
 
         /// <summary>
