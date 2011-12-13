@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="VoterSelectionController.cs" company="DVL">
-// Jan Meier, Niels Søholm
+// Authors: Jan Meier, Niels Søholm
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -14,7 +14,8 @@ namespace DigitalVoterList.Central.Controllers
     using DigitalVoterList.Central.Views;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The controller responsible for monitoring the VoterSelectionWindow (view)
+    /// and propagating input in an appropiate fashion to the VoterCardGenerator (model).
     /// </summary>
     public class VoterSelectionController
     {

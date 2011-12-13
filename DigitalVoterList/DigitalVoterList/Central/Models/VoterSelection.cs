@@ -1,7 +1,12 @@
-﻿namespace DigitalVoterList.Central.Models
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Authors: Jan Meier, Niels Søholm
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace DigitalVoterList.Central.Models
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -10,7 +15,7 @@
     using DBComm.DBComm.DO;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Responsible for composing a VoterFilter representing a selection of voters.
     /// </summary>
     public class VoterSelection : ISubModel
     {
@@ -48,6 +53,7 @@
             }
         }
 
+        // Custom delegates for the events below
         public delegate void VoterCountHandler(int voterCount);
         public delegate void PollingStationsHandler(IEnumerable<PollingStationDO> pollingStations);
         public delegate void SelectedMunicipalityHandler(MunicipalityDO municipality);
@@ -55,13 +61,10 @@
 
         ///<summary> Notify me when the selected municipality changes. </summary>
         public event SelectedMunicipalityHandler SelectedMunicipalityChanged;
-
         ///<summary> Notify me when the selected polling station changess. </summary>
         public event SelectedPollingStationHandler SelectedPollingStationChanged;
-
         ///<summary> Notify me when the number of voters in the selection changes. </summary>
         public event VoterCountHandler VoterCountChanged;
-
         /// <summary> Notify me when the available polling station changes. </summary>
         public event PollingStationsHandler PollingStationsChanged;
 
@@ -152,7 +155,7 @@
             }
         }
 
-        /// <summary> Replace the current voter filter with this voter fitler. </summary>
+        /// <summary> Replace the current voter filter with this voter filter. </summary>
         public void ReplaceFilter(VoterFilter filter)
         {
             this.currentFilter = filter;
