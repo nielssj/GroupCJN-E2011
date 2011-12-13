@@ -1,4 +1,10 @@
-﻿namespace DigitalVoterList.Central.Views
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="VoterCardGenerator.cs" company="DVL">
+//   Author: Niels Søholm (nm@9la.dk)
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace DigitalVoterList.Central.Views
 {
     using System.Collections.Generic;
     using System.Windows.Forms;
@@ -8,16 +14,18 @@
     /// <summary>
     /// The main 'view' of the application. 
     /// It has the sole responsibility of managing instances of the sub-views (windows forms).
+    /// Monitors the main 'model' for sub-models being opened and closed.
     /// </summary>
     public class View
     {
-        /// <summary> Voter Selection View (Abbreviated VS) </summary>
-        private readonly VoterSelectionWindow vsView;
-        /// <summary> Currently open sub-views. </summary>
-        private readonly List<ISubView> subViews = new List<ISubView>();
+        private readonly VoterSelectionWindow vsView; // Voter Selection View (default view).
+        private readonly List<ISubView> subViews = new List<ISubView>(); // Currently open sub-views.
+        private Model model; // The associated model.
 
-        private Model model;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="View"/> class.
+        /// </summary>
+        /// <param name="model"> The associated model. </param>
         public View(Model model)
         {
             this.model = model;
@@ -30,12 +38,20 @@
             this.vsView = new VoterSelectionWindow(model.VoterSelection);
         }
 
+        // Custom delegate for handler of the SubViewOpened event.
         public delegate void ViewChangedHandler(Model.ChangeType type, ISubView view);
 
         /// <summary> Notify me when a submodel has been opened. </summary>
         public event ViewChangedHandler SubViewOpened;
 
-        public VoterSelectionWindow VoterSelectionView { get { return vsView; } }
+        /// <summary> May I have the default view? (Voter Selection Window) </summary>
+        public VoterSelectionWindow VoterSelectionView 
+        { 
+            get
+            {
+                return vsView;
+            } 
+        }
 
         /// <summary>
         /// Which sub-views are currently open?
@@ -46,6 +62,17 @@
             return subViews.GetEnumerator();
         }
 
+        /// <summary> Show the default view (VoterSelectionWindow). </summary>
+        public void ShowView()
+        {
+            this.vsView.Show();
+        }
+
+        /// <summary>
+        /// Open and initialize a new sub-view of the given type using the given sub-model.
+        /// </summary>
+        /// <param name="type">Type of the new sub-view.</param>
+        /// <param name="subModel">Sub-model of the new sub-view.</param>
         private void OpenView(Model.ChangeType type, ISubModel subModel)
         {
             ISubView subView = null;
@@ -62,6 +89,10 @@
             if (SubViewOpened != null) SubViewOpened(type, subView);
         }
 
+        /// <summary>
+        /// Close a sub-view associated with a given sub-model.
+        /// </summary>
+        /// <param name="subModel">The sub-model of the sub-view to be closed.</param>
         private void CloseView(ISubModel subModel)
         {
             ISubView subView = subViews.Find(v => v.GetModel().Equals(subModel));
@@ -69,11 +100,6 @@
 
             var form = (Form)subView;
             if (!form.Disposing) form.Close();
-        }
-
-        public void ShowView()
-        {
-            this.vsView.Show();
         }
     }
 }

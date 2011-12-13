@@ -43,7 +43,8 @@ namespace DigitalVoterList.PollingTable
             scannerWindow = new ScannerWindow(); 
             setupWindow = new SetupWindow();
 
-            scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow();
+            //When the user clicks on the lock to open the unregister window
+            scannerWindow.LockBtn.Click += (o, eA) => this.OpenLogWindow(); 
 
             model.CurrentVoterChanged += this.ShowSpecificVoter;
             model.SetupInfoChanged += this.UpdateSetupWindow;
@@ -89,7 +90,7 @@ namespace DigitalVoterList.PollingTable
         /// Opens the normal voter window where the user can register the voter as registered. 
         /// </summary>
         /// <param name="voter">The voter to be shown</param>
-        private void OpenNormalWindow(VoterDO voter)
+        public void OpenNormalWindow(VoterDO voter)
         {           
             this.normalVoterWindow = new NormVW(voter);
             this.normalVoterWindow.RegButton.Click += (o, eA) => this.VoterShown();

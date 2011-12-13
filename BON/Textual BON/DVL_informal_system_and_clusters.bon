@@ -26,12 +26,18 @@ explanation
 class MODEL
 description 
 	"The model class in PT. Responsible for connecting to, retriving from, and updating the DB"
+class SETUP_INFO
+description 
+	"Contains setup related information for polling table"
+class POLLING_MAIN
+description
+	"Responsible for creating the polling table MVC main classes."
 class CONTROLLER
 description 
 	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
 cluster PT_VIEW
 description 
-	"Responsible for creating GUI elements at the polling table"
+	"Responsible for GUI elements at the polling table"
 cluster LOG
 description
 	"Responsible for the log window."
@@ -45,12 +51,21 @@ explanation
 class SCANNER_WINDOW
 description 
 	"The main window at the polling station. Used when scanning voter cards."
-class VOTER_WINDOW
+class NORMAL_VOTER_WINDOW
 description 
-	"A visual representation of a voter"
+	"A visual representation of the current voter at the polling table where the user can register the voter"
+class WARNING_VOTER_WINDOW
+description
+	"A visual representation of the current voter at the polling table that shows a warning if the voter is already registered."
+class UNREGISTER_VOTER_WINDOW
+description
+	"A visual representation of the current voter at the polling table that lets the user unregister a voter."
 class SETUP_WINDOW
 description
 	"Window where the election official enters setup information"
+class POLLING_TABLE_VIEW
+description 
+	"Responsible for GUI elements in polling table"
 end
 
 cluster_chart LOG
@@ -64,7 +79,7 @@ description
 class LOG_MODEL
 description
 	"Responsible for storing and updating log data."
-class LOG_WINDOW
+class LOG_VIEW
 description
 	"Responsible for showing the data to the user and allowing him to interact with it."
 class LOG_FILTER

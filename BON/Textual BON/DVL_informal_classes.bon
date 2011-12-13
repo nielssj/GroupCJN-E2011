@@ -238,12 +238,50 @@ query
 	"What is the current voter?",
 	"Has the current voter been registered?"
 command
-	"Vaidate connection",
-	"Find a voter with this CPR NR.",
+	"Start transaction",
+	"End transaction",
+	"Validate CPR",
+	"Find a voter with this CPR",
 	"Register current voter",
-	"Unregister current voter"
+	"Unregister current voter",
+	"Write to config file",
+	"Read the config file"
 constraint
 	"The can only be one distinct current voter at any given time"
+end
+
+class_chart POLLING_MAIN
+indexing
+	in_cluster: "POLLING_TABLE_PT";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-10";
+	revised: "N/A"
+explanation
+	"Responsible for creating the polling table MVC main classes."
+query
+	"N/A"
+command
+	"N/A"
+constraint
+	"N/A"
+end
+
+class_chart SETUP_INFO
+indexing
+	in_cluster: "POLLING_TABLE_PT";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-09";
+	revised: "N/A"
+explanation
+	"Contains setup related information for polling table"
+query
+	"What is the polling table number?",
+	"What is the voter box address?",
+command
+	"Update polling table number",
+	"Update voter box address"
+constraint
+	"N/A"
 end
 
 class_chart SCANNER_WINDOW
@@ -253,28 +291,65 @@ indexing
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"This is where the election official scans or types in the voter card."
+	"This is where the election official scans or types in the voter card or cpr number."
 query
 	"N/A"
 command	
-	"N/A"
+	"Find the voter matching the cpr"
 constraint
 	"The scanner window cannot be used while a voter window is open. Preventing two voters to register at the same time."
 end
 
-class_chart VOTER_WINDOW
+class_chart NORMAL_VOTER_WINDOW
 indexing 
 	in_cluster: "PT_VIEW";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-28";
 	revised: "N/A"
 explanation
-	"A visual representation of the current voter at the polling table"
+	"A visual representation of the current voter at the polling table where the user can register the voter"
 query
 	"N/A"
 command	
 	"Show a specific voter",
-	"Show an error message"
+	"Register a voter",
+	"Cancel the process"
+constraint
+	"N/A"
+end
+
+class_chart WARNING_VOTER_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A visual representation of the current voter at the polling table that shows a warning if the voter is already registered."
+query
+	"N/A"
+command	
+	"Show a specific voter",
+	"Show an error message",
+	"Cancel the process"
+constraint
+	"N/A"
+end
+
+class_chart UNREGISTER_VOTER_WINDOW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"A visual representation of the current voter at the polling table that lets the user unregister a voter."
+query
+	"N/A"
+command	
+	"Show a specific voter",
+	"Unregister the voter",
+	"Cancel the process"
 constraint
 	"N/A"
 end
@@ -294,6 +369,29 @@ command
 constraint
 	"Must only be shown at startup"
 end
+
+class_chart POLLING_TABLE_VIEW
+indexing 
+	in_cluster: "PT_VIEW";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-11-28";
+	revised: "N/A"
+explanation
+	"Responsible for holding and creating GUI elements"
+query
+	"N/A"
+command	
+	"Show a specific voter",
+	"Open a warning window",
+	"Open a normal window",
+	"Open an unreg window",
+	"Open the log window",
+	"Update the setup window",
+	"Close warning window",
+	"Show a message"
+constraint
+	"N/A"
+end
 	
 class_chart CONTROLLER
 indexing
@@ -306,15 +404,12 @@ explanation
 query
 	"N/A"
 command
-	"React to connect request",
-	"React to find voter request",
-	"React to register request",
-	"React to unlock request"
+	"N/A"
 constraint
 	"N/A"
 end
 
-class_chart LOG_CONTROLLEr
+class_chart LOG_CONTROLLER
 indexing
 	in_cluster: "LOG";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";

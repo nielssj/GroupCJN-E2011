@@ -1,5 +1,6 @@
 ﻿namespace DigitalVoterList
 {
+    using System.Drawing;
     using System.Windows.Forms;
 
     partial class ScannerWindow
@@ -158,6 +159,11 @@
             this.HelpButton = true;
             this.Name = "ScannerWindow";
             this.Text = "ScannerWindow";
+            Size size = new Size(520, 251);
+
+            this.MaximumSize = size;
+            this.MinimumSize = size;
+
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

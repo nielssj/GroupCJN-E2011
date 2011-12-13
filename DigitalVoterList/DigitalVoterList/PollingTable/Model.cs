@@ -120,8 +120,6 @@ namespace DigitalVoterList.PollingTable
         public VoterDO FetchVoter(uint cprno)
         {
             Contract.Requires(cprno != null);
-            Contract.Requires(cprno is uint);
-            //Contract.Ensures(Contract.Result<VoterDO>() == null ? Contract.Result<VoterDO>().PrimaryKey == cprno : true);
             VoterDO voter;
 
             try
