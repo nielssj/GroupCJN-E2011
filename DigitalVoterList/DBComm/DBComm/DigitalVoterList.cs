@@ -24,7 +24,7 @@ namespace DBComm.DBComm
         private const string Path = "c:/ServerSetupDVL.conf";
 
         private const string Default =
-            "server=localhost;port=3306;uid=groupCJN;password=abc123;Sql Server Mode=true;database=groupCJN;";
+            "server=localhost;port=3306;uid=groupCJN;password=abc123;Sql Server Mode=true;database=groupcjn;";
 
         public Table<PollingStationDO> pollingStations;
 
@@ -60,7 +60,7 @@ namespace DBComm.DBComm
                     string port = lines[1];
                     string user = lines[2];
                     string password = lines[3];
-                    return string.Format("server={0};uid={1};password={2};port={3};Sql Server Mode = true;database={4}", server, user, password, port, "groupCJN");
+                    return string.Format("server={0};uid={1};password={2};port={3};Sql Server Mode = true;database={4}", server, user, password, port, "groupcjn");
                 }
                 catch (Exception e)
                 {
@@ -102,7 +102,7 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    "groupCJN"));
+                    "groupcjn"));
             conn.Open();
 
             return new DigitalVoterList(conn);
@@ -124,7 +124,7 @@ namespace DBComm.DBComm
                     "groupCJN",
                     "abc123",
                     "3306",
-                    "groupCJN"));
+                    "groupcjn"));
             conn.Open();
 
             return new DigitalVoterList(conn);

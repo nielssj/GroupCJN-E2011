@@ -94,7 +94,8 @@ namespace DBComm.DBComm.DataGeneration
 
         private string getDate()
         {
-            return this.PadInt(random.Next(1, 32));
+            // Only return dates up to the 25th. Dates after the 25th are used in tests.
+            return this.PadInt(random.Next(1, 26));
         }
 
         private string getYear()
