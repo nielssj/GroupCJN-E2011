@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿
+// -----------------------------------------------------------------------
+// <copyright file="Model.cs" company="">
+// Author: Claes Martinsen.
+// </copyright>
+// -----------------------------------------------------------------------
+
 using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
-    using DigitalVoterList.PollingTable;
-    using DigitalVoterList.PollingTable.Log;
-
+    /// <summary>
+    /// Window where the user scans or types in the voter card.
+    /// </summary>
     public partial class ScannerWindow : Form
     {
         public ScannerWindow()

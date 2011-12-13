@@ -91,6 +91,8 @@
             this.connectBtn.TabIndex = 3;
             this.connectBtn.Text = "Connect";
             this.connectBtn.UseVisualStyleBackColor = true;
+            this.Closed += (o, Ea) => this.Form1_Closed();
+
             // 
             // ipTextBox
             // 

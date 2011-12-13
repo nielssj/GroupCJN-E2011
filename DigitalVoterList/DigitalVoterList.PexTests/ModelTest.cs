@@ -1,5 +1,7 @@
 // <copyright file="ModelTest.cs">Copyright ©  2011</copyright>
 
+//PEXTEST.
+
 /*NOTE: Some pex generated tests could not be run and have been deleted from the PEX test suite. 
 / NOTE: Instead the methods have been tested in the DigitalVoterList pollingTableTest test suite. */
 

@@ -1,17 +1,17 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="Controller.cs" company="">
-// TODO: Update copyright text.
+// Author: Claes Martinsen
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace DigitalVoterList.PollingTable
 {
     using System;
-    using System.Windows.Forms;
     using DBComm.DBComm.DAO;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// The main controller of the application. 
+    /// It is responsible for reacting on user input, validating and propergating on to model.
     /// </summary>
     public class Controller
     {
@@ -23,16 +23,17 @@ namespace DigitalVoterList.PollingTable
             this.view = view;
             this.model = model;
 
+           //Button subscriptions. When the user presses a button the controller is notified. 
             view.ScannerWindow.FindVoterButton.Click += this.ReactTofindVoterRequest;
             view.VoterShown += this.ReactToRegisterRequest;
             view.Unregister += this.ReactToUnregRequest;
             view.SetupWindow.ConnectBtn.Click += this.ReactToConnectRequest;
 
-            this.StartPollingTable();
+            this.SetupPollingTable(); //Setup polling table with setup.conf information.
         }
 
         /// <summary>
-        /// 
+        /// Reacts to the find voter request.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -47,7 +48,6 @@ namespace DigitalVoterList.PollingTable
                 return;
             }
 
-
             uint cpr;
 
             //unhash the cpr nr if it has a length of 11 chars or above.
@@ -59,8 +59,6 @@ namespace DigitalVoterList.PollingTable
             {
                 cpr = Convert.ToUInt32(cprStr);
             }
-
-
             //Validate length of CPRNO.
             if (!Model.CprLengtVal(cpr))
             {
@@ -68,7 +66,7 @@ namespace DigitalVoterList.PollingTable
                 return;
             }
 
-            //uint cprUint = uint.Parse(cpr.ToString());
+            //uint cpr = this.Validate();
             try
             {
                 model.initializeStaticDAO();
@@ -95,14 +93,13 @@ namespace DigitalVoterList.PollingTable
                     return;
                 }
             }
-
             model.FindVoter(cpr);
             this.ResetCprTxtBox();
 
         }
 
         /// <summary>
-        /// 
+        /// Reacts when user request to register voter.
         /// </summary>
         private void ReactToRegisterRequest()
         {
@@ -114,7 +111,7 @@ namespace DigitalVoterList.PollingTable
         }
 
         /// <summary>
-        /// 
+        /// Reacts when user request to unregister voter.
         /// </summary>
         private void ReactToUnregRequest(string adminPass)
         {
@@ -135,32 +132,36 @@ namespace DigitalVoterList.PollingTable
             }
         }
 
+        /// <summary>
+        /// resets the cpr text box in the scanner window. 
+        /// </summary>
         private void ResetCprTxtBox()
         {
             view.ScannerWindow.resetCprTxt();
         }
 
-
+        /// <summary>
+        /// Reacts to connection request.
+        /// </summary>
         private void ReactToConnectRequest(object o, EventArgs e)
         {
-
             SetupInfo setupInfo = new SetupInfo(); //The setup info to be checked and then updated to the setup info in model if valid. 
             setupInfo.Ip = view.SetupWindow.IpTextBox;
-            setupInfo.TableNo = uint.Parse(view.SetupWindow.TableBox);
 
-            //check the password before continuation
-            //if (!Model.PswVal(view.SetupWindow.Password))
-            //{
-            //    view.ShowMessageBox("Incorrect password");
-            //    return;
-            //}
-            //model.SetupInfo.Ip = view.SetupWindow.IpTextBox;
-            //model.TableNo = Int32.Parse(view.SetupWindow.TableBox);
+            uint result;
+            bool res = uint.TryParse(view.SetupWindow.TableBox, out result);
+            if(!res)
+            {
+                view.ShowMessageBox("Table number cannot be negative");
+                return;
+            }
+            setupInfo.TableNo = uint.Parse(view.SetupWindow.TableBox);
 
             string password = view.SetupWindow.Password; //Password from setup window to be tested.
 
             try
             {
+                //Tests inf there is a connection to the voter box.
                 PessimisticVoterDAO pvdao = new PessimisticVoterDAO(setupInfo.Ip, password);
                 pvdao.StartTransaction();
                 pvdao.EndTransaction();
@@ -179,9 +180,11 @@ namespace DigitalVoterList.PollingTable
                 }
             }
 
+            //feed the model with setup information.
             model.SetupInfo = setupInfo;
             model.AdminPass = password;
 
+            //Tries to write setup information to the setup.conf file. 
             try
             {
                 model.WriteToConfig();
@@ -192,12 +195,13 @@ namespace DigitalVoterList.PollingTable
             }
             view.SetupWindow.Hide();
             view.ScannerWindow.Show();
-
         }
 
-        public void StartPollingTable()
+        /// <summary>
+        /// Set's up the polling table information from the setup.conf file.
+        /// </summary>
+        private void SetupPollingTable()
         {
-            //SetupInfo setupFilter;
             try
             {
                 model.ReadConfig();
@@ -207,13 +211,6 @@ namespace DigitalVoterList.PollingTable
                 view.ShowMessageBox("unable to read from or write to config file. " + e3.StackTrace);
                 return;
             }
-
-            //Application.Run(view.ScannerWindow);
-        }
-
-        private void CheckConnection()
-        {
-            //TODO check for loss of connection???    
         }
     }
 }

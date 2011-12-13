@@ -1,30 +1,25 @@
 ﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
-
-
 namespace DigitalVoterList.Test
 {
     using DigitalVoterList.PollingTable;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
+
     using global::DBComm.DBComm;
     using global::DBComm.DBComm.DAO;
-    using global::DBComm.DBComm.DataGeneration;
+ 
     using global::DBComm.DBComm.DO;
     
     [TestClass]
     public class PollingTableTest
     {
-        private Model model;
-
         private VoterDO voter;
 
         private string password = "abc123";
 
         private string server = "localhost";
+
+        private string dbname = "DVL";
 
         [TestInitialize]
         public void Setup()
@@ -35,7 +30,6 @@ namespace DigitalVoterList.Test
         [TestCleanup]
         public void TearDown()
         {
-            model = null;
             voter = null;
         }
 
@@ -59,7 +53,7 @@ namespace DigitalVoterList.Test
         public void FetchVoterTest()
         {
             
-            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server));
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server, dbname));
             vdao.Create(voter);
 
             Model model = new Model();
@@ -76,7 +70,7 @@ namespace DigitalVoterList.Test
 
         public void PutVoterInDB()
         {
-            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server));
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server, dbname));
             vdao.Create(voter);
         }
 
@@ -84,7 +78,7 @@ namespace DigitalVoterList.Test
         public void FindVoterTest()
         {
 
-            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server));
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server, dbname));
             vdao.Create(voter);
 
             Model model = new Model();
@@ -93,17 +87,20 @@ namespace DigitalVoterList.Test
             model.AdminPass = password;
             model.initializeStaticDAO();
 
-            string msg;
-            model.ConnectionError += (x => msg = x);
- 
+            //string msg;
+            //model.ConnectionError += (x => msg = x);
+
+            model.ConnectionError += this.DummyMethod;
+
             model.FindVoter((uint)voter.PrimaryKey);
             Assert.AreEqual(model.currentVoter, voter);
             Model.cleanUpDAO();
 
             vdao.Delete(x => x.PrimaryKey == voter.PrimaryKey);
             
-
         }
+        
+        private void DummyMethod(){}
 
         public void RegisterCurrentVoterTest()
         {
