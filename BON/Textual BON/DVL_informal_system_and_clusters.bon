@@ -26,6 +26,12 @@ explanation
 class MODEL
 description 
 	"The model class in PT. Responsible for connecting to, retriving from, and updating the DB"
+class SETUP_INFO
+description 
+	"Contains setup related information for polling table"
+class POLLING_MAIN
+description
+	"Responsible for creating the MVC main classes."
 class CONTROLLER
 description 
 	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
