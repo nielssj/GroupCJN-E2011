@@ -18,5 +18,20 @@ namespace DigitalVoterList.PollingTable
 {
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void WriteToConfig246()
+{
+    Model model;
+    model = new Model();
+    model.currentVoter = (VoterDO)null;
+    model.AdminPass = (string)null;
+    this.WriteToConfig(model);
+    Assert.IsNotNull((object)model);
+    Assert.IsNull((object)(model.currentVoter));
+    Assert.AreEqual<string>("localhost", model.SetupInfo.Ip);
+    Assert.AreEqual<uint>(0u, model.SetupInfo.TableNo);
+    Assert.AreEqual<string>((string)null, model.AdminPass);
+}
     }
 }

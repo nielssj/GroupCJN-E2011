@@ -102,7 +102,9 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    "groupcjn"));
+                    "groupcjn"
+                    )
+                    );
             conn.Open();
 
             return new DigitalVoterList(conn);

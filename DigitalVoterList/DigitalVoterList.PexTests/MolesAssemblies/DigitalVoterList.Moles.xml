@@ -128,10 +128,6 @@
         <member name="P:DigitalVoterList.PollingTable.Moles.MController.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MController.CheckConnection">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.CheckConnection"/>
-            </summary>
-        </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MController.ConstructorModelPtView">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.#ctor(DigitalVoterList.PollingTable.Model,DigitalVoterList.PollingTable.PtView)"/>
             </summary>
@@ -156,16 +152,16 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.ResetCprTxtBox"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MController.StartPollingTable">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.StartPollingTable"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MController.SetupPollingTable">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.SetupPollingTable"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MController.UnhashCPRString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.UnhashCPR(System.String)"/>
             </summary>
         </member>
         <member name="T:DigitalVoterList.PollingTable.Moles.MController.AllInstances">
             <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MController.AllInstances.CheckConnection">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.CheckConnection"/>
-            </summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MController.AllInstances.ReactToConnectRequestObjectEventArgs">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.ReactToConnectRequest(System.Object,System.EventArgs)"/>
@@ -187,8 +183,12 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.ResetCprTxtBox"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MController.AllInstances.StartPollingTable">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.StartPollingTable"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MController.AllInstances.SetupPollingTable">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.SetupPollingTable"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MController.AllInstances.UnhashCPRString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Controller.UnhashCPR(System.String)"/>
             </summary>
         </member>
         <member name="T:DigitalVoterList.Central.Controllers.Moles.MController01">
@@ -294,32 +294,6 @@
         <member name="T:DigitalVoterList.PollingTable.Log.Moles.MLogFilter.AllInstances">
             <summary>Define moles for all instances members</summary>
         </member>
-        <member name="T:DigitalVoterList.PollingTable.Log.Moles.MLogMain">
-            <summary>Mole type of <see cref="T:DigitalVoterList.PollingTable.Log.LogMain"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.MLogMain.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.MLogMain.#ctor(DigitalVoterList.PollingTable.Log.LogMain)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.MLogMain.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.MLogMain.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.Log.Moles.MLogMain.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.Log.Moles.MLogMain.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Log.LogMain.#ctor"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.PollingTable.Log.Moles.MLogMain.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
         <member name="T:DigitalVoterList.PollingTable.Log.Moles.MLogModel">
             <summary>Mole type of <see cref="T:DigitalVoterList.PollingTable.Log.LogModel"/>
             .</summary>
@@ -338,10 +312,6 @@
         </member>
         <member name="P:DigitalVoterList.PollingTable.Log.Moles.MLogModel.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.Log.Moles.MLogModel.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Log.LogModel.#ctor"/>
-            </summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.Log.Moles.MLogModel.ConstructorStringString">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.Log.LogModel.#ctor(System.String,System.String)"/>
@@ -975,6 +945,10 @@
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.CloseWarningWindow">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.CloseWarningWindow"/>
+            </summary>
+        </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.ConnectionLostMsg">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.ConnectionLostMsg"/>
             </summary>
@@ -987,8 +961,16 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenLogWindow"/>
             </summary>
         </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.OpenNormalWindowVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenNormalWindow(DBComm.DBComm.DO.VoterDO)"/>
+            </summary>
+        </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.OpenUnregWindow">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenUnregWindow"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.OpenWarningWindowVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenWarningWindow(DBComm.DBComm.DO.VoterDO)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.ScannerWindowGet">
@@ -1039,16 +1021,24 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.remove_VoterShown(DigitalVoterList.PollingTable.PtView.VoterShownHandler)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._OpenUnregWindowb__cObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenUnregWindow&gt;b__c(System.Object,System.EventArgs)"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._OpenNormalWindowb__6ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenNormalWindow&gt;b__6(System.Object,System.EventArgs)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._ShowSpecificVoterb__2ObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;ShowSpecificVoter&gt;b__2(System.Object,System.EventArgs)"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._OpenNormalWindowb__7ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenNormalWindow&gt;b__7(System.Object,System.EventArgs)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._ShowSpecificVoterb__4ObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;ShowSpecificVoter&gt;b__4(System.Object,System.EventArgs)"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._OpenUnregWindowb__8ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenUnregWindow&gt;b__8(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._OpenWarningWindowb__2ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenWarningWindow&gt;b__2(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._OpenWarningWindowb__3ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenWarningWindow&gt;b__3(System.Object,System.EventArgs)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView._ctorb__0ObjectEventArgs">
@@ -1058,6 +1048,10 @@
         <member name="T:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances">
             <summary>Define moles for all instances members</summary>
         </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances.CloseWarningWindow">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.CloseWarningWindow"/>
+            </summary>
+        </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances.ConnectionLostMsg">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.ConnectionLostMsg"/>
             </summary>
@@ -1066,8 +1060,16 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenLogWindow"/>
             </summary>
         </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances.OpenNormalWindowVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenNormalWindow(DBComm.DBComm.DO.VoterDO)"/>
+            </summary>
+        </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances.OpenUnregWindow">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenUnregWindow"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances.OpenWarningWindowVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.OpenWarningWindow(DBComm.DBComm.DO.VoterDO)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances.ScannerWindowGet">
@@ -1118,154 +1120,28 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.remove_VoterShown(DigitalVoterList.PollingTable.PtView.VoterShownHandler)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._OpenUnregWindowb__cObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenUnregWindow&gt;b__c(System.Object,System.EventArgs)"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._OpenNormalWindowb__6ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenNormalWindow&gt;b__6(System.Object,System.EventArgs)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._ShowSpecificVoterb__2ObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;ShowSpecificVoter&gt;b__2(System.Object,System.EventArgs)"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._OpenNormalWindowb__7ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenNormalWindow&gt;b__7(System.Object,System.EventArgs)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._ShowSpecificVoterb__4ObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;ShowSpecificVoter&gt;b__4(System.Object,System.EventArgs)"/>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._OpenUnregWindowb__8ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenUnregWindow&gt;b__8(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._OpenWarningWindowb__2ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenWarningWindow&gt;b__2(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._OpenWarningWindowb__3ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;OpenWarningWindow&gt;b__3(System.Object,System.EventArgs)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.Moles.MPtView.AllInstances._ctorb__0ObjectEventArgs">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.PtView.&lt;.ctor&gt;b__0(System.Object,System.EventArgs)"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC">
-            <summary>Mole type of <see cref="T:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.#ctor(DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.#ctor"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.RegisterBtnGet">
-            <summary>Sets the mole of <see cref="P:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.RegisterBtn"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegAndCancelUC.AllInstances.RegisterBtnGet">
-            <summary>Sets the mole of <see cref="P:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.RegisterBtn"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn">
-            <summary>Mole type of <see cref="T:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.#ctor(DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.#ctor"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.MRegisterBtn.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.InitializeComponent"/>
             </summary>
         </member>
         <member name="T:DigitalVoterList.Moles.MScannerWindow">
@@ -1785,6 +1661,10 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.SetupWindow.&lt;InitializeComponent&gt;b__0(System.Object,System.EventArgs)"/>
             </summary>
         </member>
+        <member name="P:DigitalVoterList.Moles.MSetupWindow._InitializeComponentb__1ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.SetupWindow.&lt;InitializeComponent&gt;b__1(System.Object,System.EventArgs)"/>
+            </summary>
+        </member>
         <member name="T:DigitalVoterList.Moles.MSetupWindow.AllInstances">
             <summary>Define moles for all instances members</summary>
         </member>
@@ -1832,130 +1712,8 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.SetupWindow.&lt;InitializeComponent&gt;b__0(System.Object,System.EventArgs)"/>
             </summary>
         </member>
-        <member name="T:DigitalVoterList.Moles.MUnRegAndCancelUC">
-            <summary>Mole type of <see cref="T:DigitalVoterList.UnRegAndCancelUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.#ctor(DigitalVoterList.UnRegAndCancelUC)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegAndCancelUC.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegAndCancelUC.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegAndCancelUC.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegAndCancelUC.#ctor"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegAndCancelUC.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegAndCancelUC.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegAndCancelUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MUnRegAndCancelUC.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegAndCancelUC.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegAndCancelUC.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegAndCancelUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MUnRegBtn">
-            <summary>Mole type of <see cref="T:DigitalVoterList.UnRegBtn"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.#ctor(DigitalVoterList.UnRegBtn)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnRegBtn.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegBtn.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegBtn.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegBtn.#ctor"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegBtn.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegBtn.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegBtn.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MUnRegBtn.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegBtn.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnRegBtn.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnRegBtn.InitializeComponent"/>
+        <member name="P:DigitalVoterList.Moles.MSetupWindow.AllInstances._InitializeComponentb__1ObjectEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.SetupWindow.&lt;InitializeComponent&gt;b__1(System.Object,System.EventArgs)"/>
             </summary>
         </member>
         <member name="T:DigitalVoterList.Moles.MUnRegVW">
@@ -2035,69 +1793,6 @@
         </member>
         <member name="P:DigitalVoterList.Moles.MUnRegVW.AllInstances.UnregisterButtonGet">
             <summary>Sets the mole of <see cref="P:DigitalVoterList.UnRegVW.UnregisterButton"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MUnregUC">
-            <summary>Mole type of <see cref="T:DigitalVoterList.UnregUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.#ctor(DigitalVoterList.UnregUC)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MUnregUC.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnregUC.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnregUC.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnregUC.#ctor"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnregUC.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnregUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnregUC.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnregUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MUnregUC.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnregUC.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnregUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MUnregUC.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.UnregUC.InitializeComponent"/>
             </summary>
         </member>
         <member name="T:DigitalVoterList.Central.Views.Moles.MView">
@@ -2589,20 +2284,20 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.Generate(System.String,System.Int32,System.Int32)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GenerationEndedAddActionOfString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.add_GenerationEnded(System.Action`1{System.String})"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GenerationEndedAddVoterCardGeneratorTextChangedHandler">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.add_GenerationEnded(DigitalVoterList.Central.Models.VoterCardGenerator.TextChangedHandler)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GenerationEndedRemoveActionOfString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.remove_GenerationEnded(System.Action`1{System.String})"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GenerationEndedRemoveVoterCardGeneratorTextChangedHandler">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.remove_GenerationEnded(DigitalVoterList.Central.Models.VoterCardGenerator.TextChangedHandler)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GroupByDataIEnumerableOfVoterDOInt32">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByData(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO},System.Int32)"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GroupByDataIEnumerableOfVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByData(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO})"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GroupByLimitIEnumerableOfVoterDOInt32">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByLimit(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO},System.Int32)"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GroupByLimitIEnumerableOfVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByLimit(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO})"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.GroupCountChangedAddVoterCardGeneratorCountChangedHandler">
@@ -2645,10 +2340,6 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.PopulateCard(PDFjet.NET.Page,PDFjet.NET.PDF,System.Double,System.Double,DBComm.DBComm.DO.VoterDO)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.ValidateDestinationString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.ValidateDestination(System.String)"/>
-            </summary>
-        </member>
         <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.ValidateSelection">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.ValidateSelection"/>
             </summary>
@@ -2669,8 +2360,8 @@
             <summary>Sets the mole of <see cref="P:DigitalVoterList.Central.Models.VoterCardGenerator.VoterDonePerc"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator._Generateb__bObjectProgressChangedEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.&lt;Generate&gt;b__b(System.Object,System.ComponentModel.ProgressChangedEventArgs)"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator._Generateb__cObjectProgressChangedEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.&lt;Generate&gt;b__c(System.Object,System.ComponentModel.ProgressChangedEventArgs)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator._ValidateSelectionb__9VoterDO">
@@ -2732,20 +2423,20 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.Generate(System.String,System.Int32,System.Int32)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GenerationEndedAddActionOfString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.add_GenerationEnded(System.Action`1{System.String})"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GenerationEndedAddVoterCardGeneratorTextChangedHandler">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.add_GenerationEnded(DigitalVoterList.Central.Models.VoterCardGenerator.TextChangedHandler)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GenerationEndedRemoveActionOfString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.remove_GenerationEnded(System.Action`1{System.String})"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GenerationEndedRemoveVoterCardGeneratorTextChangedHandler">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.remove_GenerationEnded(DigitalVoterList.Central.Models.VoterCardGenerator.TextChangedHandler)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GroupByDataIEnumerableOfVoterDOInt32">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByData(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO},System.Int32)"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GroupByDataIEnumerableOfVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByData(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO})"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GroupByLimitIEnumerableOfVoterDOInt32">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByLimit(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO},System.Int32)"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GroupByLimitIEnumerableOfVoterDO">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupByLimit(System.Collections.Generic.IEnumerable`1{DBComm.DBComm.DO.VoterDO})"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.GroupCountChangedAddVoterCardGeneratorCountChangedHandler">
@@ -2784,10 +2475,6 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.GroupGenerated(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.ValidateDestinationString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.ValidateDestination(System.String)"/>
-            </summary>
-        </member>
         <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances.ValidateSelection">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.ValidateSelection"/>
             </summary>
@@ -2808,8 +2495,8 @@
             <summary>Sets the mole of <see cref="P:DigitalVoterList.Central.Models.VoterCardGenerator.VoterDonePerc"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances._Generateb__bObjectProgressChangedEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.&lt;Generate&gt;b__b(System.Object,System.ComponentModel.ProgressChangedEventArgs)"/>
+        <member name="P:DigitalVoterList.Central.Models.Moles.MVoterCardGenerator.AllInstances._Generateb__cObjectProgressChangedEventArgs">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Models.VoterCardGenerator.&lt;Generate&gt;b__c(System.Object,System.ComponentModel.ProgressChangedEventArgs)"/>
             </summary>
         </member>
         <member name="T:DigitalVoterList.Central.Controllers.Moles.MVoterCardGeneratorController">
@@ -2913,12 +2600,16 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.Dispose(System.Boolean)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.GenerateModeString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.GenerateMode(System.String)"/>
+        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.GeneratingModeString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.GeneratingMode(System.String)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.GetModel">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.GetModel"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.InactiveModeString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.InactiveMode(System.String)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.InitialValues">
@@ -2929,10 +2620,6 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.InitializeComponent"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.NormalModeString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.NormalMode(System.String)"/>
-            </summary>
-        </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.SetUpGenerationActionOfStringInt32Int32">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.SetUpGeneration(System.Action`3{System.String,System.Int32,System.Int32})"/>
             </summary>
@@ -2941,8 +2628,8 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.SubscribeToModel"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.UpdateCurrentGroupString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.UpdateCurrentGroup(System.String)"/>
+        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.UpdateStatusString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.UpdateStatus(System.String)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow._SubscribeToModelb__9Int32">
@@ -2980,12 +2667,16 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.Dispose(System.Boolean)"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.GenerateModeString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.GenerateMode(System.String)"/>
+        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.GeneratingModeString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.GeneratingMode(System.String)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.GetModel">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.GetModel"/>
+            </summary>
+        </member>
+        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.InactiveModeString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.InactiveMode(System.String)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.InitialValues">
@@ -2996,10 +2687,6 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.InitializeComponent"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.NormalModeString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.NormalMode(System.String)"/>
-            </summary>
-        </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.SetUpGenerationActionOfStringInt32Int32">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.SetUpGeneration(System.Action`3{System.String,System.Int32,System.Int32})"/>
             </summary>
@@ -3008,8 +2695,8 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.SubscribeToModel"/>
             </summary>
         </member>
-        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.UpdateCurrentGroupString">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.UpdateCurrentGroup(System.String)"/>
+        <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances.UpdateStatusString">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterCardGeneratorWindow.UpdateStatus(System.String)"/>
             </summary>
         </member>
         <member name="P:DigitalVoterList.Central.Views.Moles.MVoterCardGeneratorWindow.AllInstances._SubscribeToModelb__9Int32">
@@ -3551,69 +3238,6 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.Central.Views.VoterSelectionWindow.setVoterCount(System.Int32)"/>
             </summary>
         </member>
-        <member name="T:DigitalVoterList.Moles.MVoterWindow">
-            <summary>Mole type of <see cref="T:DigitalVoterList.VoterWindow"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.#ctor(DigitalVoterList.VoterWindow)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MVoterWindow.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MVoterWindow.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MVoterWindow.ConstructorVoterDO">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.VoterWindow.#ctor(DBComm.DBComm.DO.VoterDO)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MVoterWindow.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.VoterWindow.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MVoterWindow.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.VoterWindow.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MVoterWindow.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MVoterWindow.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.VoterWindow.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MVoterWindow.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.VoterWindow.InitializeComponent"/>
-            </summary>
-        </member>
         <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.MWarningMsg">
             <summary>Mole type of <see cref="T:DigitalVoterList.PollingTable.View.Root_elements.WarningMsg"/>
             .</summary>
@@ -3677,77 +3301,6 @@
             <summary>Sets the mole of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.WarningMsg.InitializeComponent"/>
             </summary>
         </member>
-        <member name="T:DigitalVoterList.Moles.MWarningUC">
-            <summary>Mole type of <see cref="T:DigitalVoterList.WarningUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.#ctor">
-            <summary>Initializes a new mole</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.#ctor(DigitalVoterList.WarningUC)">
-            <summary>Initializes a new mole for the given instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.BehaveAsCurrent">
-            <summary>Assigns the &apos;Current&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.BehaveAsNotImplemented">
-            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the moled type</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.ComponentModel.IComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.ComponentModel.ISynchronizeInvoke)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.Windows.Forms.IBindableComponent)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.Windows.Forms.IContainerControl)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.Windows.Forms.IDropTarget)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.Windows.Forms.IWin32Window)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.MWarningUC.Bind(System.IDisposable)">
-            <summary>Binds the members of the interface to the mole.</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.Behavior">
-            <summary>Assigns the behavior for all methods of the moled type</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.Constructor">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.#ctor"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.UnlockBtn_ClickObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.UnlockBtn_Click(System.Object,System.EventArgs)"/>
-            </summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.MWarningUC.AllInstances">
-            <summary>Define moles for all instances members</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.AllInstances.DisposeBoolean">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.AllInstances.InitializeComponent">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.InitializeComponent"/>
-            </summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.MWarningUC.AllInstances.UnlockBtn_ClickObjectEventArgs">
-            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningUC.UnlockBtn_Click(System.Object,System.EventArgs)"/>
-            </summary>
-        </member>
         <member name="T:DigitalVoterList.Moles.MWarningVW">
             <summary>Mole type of <see cref="T:DigitalVoterList.WarningVW"/>
             .</summary>
@@ -3788,6 +3341,10 @@
         <member name="P:DigitalVoterList.Moles.MWarningVW.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
+        <member name="P:DigitalVoterList.Moles.MWarningVW.CloseDialog">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningVW.CloseDialog"/>
+            </summary>
+        </member>
         <member name="P:DigitalVoterList.Moles.MWarningVW.ConstructorVoterDO">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningVW.#ctor(DBComm.DBComm.DO.VoterDO)"/>
             </summary>
@@ -3806,6 +3363,10 @@
         </member>
         <member name="T:DigitalVoterList.Moles.MWarningVW.AllInstances">
             <summary>Define moles for all instances members</summary>
+        </member>
+        <member name="P:DigitalVoterList.Moles.MWarningVW.AllInstances.CloseDialog">
+            <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningVW.CloseDialog"/>
+            </summary>
         </member>
         <member name="P:DigitalVoterList.Moles.MWarningVW.AllInstances.DisposeBoolean">
             <summary>Sets the mole of <see cref="M:DigitalVoterList.WarningVW.Dispose(System.Boolean)"/>
@@ -3929,28 +3490,9 @@
         <member name="P:DigitalVoterList.PollingTable.Log.Moles.SLogController.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
-        <member name="T:DigitalVoterList.PollingTable.Log.Moles.SLogMain">
-            <summary>Stub type of <see cref="T:DigitalVoterList.PollingTable.Log.LogMain"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.SLogMain.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.SLogMain.InitializeStub">
-            <summary>Initializes a new instance of type SLogMain</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.Log.Moles.SLogMain.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.Log.Moles.SLogMain.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
         <member name="T:DigitalVoterList.PollingTable.Log.Moles.SLogModel">
             <summary>Stub type of <see cref="T:DigitalVoterList.PollingTable.Log.LogModel"/>
             .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.Log.Moles.SLogModel.#ctor">
-            <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DigitalVoterList.PollingTable.Log.Moles.SLogModel.#ctor(System.String,System.String)">
             <summary>Initializes a new instance</summary>
@@ -4092,54 +3634,6 @@
         <member name="P:DigitalVoterList.PollingTable.Moles.SPtView.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
-        <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC">
-            <summary>Stub type of <see cref="T:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC.InitializeStub">
-            <summary>Initializes a new instance of type SRegAndCancelUC</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegAndCancelUC.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
-        <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn">
-            <summary>Stub type of <see cref="T:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.PollingTable.View.Root_elements.RegisterBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn.InitializeStub">
-            <summary>Initializes a new instance of type SRegisterBtn</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.SRegisterBtn.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
         <member name="T:DigitalVoterList.Moles.SScannerWindow">
             <summary>Stub type of <see cref="T:DigitalVoterList.ScannerWindow"/>
             .</summary>
@@ -4247,54 +3741,6 @@
         <member name="P:DigitalVoterList.Moles.SSetupWindow.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
-        <member name="T:DigitalVoterList.Moles.SUnRegAndCancelUC">
-            <summary>Stub type of <see cref="T:DigitalVoterList.UnRegAndCancelUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnRegAndCancelUC.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnRegAndCancelUC.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.UnRegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.Moles.SUnRegAndCancelUC.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.UnRegAndCancelUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnRegAndCancelUC.InitializeStub">
-            <summary>Initializes a new instance of type SUnRegAndCancelUC</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SUnRegAndCancelUC.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SUnRegAndCancelUC.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.SUnRegBtn">
-            <summary>Stub type of <see cref="T:DigitalVoterList.UnRegBtn"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnRegBtn.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnRegBtn.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.UnRegBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.Moles.SUnRegBtn.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.UnRegBtn.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnRegBtn.InitializeStub">
-            <summary>Initializes a new instance of type SUnRegBtn</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SUnRegBtn.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SUnRegBtn.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
         <member name="T:DigitalVoterList.Moles.SUnRegVW">
             <summary>Stub type of <see cref="T:DigitalVoterList.UnRegVW"/>
             .</summary>
@@ -4317,30 +3763,6 @@
             <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
         </member>
         <member name="P:DigitalVoterList.Moles.SUnRegVW.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.SUnregUC">
-            <summary>Stub type of <see cref="T:DigitalVoterList.UnregUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnregUC.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnregUC.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.UnregUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.Moles.SUnregUC.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.UnregUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SUnregUC.InitializeStub">
-            <summary>Initializes a new instance of type SUnregUC</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SUnregUC.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SUnregUC.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
         <member name="T:DigitalVoterList.Central.Views.Moles.SView">
@@ -4546,30 +3968,6 @@
         <member name="P:DigitalVoterList.Central.Views.Moles.SVoterSelectionWindow.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
-        <member name="T:DigitalVoterList.Moles.SVoterWindow">
-            <summary>Stub type of <see cref="T:DigitalVoterList.VoterWindow"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SVoterWindow.#ctor(DBComm.DBComm.DO.VoterDO)">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SVoterWindow.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.VoterWindow.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.Moles.SVoterWindow.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.VoterWindow.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SVoterWindow.InitializeStub">
-            <summary>Initializes a new instance of type SVoterWindow</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SVoterWindow.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SVoterWindow.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
         <member name="T:DigitalVoterList.PollingTable.View.Root_elements.Moles.SWarningMsg">
             <summary>Stub type of <see cref="T:DigitalVoterList.PollingTable.View.Root_elements.WarningMsg"/>
             .</summary>
@@ -4592,30 +3990,6 @@
             <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
         </member>
         <member name="P:DigitalVoterList.PollingTable.View.Root_elements.Moles.SWarningMsg.InstanceBehavior">
-            <summary>Gets or sets the instance behavior.</summary>
-        </member>
-        <member name="T:DigitalVoterList.Moles.SWarningUC">
-            <summary>Stub type of <see cref="T:DigitalVoterList.WarningUC"/>
-            .</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SWarningUC.#ctor">
-            <summary>Initializes a new instance</summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SWarningUC.Dispose(System.Boolean)">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.WarningUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="F:DigitalVoterList.Moles.SWarningUC.DisposeBoolean">
-            <summary>Sets the stub of <see cref="M:DigitalVoterList.WarningUC.Dispose(System.Boolean)"/>
-            </summary>
-        </member>
-        <member name="M:DigitalVoterList.Moles.SWarningUC.InitializeStub">
-            <summary>Initializes a new instance of type SWarningUC</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SWarningUC.CallBase">
-            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
-        </member>
-        <member name="P:DigitalVoterList.Moles.SWarningUC.InstanceBehavior">
             <summary>Gets or sets the instance behavior.</summary>
         </member>
         <member name="T:DigitalVoterList.Moles.SWarningVW">

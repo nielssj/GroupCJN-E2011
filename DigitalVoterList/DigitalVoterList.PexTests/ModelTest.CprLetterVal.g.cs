@@ -17,5 +17,21 @@ namespace DigitalVoterList.PollingTable
 {
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void CprLetterVal146()
+{
+    bool b;
+    b = this.CprLetterVal("2");
+    Assert.AreEqual<bool>(true, b);
+}
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void CprLetterVal719()
+{
+    bool b;
+    b = this.CprLetterVal((string)null);
+    Assert.AreEqual<bool>(false, b);
+}
     }
 }

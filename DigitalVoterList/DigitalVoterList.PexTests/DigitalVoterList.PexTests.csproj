@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{821B73F3-75BB-43F5-88F9-2EBA52DD5E8C}</ProjectGuid>
+    <ProjectGuid>{966A205C-1DAE-463C-8A56-979FBEB78262}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DigitalVoterList.PexTests</RootNamespace>
@@ -53,9 +53,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Windows.Forms.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -79,9 +77,6 @@
     <Compile Include="ModelTest.AdminPassSet.g.cs">
       <DependentUpon>ModelTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelTest.cleanUpDAO.g.cs">
-      <DependentUpon>ModelTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="ModelTest.Constructor.g.cs">
       <DependentUpon>ModelTest.cs</DependentUpon>
     </Compile>
@@ -92,13 +87,7 @@
       <DependentUpon>ModelTest.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelTest.cs" />
-    <Compile Include="ModelTest.FetchVoter.g.cs">
-      <DependentUpon>ModelTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModelTest.FindVoter.g.cs">
-      <DependentUpon>ModelTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModelTest.ReadConfig.g.cs">
+    <Compile Include="ModelTest.initializeStaticDAO.g.cs">
       <DependentUpon>ModelTest.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelTest.RegisterCurrentVoter.g.cs">
@@ -124,6 +113,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Moles Include="DigitalVoterList.moles" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

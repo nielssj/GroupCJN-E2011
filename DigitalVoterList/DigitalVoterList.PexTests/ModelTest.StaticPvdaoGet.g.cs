@@ -18,5 +18,13 @@ namespace DigitalVoterList.PollingTable
 {
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void StaticPvdaoGet507()
+{
+    PessimisticVoterDAO pessimisticVoterDAO;
+    pessimisticVoterDAO = this.StaticPvdaoGet();
+    Assert.IsNull((object)pessimisticVoterDAO);
+}
     }
 }
