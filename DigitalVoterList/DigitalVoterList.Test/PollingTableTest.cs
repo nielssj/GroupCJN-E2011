@@ -38,13 +38,9 @@ namespace DigitalVoterList.Test
         [TestInitialize]
         public void Setup()
         {
-            voter = new VoterDO(1, 3112999999, "Test Person", "TestRoad 31", "Testville", true, false);
-
-            model = new Model();
-            model.CurrentVoterChanged += (v => voter = v); //Subscribes to the current voter changed event.
-            SetupInfo si = new SetupInfo(server, 5);
-            model.SetupInfo = si;
-            model.AdminPass = password;
+            voter = new VoterDO(1, 3112999900, "Test Person", "TestRoad 31", "Testville", true, false);
+            VoterDO returnedVoter;
+            
             
         }
 
@@ -58,7 +54,12 @@ namespace DigitalVoterList.Test
         [TestMethod]
         public void DAOCleanupTest()
         {
+            Model model = new Model();
+            SetupInfo si = new SetupInfo(server, 0);
+            model.SetupInfo = si;
+            model.AdminPass = password;
             model.initializeStaticDAO();
+            Assert.IsTrue(Model.StaticPvdao.TransactionStarted());
             Model.cleanUpDAO();
             Assert.IsTrue(Model.StaticPvdao.TransactionStarted() == false);
         }
@@ -69,79 +70,61 @@ namespace DigitalVoterList.Test
         [TestMethod]
         public void FetchVoterTest()
         {
-            //Test if known voter is found
-            uint cpr = testCprNo;
+            
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server));
+            vdao.Create(voter);
+
+            Model model = new Model();
+            SetupInfo si = new SetupInfo(server, 0);
+            model.SetupInfo = si;
+            model.AdminPass = password;
+
             model.initializeStaticDAO();
-            VoterDO voter = model.FetchVoter(cpr);
-            Assert.AreEqual(cpr, voter.PrimaryKey);
+            VoterDO v = model.FetchVoter((uint)this.voter.PrimaryKey);
+            Assert.AreEqual(voter.PrimaryKey, v.PrimaryKey);
             Model.cleanUpDAO();
+            vdao.Delete(x => x.PrimaryKey == voter.PrimaryKey);
+        }
+
+        public void PutVoterInDB()
+        {
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server));
+            vdao.Create(voter);
         }
 
         [TestMethod]
         public void FindVoterTest()
         {
-            model.initializeStaticDAO();
-            model.FindVoter((uint)voter.PrimaryKey);
-            Model.cleanUpDAO();
-            Assert.AreEqual(model.currentVoter.PrimaryKey, testCprNo);
-        }
 
-        //[TestMethod]
-        //public void FindVoterTest()
-        //{
-        //    Model model = new Model();
-        //    VoterDO voter;
-        //    model.CurrentVoterChanged += (v => voter = v);
-
-        //    SetupInfo si = new SetupInfo(server, 0);
-        //    model.SetupInfo = si;
-        //    model.AdminPass = password;
-            
-        //    model.initializeStaticDAO();
-        //    model.FindVoter(testCprNo);
-        //    Model.cleanUpDAO();
-
-        //    Assert.AreEqual(model.currentVoter.PrimaryKey, testCprNo);
-        //}
-
-        [TestMethod]
-        public void test()
-        {
-            Assert.AreEqual(1, 1);
-        }
-
-        [TestMethod]
-        public void RegisterCurrentVoterTest()
-        {
-            //uint cpr = 3112999998;
-
-            //create a voter dummy and register as voted
-            //VoterDO voter = new VoterDO(1, cpr, "Test", "Testvej 42", "Testby", true, false);
             VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server));
             vdao.Create(voter);
 
-            //Model model = new Model();
-            //SetupInfo si = new SetupInfo(server, 0);
-            //model.SetupInfo = si;
-            //model.AdminPass = password;
-
-            //model.CurrentVoterChanged += (v => voter = v);
-
+            Model model = new Model();
+            SetupInfo si = new SetupInfo(server, 0);
+            model.SetupInfo = si;
+            model.AdminPass = password;
             model.initializeStaticDAO();
+
+            string msg;
+            model.ConnectionError += (x => msg = x);
+ 
             model.FindVoter((uint)voter.PrimaryKey);
-            model.RegisterCurrentVoter();
-            Assert.IsTrue(model.currentVoter.Voted == true);
-            
-            //Delete voter again.
-            vdao.Delete(v => v.PrimaryKey == voter.PrimaryKey);
+            Assert.AreEqual(model.currentVoter, voter);
             Model.cleanUpDAO();
+
+            vdao.Delete(x => x.PrimaryKey == voter.PrimaryKey);
+            
+
+        }
+
+        public void RegisterCurrentVoterTest()
+        {
+            //covered by the contracts
         }
 
         public void UnregisterCurrentVoterTest()
         {
-            
+            //covered by contracts.
         }
-
-
     }
 }

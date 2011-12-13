@@ -51,7 +51,7 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         public static void cleanUpDAO()
         {
-            if(!staticPvdao.TransactionStarted()) staticPvdao.EndTransaction();
+            if(staticPvdao.TransactionStarted()) staticPvdao.EndTransaction();
         }
 
         /// <summary>
