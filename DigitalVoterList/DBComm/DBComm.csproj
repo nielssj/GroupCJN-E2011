@@ -102,6 +102,7 @@
     <None Include="DBComm\DataGeneration\Namedata\lastnames.data" />
     <None Include="DBComm\DataGeneration\Namedata\municipalitynames.data" />
     <None Include="DBComm\DataGeneration\Namedata\roadnames.data" />
+    <None Include="DBComm\DataGeneration\Namedata\stationnames.data" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DBComm\DataGeneration\Namedata\boynames.data" />

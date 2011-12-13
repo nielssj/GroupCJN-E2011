@@ -1,4 +1,11 @@
-﻿using System;
+﻿// -----------------------------------------------------------------------
+// <copyright file="AbstractDAOTest.cs" company="DVL">
+// <author>Jan Meier</author>
+// </copyright>
+// -----------------------------------------------------------------------
+
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DBComm.ManualTests

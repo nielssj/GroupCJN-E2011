@@ -112,8 +112,6 @@ namespace DigitalVoterList.PollingTable
             }
         }
 
-
-
         /// <summary>
         /// Fetches the voter matching the cprno.
         /// </summary>

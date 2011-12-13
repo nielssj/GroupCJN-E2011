@@ -13,8 +13,6 @@ namespace DBComm.DBComm.DataGeneration
     /// </summary>
     public class DBCreator
     {
-        private string dbName;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DBCreator"/> class. 
         /// Create a db on the following server.

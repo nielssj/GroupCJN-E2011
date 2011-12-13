@@ -1,4 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿// -----------------------------------------------------------------------
+// <copyright file="PVDAOTest.cs" company="DVL">
+// <author>Jan Meier</author>
+// </copyright>
+// -----------------------------------------------------------------------
+
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DBComm.ManualTests
 {
