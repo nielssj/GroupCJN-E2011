@@ -16,10 +16,10 @@ namespace DigitalVoterList
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Launch 'Central' client.
-            new Central.Main();
+            //new Central.Main();
 
             // Launch 'PollingTable' client.
-            //new PollingTable.PollingMain();
+            new PollingTable.PollingMain();
         }
     }
 }

@@ -149,7 +149,7 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    "groupcjn"));
+                    "groupCJN"));
 
             return conn;
         }

@@ -5,15 +5,21 @@ component
       class MODEl
         feature
 			currentVoter : voterDO
-			validateConnection : BOOLEAN -- Check the connection to the voter box.
-			hasVoted : BOOLEAN
+			closeDAO
+			startDAO
 			
-			findVoter : BOOLEAN -> cpr : CPRNO
+			validate CPR : BOOLEAN
+			
+			findVoter -> cpr : UINT
 				require 
-					CPRNR /= Void;
-					CPRNR
+					cpr /= Void;
 				ensure 
 					voterDO.CPRNO = CPRNO
+			end
+			
+			fetchVoter : VoterDO -> cpr : UINT
+				require
+					cpr /= Void; 
 			end
 			
 			registerCurrentVoter : BOOLEAN
@@ -32,9 +38,13 @@ component
 					hasVoted = false;
 			end
 			
+			readConfig
+			writeToconfig
+			updateLog -> ActivityEnum
+			
 			-- event fields
-			notifyOnCurrentVoterChanged -> FUNCTION 
-			notifyOnRegistration -> FUNCTION 
+			notifyOnCurrentVoterChanged -> EVENT
+			notifyOnRegistration -> EVENT
         end  
     end
 end

@@ -37,7 +37,7 @@ description
 	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
 cluster PT_VIEW
 description 
-	"Responsible for creating GUI elements at the polling table"
+	"Responsible for GUI elements at the polling table"
 cluster LOG
 description
 	"Responsible for the log window."
@@ -63,6 +63,9 @@ description
 class SETUP_WINDOW
 description
 	"Window where the election official enters setup information"
+class POLLING_TABLE_VIEW
+description 
+	"Responsible for GUI elements in polling table"
 end
 
 cluster_chart LOG
