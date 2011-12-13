@@ -26,7 +26,7 @@ namespace DigitalVoterList.PollingTable.Log
             this.view.AddRefreshButtonClicked(this.RefreshClicked);
             this.view.AddResetButtonClicked(this.RefreshClicked);
 
-            Timer t = new Timer(Update, null, 100, 60000);
+            Timer t = new Timer(Update, null, 10000, 60000);
 
             this.view.ResetFields();
 

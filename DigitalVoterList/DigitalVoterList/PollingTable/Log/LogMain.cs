@@ -14,7 +14,10 @@ namespace DigitalVoterList.PollingTable.Log
     {
         public LogMain()
         {
-            new LogController(new LogWindow(), new LogModel());
+            var view = new LogWindow();
+            var model = new LogModel();
+
+            new LogController(view, model);
         }
     }
 }

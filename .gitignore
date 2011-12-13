@@ -31,3 +31,6 @@ DigitalVoterList/DigitalVoterList/DigitalVoterList.csproj.orig
 DigitalVoterList/DigitalVoterList/DigitalVoterList.csproj.orig
 Repo
 *.orig
+DigitalVoterList/DBComm.PexTests/MolesAssemblies/DBComm.Moles.dll
+DigitalVoterList/DBComm.PexTests/MolesAssemblies/DBComm.Moles.dll
+DigitalVoterList/DigitalVoterList.PexTests/DigitalVoterList.moles

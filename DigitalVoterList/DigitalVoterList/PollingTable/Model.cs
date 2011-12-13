@@ -106,7 +106,7 @@ namespace DigitalVoterList.PollingTable
         {
             Contract.Requires(cprno != null);
             Contract.Requires(cprno is uint);
-            Contract.Ensures(Contract.Result<VoterDO>() == null ? Contract.Result<VoterDO>().PrimaryKey == cprno : true);
+            //Contract.Ensures(Contract.Result<VoterDO>() == null ? Contract.Result<VoterDO>().PrimaryKey == cprno : true);
             VoterDO voter;
 
             try

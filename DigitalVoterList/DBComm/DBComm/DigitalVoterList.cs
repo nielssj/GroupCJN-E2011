@@ -24,7 +24,7 @@ namespace DBComm.DBComm
         private const string Path = "c:/ServerSetupDVL.conf";
 
         private const string Default =
-            "server=localhost;port=3306;id=root;password=abc123;Sql Server Mode=true;database=dvl;";
+            "server=localhost;port=3306;uid=root;password=abc123;Sql Server Mode=true;database=dvl;";
 
         public Table<PollingStationDO> pollingStations;
 

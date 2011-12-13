@@ -94,7 +94,7 @@ namespace DigitalVoterList.PollingTable
         public void OpenLogWindow()
         {
             LogWindow lw = new LogWindow();
-            LogModel lm = new LogModel();
+            LogModel lm = new LogModel(model.AdminPass,  model.SetupInfo.Ip);
             LogController lc = new LogController(lw, lm);
         }
 
