@@ -69,8 +69,14 @@ namespace DigitalVoterList.PollingTable
             }
 
             //uint cprUint = uint.Parse(cpr.ToString());
-
-            model.initializeStaticDAO();
+            try
+            {
+                model.initializeStaticDAO();
+            }
+            catch (Exception)
+            {
+                view.ShowMessageBox("Connetcion Lost");
+            }
 
             try
             {

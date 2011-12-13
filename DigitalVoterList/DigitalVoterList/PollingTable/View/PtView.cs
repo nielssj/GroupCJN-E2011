@@ -23,6 +23,8 @@ namespace DigitalVoterList.PollingTable
 
         private UnRegVW unregWindow;
 
+        private WarningVW warningWindow;
+
         public delegate void VoterShownHandler();
         public delegate void UnlockHandler();
         public delegate void UnregisterHandler(string admpass);
@@ -43,7 +45,8 @@ namespace DigitalVoterList.PollingTable
 
             model.CurrentVoterChanged += this.ShowSpecificVoter;
             model.SetupInfoChanged += this.UpdateSetupWindow;
-            model.ConnectionError += this.ConnectionLostMsg;
+            //model.ConnectionError += this.ConnectionLostMsg;
+            model.ConnectionError += this.ShowMessageBox;
             //model.SetupInfoChanged += this.UpdateScannerWindow;
 
             this.Unlock += this.OpenUnregWindow;
@@ -73,10 +76,10 @@ namespace DigitalVoterList.PollingTable
             //Open a voter window with warning message indicating that the voter has alredy voted.
             if (voter.Voted == true)
             {
-                WarningVW wvw = new WarningVW(voter);
-                wvw.UnlockButton.Click += (o, eA) => this.Unlock();
-                wvw.UnlockButton.Click += (o, eA) => wvw.Close();
-                wvw.ShowDialog();
+                warningWindow = new WarningVW(voter);
+                this.warningWindow.UnlockButton.Click += (o, eA) => this.Unlock();
+                this.warningWindow.UnlockButton.Click += (o, eA) => this.warningWindow.Close();
+                this.warningWindow.ShowDialog();
             }
         }
 
@@ -110,10 +113,19 @@ namespace DigitalVoterList.PollingTable
             this.SetupWindow.IpTextBox = setupInfo.Ip;
         }
 
-        private void ConnectionLostMsg()
+        public void CloseWarningWindow()
         {
-            this.ShowMessageBox("Connection to server lost!");
+            warningWindow.CloseDialog();
+            warningWindow = null;
+            return;
         }
+
+        //private void ConnectionLostMsg()
+        //{
+        //    this.ShowMessageBox("Connection to server lost!");
+        //}
+
+
 
         public ScannerWindow ScannerWindow { get { return scannerWindow; } }
         public SetupWindow SetupWindow { get { return setupWindow; } }
