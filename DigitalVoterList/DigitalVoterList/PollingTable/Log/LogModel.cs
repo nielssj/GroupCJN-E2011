@@ -87,10 +87,6 @@ namespace DigitalVoterList.PollingTable.Log
             }
         }
 
-        /// <summary>
-        /// Update the current filter.
-        /// </summary>
-        /// <param name="f">The new filter.</param>
         public void UpdateFilter(LogFilter f)
         {
             this.filter = f;

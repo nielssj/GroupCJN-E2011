@@ -69,8 +69,14 @@ namespace DigitalVoterList.PollingTable
             }
 
             //uint cprUint = uint.Parse(cpr.ToString());
-
-            model.initializeStaticDAO();
+            try
+            {
+                model.initializeStaticDAO();
+            }
+            catch (Exception)
+            {
+                view.ShowMessageBox("Connetcion Lost");
+            }
 
             try
             {
@@ -100,9 +106,9 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         private void ReactToRegisterRequest()
         {
-            view.ShowMessageBox("The voter card is registered");
             //Update the model so that the voter is registered.
             model.RegisterCurrentVoter();
+            view.ShowMessageBox("The voter card is registered");
             this.ResetCprTxtBox();
             view.ScannerWindow.Focus();
         }

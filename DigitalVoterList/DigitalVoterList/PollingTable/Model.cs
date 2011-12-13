@@ -31,7 +31,7 @@ namespace DigitalVoterList.PollingTable
 
         public delegate void VoterChangedHandler(VoterDO voter);
         public delegate void SetupInfoChangedHandler(SetupInfo setupInfo);
-        public delegate void ConnectionErrorHandler();
+        public delegate void ConnectionErrorHandler(string msg);
 
         public event VoterChangedHandler CurrentVoterChanged;
         public event SetupInfoChangedHandler SetupInfoChanged;
@@ -51,23 +51,31 @@ namespace DigitalVoterList.PollingTable
         /// </summary>
         public static void cleanUpDAO()
         {
-            staticPvdao.EndTransaction();
+            if(staticPvdao.TransactionStarted()) staticPvdao.EndTransaction();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="cprno"></param>
-        public void FindVoter(uint cprno)
+        public VoterDO FindVoter(uint cprno)
         {
             Contract.Requires(cprno != null);
             Contract.Ensures(cprno == currentVoter.PrimaryKey);
-            currentVoter = staticPvdao.Read(cprno);
+            try
+            {
+                currentVoter = staticPvdao.Read(cprno);
 
-            //Update the current voter with the found voter
-            CurrentVoterChanged(currentVoter);
-            //Update log with read entry
-            this.UpdateLog(ActivityEnum.R);
+                //Update the current voter with the found voter
+                CurrentVoterChanged(currentVoter);
+                //Update log with read entry
+                this.UpdateLog(ActivityEnum.R);
+            }
+            catch (Exception)
+            {
+                ConnectionError("Connection lost");
+            }
+            return currentVoter;
         }
 
         /// <summary>
@@ -91,7 +99,7 @@ namespace DigitalVoterList.PollingTable
             }
             catch (Exception)
             {
-                ConnectionError();
+                ConnectionError("Connection lost");
                 return;
             }
 
@@ -116,7 +124,7 @@ namespace DigitalVoterList.PollingTable
             catch (Exception)
             {
                 voter = new VoterDO();
-                ConnectionError();
+                ConnectionError("Connection lost");
             }
             return voter;
 
@@ -138,7 +146,7 @@ namespace DigitalVoterList.PollingTable
             }
             catch (Exception)
             {
-                ConnectionError();
+                ConnectionError("Connection lost");
             }
 
         }
@@ -157,7 +165,7 @@ namespace DigitalVoterList.PollingTable
             }
             catch (Exception)
             {
-                ConnectionError();
+                ConnectionError("Connection lost");
             }
         }
 

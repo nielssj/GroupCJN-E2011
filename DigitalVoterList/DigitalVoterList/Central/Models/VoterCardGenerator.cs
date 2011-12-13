@@ -93,8 +93,7 @@
         /// <returns>The number of given voters who has already had their voter cards generated.</returns>
         public int ValidateSelection()
         {
-            IEnumerable<VoterDO> voters = new VoterDAO().Read(v => v.Name.StartsWith("A"));
-            //IEnumerable<VoterDO> voters = new VoterDAO().Read(filter.ToPredicate());
+            IEnumerable<VoterDO> voters = new VoterDAO().Read(filter.ToPredicate());
             return voters.Where(v => v.CardPrinted.Equals(true)).Count();
         }
 
@@ -132,8 +131,7 @@
             this.limit = limit;
 
             var voterDAO = new VoterDAO();
-            IEnumerable<VoterDO> voters = voterDAO.Read(v => v.Name.StartsWith("A")).ToList();
-            //IEnumerable<VoterDO> voters = voterDAO.Read(filter.ToPredicate()).ToList();
+            IEnumerable<VoterDO> voters = voterDAO.Read(filter.ToPredicate()).ToList();
 
             IEnumerable<IGrouping<String, VoterDO>> groups = this.GroupByData(voters, property);
             this.GroupCount = groups.Count();
@@ -214,8 +212,7 @@
                 
                 var voterDAO = new VoterDAO();
                 var template = new VoterDO(null, null, null, null, null, true, null);
-                voterDAO.Update(v => v.Name.StartsWith("A"), template);
-                //voterDAO.Update(filter.ToPredicate(), template);
+                voterDAO.Update(filter.ToPredicate(), template);
 
                 GenerationEnded("Completed");
             }

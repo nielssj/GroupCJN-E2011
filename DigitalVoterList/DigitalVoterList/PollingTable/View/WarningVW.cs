@@ -25,5 +25,10 @@ namespace DigitalVoterList
             voterAddressLabel.Text = voter.Address;
             voterCityLabel.Text = voter.City;
         }
+
+        public void CloseDialog()
+        {
+            this.Close();
+        }
     }
 }

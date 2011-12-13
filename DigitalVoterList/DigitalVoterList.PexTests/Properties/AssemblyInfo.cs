@@ -10,11 +10,11 @@ using System.Security;
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 
 // System.Reflection
-[assembly: AssemblyTitle("DBComm Pex Tests")]
+[assembly: AssemblyTitle("DigitalVoterList Pex Tests")]
 
 // System.Runtime.InteropServices
 [assembly: ComVisible(false)]
-[assembly: Guid("d96a099d-9a16-432b-8a11-4107d6765f2d")]
+[assembly: Guid("2f93ad4f-eb55-4bca-8b54-e39ad44fa246")]
 
 // System
 [assembly: CLSCompliant(false)]
