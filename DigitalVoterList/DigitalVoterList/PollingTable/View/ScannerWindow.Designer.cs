@@ -111,7 +111,7 @@
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(520, 251);
+            this.shapeContainer1.Size = new System.Drawing.Size(549, 261);
             this.shapeContainer1.TabIndex = 11;
             this.shapeContainer1.TabStop = false;
             // 
@@ -147,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 251);
+            this.ClientSize = new System.Drawing.Size(549, 261);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -159,11 +159,6 @@
             this.HelpButton = true;
             this.Name = "ScannerWindow";
             this.Text = "ScannerWindow";
-            Size size = new Size(520, 251);
-
-            this.MaximumSize = size;
-            this.MinimumSize = size;
-
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

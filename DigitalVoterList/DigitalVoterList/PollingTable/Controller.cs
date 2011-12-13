@@ -57,7 +57,15 @@ namespace DigitalVoterList.PollingTable
             }
             else
             {
+                uint result;
+                bool res = uint.TryParse(cprStr, out result);
+                if (!res)
+                {
+                    view.ShowMessageBox("Cprno is not valid.");
+                    return;
+                }
                 cpr = Convert.ToUInt32(cprStr);
+                
             }
             //Validate length of CPRNO.
             if (!Model.CprLengtVal(cpr))
@@ -93,8 +101,15 @@ namespace DigitalVoterList.PollingTable
                     return;
                 }
             }
-            model.FindVoter(cpr);
-            this.ResetCprTxtBox();
+            try
+            {
+                model.FindVoter(cpr);
+                this.ResetCprTxtBox();
+            }
+            catch (Exception)
+            {
+                view.ShowMessageBox("Connection lost.");
+            }
 
         }
 

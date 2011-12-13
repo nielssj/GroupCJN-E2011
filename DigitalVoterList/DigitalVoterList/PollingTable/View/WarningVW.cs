@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
+    using System.Drawing;
+
     using DBComm.DBComm.DO;
 
     /// <summary>
@@ -20,12 +22,14 @@ namespace DigitalVoterList
         public WarningVW(VoterDO voter)
         {
             InitializeComponent();
-
-            //this.currentVoter = voter;
-
+            
             voterNameLabel.Text = voter.Name;
             voterAddressLabel.Text = voter.Address;
             voterCityLabel.Text = voter.City;
+
+            Size size = new Size(384, 277);
+            this.MaximumSize = size;
+            this.MinimumSize = size;
         }
 
         /// <summary>

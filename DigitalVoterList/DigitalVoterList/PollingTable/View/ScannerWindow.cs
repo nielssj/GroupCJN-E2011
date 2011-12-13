@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
+    using System.Drawing;
+
     /// <summary>
     /// Window where the user scans or types in the voter card.
     /// </summary>
@@ -17,6 +19,11 @@ namespace DigitalVoterList
         public ScannerWindow()
         {
             InitializeComponent();
+
+            var size = new Size(550, 310);
+            this.MinimumSize = size;
+            this.MaximumSize = size;
+
         }
     }
 }
