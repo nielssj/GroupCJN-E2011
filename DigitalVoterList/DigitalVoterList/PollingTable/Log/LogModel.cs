@@ -42,7 +42,7 @@ namespace DigitalVoterList.PollingTable.Log
             this.password = password;
             this.server = server;
 
-            var conn = DigitalVoterList.GetInstance("root", this.password, "dvl", this.server);
+            var conn = DigitalVoterList.GetInstance("groupCJN", this.password, this.server);
 
             this.logs = new BindingList<LogDO>();
             this.lDAO = new LogDAO(conn);
