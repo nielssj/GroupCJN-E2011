@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="VoterBoxManger.cs" company="DVL">
-// <author>Jan Meier</author>
+// Author: Jan Meier, Niels Søholm
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -34,9 +34,9 @@ namespace DigitalVoterList.Central.Models
         }
 
         /// <summary>
-        /// Validate that all polling stations have been successfully transfered to the server
+        /// Do the polling stations on the VoterBox match the current selection?
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Answer to query (yes = true | no = false)</returns>
         public bool ValidatePollingStations()
         {
             var serverPS = pDAO.Read(v => true).ToList();
@@ -50,9 +50,9 @@ namespace DigitalVoterList.Central.Models
         }
 
         /// <summary>
-        /// Validate that all municipalities have been successfully transfered to the server
+        /// Do the municipalities on the VoterBox match the current selection?
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Answer to query (yes = true | no = false)</returns>
         public bool ValidateMunicipalities()
         {
             var serverMunicipalities = mDAO.Read(v => true).ToList();
@@ -66,9 +66,9 @@ namespace DigitalVoterList.Central.Models
         }
 
         /// <summary>
-        /// Validate that all voters have been successfully transfered to the server
+        /// Do the voters on the VoterBox match the current selection?
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Answer to query (yes = true | no = false)</returns>
         public bool ValidateVoters()
         {
             var serverVoters = vDAO.Read(v => true).ToList();

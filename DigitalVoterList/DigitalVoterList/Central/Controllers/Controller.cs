@@ -62,7 +62,7 @@ namespace DigitalVoterList.Central.Controllers
         }
 
         /// <summary>
-        /// Initiate default sub-controller.
+        /// Instantiate default sub-controller.
         /// </summary>
         private void InitDefault()
         {

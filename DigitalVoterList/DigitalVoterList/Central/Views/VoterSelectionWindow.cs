@@ -1,18 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿// -----------------------------------------------------------------------
+// <copyright file="VoterBoxManger.cs" company="DVL">
+// Author: Jan Meier, Niels Søholm
+// </copyright>
+// -----------------------------------------------------------------------
 
 namespace DigitalVoterList.Central.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows.Forms;
+
     using DBComm.DBComm.DO;
 
     using DigitalVoterList.Central.Models;
 
+    using IDataObject = DBComm.DBComm.DO.IDataObject;
+
+    /// <summary>
+    /// Window for representing and manipulating the Voter Box Selector.
+    /// Depicts the current state of the Voter Box Selector.
+    /// </summary>
     public partial class VoterSelectionWindow : Form, ISubView
     {
         private List<EventHandler> pshandlers;
         private VoterSelection model;
 
+        /// <summary>
+        /// A view for controlling and monitoring the Voter Selector.
+        /// 
+        /// Depicts the current state of the Voter Selector
+        /// Raises events about user input (to be listened to by controller(s)).
+        /// </summary>
+        /// <param name="model"></param>
         public VoterSelectionWindow(VoterSelection model)
         {
             InitializeComponent();
@@ -36,28 +55,36 @@ namespace DigitalVoterList.Central.Views
             this.txbCPRNO.KeyPress += this.TextBoxOnlyAllowDigits;
         }
 
+        /// <summary> Replace the list of polling stations with this list. </summary>
+        /// <param name="pollingStations">The new list of polling stations.</param>
         public void UpdatePollingStations(IEnumerable<PollingStationDO> pollingStations)
         {
             this.cbxPollingStation.DataSource = pollingStations;
         }
 
+        /// <summary> Replace the voter count label with this. </summary>
+        /// <param name="voterCount">The new voter count.</param>
         public void UpdateVoterCount(int voterCount)
         {
             this.setVoterCount(voterCount);
         }
 
+        /// <summary> Make this municipality the selected municipality. </summary>
+        /// <param name="municipality">The municipality to be selected.</param>
         public void UpdateSelectedMunicipality(MunicipalityDO municipality)
         {
             this.cbxMunicipalities.SelectedIndex = this.cbxMunicipalities.Items.IndexOf(municipality);
         }
 
+        /// <summary> Make this polling station the selected polling station. </summary>
+        /// <param name="pollingStation">The polling station to be selected.</param>
         public void UpdateSelectedPollingStation(PollingStationDO pollingStation)
         {
             this.cbxPollingStation.SelectedIndex = this.cbxPollingStation.Items.IndexOf(pollingStation);
         }
 
+        // Custom delegates for the events below
         public delegate void CBInputChangedHandler(IDataObject changedTo);
-
         public delegate void TextInputChangedHandler(string changedTo);
 
         /// <summary> Notify me when the polling station selection changes. </summary>
@@ -89,6 +116,9 @@ namespace DigitalVoterList.Central.Views
             }
         }
 
+        /// <summary>
+        /// Reset the CPR text field.
+        /// </summary>
         public void ResetCPRText()
         {
             this.txbCPRNO.Text = string.Empty;
@@ -122,16 +152,25 @@ namespace DigitalVoterList.Central.Views
             tsmVBM.Click += (o, eA) => handler(Model.ChangeType.VBM);
         }
 
-        public ISubModel GetModel()
+        /// <summary> May I have the model associated with this view? </summary>
+        /// <returns>The associated model.</returns>
+        public ISubModel GetModel() 
         {
-            return model;
+            return model; // In an ideal world this would be a property, but interfaces can't contain properties.
         }
 
+        /// <summary> Set the Voter Count Label. </summary>
+        /// <param name="count">The new voter count value.</param>
         private void setVoterCount(int count)
         {
             lblVoterCount.Text = count + " voters selected.";
         }
 
+        /// <summary>
+        /// Make sure that the textbox only allowes digits.
+        /// </summary>
+        /// <param name="sender">TextBox calling.</param>
+        /// <param name="e">Arguments about the event.</param>
         private void TextBoxOnlyAllowDigits(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')

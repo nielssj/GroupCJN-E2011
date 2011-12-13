@@ -9,15 +9,13 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"The main 'model' of the application. Responsible of creating and managing instances of the sub-models."
+	"The main 'model' of the application. Responsible for managing instances of the sub-models."
 query
-	"May I have the VOTER_SELECTOR?"
+	"May I have the VOTER_SELECTOR sub-model?"
 command
 	"Notify me when a sub-model has been opened.",
-	"Open a VOTER_CARD_GENERATOR",
-	"Close this VOTER_CARD_GENERATOR",
-	"Open a VOTER_BOX_MANAGER",
-	"Close this VOTER_BOX_MANAGER"
+	"Open a new sub-model of this type."
+	"Close this sub-model."
 end
 
 class_chart VOTER_CARD_GENERATOR
@@ -27,15 +25,17 @@ indexing
 	created: "2011-11-28";
 	revised: "N/A"
 explanation 
-	"Responsible for the generation of votercards"
+	"The model for a voter box generator, responsible for the generation of votercards"
 query
-	"What is the current number of generated voter cards?",
-	"What is the current number of generated groups?",
-	"What is the voter filter?"
+	"What is the current percentage of voter cards generated?",
+	"What is the current number of groups generated?",
+	"What is the total number of groups to be generated?",
+	"How many of these voters have already had their voter cards generated?",
+	"May I have the filter?"
 command
+	"Notify me about changes in the progress of the current generation.",
 	"Generate voter card(s) based on voter filter and grouping selection",
-	"Notify me when the number of generated groups changes",
-	"Notify me when the total number of generated voter cards changes"
+	"Abort the current generation process, if one is running."
 constraint 
 	"N/A"
 end
@@ -47,16 +47,14 @@ indexing
 	created: "2011-12-02";
 	revised: "N/A"
 explanation 
-	"Responsible for the management of voter box(s)."
+	"The model for a voter box manager, responsible for transfering data to voter boxes."
 query
 	"What is the console output?",
-	"What is the current upload progress?",
-	"What is the voter filter?"
+	"What is the voter filter?",
+	"Does the content on the VoterBox match the current selection?"
 command
-	"Connect to this Voter Box.",
-	"Validate content on the connected Voter Box.",
-	"Upload voters to the connected Voter Box based on voter filter.",
-	"Notify me when the current upload progress changes.",
+	"Fetch data from the db based on the current filter.",
+	"Insert the data that was fected onto the remote server.",
 	"Notify me when the console output changes."
 constraint 
 	"N/A"
@@ -85,20 +83,39 @@ explanation
 query
 	"What is the selected municipality?",
 	"What is the selected polling station?",
-	"What is the selected cprnr?"
+	"What is the selected cprnr?",
+	"What would this filter look like as a predicate?"
 command
 	"N/A"
 end
 
 --- C_VIEWS
 
+class_chart CENTRAL_VIEW
+indexing
+	in_cluster: "C_VIEWS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-01";
+	revised: "N/A"
+explanation
+	"The main 'model' of the application. Responsible for managing instances of the sub-models."
+query
+	"May I have the default sub-view (Voter Selection Window)?",
+	"Which sub-views are currently open?"
+command
+	"Notify me when a sub-view has been opened.",
+	"Open a new sub-view of this type.",
+	"Close the view associated with this model.",
+	"Show the default view"
+end
+
 class_chart VOTER_SELECTOR_WINDOW
 indexing 
 	in_cluster: "C_VIEWS";
 explanation
-	"Window for representing and manipulating the VOTER_BOX_SELECTOR."
+	"The main 'view' of the application. It has the sole responsibility of creating instances of the sub-views (windows forms)."
 query
-	"N/A"
+	"May I have the model associated with this view?"
 command
 	"Replace the list of polling stations with this list.",
 	"Replace the voter count label with this.",
@@ -112,9 +129,12 @@ indexing
 explanation
 	"Window for representing and manipulating a VOTER_BOX_MANAGER"
 query
-	"N/A"
+	"May I have the connection credentials input?"
 command
-	"Open voter card window"
+	"Notify me about validation requests.",
+	"Notify me about upload requests.",
+	"Notify me about connect requests.",
+	"Update progress bar."
 end
 
 class_chart VOTER_CARD_GENERATOR_WINDOW
@@ -126,9 +146,13 @@ indexing
 explanation 
 	"Window for representing and manipulating a VOTER_CARD_GENERATOR"
 query
-	"N/A"
+	"May I have the associated model"
 command	
-	"Show a specific votercard"
+	"Notify me about generate requests.",
+	"Notify me about abort requests.",
+	"Notify me about close requests.",
+	"Switch to 'Generating Mode'",
+	"Switch to 'Inactive Mode'"
 constraint
 	"N/A"
 end
@@ -158,7 +182,13 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for creating all central controllers."
+	"The main 'controller' of the application. Responsible for instantiating sub-controllers."
+query
+	"May I have the default sub-view (Voter Selection Window)?",
+	"Which sub-views are currently open?"
+command
+	"React to a request for a view to be opened; Instantiate an appropiate controller.",
+	"Instantiate default sub-controller."
 end
 
 class_chart VOTER_SELECTOR_CONTROLLER
@@ -168,7 +198,7 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for reacting to user input from the VOTER_SELECTOR_WINDOW."
+	"Responsible for reacting to user input from the VOTER_SELECTOR_WINDOW and propagating input in an appropiate fashion to the VOTER_SELECTOR (model)."
 query
 	"N/A"
 command
@@ -186,12 +216,11 @@ indexing
 	created: "2011-12-01";
 	revised: "N/A"
 explanation
-	"Responsible for reacting to user input from the VOTER_CARD_GENERATOR_WINDOW"
+	"Responsible for reacting to user input from the VOTER_CARD_GENERATOR_WINDOW and propagating input in an appropiate fashion to the VOTER_CARD_GENERATOR (model)."
 query
 	"N/A"
 command
-	"React to generation request",
-	"React to grouping selection"
+	"React to generation request"
 end
 
 class_chart VOTER_BOX_MANAGER_CONTROLLER
@@ -201,7 +230,7 @@ indexing
 	created: "2011-12-01";
 	revised: "2011-12-13"
 explanation
-	"Responsible for reacting to user input from the VOTER_BOX_MANAGER_WINDOW"
+	"Responsible for reacting to user input from the VOTER_BOX_MANAGER_WINDOW and propagating input in an appropiate fashion to the VOTER_BOX_MANAGER (model)."
 query
 	"N/A"
 command

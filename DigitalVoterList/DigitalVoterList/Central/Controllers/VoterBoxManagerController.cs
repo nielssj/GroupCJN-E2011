@@ -46,6 +46,7 @@ namespace DigitalVoterList.Central.Controllers
 
         }
 
+        /// <summary> React to validate request. </summary>
         public void Validate()
         {
             try
@@ -63,6 +64,7 @@ namespace DigitalVoterList.Central.Controllers
             }
         }
 
+        /// <summary> React to connect request. </summary>
         public void Connect()
         {
             view.UpdateProgressText("Making connection to remote server and creating DB.");
@@ -81,6 +83,7 @@ namespace DigitalVoterList.Central.Controllers
             view.UpdateProgress();
         }
 
+        /// <summary> React to upload request. </summary>
         public void Upload()
         {
             if (model.Filter != null)
