@@ -11,6 +11,7 @@ namespace DigitalVoterList.PollingTable.Log
     using System.Linq;
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
+    using DBComm.DBComm;
 
     /// <summary>
     /// TODO: Update summary.
@@ -55,9 +56,9 @@ namespace DigitalVoterList.PollingTable.Log
         public LogModel()
         {
             this.logs = new BindingList<LogDO>();
-            this.lDAO = new LogDAO();
+            this.lDAO = new LogDAO(DigitalVoterList.GetInstance("root", "abc123", "localhost"));
 
-            this.vDAO = new VoterDAO();
+            this.vDAO = new VoterDAO(DigitalVoterList.GetInstance("root", "abc123", "localhost"));
 
             this.Update();
 
