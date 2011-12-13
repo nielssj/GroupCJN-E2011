@@ -1,13 +1,13 @@
 ﻿// -----------------------------------------------------------------------
 // <copyright file="SetupInfo.cs" company="">
-// TODO: Update copyright text.
+// Author: Claes Martinsen
 // </copyright>
 // -----------------------------------------------------------------------
 
 namespace DigitalVoterList.PollingTable
 {
     /// <summary>
-    /// TODO: Update summary.
+    /// Contains setup information for polling table.
     /// </summary>
     public struct SetupInfo
     {

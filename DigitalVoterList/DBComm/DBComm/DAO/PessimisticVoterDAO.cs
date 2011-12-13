@@ -87,10 +87,9 @@ namespace DBComm.DBComm.DAO
             command.CommandTimeout = this.timeout;
 
             // Query building
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "voter_read";
+            command.CommandText = "call voter_read( @id_param );";
 
-            MySqlParameter p = new MySqlParameter("id_param", MySqlDbType.UInt32) { Value = id };
+            MySqlParameter p = new MySqlParameter("@id_param", MySqlDbType.UInt32) { Value = id };
             command.Parameters.Add(p);
 
             // Query execution
@@ -139,13 +138,12 @@ namespace DBComm.DBComm.DAO
             command.CommandTimeout = this.timeout;
 
             // Query building
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = "voter_update";
+            command.CommandText = "call voter_update( @voted_param , @id_param );";
 
-            MySqlParameter votedParam = new MySqlParameter("voted_param", SqlDbType.TinyInt) { Value = votedStatus };
+            MySqlParameter votedParam = new MySqlParameter("@voted_param", SqlDbType.TinyInt) { Value = votedStatus };
             command.Parameters.Add(votedParam);
 
-            MySqlParameter idParam = new MySqlParameter("id_param", MySqlDbType.UInt32) { Value = id };
+            MySqlParameter idParam = new MySqlParameter("@id_param", MySqlDbType.UInt32) { Value = id };
             command.Parameters.Add(idParam);
 
             // Query execution

@@ -10,10 +10,9 @@ namespace DigitalVoterList.PollingTable
     using System;
     using System.Diagnostics.Contracts;
     using System.IO;
-
     using DBComm.DBComm;
-    using DBComm.DBComm.DO;
     using DBComm.DBComm.DAO;
+    using DBComm.DBComm.DO;
 
     /// <summary>
     /// The model class is responsible for the logic in polling table. 
@@ -23,18 +22,18 @@ namespace DigitalVoterList.PollingTable
     public class Model
     {
         private const string Path = "c:/SetupDVL.conf";  //The path where the setup.conf file will be stored.
-        
+
         public VoterDO currentVoter; //The current voter to be handled.
-        
+
         private static PessimisticVoterDAO staticPvdao; //The DAO used to update the voter's status.
 
         private string adminPass = ""; //The password used to access the voter box.
 
         //contains setup information for the polling table. Voter Box address and table number
-        private SetupInfo setupInfo = new SetupInfo("localhost", 0); 
+        private SetupInfo setupInfo = new SetupInfo("localhost", 0);
 
-        public delegate void VoterChangedHandler(VoterDO voter); 
-        public delegate void SetupInfoChangedHandler(SetupInfo setupInfo); 
+        public delegate void VoterChangedHandler(VoterDO voter);
+        public delegate void SetupInfoChangedHandler(SetupInfo setupInfo);
         public delegate void ConnectionErrorHandler();
 
         public event VoterChangedHandler CurrentVoterChanged; //Notify when the current voter changes.
@@ -42,7 +41,7 @@ namespace DigitalVoterList.PollingTable
         public event ConnectionErrorHandler ConnectionError; //Notify when a connection error occours. 
 
         #region Utility methods to validate user input
-        
+
         /// <summary>
         /// Validate if the length of the cprno is correct.
         /// </summary>
@@ -65,16 +64,16 @@ namespace DigitalVoterList.PollingTable
             if (!res) return false;
             return true;
         }
-        
+
         #endregion
-        
+
         /// <summary>
         /// Closes the pessimistic voter DAO's transaction, 
         /// if it is already open.
         /// </summary>
         public static void cleanUpDAO()
         {
-            if(staticPvdao.TransactionStarted()) staticPvdao.EndTransaction();
+            if (staticPvdao.TransactionStarted()) staticPvdao.EndTransaction();
         }
 
         /// <summary>
@@ -97,20 +96,21 @@ namespace DigitalVoterList.PollingTable
             Contract.Ensures(cprno == currentVoter.PrimaryKey);
             try
             {
-                currentVoter = staticPvdao.Read(cprno); 
+                currentVoter = staticPvdao.Read(cprno);
 
                 //Update the current voter with the found voter
                 CurrentVoterChanged(currentVoter);
                 //Update log with read entry
                 this.UpdateLog(ActivityEnum.R);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 ConnectionError(); // notify that the connection has been lost.
             }
         }
 
-        
+
 
         /// <summary>
         /// Fetches the voter matching the cprno.
@@ -120,8 +120,6 @@ namespace DigitalVoterList.PollingTable
         public VoterDO FetchVoter(uint cprno)
         {
             Contract.Requires(cprno != null);
-            Contract.Requires(cprno is uint);
-            //Contract.Ensures(Contract.Result<VoterDO>() == null ? Contract.Result<VoterDO>().PrimaryKey == cprno : true);
             VoterDO voter;
 
             try
@@ -236,7 +234,7 @@ namespace DigitalVoterList.PollingTable
             try
             {
                 //Create the log DAO with setup information, activity and current voter. 
-                var ldo = new LogDO(setupInfo.TableNo, currentVoter.PrimaryKey, ae); 
+                var ldo = new LogDO(setupInfo.TableNo, currentVoter.PrimaryKey, ae);
                 var ldao = new LogDAO(DigitalVoterList.GetInstanceFromServer(setupInfo.Ip));
                 ldao.Create(ldo);
             }

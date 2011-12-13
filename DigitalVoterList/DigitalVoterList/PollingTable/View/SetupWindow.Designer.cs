@@ -1,5 +1,6 @@
 ﻿namespace DigitalVoterList
 {
+    using System.Drawing;
     using System.Windows.Forms;
 
     partial class SetupWindow
@@ -118,6 +119,9 @@
             this.Text = "SetupWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
+            Size size = new Size(260, 160);
+            this.MaximumSize = size;
+            this.MinimumSize = size;
             this.Closed += (o, Ea) => this.Form1_Closed();
 
         }
