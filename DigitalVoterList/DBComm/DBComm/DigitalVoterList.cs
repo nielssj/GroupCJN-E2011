@@ -18,7 +18,7 @@ namespace DBComm.DBComm
     /// <summary>
     /// The data context representing the DVL database.
     /// </summary>
-    [Database(Name = ("groupCJN"))]
+    [Database(Name = ("groupcjn"))]
     public class DigitalVoterList : DataContext
     {
         private const string Path = "c:/ServerSetupDVL.conf";
@@ -131,14 +131,15 @@ namespace DBComm.DBComm
         }
 
         /// <summary>
-        /// Get an open connection based on the given parameters.
+        /// Get a connection based on the given parameters.
         /// </summary>
         /// <param name="user">The user</param>
         /// <param name="password">The password</param>
-        /// <param name="dbName">The name of the database to connect to.</param>
-        /// <param name="server">The adress to the server. Assuming localhost if no adress is provided</param>
+        /// <param name="server">The adress to the server. Assuming localhost if no adress is provided.</param>
         /// <param name="port">The port number to this connection. Assuming 3306 if no port is provided.</param>
-        /// <returns>A new connection.</returns>
+        /// <returns>
+        /// A new connection.
+        /// </returns>
         public static MySqlConnection GetConnectionInstance(string user, string password, string server = "localhost", int port = 3306)
         {
             var conn = new MySqlConnection(
@@ -148,8 +149,7 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    "groupCJN"));
-            conn.Open();
+                    "groupcjn"));
 
             return conn;
         }

@@ -20,7 +20,7 @@ namespace DBComm.DBComm
         {
             var dbc =
                 new DBCreator(
-                    new MySqlConnection("server=localhost;" + "port=3306;" + "password=abc123;" + "uid=groupCJN;"), "groupCJN");
+                    new MySqlConnection("server=localhost;" + "port=3306;" + "password=abc123;" + "uid=groupCJN;"));
 
             var g = new Generator(DigitalVoterList.GetInstance("groupCJN", "abc123", "localhost", "3306"));
 

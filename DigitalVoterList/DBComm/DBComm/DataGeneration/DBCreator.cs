@@ -23,7 +23,6 @@ namespace DBComm.DBComm.DataGeneration
         /// <param name="port">The port.</param> 
         /// <param name="user">The user.</param>
         /// <param name="password">The password.</param>
-        /// <param name="dbName"> The name of the database.</param>
         public DBCreator(string server, string port, string user, string password)
         {
             string connString = "server=" + server + ";uid=" + user + ";password=" + password + ";port=" + port + ";";
@@ -34,8 +33,7 @@ namespace DBComm.DBComm.DataGeneration
         /// Initializes a new instance of the <see cref="DBCreator"/> class.
         /// </summary>
         /// <param name="c">The connection.</param>
-        /// <param name="dbName"> The name of the database.</param>
-        public DBCreator(MySqlConnection c, string dbName)
+        public DBCreator(MySqlConnection c)
         {
             this.createDB(c);
         }
