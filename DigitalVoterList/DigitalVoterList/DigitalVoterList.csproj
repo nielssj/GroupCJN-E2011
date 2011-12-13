@@ -127,7 +127,6 @@
     </Compile>
     <Compile Include="PollingTable\Log\LogController.cs" />
     <Compile Include="PollingTable\Log\LogFilter.cs" />
-    <Compile Include="PollingTable\Log\LogMain.cs" />
     <Compile Include="PollingTable\Log\LogModel.cs" />
     <Compile Include="PollingTable\Log\LogWindow.cs">
       <SubType>Form</SubType>

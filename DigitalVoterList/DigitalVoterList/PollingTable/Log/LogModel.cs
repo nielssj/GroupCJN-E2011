@@ -32,12 +32,6 @@ namespace DigitalVoterList.PollingTable.Log
         private string password;
         private string server;
 
-        public LogModel(string password, string server)
-        {
-            this.password = password;
-            this.server = server;
-        }
-
         public BindingList<LogDO> Logs
         {
             get
@@ -62,8 +56,11 @@ namespace DigitalVoterList.PollingTable.Log
             }
         }
 
-        public LogModel()
+        public LogModel(string password, string server)
         {
+            this.password = password;
+            this.server = server;
+       
             var conn = DigitalVoterList.GetInstance("root", this.password, this.server);
 
             this.logs = new BindingList<LogDO>();
