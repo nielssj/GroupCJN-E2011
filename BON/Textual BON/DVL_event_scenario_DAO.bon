@@ -1,6 +1,6 @@
 scenario_chart TESTING_SCENARIOS_PESSIMISTIC_VOTER_DAO
 explanation
-	"Test cases for the pessimistic voter DAO. Further explanation of the testing strategy can be found in [REF HERE!]."
+	"Test cases for the pessimistic voter DAO. Further explanation of the testing strategy can be found in [DAO Testing strategy, groupCJN, jmei, 2011-12-13]."
 scenario "Negative testing, scenario one"
 	description "Client 1 opens a transaction, and reads a value. Client 2 then opens a transaction, and tries to read the same value. After a given time client 2 should time-out and return unsuccesfully."
 scenario "Positive testing, scenario one"
