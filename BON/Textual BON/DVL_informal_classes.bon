@@ -291,7 +291,7 @@ explanation
 query
 	"N/A"
 command	
-	"Find the matching voter"
+	"Find the voter matching the cpr"
 constraint
 	"The scanner window cannot be used while a voter window is open. Preventing two voters to register at the same time."
 end
@@ -385,7 +385,7 @@ constraint
 	"N/A"
 end
 
-class_chart LOG_CONTROLLEr
+class_chart LOG_CONTROLLER
 indexing
 	in_cluster: "LOG";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
