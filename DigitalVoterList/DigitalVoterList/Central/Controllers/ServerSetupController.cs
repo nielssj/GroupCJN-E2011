@@ -67,7 +67,7 @@ namespace DigitalVoterList.Central.Controllers
             {
                 DigitalVoterList.GetConnectionInstance(user, password, address, port);
             }
-            catch (System.FormatException e)
+            catch (System.FormatException)
             {
                 view.ShowMessageBox("The credentials provided were wrong.");
                 return;
