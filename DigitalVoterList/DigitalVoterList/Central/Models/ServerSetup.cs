@@ -22,9 +22,9 @@ namespace DigitalVoterList.Central.Models
 
         }
 
-        public void SaveCredentials(string server, int port, string user, string password)
+        public void SaveCredentials(string server, int port, string user, string password, string db)
         {
-            IEnumerable<string> credentials = new List<string>() { server, port.ToString(), user, password };
+            IEnumerable<string> credentials = new List<string>() { server, port.ToString(), user, password, db };
 
             File.WriteAllLines(Path, credentials);
         }

@@ -1,9 +1,8 @@
 namespace DigitalVoterList
 {
-    using System.Windows.Forms;
     using System;
+    using System.Windows.Forms;
 
-    using DigitalVoterList.PollingTable.Log;
 
     static class Program
     {

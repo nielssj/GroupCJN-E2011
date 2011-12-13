@@ -112,8 +112,7 @@ static_diagram DAO
 			effective update : BOOLEAN 	-> predicate : FUNCTION[T, bool]
 			effective delete : BOOLEAN 	-> predicate : FUNCTION[T, bool]
 		end
-		
-				
+						
 		deferred class DATA_OBJECT
 			feature
 			primaryKey -- The primary key of this entity.
@@ -124,6 +123,8 @@ static_diagram DAO
 				require
 					dummy /= Void;
 					dummy.Class = Current.Class;
+			
+			deferred resetAssociations
 		end
 		
 		class VOTER_DO
@@ -146,6 +147,7 @@ static_diagram DAO
 			
 			effective fullyInitialized : BOOLEAN 
 			effective UpdateValues -> dummy : DATA_OBJECT
+			effective resetAssociations
 			
 			invariant
 				(cpr >= 101000001 and cpr <= 3112999999) or cpr == Void
@@ -164,6 +166,7 @@ static_diagram DAO
 			
 			effective fullyInitialized : BOOLEAN 
 			effective UpdateValues -> dummy : DATA_OBJECT
+			effective resetAssociations
 		end
 		
 		class MUNICIPALITY_DO
@@ -176,6 +179,7 @@ static_diagram DAO
 			
 			effective fullyInitialized : BOOLEAN 
 			effective UpdateValues -> dummy : DATA_OBJECT
+			effective resetAssociations
 		end
 		
 		class LOG_DO
@@ -188,9 +192,10 @@ static_diagram DAO
 			
 			effective fullyInitialized : BOOLEAN 
 			effective UpdateValues -> dummy : DATA_OBJECT
+			effective resetAssociations
 		end
 		
-		class Activity
+		class ACTIVITY
 			feature
 			value: CHARACTER
 			
@@ -202,3 +207,4 @@ end
 --Comment: Change Log
 
 -- Updated to conform with implementation of DBComm (07/12).
+-- Updated Data object (13/12)

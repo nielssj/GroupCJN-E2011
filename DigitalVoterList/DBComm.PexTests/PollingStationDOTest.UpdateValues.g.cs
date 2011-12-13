@@ -99,7 +99,7 @@ public void UpdateValues71()
 [TestMethod]
 [PexGeneratedBy(typeof(PollingStationDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void UpdateValuesThrowsContractException209()
+public void UpdateValuesThrowsContractException717()
 {
     try
     {

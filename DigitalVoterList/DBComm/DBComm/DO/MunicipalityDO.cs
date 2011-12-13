@@ -73,7 +73,7 @@ namespace DBComm.DBComm.DO
                 return _pStations;
             }
 
-            set
+            private set
             {
                 Contract.Requires(value != null);
                 _pStations.AddRange(value);

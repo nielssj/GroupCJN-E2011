@@ -97,12 +97,12 @@
         <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.Behavior">
             <summary>Assigns the behavior for all methods of the moled type</summary>
         </member>
-        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.ConstructorMySqlConnection">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.#ctor(MySql.Data.MySqlClient.MySqlConnection)"/>
+        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.ConstructorMySqlConnectionString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.String)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.ConstructorStringStringStringString">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.#ctor(System.String,System.String,System.String,System.String)"/>
+        <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.ConstructorStringStringStringStringString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DataGeneration.DBCreator.#ctor(System.String,System.String,System.String,System.String,System.String)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.DataGeneration.Moles.MDBCreator.createDBMySqlConnection">
@@ -284,8 +284,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.#ctor(MySql.Data.MySqlClient.MySqlConnection)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetConnectionInstanceStringStringStringInt32">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetConnectionInstance(System.String,System.String,System.String,System.Int32)"/>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetConnectionInstanceStringStringStringStringInt32">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetConnectionInstance(System.String,System.String,System.String,System.String,System.Int32)"/>
             </summary>
         </member>
         <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetDefaultInstance">
@@ -296,8 +296,8 @@
             <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstanceFromServer(System.String)"/>
             </summary>
         </member>
-        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceStringStringStringString">
-            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(System.String,System.String,System.String,System.String)"/>
+        <member name="P:DBComm.DBComm.Moles.MDigitalVoterList.GetInstanceStringStringStringStringString">
+            <summary>Sets the mole of <see cref="M:DBComm.DBComm.DigitalVoterList.GetInstance(System.String,System.String,System.String,System.String,System.String)"/>
             </summary>
         </member>
         <member name="T:DBComm.DBComm.Moles.MDigitalVoterList.AllInstances">
@@ -1432,10 +1432,10 @@
             <summary>Stub type of <see cref="T:DBComm.DBComm.DataGeneration.DBCreator"/>
             .</summary>
         </member>
-        <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.#ctor(MySql.Data.MySqlClient.MySqlConnection)">
+        <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.#ctor(MySql.Data.MySqlClient.MySqlConnection,System.String)">
             <summary>Initializes a new instance</summary>
         </member>
-        <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.#ctor(System.String,System.String,System.String,System.String,System.String)">
             <summary>Initializes a new instance</summary>
         </member>
         <member name="M:DBComm.DBComm.DataGeneration.Moles.SDBCreator.InitializeStub">

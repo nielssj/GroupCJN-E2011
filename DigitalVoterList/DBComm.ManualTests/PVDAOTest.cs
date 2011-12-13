@@ -34,7 +34,7 @@ namespace DBComm.ManualTests
                     "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"
                     + "database=dvl;");
 
-            var creator = new DBCreator(connection);
+            var creator = new DBCreator(connection, "dvl");
 
             var generator = new Generator(DigitalVoterList.GetDefaultInstance());
 

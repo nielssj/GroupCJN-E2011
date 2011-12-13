@@ -12,8 +12,8 @@
 using System;
 using Microsoft.Pex.Framework.Explorable;
 using System.Data.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Pex.Framework.Generated;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DBComm.DBComm.DO
 {
@@ -21,7 +21,7 @@ namespace DBComm.DBComm.DO
     {
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
-public void FullyInitialized837()
+public void FullyInitialized611()
 {
     VoterDO voterDO;
     bool b;
@@ -37,8 +37,8 @@ public void FullyInitialized837()
         ((object)voterDO, "<Address>k__BackingField", (string)null);
     PexInvariant.SetField<string>
         ((object)voterDO, "<City>k__BackingField", (string)null);
-    PexInvariant.SetField<bool?>
-        ((object)voterDO, "<CardPrinted>k__BackingField", new bool?(true));
+    PexInvariant.SetField<bool?>((object)voterDO, "<CardPrinted>k__BackingField", 
+                                                  new bool?(PexSafeHelpers.ByteToBoolean((byte)2)));
     PexInvariant.SetField<bool?>
         ((object)voterDO, "<Voted>k__BackingField", new bool?(true));
     PexInvariant.CheckInvariant((object)voterDO);
@@ -52,7 +52,8 @@ public void FullyInitialized837()
     Assert.AreEqual<string>((string)null, voterDO.Address);
     Assert.AreEqual<string>((string)null, voterDO.City);
     Assert.IsNotNull((object)(voterDO.CardPrinted));
-    Assert.AreEqual<bool>(true, (bool)((object)(voterDO.CardPrinted)));
+    Assert.AreEqual<bool>(PexSafeHelpers.ByteToBoolean((byte)2), 
+                          (bool)((object)(voterDO.CardPrinted)));
     Assert.IsNotNull((object)(voterDO.Voted));
     Assert.AreEqual<bool>(true, (bool)((object)(voterDO.Voted)));
 }

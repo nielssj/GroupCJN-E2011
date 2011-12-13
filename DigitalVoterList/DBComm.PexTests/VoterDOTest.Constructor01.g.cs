@@ -36,7 +36,7 @@ public void Constructor01389()
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void ConstructorThrowsContractException277()
+public void ConstructorThrowsContractException230()
 {
     try
     {
@@ -75,7 +75,7 @@ public void Constructor194()
 [TestMethod]
 [PexGeneratedBy(typeof(VoterDOTest))]
 [PexRaisedContractException(PexExceptionState.Expected)]
-public void ConstructorThrowsContractException512()
+public void ConstructorThrowsContractException904()
 {
     try
     {

@@ -86,7 +86,7 @@ namespace DBComm.DBComm.DO
                 return _municipality.Entity;
             }
 
-            set
+            private set
             {
                 Contract.Requires(value != null);
                 _municipality.Entity = value;
@@ -106,7 +106,7 @@ namespace DBComm.DBComm.DO
                 return _voters;
             }
 
-            set
+            private set
             {
                 Contract.Requires(value != null);
                 _voters.AddRange(value);

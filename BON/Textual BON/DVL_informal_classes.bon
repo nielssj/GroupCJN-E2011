@@ -62,6 +62,18 @@ constraint
 	"N/A"
 end
 
+class_chart SERVER_SETUP
+indexing 
+	in_cluster: "C_MODELS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13";
+	revised: "N/A"
+explanation
+	"A class responsible for persisting server login information provided by the user in the SERVER_SETUP_WINDOW."
+command
+	"Persist these credentials to the disk!"
+end
+
 class_chart VOTER_FILTER
 indexing 
 	in_cluster: "C_MODELS";
@@ -121,6 +133,22 @@ constraint
 	"N/A"
 end
 
+class_chart SERVER_SETUP_WINDOW
+indexing 
+	in_cluster: "C_VIEWS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13";
+	revised: "N/A"
+explanation 
+	"Window for taking input to the SERVER_SETUP."
+query
+	"N/A"
+command	
+	"Show credential-input boxes.!"
+constraint
+	"N/A"
+end
+
 --- C_CONTROLLERS
 
 class_chart CENTRAL_CONTROLLER
@@ -171,14 +199,29 @@ indexing
 	in_cluster: "C_CONTROLLERS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "N/A"
+	revised: "2011-12-13"
 explanation
 	"Responsible for reacting to user input from the VOTER_BOX_MANAGER_WINDOW"
 query
 	"N/A"
 command
+	"React to connect request.",
 	"React to upload request.",
 	"React to validation request."
+end
+
+class_chart SERVER_SETUP_CONTROLLER
+indexing
+	in_cluster: "C_CONTROLLERS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13"
+explanation
+	"Responsible for reacting to user input in the SERVER_SETUP_WINDOW."
+query
+	"Notify me when your are connected to a server."
+command
+	"React to connect request.",
+	"Dispose of your view!"
 end
 
 -- ##### POLLING TABLE RELATED CLASSES ##### 
@@ -271,19 +314,88 @@ constraint
 	"N/A"
 end
 
+class_chart LOG_CONTROLLEr
+indexing
+	in_cluster: "LOG";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13"
+explanation
+	"Responsible for reacting to the user's clicks and periodically updating the underlying model."
+query
+	"N/A"
+command
+	"React to refresh request.",
+	"React to update request."
+end
+
+class_chart LOG_MODEL
+indexing
+	in_cluster: "LOG";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13";
+	revised: "N/A"
+explanation 
+	"Responsible for storing and updating log data."
+query
+	"What are your current logs?",
+	"What is the current number of persons who have voted?",
+	"What is the total number of eligible voters?"
+command
+	"Update your current filter to this!",
+	"Update your data!"
+constraint 
+	"N/A"
+end
+
+class_chart LOG_VIEW
+indexing 
+	in_cluster: "LOG";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13";
+	revised: "N/A"
+explanation 
+	"Responsible for showing the data to the user and allowing him to interact with it."
+query
+	"N/A"
+command	
+	"Show all logs!"
+constraint
+	"N/A"
+end
+
+class_chart LOG_FILTER
+indexing 
+	in_cluster: "LOG";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13";
+	revised: "N/A"
+explanation
+	"A utility class to allows sending all data about the users log selection."
+query
+	"What is the selected table number?",
+	"What is the selected CPR number?",
+	"What is the selected activity?",
+	"What is the selected from time?",
+	"What is the selected to time?"
+command
+	"N/A"
+end
+
 -- ##### DB_COMM_DAO RELATED CLASSES #####
 
 class_chart DIGITAL_VOTER_LIST
 indexing
-	in_cluster: "DB_COMM_DAO";
+	in_cluster: "DB_COMM";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-07";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"A class representing the database."
 query
-	"May I have a new DVL that uses this connection?",
+	"May I have a new DVL that uses these parameters?",
+	"May I have a new DVL that uses this server?",
 	"May I have a new DVL that uses the default connection?",
+	"May I have a new connection that uses these parameters?",
 	"May I have a reference to the voter table?",
 	"May I have a reference to the polling station table?",
 	"May I have a reference to the municipalities table?",
@@ -296,10 +408,10 @@ end
 
 class_chart DATA_ACCESS_OBJECT
 indexing
-	in_cluster: "DB_COMM_DAO";
+	in_cluster: "DATA_ACCESS_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-29";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"A data access object supporting CRUD operations."
 query
@@ -317,29 +429,28 @@ end
 
 class_chart DATA_OBJECT
 indexing
-	in_cluster: "DB_COMM_DAO";
+	in_cluster: "DATA_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-11-29";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"The object used to transfer data between DAO and application."
 query
 	"Get data.",
 	"Is this object fully initialized?"
 command
-	"Set data.",
-	"Write any updated fields to the database.",
-	"Delete this object from the database."
+	"Update your values to those of this object!",
+	"Reset all your associations to other classes!"
 constraint
-	"Data objects are immuteable."
+	"N/A"
 end
 
 class_chart PESSIMISTIC_VOTER_DAO
 indexing
-	in_cluster: "DB_COMM_DAO";
+	in_cluster: "DATA_ACCESS_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation
 	"A pessimistic DAO implementation supporting explicit transaction control."
 query
@@ -348,9 +459,7 @@ query
 command
 	"Start transaction.",
 	"Stop transaction.",
-	"Update the voter with this id to the following.",
-	"Delete the voter with this id.",
-	"Insert this voter."
+	"Update the voter with this id to have the following voted status.",
 constraint
 	"A transaction must be started before any other operations can be performed."
 end
@@ -360,7 +469,7 @@ indexing
 	in_cluster: "DATA_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"The object used to transfer voter data between DAO and application."
 inherit DATA_OBJECT
@@ -368,10 +477,10 @@ end
 
 class_chart POLLING_STATION_DO
 indexing
-	in_cluster: "DO";
+	in_cluster: "DATA_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"The object used to transfer polling station data between DAO and application."
 inherit DATA_OBJECT
@@ -379,10 +488,10 @@ end
 
 class_chart MUNICIPALITY_DO
 indexing
-	in_cluster: "DO";
+	in_cluster: "DATA_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"The object used to transfer municipality data between DAO and application."
 inherit DATA_OBJECT
@@ -390,15 +499,31 @@ end
 
 class_chart LOG_DO
 indexing
-	in_cluster: "DO";
+	in_cluster: "DATA_OBJECTS";
 	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
 	created: "2011-12-01";
-	revised: "2011-12-07";
+	revised: "2011-12-13";
 explanation 
 	"The object used to transfer log data between DAO and application."
 inherit DATA_OBJECT
 end
 
+class_chart ACTIVITY
+indexing
+	in_cluster: "DATA_OBJECTS";
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk";
+	created: "2011-12-13";
+explanation
+	"An enumeration of various log activities."
+query
+	"What is your value?"
+command
+	"N/A"
+constraint
+	"Activities can have the following enumerations: R (read), W (write), U (unregister)."
+end
+
 --Comment: Change Log
 
 -- Updated to conform with implementation of DBComm (07/12).
+-- Updated DB_COMM (13/12)

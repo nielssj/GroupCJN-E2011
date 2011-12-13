@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LogModel.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="LogModel.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -9,15 +9,18 @@ namespace DigitalVoterList.PollingTable.Log
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using DBComm.DBComm;
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
-    using DBComm.DBComm;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Responsible for storing and updating log data.
     /// </summary>
     public class LogModel
     {
+        private readonly string password;
+        private readonly string server;
+
         private BindingList<LogDO> logs;
         private LogDAO lDAO;
 
@@ -29,39 +32,17 @@ namespace DigitalVoterList.PollingTable.Log
         private int totalVoters;
         private int votedVoters;
 
-        private string password;
-        private string server;
-
-        public BindingList<LogDO> Logs
-        {
-            get
-            {
-                return this.logs;
-            }
-        }
-
-        public int TotalVoters
-        {
-            get
-            {
-                return totalVoters;
-            }
-        }
-
-        public int VotedVoters
-        {
-            get
-            {
-                return votedVoters;
-            }
-        }
-
+        /// <summary>
+        /// Create a new model that fetches data from the specified server.
+        /// </summary>
+        /// <param name="password">The password to the server</param>
+        /// <param name="server">The address of the server.</param>
         public LogModel(string password, string server)
         {
             this.password = password;
             this.server = server;
-       
-            var conn = DigitalVoterList.GetInstance("root", this.password, this.server);
+
+            var conn = DigitalVoterList.GetInstance("root", this.password, "dvl", this.server);
 
             this.logs = new BindingList<LogDO>();
             this.lDAO = new LogDAO(conn);
@@ -73,6 +54,39 @@ namespace DigitalVoterList.PollingTable.Log
             this.filter = new LogFilter();
         }
 
+        /// <summary>
+        /// Gets the current log entries.
+        /// </summary>
+        public BindingList<LogDO> Logs
+        {
+            get
+            {
+                return this.logs;
+            }
+        }
+
+        /// <summary>
+        /// Gets the total number of voters
+        /// </summary>
+        public int TotalVoters
+        {
+            get
+            {
+                return totalVoters;
+            }
+        }
+
+        /// <summary>
+        /// Get the total number of voters who have voted.
+        /// </summary>
+        public int VotedVoters
+        {
+            get
+            {
+                return votedVoters;
+            }
+        }
+
         public void UpdateFilter(LogFilter f)
         {
             this.filter = f;
@@ -80,6 +94,9 @@ namespace DigitalVoterList.PollingTable.Log
             this.Update();
         }
 
+        /// <summary>
+        /// Update the logs based on the current filter.
+        /// </summary>
         public void Update()
         {
             var result = this.lDAO.Read(l =>
