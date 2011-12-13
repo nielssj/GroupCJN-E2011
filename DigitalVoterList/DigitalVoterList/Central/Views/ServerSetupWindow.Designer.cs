@@ -50,6 +50,7 @@
             this.userBox.Name = "userBox";
             this.userBox.Size = new System.Drawing.Size(112, 20);
             this.userBox.TabIndex = 3;
+            this.userBox.Text = "groupCJN";
             // 
             // portLabel
             // 
@@ -67,6 +68,7 @@
             this.portBox.Name = "portBox";
             this.portBox.Size = new System.Drawing.Size(112, 20);
             this.portBox.TabIndex = 1;
+            this.portBox.Text = "3306";
             // 
             // userLabel
             // 
@@ -102,6 +104,7 @@
             this.adressBox.Name = "adressBox";
             this.adressBox.Size = new System.Drawing.Size(112, 20);
             this.adressBox.TabIndex = 0;
+            this.adressBox.Text = "mysql.itu.dk";
             // 
             // passwordBox
             // 
@@ -128,6 +131,7 @@
             this.dbBox.Name = "dbBox";
             this.dbBox.Size = new System.Drawing.Size(112, 20);
             this.dbBox.TabIndex = 2;
+            this.dbBox.Text = "groupCJN";
             // 
             // dbLabel
             // 
