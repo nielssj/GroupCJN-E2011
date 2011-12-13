@@ -77,7 +77,7 @@ namespace DigitalVoterList.Central.Models
         /// <summary> Notify me when the generation process ends (interrupted or completed). </summary>
         public event TextChangedHandler GenerationEnded;
 
-        /// <summary> May I have the filter of this Voter Card Generator? </summary>
+        /// <summary> May I have the filter? </summary>
         public VoterFilter Filter { get { return filter; } }
 
         public int VoterDonePerc        // See voterDonePerc field
@@ -102,7 +102,7 @@ namespace DigitalVoterList.Central.Models
         }
 
         /// <summary>
-        /// How many of the given voters have already had their voter cards generated?
+        /// How many of these voters have already had their voter cards generated?
         /// </summary>
         /// <returns>The number of given voters who has already had their voter cards generated.</returns>
         public int ValidateSelection()
@@ -112,7 +112,7 @@ namespace DigitalVoterList.Central.Models
         }
 
         /// <summary>
-        /// Abort the current generator process, if one is currently running.
+        /// Abort the current generation process, if one is running.
         /// </summary>
         public void Abort()
         {

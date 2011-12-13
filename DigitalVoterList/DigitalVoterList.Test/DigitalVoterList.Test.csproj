@@ -53,6 +53,7 @@
     <Compile Include="CentralModelViewTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PollingTableTest.cs" />
+    <Compile Include="VoterCardGeneratorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DBComm\DBComm.csproj">

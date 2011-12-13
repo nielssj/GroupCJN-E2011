@@ -11,7 +11,7 @@ namespace DigitalVoterList.Central.Views
     using DigitalVoterList.Central.Models;
 
     /// <summary>
-    /// A view for controlling and monitoring a voter card generator.
+    /// A view for representing and manipulating a Voter Card Generator.
     /// 
     /// Depicts the current state of a Voter Card Generator.
     /// Raises events about user input (to be listened to by controllers).
@@ -76,11 +76,11 @@ namespace DigitalVoterList.Central.Views
             this.lblStatus.Text = statusText;
         }
 
-        /// <summary> What model is associated with this view? </summary>
+        /// <summary> May I have the associated model? </summary>
         /// <returns>The associated model.</returns>
         public ISubModel GetModel()
         {
-            return model;
+            return model; // In an ideal world this would be a property, but interfaces can't contain properties.
         }
 
         /// <summary>

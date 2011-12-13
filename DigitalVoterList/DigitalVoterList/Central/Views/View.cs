@@ -41,10 +41,10 @@ namespace DigitalVoterList.Central.Views
         // Custom delegate for handler of the SubViewOpened event.
         public delegate void ViewChangedHandler(Model.ChangeType type, ISubView view);
 
-        /// <summary> Notify me when a submodel has been opened. </summary>
+        /// <summary> Notify me when a sub-view has been opened. </summary>
         public event ViewChangedHandler SubViewOpened;
 
-        /// <summary> May I have the default view? (Voter Selection Window) </summary>
+        /// <summary> May I have the default sub-view? (Voter Selection Window) </summary>
         public VoterSelectionWindow VoterSelectionView 
         { 
             get

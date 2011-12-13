@@ -27,18 +27,17 @@ namespace DigitalVoterList.Central.Controllers
 
         public event ConnectedEvent Connected;
 
-        public void OnConnected()
-        {
-            Connected();
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ServerSetupController"/> class.
+        /// </summary>
+        /// <param name="view"> The associated view. </param>
+        /// <param name="model"> The associated model. </param>
         public ServerSetupController(ServerSetupWindow view, ServerSetup model)
         {
             this.view = view;
             this.model = model;
 
             this.view.Closed += (o, eA) => Environment.Exit(-1);
-
             this.view.ConnectBtn.Click += (o, eA) => this.ConnectClicked();
         }
 
@@ -50,11 +49,13 @@ namespace DigitalVoterList.Central.Controllers
             }
         }
 
+        /// <summary> Dispose of your view! </summary>
         public void DisposeView()
         {
             this.view.Dispose();
         }
 
+        /// <summary> React to connect request. </summary>
         public void ConnectClicked()
         {
             string address = this.view.Address;
@@ -96,6 +97,11 @@ namespace DigitalVoterList.Central.Controllers
 
             this.model.SaveCredentials(address, port, user, password);
             this.OnConnected();
+        }
+
+        public void OnConnected()
+        {
+            Connected();
         }
     }
 }
