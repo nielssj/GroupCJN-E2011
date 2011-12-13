@@ -22,8 +22,8 @@ namespace DBComm.ManualTests
         public void Setup()
         {
             var connection = new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"
-                    + "database=groupCJN;");
+                    "server=localhost;" + "port=3306;" + "uid=groupCJN;" + "password=abc123;" + "Sql Server Mode=true;"
+                    + "database=groupcjn;");
 
             var creator = new DBCreator(connection);
 

@@ -52,6 +52,7 @@ namespace DigitalVoterList.Central.Controllers
             int old = model.ValidateSelection();
             DialogResult result = DialogResult.None;
             if (old > 0) result = MessageBox.Show("The selection contains " + old + " voters who already had their voter cards generated previously, do you wish to continue?", "Cards already generated", MessageBoxButtons.YesNo);
+            if (old == -1) return;
             if (result == DialogResult.No) return;
 
             // Destination validation.

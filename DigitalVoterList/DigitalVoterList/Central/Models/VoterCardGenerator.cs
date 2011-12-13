@@ -17,6 +17,8 @@ namespace DigitalVoterList.Central.Models
 
     using DigitalVoterList.Central.Utility;
 
+    using MySql.Data.MySqlClient;
+
     using PDFjet.NET;
 
     /// <summary>
@@ -30,6 +32,7 @@ namespace DigitalVoterList.Central.Models
         /// <summary> Functions to group upon, returns the name of a given voters group (Based on individual properties).</summary>
         public readonly List<Func<VoterDO, String>> GroupFunctions = new List<Func<VoterDO, string>>
         {
+            (v => "All"),
             (v => v.PollingStation.Municipality.Name),  // Municipality
             (v => v.PollingStation.Name),               // Polling Station
             (v => v.Name.Substring(0, 1)),              // First Letter in name
@@ -76,6 +79,8 @@ namespace DigitalVoterList.Central.Models
         public event TextChangedHandler CurrentGroupChanged;
         /// <summary> Notify me when the generation process ends (interrupted or completed). </summary>
         public event TextChangedHandler GenerationEnded;
+        /// <summary> Notify me if generator is unable to connected to the voter box. </summary>
+        public event Action UnableToConnectEvent;
 
         /// <summary> May I have the filter? </summary>
         public VoterFilter Filter { get { return filter; } }
@@ -107,8 +112,20 @@ namespace DigitalVoterList.Central.Models
         /// <returns>The number of given voters who has already had their voter cards generated.</returns>
         public int ValidateSelection()
         {
-            IEnumerable<VoterDO> voters = new VoterDAO().Read(filter.ToPredicate());
-            return voters.Where(v => v.CardPrinted.Equals(true)).Count();
+            var predicate = filter != null ? filter.ToPredicate() : v => true;
+            int count = 0;
+
+            try
+            {
+                IEnumerable<VoterDO> voters = new VoterDAO().Read(predicate);
+                count = voters.Where(v => v.CardPrinted.Equals(true)).Count(); 
+            } catch (MySqlException e)
+            {
+                UnableToConnectEvent();
+                count = -1;
+            }
+
+            return count;
         }
 
         /// <summary>
@@ -135,12 +152,11 @@ namespace DigitalVoterList.Central.Models
             this.property = property;
             this.limit = limit;
 
-            var voterDAO = new VoterDAO();
-            IEnumerable<VoterDO> voters = voterDAO.Read(filter.ToPredicate()).ToList();
-
+            IEnumerable<VoterDO> voters = this.fetchVoters();
             IEnumerable<IGrouping<String, VoterDO>> groups = this.GroupByData(voters);
             this.GroupCount = groups.Count();
             this.groupsEnumerator = GroupByData(voters).GetEnumerator();
+            
             this.GroupDoneCount = 0;
             
             if(this.groupsEnumerator.MoveNext())
@@ -157,6 +173,30 @@ namespace DigitalVoterList.Central.Models
                 worker.DoWork += this.GenerateGroup;
                 worker.RunWorkerAsync();
             }
+        }
+
+        /// <summary>
+        /// Attempt to fetch the voters from the database
+        /// Make event call to notify user in case of failure.
+        /// </summary>
+        /// <returns>The resulting voters.</returns>
+        private IEnumerable<VoterDO> fetchVoters()
+        {
+            var voterDAO = new VoterDAO();
+            var predicate = filter != null ? filter.ToPredicate() : v => true;
+            IEnumerable<VoterDO> voters = null;
+
+            try
+            {
+                voters = voterDAO.Read(predicate).ToList();
+            }
+            catch (MySqlException e)
+            {
+                UnableToConnectEvent();
+                this.Abort();
+            }
+
+            return voters;
         }
 
         /// <summary>
@@ -215,7 +255,8 @@ namespace DigitalVoterList.Central.Models
                 
                 var voterDAO = new VoterDAO();
                 var template = new VoterDO(null, null, null, null, null, true, null);
-                voterDAO.Update(filter.ToPredicate(), template);
+                var predicate = filter != null ? filter.ToPredicate() : v => true;
+                voterDAO.Update(predicate, template);
 
                 GenerationEnded("Completed");
             }
@@ -228,7 +269,7 @@ namespace DigitalVoterList.Central.Models
         /// <returns>An IEnumerable containing the resulting batches.</returns>
         private IEnumerable<IGrouping<String, VoterDO>> GroupByData(IEnumerable<VoterDO> voters)
         {
-            return voters.GroupBy(this.GroupFunctions[this.property]);
+            return voters.GroupBy(this.GroupFunctions[this.property+1]);
         }
 
         /// <summary>
@@ -245,9 +286,6 @@ namespace DigitalVoterList.Central.Models
 
             return groups;
         }
-
-        
-        
 
         /// <summary>
         /// Generate a single batch (pdf-file) containing one or more voter cards.

@@ -84,6 +84,15 @@ namespace DigitalVoterList.Central.Views
         }
 
         /// <summary>
+        /// Show database error dialog.
+        /// </summary>
+        public void ShowDBError()
+        {
+            MessageBox.Show(
+                "The connection to the voter box has been lost. Please contact a manager to restore connection.", "Connection error");
+        }
+
+        /// <summary>
         /// Set up initial values for controls.
         /// </summary>
         private void InitialValues()
@@ -108,6 +117,7 @@ namespace DigitalVoterList.Central.Views
             this.model.GroupDoneCountChanged += (i => pbrGroups.Value = i);
             this.model.CurrentGroupChanged += this.UpdateStatus;
             this.model.GenerationEnded += this.InactiveMode;
+            this.model.UnableToConnectEvent += this.ShowDBError;
         }
 
         /// <summary>

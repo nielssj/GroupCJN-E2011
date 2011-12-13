@@ -17,11 +17,15 @@ namespace DBComm.DBComm
     {
         static void Main(string[] args)
         {
+            // Create Database.
             var dbc = new DBCreator(new MySqlConnection(
-                   "server=mysql.itu.dk;" + "port=3306;" + "password=abc123;" + "uid=groupCJN;"));
-            var g = new Generator(DigitalVoterList.GetInstance("groupCJN", "abc123", "mysql.itu.dk", "3306"));
+                   "server=localhost;" + "port=3306;" + "password=abc123;" + "uid=groupCJN;"));
+            // Initialize generator.
+            var g = new Generator(DigitalVoterList.GetInstance("groupCJN", "abc123", "localhost", "3306"));
 
+            // Generate!
             g.Generate(10, 100, 50000);
+
             Console.WriteLine("done");
         }
     }
