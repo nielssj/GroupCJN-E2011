@@ -7,6 +7,8 @@
 namespace DBComm.DBComm
 {
     using System;
+
+    using global::DBComm.DBComm.DAO;
     using global::DBComm.DBComm.DataGeneration;
     using MySql.Data.MySqlClient;
 
@@ -17,8 +19,10 @@ namespace DBComm.DBComm
     {
         static void Main(string[] args)
         {
-            var dbc = new DBCreator(new MySqlConnection(
-                   "server=localhost;" + "port=3306;" + "password=abc123;" + "uid=root;"));
+            var dbc =
+                new DBCreator(
+                    new MySqlConnection("server=localhost;" + "port=3306;" + "password=abc123;" + "uid=root;"), "dvl");
+            
             var g = new Generator(DigitalVoterList.GetInstance("root", "abc123", "localhost", "3306"));
 
             g.Generate(10, 100, 500);

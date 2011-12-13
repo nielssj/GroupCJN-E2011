@@ -62,12 +62,13 @@ namespace DigitalVoterList.Central.Controllers
             int.TryParse(this.view.Port, out port);
             string user = this.view.User;
             string password = this.view.Pw;
+            string db = this.view.DB;
 
             try
             {
-                DigitalVoterList.GetConnectionInstance(user, password, address, port);
+                DigitalVoterList.GetConnectionInstance(user, password, db, address, port);
             }
-            catch (System.FormatException e)
+            catch (System.FormatException)
             {
                 view.ShowMessageBox("The credentials provided were wrong.");
                 return;
@@ -94,7 +95,7 @@ namespace DigitalVoterList.Central.Controllers
                 return;
             }
 
-            this.model.SaveCredentials(address, port, user, password);
+            this.model.SaveCredentials(address, port, user, password, db);
             this.OnConnected();
         }
     }

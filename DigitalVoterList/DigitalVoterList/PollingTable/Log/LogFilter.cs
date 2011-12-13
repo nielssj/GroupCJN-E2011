@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="LogFilter.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="LogFilter.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ namespace DigitalVoterList.PollingTable.Log
     using DBComm.DBComm.DO;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// A class representing filter parameters from the log window.
     /// </summary>
     public struct LogFilter
     {

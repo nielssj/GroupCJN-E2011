@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Generator.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="Generator.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ namespace DBComm.DBComm.DataGeneration
     using global::DBComm.DBComm.DO;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// A class to generate test data.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "*", Justification = "Generator code")]
     public class Generator
