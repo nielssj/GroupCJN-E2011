@@ -16,18 +16,6 @@ namespace DBComm.DBComm.DO
     public partial class PollingStationDOTest
     {
         [PexMethod]
-        public void VotersSet([PexAssumeUnderTest]PollingStationDO target, ICollection<VoterDO> value)
-        {
-            target.Voters = value;
-            // TODO: add assertions to method PollingStationDOTest.VotersSet(PollingStationDO, ICollection`1<VoterDO>)
-        }
-        [PexMethod]
-        public void MunicipalitySet([PexAssumeUnderTest]PollingStationDO target, MunicipalityDO value)
-        {
-            target.Municipality = value;
-            // TODO: add assertions to method PollingStationDOTest.MunicipalitySet(PollingStationDO, MunicipalityDO)
-        }
-        [PexMethod]
         public ICollection<VoterDO> VotersGet([PexAssumeUnderTest]PollingStationDO target)
         {
             ICollection<VoterDO> result = target.Voters;

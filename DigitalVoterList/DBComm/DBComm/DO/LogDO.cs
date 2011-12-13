@@ -16,8 +16,6 @@ namespace DBComm.DBComm.DO
     [Table(Name = "log")]
     public class LogDO : IDataObject
     {
-        #region Implementation of IDataObject
-
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
         /// </summary>
@@ -101,7 +99,5 @@ namespace DBComm.DBComm.DO
         {
             // No associations, so nothing to reset here.
         }
-
-        #endregion
     }
 }

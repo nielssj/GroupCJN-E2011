@@ -15,12 +15,6 @@ namespace DBComm.DBComm.DO
     public partial class VoterDOTest
     {
         [PexMethod]
-        public void PollingStationSet([PexAssumeUnderTest]VoterDO target, PollingStationDO value)
-        {
-            target.PollingStation = value;
-            // TODO: add assertions to method VoterDOTest.PollingStationSet(VoterDO, PollingStationDO)
-        }
-        [PexMethod]
         public uint? PrimaryKeyGet([PexAssumeUnderTest]VoterDO target)
         {
             uint? result = target.PrimaryKey;

@@ -44,10 +44,11 @@
             // userBox
             // 
             this.userBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.userBox.Location = new System.Drawing.Point(109, 58);
+            this.userBox.Location = new System.Drawing.Point(109, 56);
             this.userBox.Name = "userBox";
             this.userBox.Size = new System.Drawing.Size(112, 20);
-            this.userBox.TabIndex = 2;
+            this.userBox.TabIndex = 3;
+            this.userBox.Text = "groupCJN";
             // 
             // portLabel
             // 
@@ -65,11 +66,12 @@
             this.portBox.Name = "portBox";
             this.portBox.Size = new System.Drawing.Size(112, 20);
             this.portBox.TabIndex = 1;
+            this.portBox.Text = "3306";
             // 
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(12, 61);
+            this.userLabel.Location = new System.Drawing.Point(12, 59);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(32, 13);
             this.userLabel.TabIndex = 10;
@@ -89,7 +91,7 @@
             this.connectBtn.Location = new System.Drawing.Point(145, 106);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(75, 23);
-            this.connectBtn.TabIndex = 4;
+            this.connectBtn.TabIndex = 5;
             this.connectBtn.Text = "Connect";
             this.connectBtn.UseVisualStyleBackColor = true;
             // 
@@ -100,20 +102,21 @@
             this.adressBox.Name = "adressBox";
             this.adressBox.Size = new System.Drawing.Size(112, 20);
             this.adressBox.TabIndex = 0;
+            this.adressBox.Text = "mysql.itu.dk";
             // 
             // passwordBox
             // 
             this.passwordBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordBox.Location = new System.Drawing.Point(109, 84);
+            this.passwordBox.Location = new System.Drawing.Point(109, 82);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(112, 20);
-            this.passwordBox.TabIndex = 3;
+            this.passwordBox.TabIndex = 4;
             // 
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(12, 87);
+            this.passwordLabel.Location = new System.Drawing.Point(12, 85);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(87, 13);
             this.passwordLabel.TabIndex = 14;
@@ -123,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 136);
+            this.ClientSize = new System.Drawing.Size(228, 134);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.userBox);

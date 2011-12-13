@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,9 +82,9 @@
             // 
             this.timeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
-            dataGridViewCellStyle2.Format = "MM/dd-yyyy HH:mm:ss";
-            dataGridViewCellStyle2.NullValue = null;
-            this.timeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "MM/dd-yyyy HH:mm:ss";
+            dataGridViewCellStyle6.NullValue = null;
+            this.timeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.timeDataGridViewTextBoxColumn.HeaderText = "Time";
             this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
             this.timeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -137,34 +137,36 @@
             // 
             // cprBox
             // 
-            this.cprBox.Location = new System.Drawing.Point(239, 16);
+            this.cprBox.Location = new System.Drawing.Point(247, 16);
             this.cprBox.Name = "cprBox";
             this.cprBox.Size = new System.Drawing.Size(93, 20);
             this.cprBox.TabIndex = 3;
             // 
             // tableBox
             // 
-            this.tableBox.Location = new System.Drawing.Point(239, 46);
+            this.tableBox.Location = new System.Drawing.Point(247, 46);
             this.tableBox.Name = "tableBox";
             this.tableBox.Size = new System.Drawing.Size(93, 20);
             this.tableBox.TabIndex = 4;
             // 
             // timeTo
             // 
+            this.timeTo.CustomFormat = "dd-MM-yyyy hh:mm";
             this.timeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.timeTo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.timeTo.Location = new System.Drawing.Point(54, 46);
             this.timeTo.Name = "timeTo";
-            this.timeTo.Size = new System.Drawing.Size(104, 20);
+            this.timeTo.Size = new System.Drawing.Size(131, 20);
             this.timeTo.TabIndex = 7;
             // 
             // timeFrom
             // 
-            this.timeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.timeFrom.CustomFormat = "dd-MM-yyyy hh:mm";
+            this.timeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.timeFrom.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.timeFrom.Location = new System.Drawing.Point(54, 16);
             this.timeFrom.Name = "timeFrom";
-            this.timeFrom.Size = new System.Drawing.Size(104, 20);
+            this.timeFrom.Size = new System.Drawing.Size(131, 20);
             this.timeFrom.TabIndex = 8;
             // 
             // refreshButton
@@ -218,7 +220,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(177, 48);
+            this.label4.Location = new System.Drawing.Point(191, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 14;
@@ -227,7 +229,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(177, 19);
+            this.label3.Location = new System.Drawing.Point(191, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 13;
@@ -298,7 +300,6 @@
         private System.Windows.Forms.ComboBox activityBox;
         private System.Windows.Forms.TextBox cprBox;
         private System.Windows.Forms.TextBox tableBox;
-        private System.Windows.Forms.DateTimePicker timeTo;
         private System.Windows.Forms.DateTimePicker timeFrom;
         private System.Windows.Forms.Button refreshButton;
         private System.Windows.Forms.Button resetButton;
@@ -314,5 +315,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker timeTo;
     }
 }

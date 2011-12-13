@@ -13,18 +13,16 @@ namespace DBComm.DBComm.DataGeneration
     /// </summary>
     public class DBCreator
     {
+        private string dbName;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DBCreator"/> class. 
         /// Create a db on the following server.
         /// </summary>
-        /// <param name="server">The server.
-        /// </param>
-        /// <param name="port">The port.
-        /// </param>
-        /// <param name="user">The user.
-        /// </param>
-        /// <param name="password">The password.
-        /// </param>
+        /// <param name="server">The server.</param>
+        /// <param name="port">The port.</param> 
+        /// <param name="user">The user.</param>
+        /// <param name="password">The password.</param>
         public DBCreator(string server, string port, string user, string password)
         {
             string connString = "server=" + server + ";uid=" + user + ";password=" + password + ";port=" + port + ";";
@@ -34,9 +32,7 @@ namespace DBComm.DBComm.DataGeneration
         /// <summary>
         /// Initializes a new instance of the <see cref="DBCreator"/> class.
         /// </summary>
-        /// <param name="c">
-        /// The connection
-        /// </param>
+        /// <param name="c">The connection.</param>
         public DBCreator(MySqlConnection c)
         {
             this.createDB(c);

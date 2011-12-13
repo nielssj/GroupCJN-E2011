@@ -154,7 +154,7 @@ namespace DBComm.DBComm.DO
                 return _pollingStation.Entity;
             }
 
-            set
+            private set
             {
                 Contract.Requires(value != null);
                 _pollingStation.Entity = value;

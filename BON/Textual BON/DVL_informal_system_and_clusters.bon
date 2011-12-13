@@ -31,7 +31,10 @@ description
 	"Responsible for reacting to input from the GUI elements in the PT_VIEW"
 cluster PT_VIEW
 description 
-	  "Responsible for creating GUI elements at the polling table"
+	"Responsible for creating GUI elements at the polling table"
+cluster LOG
+description
+	"Responsible for the log window."
 end
 
 cluster_chart PT_VIEW
@@ -48,6 +51,25 @@ description
 class SETUP_WINDOW
 description
 	"Window where the election official enters setup information"
+end
+
+cluster_chart LOG
+indexing
+	author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
+explanation
+	"Responsible for the log window"
+class LOG_CONTROLLER
+description
+	"Responsible for reacting to the user's clicks and periodically updating the underlying model."
+class LOG_MODEL
+description
+	"Responsible for storing and updating log data."
+class LOG_WINDOW
+description
+	"Responsible for showing the data to the user and allowing him to interact with it."
+class LOG_FILTER
+description
+	"A utility class to allows sending all data about the users log selection."
 end
 
 -- ##### Central related clusters #####
@@ -77,6 +99,7 @@ class CENTRAL_MODEL
 description
 	"The main 'model' of the application. Responsible of creating and managing instances of the sub-models."
 class VOTER_SELECTOR
+description
 	"Selects a subset of voters based on various parameters. The selection itself is represented as a VOTER_FILTER."
 class VOTER_CARD_GENERATOR
 description
@@ -84,6 +107,9 @@ description
 class VOTER_BOX_MANAGER
 description
 	"Uploads voters to a specified VoterBox based on a VOTER_FILTER."
+class SERVER_SETUP
+description
+	"A class responsible for persisting server login information provided by the user in the SERVER_SETUP_WINDOW."
 class VOTER_FILTER
 description
 	"A filter describing a subset of voters chosen by VOTER_SELECTOR."
@@ -95,7 +121,7 @@ indexing
 explanation
    "Responsible for GUI elements at the central."
 class C_VIEW
-explanation
+description
 	"The main 'view' of the application. It has the sole responsibility of creating instances of the sub-views (windows forms)."
 class VOTER_SELECTOR_WINDOW
 description	
@@ -106,6 +132,9 @@ description
 class VOTER_CARD_GENERATOR_WINDOW
 description
 	"Window for representing and manipulating a VOTER_CARD_GENERATOR"
+class SERVER_SETUP_WINDOW
+description
+	"Window for taking input to the SERVER_SETUP."
 end
 
 cluster_chart C_CONTROLLERS
@@ -125,6 +154,9 @@ description
 class VOTER_BOX_MANAGER_CONTROLLER
 description
 	"Responsible for reacting to user input from the VOTER_BOX_MANAGER_WINDOW"
+class SERVER_SETUP_CONTROLLER
+description
+	"Responsible for reacting to user input in the SERVER_SETUP_WINDOW."
 end
 
 -- DB COMM related clusters #####
@@ -137,15 +169,15 @@ explanation
 class DIGITAL_VOTER_LIST
 description
 	"A class representing the database."
- cluster DAO
+ cluster DATA_ACCESS_OBJECTS
 description
 	"All DAO classes and interfaces."
-cluster DO
+cluster DATA_OBJECTS
 description
 	"All classes and interfaces representing entities in the database."
 end
 
-cluster_chart DO
+cluster_chart DATA_OBJECTS
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation
@@ -165,9 +197,12 @@ description
 class LOG_DO
 description
 	"The class describing a log entity."
+class ACTIVITY
+description
+	"An enumeration of various log activities."
 end
 
-cluster_chart DAO
+cluster_chart DATA_ACCESS_OBJECTS
 indexing
   author: "Claes Martinsen - clae@itu.dk, Jan Meier - jmei@itu.dk, Niels Søholm - nmar@itu.dk;"
 explanation

@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿
+// -----------------------------------------------------------------------
+// <copyright file="Model.cs" company="">
+// Author: Claes Martinsen.
+// </copyright>
+// -----------------------------------------------------------------------
+
+using System;
 using System.Windows.Forms;
 
 namespace DigitalVoterList.PollingTable.View.Root_elements
 {
+    /// <summary>
+    /// Button user control reused for closing a parent form.
+    /// </summary>
     public partial class CancelBtn : UserControl
     {
         public CancelBtn()
@@ -16,6 +20,9 @@ namespace DigitalVoterList.PollingTable.View.Root_elements
             InitializeComponent();
         }
 
+        /// <summary>
+        /// The method to be called when the user presses the cancel button.
+        /// </summary>
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.ParentForm.Close();

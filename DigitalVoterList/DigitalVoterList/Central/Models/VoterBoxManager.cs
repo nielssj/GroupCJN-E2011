@@ -81,6 +81,9 @@ namespace DigitalVoterList.Central.Models
             return true;
         }
 
+        /// <summary>
+        /// Fetch data from the db based on the current filter.
+        /// </summary>
         public void FetchData()
         {
             pDAO = new PollingStationDAO(DigitalVoterList.GetDefaultInstance());
@@ -117,6 +120,13 @@ namespace DigitalVoterList.Central.Models
             }
         }
 
+        /// <summary>
+        /// Insert the data that was fected onto the remote server.
+        /// </summary>
+        /// <param name="server">The address of the server.</param>
+        /// <param name="port">The port of the server.</param>
+        /// <param name="user">The username.</param>
+        /// <param name="password">The password.</param>
         public void InsertData(string server, string port, string user, string password)
         {
             foreach (var municipality in this.Municipalities)

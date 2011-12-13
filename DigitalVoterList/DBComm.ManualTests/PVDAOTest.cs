@@ -5,6 +5,7 @@ namespace DBComm.ManualTests
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+
     using global::DBComm.DBComm;
     using global::DBComm.DBComm.DAO;
     using global::DBComm.DBComm.DataGeneration;
@@ -31,8 +32,8 @@ namespace DBComm.ManualTests
             this.daos = new List<PessimisticVoterDAO>();
 
             var connection = new MySqlConnection(
-                    "server=localhost;" + "port=3306;" + "uid=root;" + "password=abc123;" + "Sql Server Mode=true;"
-                    + "database=dvl;");
+                    "server=localhost;" + "port=3306;" + "uid=groupCJN;" + "password=abc123;" + "Sql Server Mode=true;"
+                    + "database=groupcjn;");
 
             var creator = new DBCreator(connection);
 

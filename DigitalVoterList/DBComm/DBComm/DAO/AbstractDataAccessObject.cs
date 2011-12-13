@@ -31,11 +31,22 @@ namespace DBComm.DBComm.DAO
         /// </summary>
         protected readonly DigitalVoterList db;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractDataAccessObject{T}"/> class, 
+        /// connects to the default instance.
+        /// </summary>
         protected AbstractDataAccessObject()
         {
             this.db = DigitalVoterList.GetDefaultInstance();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AbstractDataAccessObject{T}"/> class, 
+        /// that connects to the specified DataContext.
+        /// </summary>
+        /// <param name="dc">
+        /// The datacontext
+        /// </param>
         protected AbstractDataAccessObject(DigitalVoterList dc)
         {
             this.db = dc;

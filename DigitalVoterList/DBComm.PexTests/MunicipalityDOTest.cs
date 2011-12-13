@@ -16,12 +16,6 @@ namespace DBComm.DBComm.DO
     public partial class MunicipalityDOTest
     {
         [PexMethod]
-        public void PollingStationsSet([PexAssumeUnderTest]MunicipalityDO target, ICollection<PollingStationDO> value)
-        {
-            target.PollingStations = value;
-            // TODO: add assertions to method MunicipalityDOTest.PollingStationsSet(MunicipalityDO, ICollection`1<PollingStationDO>)
-        }
-        [PexMethod]
         public uint? PrimaryKeyGet([PexAssumeUnderTest]MunicipalityDO target)
         {
             uint? result = target.PrimaryKey;

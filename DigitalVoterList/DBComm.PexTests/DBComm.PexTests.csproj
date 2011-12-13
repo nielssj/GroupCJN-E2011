@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{8178DA8D-58F3-42FE-AAB7-8E1CB88753EA}</ProjectGuid>
+    <ProjectGuid>{F577EE38-D10C-4888-B567-05A791753B49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DBComm.PexTests</RootNamespace>
@@ -38,7 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DBComm.Moles, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ExtendedReflection, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Moles.Framework, Version=0.94.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -87,9 +86,6 @@
     <Compile Include="MunicipalityDOTest.PollingStationsGet.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="MunicipalityDOTest.PollingStationsSet.g.cs">
-      <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="MunicipalityDOTest.PrimaryKeyGet.g.cs">
       <DependentUpon>MunicipalityDOTest.cs</DependentUpon>
     </Compile>
@@ -118,9 +114,6 @@
     <Compile Include="PollingStationDOTest.MunicipalityGet.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="PollingStationDOTest.MunicipalitySet.g.cs">
-      <DependentUpon>PollingStationDOTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="PollingStationDOTest.ResetAssociations.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
@@ -131,9 +124,6 @@
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="PollingStationDOTest.VotersGet.g.cs">
-      <DependentUpon>PollingStationDOTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PollingStationDOTest.VotersSet.g.cs">
       <DependentUpon>PollingStationDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,9 +145,6 @@
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.PollingStationGet.g.cs">
-      <DependentUpon>VoterDOTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VoterDOTest.PollingStationSet.g.cs">
       <DependentUpon>VoterDOTest.cs</DependentUpon>
     </Compile>
     <Compile Include="VoterDOTest.PrimaryKeyGet.g.cs">

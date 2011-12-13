@@ -1,6 +1,6 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="Data.cs" company="">
-// TODO: Update copyright text.
+// <copyright file="Generator.cs" company="DVL">
+// <author>Jan Meier</author>
 // </copyright>
 // -----------------------------------------------------------------------
 
@@ -11,7 +11,8 @@ namespace DBComm.DBComm.DataGeneration
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
-    /// TODO: Update summary.
+    /// Class to fetch name data from files and generate CPR numbers. Used by the DB
+    /// generator.
     /// </summary>
     [SuppressMessage("Microsoft.StyleCop.CSharp.DocumentationRules", "*", Justification = "Generator code")]
     public class Data

@@ -54,7 +54,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 205);
+            this.label2.Location = new System.Drawing.Point(11, 206);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 15;
@@ -64,8 +64,8 @@
             // 
             this.connectButton.Location = new System.Drawing.Point(225, 11);
             this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(75, 70);
-            this.connectButton.TabIndex = 4;
+            this.connectButton.Size = new System.Drawing.Size(75, 74);
+            this.connectButton.TabIndex = 5;
             this.connectButton.Text = "Connect";
             this.connectButton.UseVisualStyleBackColor = true;
             // 
@@ -153,9 +153,9 @@
             this.pwLabel.AutoSize = true;
             this.pwLabel.Location = new System.Drawing.Point(11, 68);
             this.pwLabel.Name = "pwLabel";
-            this.pwLabel.Size = new System.Drawing.Size(53, 13);
+            this.pwLabel.Size = new System.Drawing.Size(56, 13);
             this.pwLabel.TabIndex = 19;
-            this.pwLabel.Text = "Password";
+            this.pwLabel.Text = "Password:";
             // 
             // portBox
             // 
@@ -179,7 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 283);
+            this.ClientSize = new System.Drawing.Size(311, 281);
             this.Controls.Add(this.portBox);
             this.Controls.Add(this.adressTB);
             this.Controls.Add(this.label1);

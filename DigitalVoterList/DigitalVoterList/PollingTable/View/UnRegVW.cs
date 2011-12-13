@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿
+// -----------------------------------------------------------------------
+// <copyright file="Model.cs" company="">
+// Author: Claes Martinsen.
+// </copyright>
+// -----------------------------------------------------------------------
+
 using System.Windows.Forms;
 
 namespace DigitalVoterList
 {
     using DBComm.DBComm.DO;
 
+    /// <summary>
+    /// Window that shows the voter and where the user can unregister the voter using the administrator password.
+    /// </summary>
     public partial class UnRegVW : Form
     {
-
-        private VoterDO currentVoter;
 
         public UnRegVW(VoterDO voter)
         {
             InitializeComponent();
-
-            this.currentVoter = voter;
 
             voterNameLabel.Text = voter.Name;
             voterAddressLabel.Text = voter.Address;

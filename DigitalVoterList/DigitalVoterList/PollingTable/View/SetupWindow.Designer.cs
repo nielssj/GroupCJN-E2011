@@ -46,7 +46,7 @@
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(112, 20);
-            this.passwordBox.TabIndex = 13;
+            this.passwordBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -63,7 +63,7 @@
             this.tableBox.Location = new System.Drawing.Point(109, 32);
             this.tableBox.Name = "tableBox";
             this.tableBox.Size = new System.Drawing.Size(112, 20);
-            this.tableBox.TabIndex = 11;
+            this.tableBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -88,9 +88,11 @@
             this.connectBtn.Location = new System.Drawing.Point(145, 84);
             this.connectBtn.Name = "connectBtn";
             this.connectBtn.Size = new System.Drawing.Size(75, 23);
-            this.connectBtn.TabIndex = 8;
+            this.connectBtn.TabIndex = 3;
             this.connectBtn.Text = "Connect";
             this.connectBtn.UseVisualStyleBackColor = true;
+            this.Closed += (o, Ea) => this.Form1_Closed();
+
             // 
             // ipTextBox
             // 
@@ -98,7 +100,7 @@
             this.ipTextBox.Location = new System.Drawing.Point(109, 6);
             this.ipTextBox.Name = "ipTextBox";
             this.ipTextBox.Size = new System.Drawing.Size(112, 20);
-            this.ipTextBox.TabIndex = 7;
+            this.ipTextBox.TabIndex = 0;
             // 
             // SetupWindow
             // 
@@ -116,7 +118,7 @@
             this.Text = "SetupWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Closed += (o, Ea ) => this.Form1_Closed();
+            this.Closed += (o, Ea) => this.Form1_Closed();
 
         }
 
@@ -175,7 +177,7 @@
             }
         }
 
-        
+
 
     }
 }
