@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Models
+namespace Central.Central.Models
 {
     using System;
     using System.Diagnostics.Contracts;

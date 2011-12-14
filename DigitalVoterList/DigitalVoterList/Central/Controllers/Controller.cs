@@ -4,10 +4,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Controllers
+namespace Central.Central.Controllers
 {
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
+    using global::Central.Central.Models;
+    using global::Central.Central.Views;
 
     /// <summary>
     /// The main 'controller' of the application. 

@@ -4,9 +4,9 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Views
+namespace Central.Central.Views
 {
-    using DigitalVoterList.Central.Models;
+    using global::Central.Central.Models;
 
     /// <summary>
     /// Marker interface for sub-views.

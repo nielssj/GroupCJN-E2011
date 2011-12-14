@@ -9,13 +9,16 @@
 // If the contents of this file becomes outdated, e.g. if it does not
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
-using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Pex.Framework.Generated;
 
-namespace DBComm.DBComm.DO
+namespace DBComm.PexTests
 {
+    using System.Collections.Generic;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.Pex.Framework.Generated;
+
+    using global::DBComm.DBComm.DO;
+
     public partial class MunicipalityDOTest
     {
 [TestMethod]

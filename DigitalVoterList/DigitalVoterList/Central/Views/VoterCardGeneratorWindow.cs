@@ -4,11 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Views
+namespace Central.Central.Views
 {
     using System;
     using System.Windows.Forms;
-    using DigitalVoterList.Central.Models;
+
+    using global::Central.Central.Models;
 
     /// <summary>
     /// A view for representing and manipulating a Voter Card Generator.

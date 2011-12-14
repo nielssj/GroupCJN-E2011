@@ -9,15 +9,21 @@
 // If the contents of this file becomes outdated, e.g. if it does not
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
-using System;
-using Microsoft.Pex.Framework.Explorable;
-using System.Data.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Pex.Framework.Generated;
-using Microsoft.Pex.Engine.Exceptions;
 
-namespace DBComm.DBComm.DO
+namespace DBComm.PexTests
 {
+    using System;
+
+    using Microsoft.Pex.Framework.Explorable;
+
+    using System.Data.Linq;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.Pex.Framework.Generated;
+    using Microsoft.Pex.Engine.Exceptions;
+
+    using global::DBComm.DBComm.DO;
+
     public partial class VoterDOTest
     {
 [TestMethod]

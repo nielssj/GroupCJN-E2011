@@ -4,13 +4,13 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Controllers
+namespace Central.Central.Controllers
 {
     using System.IO;
     using System.Windows.Forms;
 
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
+    using global::Central.Central.Models;
+    using global::Central.Central.Views;
 
     /// <summary>
     /// The controller responsible for monitoring the VoterCardGeneartorWindow (view)

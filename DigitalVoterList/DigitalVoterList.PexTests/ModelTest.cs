@@ -1,15 +1,18 @@
 // <copyright file="ModelTest.cs">Copyright ©  2011</copyright>
 ///Author: Claes Martinsen (but mostly pex)
 
-using System;
-using DigitalVoterList.PollingTable;
-using Microsoft.Pex.Framework;
-using Microsoft.Pex.Framework.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DBComm.DBComm.DAO;
-
-namespace DigitalVoterList.PollingTable
+namespace DigitalVoterList.PexTests
 {
+    using System;
+
+    using Microsoft.Pex.Framework;
+    using Microsoft.Pex.Framework.Validation;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using DBComm.DBComm.DAO;
+
+    using global::PollingTable.PollingTable;
+
     [TestClass]
     [PexClass(typeof(Model))]
     [PexAllowedExceptionFromTypeUnderTest(typeof(ArgumentException), AcceptExceptionSubtypes = true)]

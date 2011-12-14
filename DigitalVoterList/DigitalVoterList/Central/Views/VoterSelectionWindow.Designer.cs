@@ -1,4 +1,4 @@
-﻿namespace DigitalVoterList.Central.Views
+﻿namespace Central.Central.Views
 {
     partial class VoterSelectionWindow
     {
@@ -169,7 +169,7 @@
             // 
             // preferencesToolStripMenuItem
             // 
-            this.preferencesToolStripMenuItem.Image = global::DigitalVoterList.Properties.Resources.emblem_work;
+            this.preferencesToolStripMenuItem.Image = Properties.Resources.emblem_work;
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
             this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.preferencesToolStripMenuItem.Text = "Preferences";
@@ -191,14 +191,14 @@
             // 
             // tsmVCG
             // 
-            this.tsmVCG.Image = global::DigitalVoterList.Properties.Resources.mail_message_new;
+            this.tsmVCG.Image = Properties.Resources.mail_message_new;
             this.tsmVCG.Name = "tsmVCG";
             this.tsmVCG.Size = new System.Drawing.Size(185, 22);
             this.tsmVCG.Text = "Voter Card Generator";
             // 
             // tsmVBM
             // 
-            this.tsmVBM.Image = global::DigitalVoterList.Properties.Resources.network_server_database;
+            this.tsmVBM.Image = Properties.Resources.network_server_database;
             this.tsmVBM.Name = "tsmVBM";
             this.tsmVBM.Size = new System.Drawing.Size(185, 22);
             this.tsmVBM.Text = "Voter Box Manager";
@@ -213,7 +213,7 @@
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Image = global::DigitalVoterList.Properties.Resources.info;
+            this.aboutToolStripMenuItem.Image = Properties.Resources.info;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
@@ -234,7 +234,7 @@
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::DigitalVoterList.Properties.Resources.emblem_work;
+            this.toolStripButton1.Image = Properties.Resources.emblem_work;
             this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -250,7 +250,7 @@
             // tsbVCG
             // 
             this.tsbVCG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbVCG.Image = global::DigitalVoterList.Properties.Resources.mail_message_new;
+            this.tsbVCG.Image = Properties.Resources.mail_message_new;
             this.tsbVCG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbVCG.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbVCG.Name = "tsbVCG";
@@ -261,7 +261,7 @@
             // tsbVBM
             // 
             this.tsbVBM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbVBM.Image = global::DigitalVoterList.Properties.Resources.network_server_database;
+            this.tsbVBM.Image = Properties.Resources.network_server_database;
             this.tsbVBM.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsbVBM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbVBM.Name = "tsbVBM";

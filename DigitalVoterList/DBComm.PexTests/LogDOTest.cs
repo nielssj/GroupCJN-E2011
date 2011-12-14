@@ -1,13 +1,15 @@
 // <copyright file="LogDOTest.cs">Copyright ©  2011</copyright>
 
-using System;
-using DBComm.DBComm.DO;
-using Microsoft.Pex.Framework;
-using Microsoft.Pex.Framework.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace DBComm.DBComm.DO
+namespace DBComm.PexTests
 {
+    using System;
+
+    using Microsoft.Pex.Framework;
+    using Microsoft.Pex.Framework.Validation;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using global::DBComm.DBComm.DO;
+
     [TestClass]
     [PexClass(typeof(LogDO))]
     [PexAllowedExceptionFromTypeUnderTest(typeof(ArgumentException), AcceptExceptionSubtypes = true)]

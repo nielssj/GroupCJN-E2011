@@ -50,8 +50,8 @@
     </Validate>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DigitalVoterList\DigitalVoterList.csproj">
-      <Name>DigitalVoterList</Name>
+    <ProjectReference Include="..\DigitalVoterList\Central.csproj">
+      <Name>Central</Name>
       <Project>{afe39fcc-8482-499f-a180-c25b8baa921f}</Project>
     </ProjectReference>
   </ItemGroup>

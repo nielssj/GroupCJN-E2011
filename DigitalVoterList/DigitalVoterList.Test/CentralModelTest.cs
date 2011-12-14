@@ -1,7 +1,9 @@
 ﻿namespace DigitalVoterList.Test
 {
     using System.Collections.Generic;
-    using DigitalVoterList.Central.Models;
+
+    using Central.Central.Models;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>

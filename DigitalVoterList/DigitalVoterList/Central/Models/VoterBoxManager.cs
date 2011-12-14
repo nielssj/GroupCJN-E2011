@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Models
+namespace Central.Central.Models
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -12,7 +12,6 @@ namespace DigitalVoterList.Central.Models
     using DBComm.DBComm;
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
-
 
     /// <summary>
     /// The model for a voter box manager, the class responsible for transfering data to voting boxes

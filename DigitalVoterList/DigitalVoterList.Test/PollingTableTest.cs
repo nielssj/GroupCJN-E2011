@@ -5,8 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DigitalVoterList.Test
 {
-    using DigitalVoterList.PollingTable;
-
+    using PollingTable.PollingTable;
+    
     using global::DBComm.DBComm;
     using global::DBComm.DBComm.DAO;
  
