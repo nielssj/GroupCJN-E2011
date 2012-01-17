@@ -50,7 +50,7 @@ namespace PollingTable.PollingTable
         /// <returns>false if cpr is not valid, true if it is.</returns>
         public static bool CprLengtVal(uint cpr)
         {
-            bool val = (cpr.ToString().Length > 12 || cpr.ToString().Length < 10);
+            bool val = (cpr.ToString().Length > 12 || cpr.ToString().Length < 9);
             return val;
         }
 
