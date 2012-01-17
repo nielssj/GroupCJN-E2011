@@ -4,13 +4,15 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central
+namespace Central.Central
 {
     using System.Windows.Forms;
-    using DigitalVoterList.Central.Controllers;
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
-    using View = DigitalVoterList.Central.Views.View;
+
+    using global::Central.Central.Controllers;
+    using global::Central.Central.Models;
+    using global::Central.Central.Views;
+
+    using View = global::Central.Central.Views.View;
 
     /// <summary>
     /// TODO: Update summary.

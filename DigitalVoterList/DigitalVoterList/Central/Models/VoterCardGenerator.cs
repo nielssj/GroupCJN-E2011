@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Models
+namespace Central.Central.Models
 {
     using System;
     using System.ComponentModel;
@@ -15,11 +15,11 @@ namespace DigitalVoterList.Central.Models
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
 
-    using DigitalVoterList.Central.Utility;
-
     using MySql.Data.MySqlClient;
 
     using PDFjet.NET;
+
+    using global::Central.Central.Utility;
 
     /// <summary>
     /// Responsible for voter card generation.

@@ -9,14 +9,34 @@
 // If the contents of this file becomes outdated, e.g. if it does not
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
-using System;
-using DBComm.DBComm.DO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Pex.Framework.Generated;
 
-namespace DigitalVoterList.PollingTable
+namespace DigitalVoterList.PexTests
 {
+    using DBComm.DBComm.DO;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.Pex.Framework.Generated;
+
+    using global::PollingTable.PollingTable;
+
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void AdminPassGet169()
+{
+    Model model;
+    string s;
+    model = new Model();
+    model.currentVoter = (VoterDO)null;
+    model.AdminPass = (string)null;
+    s = this.AdminPassGet(model);
+    Assert.AreEqual<string>((string)null, s);
+    Assert.IsNotNull((object)model);
+    Assert.IsNull((object)(model.currentVoter));
+    Assert.AreEqual<string>("localhost", model.SetupInfo.Ip);
+    Assert.AreEqual<uint>(0u, model.SetupInfo.TableNo);
+    Assert.AreEqual<string>((string)null, model.AdminPass);
+}
     }
 }

@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 
 
-namespace DigitalVoterList.Central.Views
+namespace Central.Central.Views
 {
     using System.Windows.Forms;
 

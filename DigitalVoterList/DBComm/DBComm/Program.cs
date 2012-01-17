@@ -24,7 +24,7 @@ namespace DBComm.DBComm
             var g = new Generator(DigitalVoterList.GetInstance("groupCJN", "abc123", "localhost", "3306"));
 
             // Generate!
-            g.Generate(10, 100, 50000);
+            g.Generate(100, 2000, 50000);
 
             Console.WriteLine("done");
         }

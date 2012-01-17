@@ -5,12 +5,12 @@ namespace DigitalVoterList.Test
     using System.Collections.Generic;
     using System.IO;
 
+    using Central.Central.Controllers;
+    using Central.Central.Models;
+    using Central.Central.Views;
+
     using DBComm.DBComm.DAO;
     using DBComm.DBComm.DO;
-
-    using DigitalVoterList.Central.Controllers;
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
 
     /// <summary>
     /// Inserts specific test data into the database and runs voter card 

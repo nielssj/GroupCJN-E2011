@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Views
+namespace Central.Central.Views
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace DigitalVoterList.Central.Views
 
     using DBComm.DBComm.DO;
 
-    using DigitalVoterList.Central.Models;
+    using global::Central.Central.Models;
 
     using IDataObject = DBComm.DBComm.DO.IDataObject;
 

@@ -9,13 +9,27 @@
 // If the contents of this file becomes outdated, e.g. if it does not
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Pex.Framework.Generated;
 
-namespace DigitalVoterList.PollingTable
+namespace DigitalVoterList.PexTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.Pex.Framework.Generated;
+
+    using global::PollingTable.PollingTable;
+
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void Constructor734()
+{
+    Model model;
+    model = this.Constructor();
+    Assert.IsNotNull((object)model);
+    Assert.IsNull((object)(model.currentVoter));
+    Assert.AreEqual<string>("localhost", model.SetupInfo.Ip);
+    Assert.AreEqual<uint>(0u, model.SetupInfo.TableNo);
+    Assert.AreEqual<string>("", model.AdminPass);
+}
     }
 }

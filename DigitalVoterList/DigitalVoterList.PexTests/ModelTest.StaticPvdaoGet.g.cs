@@ -9,14 +9,23 @@
 // If the contents of this file becomes outdated, e.g. if it does not
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
-using System;
-using DBComm.DBComm.DAO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Pex.Framework.Generated;
 
-namespace DigitalVoterList.PollingTable
+namespace DigitalVoterList.PexTests
 {
+    using DBComm.DBComm.DAO;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.Pex.Framework.Generated;
+
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void StaticPvdaoGet507()
+{
+    PessimisticVoterDAO pessimisticVoterDAO;
+    pessimisticVoterDAO = this.StaticPvdaoGet();
+    Assert.IsNull((object)pessimisticVoterDAO);
+}
     }
 }

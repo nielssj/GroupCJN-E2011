@@ -4,14 +4,14 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Controllers
+namespace Central.Central.Controllers
 {
     using System;
 
     using DBComm.DBComm.DO;
 
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
+    using global::Central.Central.Models;
+    using global::Central.Central.Views;
 
     /// <summary>
     /// The controller responsible for monitoring the VoterSelectionWindow (view)

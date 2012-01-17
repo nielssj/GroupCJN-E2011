@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Utility
+namespace Central.Central.Utility
 {
     using System;
 

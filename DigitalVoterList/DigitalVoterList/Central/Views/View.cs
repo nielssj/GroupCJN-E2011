@@ -4,12 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Views
+namespace Central.Central.Views
 {
     using System.Collections.Generic;
     using System.Windows.Forms;
 
-    using DigitalVoterList.Central.Models;
+    using global::Central.Central.Models;
 
     /// <summary>
     /// The main 'view' of the application. 

@@ -4,16 +4,16 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Controllers
+namespace Central.Central.Controllers
 {
     using System;
 
     using DBComm.DBComm;
 
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
-
     using MySql.Data.MySqlClient;
+
+    using global::Central.Central.Models;
+    using global::Central.Central.Views;
 
     /// <summary>
     /// TODO: Update summary.

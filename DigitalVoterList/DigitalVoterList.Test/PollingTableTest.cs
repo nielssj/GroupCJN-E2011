@@ -1,10 +1,12 @@
-﻿
+﻿///author: Claes Martinsen
+
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DigitalVoterList.Test
 {
-    using DigitalVoterList.PollingTable;
-
+    using PollingTable.PollingTable;
+    
     using global::DBComm.DBComm;
     using global::DBComm.DBComm.DAO;
  
@@ -19,7 +21,9 @@ namespace DigitalVoterList.Test
 
         private string server = "localhost";
 
-        private string dbname = "DVL";
+        private string dbname = "groupcjn";
+
+        private string user = "groupCJN";
 
         [TestInitialize]
         public void Setup()
@@ -53,7 +57,7 @@ namespace DigitalVoterList.Test
         public void FetchVoterTest()
         {
             
-            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server, dbname));
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance(user, password, server));
             vdao.Create(voter);
 
             Model model = new Model();
@@ -68,17 +72,11 @@ namespace DigitalVoterList.Test
             vdao.Delete(x => x.PrimaryKey == voter.PrimaryKey);
         }
 
-        public void PutVoterInDB()
-        {
-            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server, dbname));
-            vdao.Create(voter);
-        }
-
         [TestMethod]
         public void FindVoterTest()
         {
 
-            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance("root", password, server, dbname));
+            VoterDAO vdao = new VoterDAO(DigitalVoterList.GetInstance(user, password, server));
             vdao.Create(voter);
 
             Model model = new Model();

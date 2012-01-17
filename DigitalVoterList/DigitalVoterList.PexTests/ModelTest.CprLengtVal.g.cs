@@ -9,13 +9,29 @@
 // If the contents of this file becomes outdated, e.g. if it does not
 // compile anymore, you may delete this file and invoke Pex again.
 // </auto-generated>
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Pex.Framework.Generated;
 
-namespace DigitalVoterList.PollingTable
+namespace DigitalVoterList.PexTests
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.Pex.Framework.Generated;
+
     public partial class ModelTest
     {
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void CprLengtVal201()
+{
+    bool b;
+    b = this.CprLengtVal(11u);
+    Assert.AreEqual<bool>(true, b);
+}
+[TestMethod]
+[PexGeneratedBy(typeof(ModelTest))]
+public void CprLengtVal282()
+{
+    bool b;
+    b = this.CprLengtVal(0u);
+    Assert.AreEqual<bool>(true, b);
+}
     }
 }

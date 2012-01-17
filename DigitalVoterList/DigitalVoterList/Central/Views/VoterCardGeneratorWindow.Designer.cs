@@ -1,4 +1,4 @@
-﻿namespace DigitalVoterList.Central.Views
+﻿namespace Central.Central.Views
 {
     partial class VoterCardGeneratorWindow
     {

@@ -6,8 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DigitalVoterList.Test
 {
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
+    using Central.Central.Models;
+    using Central.Central.Views;
 
     [TestClass]
     public class CentralModelViewTest

@@ -4,14 +4,14 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Controllers
+namespace Central.Central.Controllers
 {
     using System;
-    using DBComm.DBComm;
-    using DBComm.DBComm.DataGeneration;
-    using DigitalVoterList.Central.Models;
-    using DigitalVoterList.Central.Views;
 
+    using DBComm.DBComm.DataGeneration;
+
+    using global::Central.Central.Models;
+    using global::Central.Central.Views;
 
     /// <summary>
     /// The Controller responsible for monitoring the VoterBoxManager (view)

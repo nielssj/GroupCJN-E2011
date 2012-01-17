@@ -62,7 +62,7 @@ namespace DBComm.DBComm
                     string password = lines[3];
                     return string.Format("server={0};uid={1};password={2};port={3};Sql Server Mode = true;database={4}", server, user, password, port, "groupcjn");
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return Default;
                 }
@@ -102,7 +102,9 @@ namespace DBComm.DBComm
                     user,
                     password,
                     port,
-                    "groupcjn"));
+                    "groupcjn"
+                    )
+                    );
             conn.Open();
 
             return new DigitalVoterList(conn);

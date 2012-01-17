@@ -4,12 +4,12 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DigitalVoterList.Central.Views
+namespace Central.Central.Views
 {
     using System;
     using System.Windows.Forms;
 
-    using DigitalVoterList.Central.Models;
+    using global::Central.Central.Models;
 
     /// <summary>
     /// Window for representing and manipulating the Voter Box Managaer.

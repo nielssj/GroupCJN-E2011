@@ -1,4 +1,4 @@
-namespace DigitalVoterList
+namespace Central
 {
     using System;
     using System.Windows.Forms;
@@ -17,9 +17,6 @@ namespace DigitalVoterList
 
             // Launch 'Central' client.
             new Central.Main();
-
-            // Launch 'PollingTable' client.
-            //new PollingTable.PollingMain();
         }
     }
 }

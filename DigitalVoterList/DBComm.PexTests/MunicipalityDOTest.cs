@@ -1,14 +1,17 @@
 // <copyright file="MunicipalityDOTest.cs">Copyright ©  2011</copyright>
 
-using System;
-using DBComm.DBComm.DO;
-using Microsoft.Pex.Framework;
-using Microsoft.Pex.Framework.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-
-namespace DBComm.DBComm.DO
+namespace DBComm.PexTests
 {
+    using System;
+
+    using Microsoft.Pex.Framework;
+    using Microsoft.Pex.Framework.Validation;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using System.Collections.Generic;
+
+    using global::DBComm.DBComm.DO;
+
     [TestClass]
     [PexClass(typeof(MunicipalityDO))]
     [PexAllowedExceptionFromTypeUnderTest(typeof(ArgumentException), AcceptExceptionSubtypes = true)]
