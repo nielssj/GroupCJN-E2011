@@ -57,7 +57,7 @@ namespace Central.Central.Controllers
 
             // Destination validation.
             result = DialogResult.None;
-            if (Directory.Exists(destination)) result = MessageBox.Show("The specified folder does not exist and will be created, do you wish to continue?", "Unknown folder", MessageBoxButtons.OKCancel);
+            if (!Directory.Exists(destination)) result = MessageBox.Show("The specified folder does not exist and will be created, do you wish to continue?", "Unknown folder", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK) Directory.CreateDirectory(destination);
             else if (result == DialogResult.Cancel) return;
 
